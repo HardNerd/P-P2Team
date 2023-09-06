@@ -10,8 +10,8 @@ public class playerController : MonoBehaviour
     [Header("----- Player Stats -----")]
     [Range(1, 10)] [SerializeField] int HP;
     [Range(3, 10)] [SerializeField] float playerSpeed;
-    [Range(1, 15)] [SerializeField] float jumpHeight; // default: 2.5
-    [Range(-35, -10)] [SerializeField] float gravityValue; // default: -25
+    [Range(1, 10)] [SerializeField] float jumpHeight = 2.5f;
+    [Range(-35, -10)] [SerializeField] float gravityValue = -25;
 
     //[Header("----- Gun Stats -----")]
     //[SerializeField] float shootRate;
@@ -20,7 +20,7 @@ public class playerController : MonoBehaviour
 
     private Vector3 move;
     private Vector3 playerVelocity;
-    private bool groundedPlayer;
+    private bool isGrounded;
     private int jumpedTimes;
     int maxJumps = 2;
 
@@ -37,8 +37,8 @@ public class playerController : MonoBehaviour
     void Movement()
     {        
         // Set player's Y velocity to 0 when grounded and reset jumpedTimes num
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
+        isGrounded = controller.isGrounded;
+        if (isGrounded && playerVelocity.y < 0)
         {
             jumpedTimes = 0;
             playerVelocity.y = 0f;
@@ -50,11 +50,13 @@ public class playerController : MonoBehaviour
 
         controller.Move(move * playerSpeed * Time.deltaTime);
 
-        // Add jump force to player's Y velocity
+        // Add jump velocity to player's Y value
         if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps)
         {
             jumpedTimes++;
-            playerVelocity.y = jumpHeight;
+
+            // physics equation to get the exact velocity based on desired height and gravity
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
         }
 
         // Add gravity to player's Y velocity and make him move
