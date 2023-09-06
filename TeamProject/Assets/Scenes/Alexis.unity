@@ -363,7 +363,7 @@ MonoBehaviour:
   controller: {fileID: 1279724517}
   HP: 10
   playerSpeed: 3
-  jumpHeight: 15
+  jumpHeight: 2.5
   gravityValue: -25
 --- !u!4 &1279724522
 Transform:
@@ -589,6 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1893807350}
+  - component: {fileID: 1893807351}
   - component: {fileID: 1893807349}
   - component: {fileID: 1893807348}
   m_Layer: 0
@@ -672,6 +673,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1279724522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1893807351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893807347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed12c166c859f842846ab753ffa5463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 300
+  lockXRotMin: -90
+  lockXRotMax: 90
+  invertY: 0
 --- !u!1 &1959380679
 GameObject:
   m_ObjectHideFlags: 0
