@@ -7,8 +7,6 @@ public class playerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] Image healthRed;
-    [SerializeField] Image healthYel;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)] [SerializeField] int HP = 10;
@@ -17,7 +15,7 @@ public class playerController : MonoBehaviour, IDamage
     [Range(-35, -10)] [SerializeField] float gravityValue = -25;
 
     [Header("----- Gun Stats -----")]
-    [SerializeField] float shootRate = 2;
+    [SerializeField] float shootRate = 5;
     [SerializeField] int shootDamage = 1;
     [SerializeField] int shootDistance = 15;
 
@@ -28,16 +26,15 @@ public class playerController : MonoBehaviour, IDamage
     private bool isShooting;
     int maxJumps = 2;
 
+    [SerializeField] Image healthRed;
+    [SerializeField] Image healthYel;
     private float healthFillAmount;
     private float lastFillAmount;
-    int origHP;
 
     void Start()
     {
-        origHP = HP;
         healthFillAmount = HP / 10;
         lastFillAmount = HP / 10;
-        spawnPlayer();
     }
 
     void Update()
@@ -123,15 +120,11 @@ public class playerController : MonoBehaviour, IDamage
 
     public void spawnPlayer()
     {
-        HP = origHP;
+        HP = 10;
         healthFillAmount = 1;
         healthYel.fillAmount = healthFillAmount;
         healthRed.fillAmount = healthFillAmount;
         lastFillAmount = 1;
-
-        controller.enabled = false;
-        transform.position = GameManager.instance.playerSpawnPOS.transform.position;
-        controller.enabled = true;
     }
 
     IEnumerator shoot()
