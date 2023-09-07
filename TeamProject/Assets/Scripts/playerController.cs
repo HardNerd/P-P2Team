@@ -9,15 +9,15 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 10)] [SerializeField] int HP = 10;
-    [Range(3, 10)] [SerializeField] float playerSpeed = 7;
-    [Range(1, 10)] [SerializeField] float jumpHeight = 2.7f;
-    [Range(-35, -10)] [SerializeField] float gravityValue = -25;
+    [Range(1, 10)] [SerializeField] int HP;
+    [Range(3, 10)] [SerializeField] float playerSpeed;
+    [Range(1, 10)] [SerializeField] float jumpHeight;
+    [Range(-35, -10)] [SerializeField] float gravityValue;
 
     [Header("----- Gun Stats -----")]
-    [SerializeField] float shootRate = 5;
-    [SerializeField] int shootDamage = 1;
-    [SerializeField] int shootDistance = 15;
+    [SerializeField] float shootRate;
+    [SerializeField] int shootDamage;
+    [SerializeField] int shootDistance;
 
     private Vector3 move;
     private Vector3 playerVelocity;
