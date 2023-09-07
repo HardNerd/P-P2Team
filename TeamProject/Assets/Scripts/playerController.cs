@@ -9,8 +9,8 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)] [SerializeField] int HP = 10;
-    [Range(3, 10)] [SerializeField] float playerSpeed = 8;
-    [Range(1, 10)] [SerializeField] float jumpHeight = 2.5f;
+    [Range(3, 10)] [SerializeField] float playerSpeed = 7;
+    [Range(1, 10)] [SerializeField] float jumpHeight = 2.7f;
     [Range(-35, -10)] [SerializeField] float gravityValue = -25;
 
     [Header("----- Gun Stats -----")]
