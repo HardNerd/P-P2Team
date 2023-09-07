@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject playUI;
 
+    [SerializeField] int enemiesalive;
+
     //I expect the player person to set this up I'm just putting it here for later
     public GameObject playerSpawnPOS;
 
@@ -60,7 +62,21 @@ public class GameManager : MonoBehaviour
         activeMenu.SetActive(isPause);
         activeMenu = null;
     }
-
+    public void updatGameGoal(int enemies)
+    {
+        enemiesalive += enemies;
+        if(enemiesalive <= 0)
+        {
+            StartCoroutine(youWin());
+        }
+    }
+    IEnumerator youWin()
+    {
+        yield return new WaitForSeconds(1);
+        statePause();
+        activeMenu = winMenu;
+        activeMenu.SetActive(isPause);
+    }
     public void loseScreen()
     {
         statePause();
