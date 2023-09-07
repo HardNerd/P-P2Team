@@ -5066,6 +5066,10 @@ PrefabInstance:
       propertyPath: shootRate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5193734635259837527, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
+      propertyPath: targetFaceSpeed
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 6739071964543151830, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.01
@@ -5109,7 +5113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3074705210889822578, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
       propertyPath: shootDistance
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6276233285746502742, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
       propertyPath: m_Name
