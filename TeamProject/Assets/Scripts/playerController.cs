@@ -111,10 +111,10 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (healthYel.fillAmount > healthRed.fillAmount)
         {
-            if(healthYel.fillAmount - healthRed.fillAmount > .2)
+            if (healthYel.fillAmount - healthRed.fillAmount > .2)
                 healthYel.fillAmount = Mathf.Lerp(healthYel.fillAmount, healthRed.fillAmount, Time.deltaTime);
             else
-                healthYel.fillAmount -= (lastFillAmount - healthFillAmount) * Time.deltaTime*2;
+                healthYel.fillAmount -= (lastFillAmount - healthFillAmount) * Time.deltaTime * 2;
         }
     }
 

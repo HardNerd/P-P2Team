@@ -258,7 +258,7 @@ MonoBehaviour:
   controller: {fileID: 6780752}
   HP: 10
   playerSpeed: 3
-  jumpHeight: 15
+  jumpHeight: 10
   gravityValue: -25
   shootRate: 2
   shootDamage: 1
