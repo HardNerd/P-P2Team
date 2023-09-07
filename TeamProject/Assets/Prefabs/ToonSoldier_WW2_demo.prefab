@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 9129082625537362089}
   - component: {fileID: 978396066581335862}
   - component: {fileID: 1399468132877534870}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ToonSoldier_WW2_demo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

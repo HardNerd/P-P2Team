@@ -20,7 +20,7 @@ public class meleeEnemyAI : MonoBehaviour, IDamage
 
     void Start()
     {
-
+        GameManager.instance.updatGameGoal(1);
     }
 
     void Update()
