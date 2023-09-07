@@ -17,7 +17,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] GameObject bullet;
 
     Vector3 playerDirection;
-    Vector3 pushBack;
     bool playerInRange;
     bool isShooting;
 
@@ -69,9 +68,11 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     }
     IEnumerator FlashDamage()
     {
+        Color origColor = model.material.color;
+
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        model.material.color = Color.white;
+        model.material.color = origColor;
     }
 
     void faceTarget()
