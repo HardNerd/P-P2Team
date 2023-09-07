@@ -7,17 +7,19 @@ public class playerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Image healthRed;
+    [SerializeField] Image healthYel;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 10)] [SerializeField] int HP;
-    [Range(3, 10)] [SerializeField] float playerSpeed;
-    [Range(1, 10)] [SerializeField] float jumpHeight;
-    [Range(-35, -10)] [SerializeField] float gravityValue;
+    [Range(1, 10)][SerializeField] int HP = 10;
+    [Range(3, 10)][SerializeField] float playerSpeed = 7;
+    [Range(1, 10)][SerializeField] float jumpHeight = 2.7f;
+    [Range(-35, -10)][SerializeField] float gravityValue = -25;
 
     [Header("----- Gun Stats -----")]
-    [SerializeField] float shootRate;
-    [SerializeField] int shootDamage;
-    [SerializeField] int shootDistance;
+    [SerializeField] float shootRate = 2;
+    [SerializeField] int shootDamage = 1;
+    [SerializeField] int shootDistance = 15;
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -26,15 +28,16 @@ public class playerController : MonoBehaviour, IDamage
     private bool isShooting;
     int maxJumps = 2;
 
-    [SerializeField] Image healthRed;
-    [SerializeField] Image healthYel;
     private float healthFillAmount;
     private float lastFillAmount;
+    int origHP;
 
     void Start()
     {
+        origHP = HP;
         healthFillAmount = HP / 10;
         lastFillAmount = HP / 10;
+        spawnPlayer();
     }
 
     void Update()
@@ -52,7 +55,7 @@ public class playerController : MonoBehaviour, IDamage
     }
 
     void Movement()
-    {        
+    {
         // Set player's Y velocity to 0 when grounded and reset jumpedTimes num
         isGrounded = controller.isGrounded;
         if (isGrounded && playerVelocity.y < 0)
@@ -120,11 +123,15 @@ public class playerController : MonoBehaviour, IDamage
 
     public void spawnPlayer()
     {
-        HP = 10;
+        HP = origHP;
         healthFillAmount = 1;
         healthYel.fillAmount = healthFillAmount;
         healthRed.fillAmount = healthFillAmount;
         lastFillAmount = 1;
+
+        controller.enabled = false;
+        transform.position = GameManager.instance.playerSpawnPOS.transform.position;
+        controller.enabled = true;
     }
 
     IEnumerator shoot()
