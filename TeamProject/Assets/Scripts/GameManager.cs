@@ -23,11 +23,12 @@ public class GameManager : MonoBehaviour
     float currtime;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<playerController>();
+        playerSpawnPOS = GameObject.FindWithTag("Player Spawn Pos");
         currtime = Time.timeScale;
     }
     void Update()
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         isPause = !isPause;
-        playUI.SetActive(!isPause);
+       playUI.SetActive(!isPause);
     }
 
     public void stateUnpause()
