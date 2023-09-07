@@ -2024,6 +2024,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dd7ba9436c3ae242a70e1f7a3d49c70, type: 3}
+--- !u!1001 &793099305
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3927311685150841062, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_Name
+      value: Heavy Gunner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927311685150841062, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643959581992052357, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
 --- !u!1001 &795922892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3534,11 +3595,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a3d71adc6882e44d8fa8833d6a0086f, type: 3}
---- !u!137 &1545566086 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8113368755259439868, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
-  m_PrefabInstance: {fileID: 3277675925799228347}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1557673045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5014,10 +5070,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToonSoldier_WW2_demo
       objectReference: {fileID: 0}
-    - target: {fileID: 973310957365345215, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 5125433493025647273, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.019444
@@ -5058,30 +5110,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5193734635259837527, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 1545566086}
-    - target: {fileID: 5193734635259837527, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
-      propertyPath: shootRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5193734635259837527, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
-      propertyPath: targetFaceSpeed
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 6739071964543151830, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6739071964543151830, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6739071964543151830, guid: 7a5f752a986982849a30485373a6bfc7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.83
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5118,6 +5146,10 @@ PrefabInstance:
     - target: {fileID: 6276233285746502742, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961369103340782282, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
+      propertyPath: m_Center.y
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 7610335593787313480, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5398,6 +5430,7 @@ SceneRoots:
   - {fileID: 862295965}
   - {fileID: 5850913886752719276}
   - {fileID: 1856577071}
+  - {fileID: 793099305}
   - {fileID: 3277675925799228347}
   - {fileID: 3587060609659346617}
   - {fileID: 1437916678}
