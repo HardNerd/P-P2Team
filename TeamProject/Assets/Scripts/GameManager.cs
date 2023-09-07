@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
+    [SerializeField] GameObject playUI;
 
     //I expect the player person to set this up I'm just putting it here for later
     public GameObject playerSpawnPOS;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         isPause = !isPause;
+        playUI.SetActive(!isPause);
     }
 
     public void stateUnpause()
@@ -53,7 +55,16 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isPause = !isPause;
+        playUI.SetActive(!isPause);
         activeMenu.SetActive(isPause);
         activeMenu = null;
+    }
+
+    public void loseScreen()
+    {
+        statePause();
+        activeMenu = loseMenu;
+        activeMenu.SetActive(isPause);
+
     }
 }

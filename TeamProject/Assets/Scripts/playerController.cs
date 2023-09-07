@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
@@ -24,14 +25,26 @@ public class playerController : MonoBehaviour
     private int jumpedTimes;
     int maxJumps = 2;
 
+    [SerializeField] Image healthRed;
+    [SerializeField] Image healthYel;
+    private float healthFillAmount;
+    private float lastFillAmount;
+
     void Start()
     {
-        
+        healthFillAmount = HP / 10;
+        lastFillAmount = HP / 10;
     }
 
     void Update()
     {
         Movement();
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            takeDamage(1);
+        }
+        moveHPBar();
+
     }
 
     void Movement()
@@ -60,5 +73,50 @@ public class playerController : MonoBehaviour
         // Add gravity to player's Y velocity and make him move
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public void takeDamage(int damageAmount)
+    {
+        updateHealth(damageAmount);
+
+        if (HP <= 0)
+        {
+            GameManager.instance.loseScreen();
+        }
+    }
+
+    public void updateHealth(int amount)
+    {
+        float lastHP = HP;
+        HP -= amount;
+
+        //If we introduce an upgrade system to add more max hp, I'll update this
+        Mathf.Clamp(HP, 0, 10);
+
+        healthFillAmount = (float)HP / 10;
+        lastFillAmount = (float)lastHP / 10;
+
+        Debug.Log(healthFillAmount);
+
+        healthRed.fillAmount = healthFillAmount;
+    }
+
+    public void moveHPBar()
+    {
+        if (healthYel.fillAmount > healthRed.fillAmount)
+        {
+            healthYel.fillAmount -= (lastFillAmount - healthFillAmount) * Time.deltaTime;
+        }
+    }
+
+    public void spawnPlayer()
+    {
+        HP = 10;
+        healthFillAmount = 1;
+        healthYel.fillAmount = healthFillAmount;
+        healthRed.fillAmount = healthFillAmount;
+        lastFillAmount = 1;
+
+        //include respawn here;
     }
 }

@@ -260,6 +260,8 @@ MonoBehaviour:
   playerSpeed: 3
   jumpHeight: 15
   gravityValue: -25
+  healthRed: {fileID: 1349474316}
+  healthYel: {fileID: 569219962}
 --- !u!4 &6780757
 Transform:
   m_ObjectHideFlags: 0
@@ -1103,6 +1105,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 266723251}
   winMenu: {fileID: 1446751790}
   loseMenu: {fileID: 1731435487}
+  playUI: {fileID: 919835995}
   playerSpawnPOS: {fileID: 0}
 --- !u!1 &405352205
 GameObject:
@@ -2523,9 +2526,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 475410900}
-  - {fileID: 703277390}
-  - {fileID: 514642513}
   - {fileID: 38757965}
+  - {fileID: 514642513}
+  - {fileID: 703277390}
   m_Father: {fileID: 459578600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &959382101

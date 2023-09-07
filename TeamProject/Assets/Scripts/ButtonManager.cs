@@ -19,6 +19,8 @@ public class ButtonManager : MonoBehaviour
     public void respawn()
     {
         GameManager.instance.stateUnpause();
+        GameManager.instance.playerController.spawnPlayer();
+        //Include respawn here
     }
 
     public void quit()
