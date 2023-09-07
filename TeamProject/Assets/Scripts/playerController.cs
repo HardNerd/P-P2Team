@@ -7,6 +7,8 @@ public class playerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Image healthRed;
+    [SerializeField] Image healthYel;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)] [SerializeField] int HP = 10;
@@ -26,15 +28,16 @@ public class playerController : MonoBehaviour, IDamage
     private bool isShooting;
     int maxJumps = 2;
 
-    [SerializeField] Image healthRed;
-    [SerializeField] Image healthYel;
     private float healthFillAmount;
     private float lastFillAmount;
+    int origHP;
 
     void Start()
     {
+        origHP = HP;
         healthFillAmount = HP / 10;
         lastFillAmount = HP / 10;
+        spawnPlayer();
     }
 
     void Update()
@@ -120,11 +123,15 @@ public class playerController : MonoBehaviour, IDamage
 
     public void spawnPlayer()
     {
-        HP = 10;
+        HP = origHP;
         healthFillAmount = 1;
         healthYel.fillAmount = healthFillAmount;
         healthRed.fillAmount = healthFillAmount;
         lastFillAmount = 1;
+
+        controller.enabled = false;
+        transform.position = GameManager.instance.playerSpawnPOS.transform.position;
+        controller.enabled = true;
     }
 
     IEnumerator shoot()
