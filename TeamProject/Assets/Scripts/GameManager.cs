@@ -63,9 +63,12 @@ public class GameManager : MonoBehaviour
 
     public void loseScreen()
     {
-        statePause();
-        activeMenu = loseMenu;
-        activeMenu.SetActive(isPause);
+        if(activeMenu != loseMenu)
+        {
+            statePause();
+            activeMenu = loseMenu;
+            activeMenu.SetActive(isPause);
+        }
 
     }
 }
