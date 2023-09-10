@@ -8,15 +8,18 @@ public class HeavyGunnerAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
 
 
     [SerializeField] int HP;
     [SerializeField] int targetFaceSpeed;
+    [SerializeField] float viewAngle;
 
     [SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
 
     Vector3 playerDirection;
+    float angleToPlayer;
     bool playerInRange;
     bool isShooting;
 
@@ -27,23 +30,39 @@ public class HeavyGunnerAI : MonoBehaviour, IDamage, IPhysics
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && CanSeePlayer())
         {
+            Debug.Log(playerInRange);
+            Debug.Log(agent.remainingDistance);
             playerDirection = GameManager.instance.player.transform.position - transform.position;
+            faceTarget();
+            agent.SetDestination(GameManager.instance.player.transform.position);
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                faceTarget();
-
-                if (!isShooting)
-                {
+                if(!isShooting)
                     StartCoroutine(shoot());
-                }
-
             }
-            if(!isShooting)
-                agent.SetDestination(GameManager.instance.player.transform.position);
         }
 
+    }
+
+    bool CanSeePlayer()
+    {
+        playerDirection = GameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
+        Debug.Log(angleToPlayer);
+        Debug.DrawRay(headPos.position, playerDirection);
+
+        RaycastHit hit;
+        if(Physics.Raycast(headPos.position, playerDirection, out hit))
+        {
+            if(hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            {
+                return true;
+            }
+        }    
+
+        return false;
     }
 
     IEnumerator shoot()
@@ -59,6 +78,7 @@ public class HeavyGunnerAI : MonoBehaviour, IDamage, IPhysics
         HP -= amount;
 
         StartCoroutine(FlashDamage());
+        agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
