@@ -20,6 +20,7 @@ public class ButtonManager : MonoBehaviour
     {
         GameManager.instance.stateUnpause();
         GameManager.instance.playerController.spawnPlayer();
+        GameManager.instance.levelTime.timeTaken = GameManager.instance.levelTime.timeBuff;
         //Include respawn here
     }
 

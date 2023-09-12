@@ -17,6 +17,7 @@ public class cameraMovement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        transform.localRotation = Quaternion.Euler(transform.parent.forward);
     }
 
     void Update()

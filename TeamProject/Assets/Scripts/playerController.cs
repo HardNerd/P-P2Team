@@ -7,8 +7,6 @@ public class playerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] Image healthRed;
-    [SerializeField] Image healthYel;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] int HP = 10;
