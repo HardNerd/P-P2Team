@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67ce65f5b6b245478fe1d80a456d3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 13700000, guid: f4209d51d1ad0434299f2d498ee076ba, type: 3}
+  model: {fileID: 8113368755259439868}
   agent: {fileID: 9129082625537362089}
   shootPos: {fileID: 6739071964543151830}
   HP: 3

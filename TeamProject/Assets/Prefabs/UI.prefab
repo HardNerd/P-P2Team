@@ -243,7 +243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.85781246, y: 0.8704815}
   m_AnchorMax: {x: 0.85781246, y: 0.8704815}
-  m_AnchoredPosition: {x: -33.5, y: 7}
+  m_AnchoredPosition: {x: 67, y: 7}
   m_SizeDelta: {x: 201, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8219095981322393856
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -301,8 +301,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -1.8087769, z: -44.279297, w: 0}
+  m_margin: {x: -396.59106, y: -1.8087769, z: -44.279297, w: -99.19122}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1030,7 +1030,8 @@ MonoBehaviour:
   loseMenu: {fileID: 8939177870049576697}
   playUI: {fileID: 5916517574040611113}
   timer: {fileID: 5459254334604039866}
-  objectives: {fileID: 1789442142766901256}
+  objectiveText: {fileID: 9004124536944202907}
+  levelTime: {fileID: 0}
   healthRed: {fileID: 0}
   healthYel: {fileID: 0}
   playerSpawnPOS: {fileID: 0}
@@ -2437,7 +2438,7 @@ GameObject:
   - component: {fileID: 2705118676342361509}
   m_Layer: 5
   m_Name: HP bar Yel
-  m_TagString: YellowHealth
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2978,7 +2979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac18081f6241c846a259936acfeca23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 90
+  timeLimit: 10
+  timeBuff: 0
+  timeTaken: 0
   timerNeeded: 1
   timeText: {fileID: 5778321752215090302}
 --- !u!223 &9217456932185456951
