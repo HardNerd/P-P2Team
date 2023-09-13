@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     protected bool playerInRange;
     protected float angleToPlayer;
     protected Vector3 startingPos;
-    protected float stoppingDistanceOrig;
+    protected float stoppingDistanceOrig = 0; // you have to set it in the child classes
     protected bool playerInSight;
     bool destinationChosen;
 

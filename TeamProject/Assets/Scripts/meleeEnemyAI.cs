@@ -5,30 +5,26 @@ using UnityEngine.AI;
 
 public class meleeEnemyAI : EnemyAI
 {
+    [Header("----- Attack Stats -----")]
     [SerializeField] float attackRate;
     [SerializeField] int attackDamage;
+    [SerializeField] int attackAngle;
 
     bool isAttacking;
 
     void Start()
     {
+        startingPos = transform.position;
+        stoppingDistanceOrig = agent.stoppingDistance;
         GameManager.instance.updatGameGoal(1);
     }
 
     void Update()
     {
-        if (playerInRange)
-        {
-            playerDirection = GameManager.instance.player.transform.position - transform.position;
+        MoveEnemy();
 
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-
-                if (!isAttacking)
-                    StartCoroutine(attack());
-            }
-
-        }
+        if (playerInSight && !isAttacking && angleToPlayer <= attackAngle)
+            StartCoroutine(attack());
     }
 
     IEnumerator attack()
