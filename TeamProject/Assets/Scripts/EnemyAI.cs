@@ -5,10 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
+    [Header("----- Components -----")]
     [SerializeField] Renderer model;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] Transform headPos;
 
+    [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     [SerializeField] int targetFaceSpeed;
     [SerializeField] float viewAngle;
@@ -21,6 +23,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     protected float angleToPlayer;
     protected Vector3 startingPos;
     protected float stoppingDistanceOrig;
+    protected bool playerInSight;
     bool destinationChosen;
 
     protected void MoveEnemy()
@@ -66,7 +69,11 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     FaceTarget();
+
+                    playerInSight = true;
                 }
+                else
+                    playerInSight = false;
 
                 return true;
             }

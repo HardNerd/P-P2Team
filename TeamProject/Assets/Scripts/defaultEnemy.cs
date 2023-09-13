@@ -6,12 +6,13 @@ using UnityEngine.AI;
 
 public class defaultEnemy : EnemyAI
 {
+    [Header("----- Gun Stats -----")]
     [SerializeField] Transform shootPos;
-
     [SerializeField] float shootRate;
+    [SerializeField] int shootAngle;
     [SerializeField] GameObject bullet;
 
-    //bool isShooting;
+    bool isShooting;
 
     void Start()
     {
@@ -23,13 +24,16 @@ public class defaultEnemy : EnemyAI
     void Update()
     {
         MoveEnemy();
+
+        if (playerInSight && !isShooting && angleToPlayer <= shootAngle)
+            StartCoroutine(shoot());
     }
 
-    //IEnumerator shoot()
-    //{
-    //    isShooting = true;
-    //    Instantiate(bullet, shootPos.position, transform.rotation);
-    //    yield return new WaitForSeconds(shootRate);
-    //    isShooting = false;
-    //}
+    IEnumerator shoot()
+    {
+        isShooting = true;
+        Instantiate(bullet, shootPos.position, transform.rotation);
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
+    }
 }
