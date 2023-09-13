@@ -7,12 +7,12 @@ public class bullet : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] int dmg;
     [SerializeField] int velocity;
-    [SerializeField] int destroybullet;
+    [SerializeField] int destroyBulletTime;
 
     void Start()
     {
-        rb.velocity = transform.forward * velocity;
-        Destroy(gameObject, destroybullet);
+        rb.velocity = (GameManager.instance.player.transform.position - transform.position).normalized * velocity;
+        Destroy(gameObject, destroyBulletTime);
     }
 
     private void OnTriggerEnter(Collider other)
