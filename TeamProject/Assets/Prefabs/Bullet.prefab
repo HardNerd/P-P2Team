@@ -52,7 +52,7 @@ MonoBehaviour:
   rb: {fileID: 7072502590519464653}
   dmg: 1
   velocity: 25
-  destroybullet: 5
+  destroyBulletTime: 5
 --- !u!33 &931745258288574689
 MeshFilter:
   m_ObjectHideFlags: 0

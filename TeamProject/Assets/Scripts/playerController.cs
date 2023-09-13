@@ -40,7 +40,7 @@ public class playerController : MonoBehaviour, IDamage
         Movement();
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            takeDamage(1);
+            TakeDamage(1);
         }
         GameManager.instance.moveHPBar();
 
@@ -79,7 +79,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    public void takeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount)
     {
         updateHealth(damageAmount);
 
@@ -128,7 +128,7 @@ public class playerController : MonoBehaviour, IDamage
             IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
 
             if (damageable != null)
-                damageable.takeDamage(shootDamage);
+                damageable.TakeDamage(shootDamage);
         }
 
         yield return new WaitForSeconds(shootRate);

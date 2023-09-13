@@ -5,59 +5,88 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
+    [Header("----- Components -----")]
     [SerializeField] Renderer model;
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform shootPos;
+    [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] Transform headPos;
 
-
+    [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     [SerializeField] int targetFaceSpeed;
+    [SerializeField] float viewAngle;
+    [SerializeField] bool canRoam;
+    [SerializeField] int roamDistance;
+    [SerializeField] int roamPauseTime;
 
-    [SerializeField] float shootRate;
-    [SerializeField] GameObject bullet;
+    protected Vector3 playerDirection;
+    protected bool playerInRange;
+    protected float angleToPlayer;
+    protected Vector3 startingPos;
+    protected float stoppingDistanceOrig = 0; // you have to set it in the child classes
+    protected bool playerInSight;
+    bool destinationChosen;
 
-    Vector3 playerDirection;
-    bool playerInRange;
-    bool isShooting;
-
-    void Start()
+    protected void MoveEnemy()
     {
-        GameManager.instance.updatGameGoal(1);
+        if (playerInRange && !CanSeePlayer() && canRoam)
+            StartCoroutine(Roam());
+        else if (!playerInRange && canRoam)
+            StartCoroutine(Roam());
     }
 
-    void Update()
+    IEnumerator Roam()
     {
-        if (playerInRange)
+        if (agent.remainingDistance < 0.05f && !destinationChosen)
         {
-            playerDirection = GameManager.instance.player.transform.position - transform.position;
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                faceTarget();
+            destinationChosen = true;
+            agent.stoppingDistance = 0;
+            yield return new WaitForSeconds(roamPauseTime);
 
-                if (!isShooting)
-                {
-                    StartCoroutine(shoot());
-                }
+            Vector3 randomPos = Random.insideUnitSphere * roamDistance;
+            randomPos += startingPos;
 
-            }
-            agent.SetDestination(GameManager.instance.player.transform.position);
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomPos, out hit, roamDistance, 1);
+            agent.SetDestination(hit.position);
+
+            destinationChosen = false;
         }
-
     }
 
-    IEnumerator shoot()
+    protected bool CanSeePlayer()
     {
-        isShooting = true;
-        Instantiate(bullet, shootPos.position, transform.rotation);
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+        playerDirection = GameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDirection, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            {
+                agent.SetDestination(GameManager.instance.player.transform.position);
+                agent.stoppingDistance = stoppingDistanceOrig;
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    FaceTarget();
+
+                    playerInSight = true;
+                }
+                else
+                    playerInSight = false;
+
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void takeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         HP -= amount;
 
         StartCoroutine(FlashDamage());
+        agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
@@ -75,7 +104,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         model.material.color = origColor;
     }
 
-    void faceTarget()
+    void FaceTarget()
     {
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * targetFaceSpeed);
@@ -98,6 +127,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 

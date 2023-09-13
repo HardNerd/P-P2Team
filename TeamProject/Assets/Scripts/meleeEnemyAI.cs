@@ -3,42 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class meleeEnemyAI : MonoBehaviour, IDamage
+public class meleeEnemyAI : EnemyAI
 {
-    [SerializeField] Renderer model;
-    [SerializeField] NavMeshAgent agent;
-
-    [Range(1, 5)][SerializeField] int HP;
-    [SerializeField] int targetFaceSpeed;
-
+    [Header("----- Attack Stats -----")]
     [SerializeField] float attackRate;
     [SerializeField] int attackDamage;
+    [SerializeField] int attackAngle;
 
-    Vector3 playerDirection;
-    bool playerInRange;
     bool isAttacking;
 
     void Start()
     {
+        startingPos = transform.position;
+        stoppingDistanceOrig = agent.stoppingDistance;
         GameManager.instance.updatGameGoal(1);
     }
 
     void Update()
     {
-        if (playerInRange)
-        {
-            playerDirection = GameManager.instance.player.transform.position - transform.position;
+        MoveEnemy();
 
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                faceTarget();
-
-                if (!isAttacking)
-                    StartCoroutine(attack());
-            }
-
-            agent.SetDestination(GameManager.instance.player.transform.position);
-        }
+        if (playerInSight && !isAttacking && angleToPlayer <= attackAngle)
+            StartCoroutine(attack());
     }
 
     IEnumerator attack()
@@ -52,48 +38,10 @@ public class meleeEnemyAI : MonoBehaviour, IDamage
             IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
 
             if (damageable != null)
-                damageable.takeDamage(attackDamage);
+                damageable.TakeDamage(attackDamage);
         }
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
-    }
-
-    public void takeDamage(int damageAmount)
-    {
-        HP -= damageAmount;
-        StartCoroutine(hitFlash());
-
-        if (HP <= 0)
-        {
-            Destroy(gameObject);
-            GameManager.instance.updatGameGoal(-1);
-        }
-    }
-
-    IEnumerator hitFlash()
-    {
-        Color origColor = model.material.color;
-
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = origColor;
-    }
-
-    void faceTarget()
-    {
-        Quaternion rotation = Quaternion.LookRotation(playerDirection);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * targetFaceSpeed);
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            playerInRange = true;
-    }
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            playerInRange = false;
     }
 }

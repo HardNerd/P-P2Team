@@ -137,6 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5125433493025647273}
+  - component: {fileID: 2500658339092154645}
   - component: {fileID: 5193734635259837527}
   - component: {fileID: 1427111363175514844}
   - component: {fileID: 9129082625537362089}
@@ -166,6 +167,31 @@ Transform:
   - {fileID: 5206361036360637272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2500658339092154645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973310957365345215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09589d2362e360b4dbd0bfbb3f4c6c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 8113368755259439868}
+  agent: {fileID: 9129082625537362089}
+  headPos: {fileID: 7123174768459655947}
+  HP: 3
+  targetFaceSpeed: 25
+  viewAngle: 10
+  canRoam: 1
+  roamDistance: 10
+  roamPauseTime: 3
+  shootPos: {fileID: 8999663350243188561}
+  shootRate: 0.5
+  shootAngle: 10
+  bullet: {fileID: 4698408825715902458, guid: a45fa88ac0985a941b0a2772a94430e9, type: 3}
 --- !u!114 &5193734635259837527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,11 +206,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 8113368755259439868}
   agent: {fileID: 9129082625537362089}
-  shootPos: {fileID: 6739071964543151830}
+  headPos: {fileID: 0}
   HP: 3
   targetFaceSpeed: 25
-  shootRate: 30
-  bullet: {fileID: 4698408825715902458, guid: a45fa88ac0985a941b0a2772a94430e9, type: 3}
+  viewAngle: 0
+  canRoam: 0
+  roamDistance: 0
+  roamPauseTime: 0
 --- !u!95 &1427111363175514844
 Animator:
   serializedVersion: 5

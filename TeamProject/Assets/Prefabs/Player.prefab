@@ -159,13 +159,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4115263917725466358}
+  healthRed: {fileID: 0}
+  healthYel: {fileID: 0}
   HP: 10
   playerSpeed: 7
   jumpHeight: 2.7
   gravityValue: -25
-  shootRate: 1
+  shootRate: 0.5
   shootDamage: 1
-  shootDistance: 60
+  shootDistance: 15
 --- !u!143 &4115263917725466358
 CharacterController:
   m_ObjectHideFlags: 0
