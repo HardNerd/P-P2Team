@@ -86,6 +86,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         HP -= amount;
 
         StartCoroutine(FlashDamage());
+        agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
