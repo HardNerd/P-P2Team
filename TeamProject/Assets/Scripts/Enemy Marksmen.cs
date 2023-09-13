@@ -69,7 +69,7 @@ public class EnemyMarksmen : MonoBehaviour, IDamage , IPhysics
         isShooting = false;
     }
 
-    public void takeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         HP -= amount;
 

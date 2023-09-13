@@ -20,7 +20,7 @@ public class bullet : MonoBehaviour
         IDamage damageable = other.GetComponent<IDamage>();
         if (damageable != null)
         {
-            damageable.takeDamage(dmg);
+            damageable.TakeDamage(dmg);
         }
         Destroy(gameObject);
     }
