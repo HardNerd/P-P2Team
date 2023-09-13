@@ -404,7 +404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7643959581992052357}
-  - component: {fileID: 5053942823699374569}
+  - component: {fileID: 5302972929883417248}
   - component: {fileID: 8908804537482302643}
   - component: {fileID: 7703184740273950693}
   - component: {fileID: 5159326956570413693}
@@ -433,7 +433,7 @@ Transform:
   - {fileID: 3719832616849873013}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5053942823699374569
+--- !u!114 &5302972929883417248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -442,17 +442,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3927311685150841062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6897a805e1c8f7d48a05458ab0ab18a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 09589d2362e360b4dbd0bfbb3f4c6c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 3542052289348042954}
   agent: {fileID: 7703184740273950693}
-  shootPos: {fileID: 1196047312660964312}
   headPos: {fileID: 1851936865655572145}
   HP: 10
   targetFaceSpeed: 1
   viewAngle: 90
+  canRoam: 1
+  roamDistance: 3
+  roamPauseTime: 4
+  shootPos: {fileID: 1196047312660964312}
   shootRate: 0.2
+  shootAngle: 10
   bullet: {fileID: 4698408825715902458, guid: a45fa88ac0985a941b0a2772a94430e9, type: 3}
 --- !u!95 &8908804537482302643
 Animator:
