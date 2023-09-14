@@ -22,8 +22,7 @@ public class meleeEnemyAI : EnemyAI
     void Update()
     {
         float agentVelocity = agent.velocity.normalized.magnitude;
-        if (animator != null)
-            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
+        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
 
         MoveEnemy();
 
@@ -34,6 +33,7 @@ public class meleeEnemyAI : EnemyAI
     IEnumerator attack()
     {
         isAttacking = true;
+        animator.SetBool("isAttacking", true);
         
         RaycastHit hitInfo;
 
@@ -47,5 +47,6 @@ public class meleeEnemyAI : EnemyAI
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
+        animator.SetBool("isAttacking", false);
     }
 }
