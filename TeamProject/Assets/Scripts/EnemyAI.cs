@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
     [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected Animator animator;
     [SerializeField] protected Transform headPos;
 
     [Header("----- Enemy Stats -----")]
@@ -17,6 +18,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] bool canRoam;
     [SerializeField] int roamDistance;
     [SerializeField] int roamPauseTime;
+    [SerializeField] protected float animChangeSpeed;
 
     protected Vector3 playerDirection;
     protected bool playerInRange;

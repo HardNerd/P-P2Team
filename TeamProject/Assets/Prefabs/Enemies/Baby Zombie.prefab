@@ -440,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 6715482247272774404}
   agent: {fileID: 5180948304343207166}
+  animator: {fileID: 4332857669709151654}
   headPos: {fileID: 6753828901519926426}
   HP: 2
   targetFaceSpeed: 5
@@ -447,6 +448,7 @@ MonoBehaviour:
   canRoam: 1
   roamDistance: 5
   roamPauseTime: 2
+  animChangeSpeed: 7
   attackRate: 0.8
   attackDamage: 1
   attackAngle: 10
@@ -460,7 +462,7 @@ Animator:
   m_GameObject: {fileID: 1613792153148569952}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0112b3ddf6b69f148b600356eb9c21a3, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ddd6326b4708d164c8da07049bd25c87, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
