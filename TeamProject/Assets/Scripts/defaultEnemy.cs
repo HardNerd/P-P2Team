@@ -23,6 +23,10 @@ public class defaultEnemy : EnemyAI
 
     void Update()
     {
+        float agentVelocity = agent.velocity.normalized.magnitude;
+        if (animator != null)
+            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
+
         MoveEnemy();
 
         if (playerInSight && !isShooting && angleToPlayer <= shootAngle)

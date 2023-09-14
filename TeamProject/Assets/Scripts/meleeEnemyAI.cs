@@ -22,7 +22,8 @@ public class meleeEnemyAI : EnemyAI
     void Update()
     {
         float agentVelocity = agent.velocity.normalized.magnitude;
-        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
+        if (animator != null)
+            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
 
         MoveEnemy();
 
