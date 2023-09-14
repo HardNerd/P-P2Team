@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Player Spawn Pos
+  - YellowHealth
+  - RedHealth
+  - Enemy Marksmen Run Location
   layers:
   - Default
   - TransparentFX

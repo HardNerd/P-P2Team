@@ -7,8 +7,6 @@ public class playerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] Image healthRed;
-    [SerializeField] Image healthYel;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] int HP = 10;
@@ -27,16 +25,13 @@ public class playerController : MonoBehaviour, IDamage
     private int jumpedTimes;
     private bool isShooting;
     int maxJumps = 2;
-
-    private float healthFillAmount;
-    private float lastFillAmount;
-    int origHP;
+    int maxHP;
 
     void Start()
     {
-        origHP = HP;
-        healthFillAmount = HP / 10;
-        lastFillAmount = HP / 10;
+        maxHP = HP;
+        GameManager.instance.healthRedFillAmt = HP / maxHP;
+        GameManager.instance.healthYelFillAmt = HP / maxHP;
         spawnPlayer();
     }
 
@@ -45,9 +40,9 @@ public class playerController : MonoBehaviour, IDamage
         Movement();
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            takeDamage(1);
+            TakeDamage(1);
         }
-        moveHPBar();
+        GameManager.instance.moveHPBar();
 
 
         if (Input.GetButton("Fire1") && !isShooting)
@@ -84,7 +79,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    public void takeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount)
     {
         updateHealth(damageAmount);
 
@@ -96,38 +91,25 @@ public class playerController : MonoBehaviour, IDamage
 
     public void updateHealth(int amount)
     {
-        float lastHP = HP;
+        GameManager.instance.healthYelFillAmt = (float)HP / 10;
+        
         HP -= amount;
 
         //If we introduce an upgrade system to add more max hp, I'll update this
         Mathf.Clamp(HP, 0, 10);
 
-        healthFillAmount = (float)HP / 10;
-        lastFillAmount = (float)lastHP / 10;
+        GameManager.instance.healthRedFillAmt = (float)HP / 10;
 
-        Debug.Log(healthFillAmount);
-
-        healthRed.fillAmount = healthFillAmount;
-    }
-
-    public void moveHPBar()
-    {
-        if (healthYel.fillAmount > healthRed.fillAmount)
-        {
-            if (healthYel.fillAmount - healthRed.fillAmount > .2)
-                healthYel.fillAmount = Mathf.Lerp(healthYel.fillAmount, healthRed.fillAmount, Time.deltaTime);
-            else
-                healthYel.fillAmount -= (lastFillAmount - healthFillAmount) * Time.deltaTime * 2;
-        }
+        GameManager.instance.healthRed.fillAmount = GameManager.instance.healthRedFillAmt;
     }
 
     public void spawnPlayer()
     {
-        HP = origHP;
-        healthFillAmount = 1;
-        healthYel.fillAmount = healthFillAmount;
-        healthRed.fillAmount = healthFillAmount;
-        lastFillAmount = 1;
+        HP = maxHP;
+        GameManager.instance.healthRedFillAmt = 1;
+        GameManager.instance.healthYelFillAmt = 1;
+        GameManager.instance.healthYel.fillAmount = 1;
+        GameManager.instance.healthRed.fillAmount = 1;
 
         controller.enabled = false;
         transform.position = GameManager.instance.playerSpawnPOS.transform.position;
@@ -146,7 +128,7 @@ public class playerController : MonoBehaviour, IDamage
             IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
 
             if (damageable != null)
-                damageable.takeDamage(shootDamage);
+                damageable.TakeDamage(shootDamage);
         }
 
         yield return new WaitForSeconds(shootRate);

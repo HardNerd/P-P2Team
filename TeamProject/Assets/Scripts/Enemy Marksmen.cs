@@ -5,82 +5,101 @@ using UnityEngine.AI;
 
 public class EnemyMarksmen : MonoBehaviour, IDamage , IPhysics
 {
-    [SerializeField] Renderer rendModel;
-    [SerializeField] NavMeshAgent meshAgent;
-    [SerializeField] Transform shootingPosition;
+    [SerializeField] Renderer model;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Transform shootPos;
+
 
     [SerializeField] int HP;
-    [SerializeField] int faceSpeed;
+    [SerializeField] int targetFaceSpeed;
 
-    [SerializeField] float shootingRate;
+    [SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject EnemyMarkRunLoc;
+
+    [SerializeField] float playerDistRun = 4.0f;
 
     Vector3 playerDirection;
     bool playerInRange;
-    bool Shooting;
+    bool isShooting;
 
     void Start()
     {
         GameManager.instance.updatGameGoal(1);
     }
 
-    
     void Update()
     {
+        float dist = Vector3 .Distance(transform.position, GameManager.instance.player.transform.position);
+
+        if(dist < playerDistRun )
+        {
+            Vector3 dirtoPlayer = transform.position - GameManager.instance.player.transform.position;
+
+            Vector3 newPosition = transform.position + dirtoPlayer;
+
+            agent.SetDestination(newPosition);
+
+        }
+
         if (playerInRange)
         {
-            playerDirection = GameManager.instance.player.transform.position - transform.position;
 
-            if (meshAgent.remainingDistance <= meshAgent.stoppingDistance)
+            playerDirection = GameManager.instance.player.transform.position - transform.position;
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 faceTarget();
 
-                if (!Shooting)
+                if (!isShooting)
                 {
-                    StartCoroutine(shooting());
+                    StartCoroutine(shoot());
                 }
+
             }
-
-            meshAgent.SetDestination(GameManager.instance.player.transform.position);
-
+            agent.SetDestination(GameManager.instance.player.transform.position);
         }
+
     }
 
-    IEnumerator shooting()
+    IEnumerator shoot()
     {
-        Shooting = true;
-        Instantiate(bullet, shootingPosition.position, transform.rotation);
-        yield return new WaitForSeconds(shootingRate);
-        Shooting = false;
+        isShooting = true;
+        Instantiate(bullet, shootPos.position, transform.rotation);
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
     }
 
-    public void takeDamage(int damageAmount)
+    public void TakeDamage(int amount)
     {
-        HP -= damageAmount;
-        StartCoroutine(damageFlash());
+        HP -= amount;
+
+        StartCoroutine(FlashDamage());
+
         if (HP <= 0)
         {
             GameManager.instance.updatGameGoal(-1);
             Destroy(gameObject);
         }
-    }
 
-    IEnumerator damageFlash()
+    }
+    IEnumerator FlashDamage()
     {
-        rendModel.material.color = Color.red;
+        Color origColor = model.material.color;
+
+        model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        rendModel.material.color = Color.blue;
+        model.material.color = origColor;
     }
 
     void faceTarget()
     {
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * faceSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * targetFaceSpeed);
     }
 
     public void physics(Vector3 direction)
     {
-        meshAgent.velocity += (direction / 2);
+        agent.velocity += (direction / 2);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -90,7 +109,6 @@ public class EnemyMarksmen : MonoBehaviour, IDamage , IPhysics
             playerInRange = true;
         }
     }
-
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -98,5 +116,6 @@ public class EnemyMarksmen : MonoBehaviour, IDamage , IPhysics
             playerInRange = false;
         }
     }
+
 
 }
