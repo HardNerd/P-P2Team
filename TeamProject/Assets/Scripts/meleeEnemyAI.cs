@@ -33,7 +33,7 @@ public class meleeEnemyAI : EnemyAI
         
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(transform.position, playerDirection, out hitInfo, agent.stoppingDistance))
+        if (Physics.Raycast(headPos.position, playerDirection, out hitInfo, agent.stoppingDistance))
         {
             IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
 

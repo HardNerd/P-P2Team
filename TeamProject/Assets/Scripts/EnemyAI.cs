@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
     [SerializeField] protected NavMeshAgent agent;
-    [SerializeField] Transform headPos;
+    [SerializeField] protected Transform headPos;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
