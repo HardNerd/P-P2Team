@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public playerController playerController;
+    
 
     [SerializeField] GameObject activeMenu;
     [SerializeField] GameObject pauseMenu;
