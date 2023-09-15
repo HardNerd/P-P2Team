@@ -7,7 +7,7 @@ public class EnemyBabyZombieSpawner : MonoBehaviour
     [SerializeField] GameObject enemySapwner_BabyZombie;
 
 
-    [SerializeField] float spawenerInterval_BabyZombie = 3.5f;
+    [SerializeField] float spawenerInterval_BabyZombie = 5f;
 
     void Start()
     {

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff50470dc0319b46a51219ed7594a88, type: 3}
   m_Name: Assault Stats
   m_EditorClassIdentifier: 
-  shootRate: 3
+  shootRate: 0.3
   shootDamage: 3
-  shootDistance: 75
+  shootDistance: 100
   currentAmmo: 0
   maxAmmo: 45
   model: {fileID: 1394078907152411999, guid: 52b7057dbd86c2644817ea3301e6be96, type: 3}

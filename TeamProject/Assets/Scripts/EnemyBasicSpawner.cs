@@ -9,7 +9,7 @@ public class EnemyBasicSpawner : MonoBehaviour
 
 
 
-    [SerializeField] float spawenerInterval_Basic = 3.5f;
+    [SerializeField] float spawenerInterval_Basic = 5f;
 
     void Start()
     {

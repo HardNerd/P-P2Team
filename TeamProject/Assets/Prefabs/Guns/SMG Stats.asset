@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff50470dc0319b46a51219ed7594a88, type: 3}
   m_Name: SMG Stats
   m_EditorClassIdentifier: 
-  shootRate: 5
+  shootRate: 0.1
   shootDamage: 2
   shootDistance: 60
   currentAmmo: 0
   maxAmmo: 50
-  model: {fileID: 0}
+  model: {fileID: 2358229232279047346, guid: 0fe3f6acb54a62f409d883dd87e51de0, type: 3}
   hitEffect: {fileID: 0}
   gunSound: {fileID: 0}

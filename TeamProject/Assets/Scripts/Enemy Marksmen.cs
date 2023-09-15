@@ -32,15 +32,7 @@ public class EnemyMarksmen : MonoBehaviour, IDamage , IPhysics
     {
         float dist = Vector3 .Distance(transform.position, GameManager.instance.player.transform.position);
 
-        if(dist < playerDistRun )
-        {
-            Vector3 dirtoPlayer = transform.position - GameManager.instance.player.transform.position;
-
-            Vector3 newPosition = transform.position + dirtoPlayer;
-
-            agent.SetDestination(newPosition);
-
-        }
+        
 
         if (playerInRange)
         {
@@ -53,6 +45,16 @@ public class EnemyMarksmen : MonoBehaviour, IDamage , IPhysics
                 if (!isShooting)
                 {
                     StartCoroutine(shoot());
+                }
+
+                if (dist < playerDistRun)
+                {
+                    Vector3 dirtoPlayer = transform.position - GameManager.instance.player.transform.position;
+
+                    Vector3 newPosition = transform.position + dirtoPlayer;
+
+                    agent.SetDestination(newPosition);
+
                 }
 
             }

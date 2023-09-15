@@ -29,6 +29,7 @@ public class playerController : MonoBehaviour, IDamage
     private bool isShooting;
     int maxJumps = 2;
     int maxHP;
+    int selectedGun;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class playerController : MonoBehaviour, IDamage
 
     void Update()
     {
+        GunSelector();
         Movement();
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -147,5 +149,30 @@ public class playerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent <MeshFilter>().sharedMesh;
         gunModel.GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
+    }
+
+    void  GunSelector()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < GunList.Count - 1)
+        {
+            selectedGun++;
+            GunChange();
+        }
+       else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        {
+            selectedGun--;
+            GunChange();
+        }
+    }
+
+    void GunChange()
+    {
+        GunList.Add(GunList[selectedGun]);
+        shootDamage = GunList[selectedGun].shootDamage;
+        shootDistance = GunList[selectedGun].shootDistance;
+        shootRate = GunList[selectedGun].shootRate;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = GunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<Renderer>().sharedMaterial = GunList[selectedGun].model.GetComponent<Renderer>().sharedMaterial;
     }
 }

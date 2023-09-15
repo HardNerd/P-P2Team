@@ -6,7 +6,7 @@ public class NewBehaviourScript : MonoBehaviour
 {
     [SerializeField] GameObject enemySapwner_Heavy;
 
-    [SerializeField] float spawenerInterval_Heavy = 3.5f;
+    [SerializeField] float spawenerInterval_Heavy = 5f;
 
     void Start()
     {
