@@ -6,7 +6,7 @@ public class EnemyMarksmanSpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemySapwner_Marksmen;
 
-    [SerializeField] float spawenerInterval_Marksmen = 3.5f;
+    [SerializeField] float spawenerInterval_Marksmen = 5f;
     void Start()
     {
         StartCoroutine(spawnEnemy(spawenerInterval_Marksmen, enemySapwner_Marksmen));
