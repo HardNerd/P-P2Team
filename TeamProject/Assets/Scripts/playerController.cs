@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,9 +16,11 @@ public class playerController : MonoBehaviour, IDamage
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
 
     [Header("----- Gun Stats -----")]
-    [SerializeField] float shootRate = 2;
-    [SerializeField] int shootDamage = 1;
-    [SerializeField] int shootDistance = 15;
+    [SerializeField] List<GunStats> GunList = new List<GunStats>();
+    [SerializeField] GameObject gunModel;
+    [SerializeField] float shootRate;
+    [SerializeField] int shootDamage;
+    [SerializeField] int shootDistance;
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -26,6 +29,7 @@ public class playerController : MonoBehaviour, IDamage
     private bool isShooting;
     int maxJumps = 2;
     int maxHP;
+    int selectedGun;
 
     void Start()
     {
@@ -37,6 +41,7 @@ public class playerController : MonoBehaviour, IDamage
 
     void Update()
     {
+        GunSelector();
         Movement();
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -133,5 +138,41 @@ public class playerController : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    public void GunPickup(GunStats gun)
+    {
+        GunList.Add(gun);
+        shootDamage = gun.shootDamage;
+        shootDistance = gun.shootDistance;
+        shootRate = gun.shootRate;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent <MeshFilter>().sharedMesh;
+        gunModel.GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
+    }
+
+    void  GunSelector()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < GunList.Count - 1)
+        {
+            selectedGun++;
+            GunChange();
+        }
+       else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        {
+            selectedGun--;
+            GunChange();
+        }
+    }
+
+    void GunChange()
+    {
+        GunList.Add(GunList[selectedGun]);
+        shootDamage = GunList[selectedGun].shootDamage;
+        shootDistance = GunList[selectedGun].shootDistance;
+        shootRate = GunList[selectedGun].shootRate;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = GunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<Renderer>().sharedMaterial = GunList[selectedGun].model.GetComponent<Renderer>().sharedMaterial;
     }
 }

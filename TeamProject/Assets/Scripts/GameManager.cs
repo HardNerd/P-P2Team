@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public playerController playerController;
+    
 
     [SerializeField] GameObject activeMenu;
     [SerializeField] GameObject pauseMenu;
@@ -40,17 +41,6 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
-        GameObject heRed = GameObject.FindGameObjectWithTag("RedHealth");
-        if (heRed != null)
-        {
-            healthRed = heRed.GetComponent<Image>();
-        }
-
-        GameObject heYel = GameObject.FindGameObjectWithTag("YellowHealth");
-        if (heYel != null)
-        {
-            healthYel = heYel.GetComponent<Image>();
-        }
 
         playerController = player.GetComponent<playerController>();
         playerSpawnPOS = GameObject.FindWithTag("Player Spawn Pos");
