@@ -9,14 +9,19 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("----- Player Data -----")]
     public GameObject player;
     public playerController playerController;
-    
+    public GameObject playerSpawnPOS;
 
+    [Header("----- Menus -----")]
     [SerializeField] GameObject activeMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
+
+    [Header("----- Play State -----")]
+    [SerializeField] GameObject endPoint;
     [SerializeField] GameObject playUI;
     [SerializeField] GameObject timer;
     [SerializeField] TMP_Text objectiveText;
@@ -28,10 +33,11 @@ public class GameManager : MonoBehaviour
     int pickupsLeft;
 
     //I expect the player person to set this up I'm just putting it here for later
-    public GameObject playerSpawnPOS;
 
     bool isPause;
     float currtime;
+
+    bool isInsideExit;
 
     public float healthRedFillAmt;
     public float healthYelFillAmt;
@@ -98,7 +104,7 @@ public class GameManager : MonoBehaviour
             pickupsLeft += update;
         objectiveText.text = updateObjective();
 
-        if(enemiesalive <= 0 && pickupsLeft <= 0)
+        if(enemiesalive <= 0 && pickupsLeft <= 0 && isInsideExit == true)
         {
             StartCoroutine(youWin());
         }
@@ -134,5 +140,10 @@ public class GameManager : MonoBehaviour
             activeMenu.SetActive(isPause);
         }
 
+    }
+
+    public void isExiting(bool state)
+    {
+        isInsideExit = state;
     }
 }
