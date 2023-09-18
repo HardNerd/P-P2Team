@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6840189318410968071}
   - component: {fileID: 7382628661279506900}
   - component: {fileID: 9031358345847018758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rocket explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionSize: 25
   explosionparticle: {fileID: 7335198343666546817, guid: 5c3ebb71837303f428f7d9783bbc06aa, type: 3}
-  damage: 5
+  damage: 2
 --- !u!33 &6840189318410968071
 MeshFilter:
   m_ObjectHideFlags: 0
