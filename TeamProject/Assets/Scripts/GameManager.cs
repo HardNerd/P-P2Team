@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public levelTimer levelTime;
     public Image healthRed;
     public Image healthYel;
+    public Image stamBlue;
+    public Image stamYel;
 
     int enemiesalive;
     int pickupsLeft;
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     public float healthRedFillAmt;
     public float healthYelFillAmt;
+    public float stamBlueFillAmt;
+    public float stamYelFillAmt;
 
     // Start is called before the first frame update
     void Awake()
@@ -74,6 +78,21 @@ public class GameManager : MonoBehaviour
                 healthYel.fillAmount = Mathf.Lerp(healthYel.fillAmount, healthRed.fillAmount, Time.deltaTime);
             else
                 healthYel.fillAmount -= (healthYelFillAmt - healthRedFillAmt) * Time.deltaTime * 2;
+        }
+    }
+
+    public void moveStamBar()
+    {
+        if (stamYel.fillAmount > stamBlue.fillAmount)
+        {
+            if (stamYel.fillAmount - stamBlue.fillAmount > .08)
+                stamYel.fillAmount = Mathf.Lerp(stamYel.fillAmount, stamBlue.fillAmount, Time.deltaTime*4);
+            else
+                stamYel.fillAmount -= (stamYelFillAmt - stamBlueFillAmt) * (Time.deltaTime * 110);
+        }
+        else
+        {
+            stamYel.fillAmount = stamBlue.fillAmount;
         }
     }
 

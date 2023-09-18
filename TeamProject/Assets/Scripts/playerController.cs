@@ -11,6 +11,7 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] int HP = 10;
+    [Range(0, 100)][SerializeField] float stamina = 100;
     [Range(3, 10)][SerializeField] float playerSpeed = 7;
     [Range(1, 10)][SerializeField] float jumpHeight = 2.7f;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
@@ -29,13 +30,21 @@ public class playerController : MonoBehaviour, IDamage
     private bool isShooting;
     int maxJumps = 2;
     int maxHP;
+    float baseSpeed;
+    float maxStam;
     int selectedGun;
+    public bool sprintCooldown;
 
     void Start()
     {
         maxHP = HP;
+        baseSpeed = playerSpeed;
+        maxStam = stamina;
+        sprintCooldown = false;
         GameManager.instance.healthRedFillAmt = HP / maxHP;
         GameManager.instance.healthYelFillAmt = HP / maxHP;
+        GameManager.instance.stamBlueFillAmt = stamina / maxStam;
+        GameManager.instance.stamYelFillAmt = stamina / maxStam;
         spawnPlayer();
     }
 
@@ -43,12 +52,24 @@ public class playerController : MonoBehaviour, IDamage
     {
         GunSelector();
         Movement();
+        if (Input.GetKey(KeyCode.LeftShift) && sprintCooldown == false)
+        {
+            sprint();
+        }
+        else
+        {
+            stamRestore();
+        }
         if (Input.GetKeyDown(KeyCode.Return))
         {
             TakeDamage(1);
         }
         GameManager.instance.moveHPBar();
 
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+        }
+        GameManager.instance.moveStamBar();
 
         if (Input.GetButton("Fire1") && !isShooting)
             StartCoroutine(shoot());
@@ -71,13 +92,15 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(move * playerSpeed * Time.deltaTime);
 
         // Add jump velocity to player's Y value
-        if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps)
+        if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps && stamina > 20)
         {
             jumpedTimes++;
+            stamina -= 20;
 
             // physics equation to get the exact velocity based on desired height and gravity
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
         }
+
 
         // Add gravity to player's Y velocity and make him move
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -106,6 +129,42 @@ public class playerController : MonoBehaviour, IDamage
         GameManager.instance.healthRedFillAmt = (float)HP / 10;
 
         GameManager.instance.healthRed.fillAmount = GameManager.instance.healthRedFillAmt;
+    }
+
+    public void sprint()
+    {
+        GameManager.instance.stamYelFillAmt = stamina / maxStam;
+        stamina -= Time.deltaTime * 20;
+
+        GameManager.instance.stamBlueFillAmt = stamina / maxStam;
+        GameManager.instance.stamBlue.fillAmount = GameManager.instance.stamBlueFillAmt;
+
+        playerSpeed = baseSpeed * 2.5f;
+        if (stamina <= 0)
+        {
+            StartCoroutine(sprintExhaust());
+        }
+    }
+
+    public void stamRestore()
+    {
+        playerSpeed = baseSpeed;
+        if (stamina < 100 && isGrounded)
+        {
+            stamina += Time.deltaTime * 30;
+            if (GameManager.instance.stamYelFillAmt <= GameManager.instance.stamBlueFillAmt)
+                GameManager.instance.stamYelFillAmt = GameManager.instance.stamBlueFillAmt;
+
+            GameManager.instance.stamBlueFillAmt = stamina / maxStam;
+            GameManager.instance.stamBlue.fillAmount = GameManager.instance.stamBlueFillAmt;
+        }
+    }
+
+    IEnumerator sprintExhaust()
+    {
+        sprintCooldown = true;
+        yield return new WaitForSeconds(3);
+        sprintCooldown = false;
     }
 
     public void spawnPlayer()
