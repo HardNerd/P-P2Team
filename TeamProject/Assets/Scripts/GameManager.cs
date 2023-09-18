@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     //I expect the player person to set this up I'm just putting it here for later
 
-    bool isPause;
+    public bool isPause;
     float currtime;
 
     bool isInsideExit;

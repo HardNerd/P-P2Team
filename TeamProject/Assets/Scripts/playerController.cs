@@ -65,13 +65,9 @@ public class playerController : MonoBehaviour, IDamage
             TakeDamage(1);
         }
         GameManager.instance.moveHPBar();
-
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-        }
         GameManager.instance.moveStamBar();
 
-        if (Input.GetButton("Fire1") && !isShooting)
+        if (Input.GetButton("Fire1") && !isShooting && !GameManager.instance.isPause)
             StartCoroutine(shoot());
     }
 
