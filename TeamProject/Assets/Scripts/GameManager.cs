@@ -83,12 +83,12 @@ public class GameManager : MonoBehaviour
 
     public void moveStamBar()
     {
-        if (stamYel.fillAmount > stamBlue.fillAmount)
+        if (stamYel.fillAmount > stamBlue.fillAmount && (stamYelFillAmt - stamBlueFillAmt) >.01)
         {
             if (stamYel.fillAmount - stamBlue.fillAmount > .08)
                 stamYel.fillAmount = Mathf.Lerp(stamYel.fillAmount, stamBlue.fillAmount, Time.deltaTime*4);
             else
-                stamYel.fillAmount -= (stamYelFillAmt - stamBlueFillAmt) * (Time.deltaTime * 110);
+                stamYel.fillAmount -= (stamYelFillAmt - stamBlueFillAmt) * (Time.deltaTime * 4);
         }
         else
         {

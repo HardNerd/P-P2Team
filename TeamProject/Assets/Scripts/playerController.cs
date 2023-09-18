@@ -90,8 +90,8 @@ public class playerController : MonoBehaviour, IDamage
         // Add jump velocity to player's Y value
         if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps && stamina > 20)
         {
+            updateStam(20);
             jumpedTimes++;
-            stamina -= 20;
 
             // physics equation to get the exact velocity based on desired height and gravity
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
@@ -129,13 +129,11 @@ public class playerController : MonoBehaviour, IDamage
 
     public void sprint()
     {
-        GameManager.instance.stamYelFillAmt = stamina / maxStam;
-        stamina -= Time.deltaTime * 20;
-
-        GameManager.instance.stamBlueFillAmt = stamina / maxStam;
-        GameManager.instance.stamBlue.fillAmount = GameManager.instance.stamBlueFillAmt;
-
-        playerSpeed = baseSpeed * 2.5f;
+        if(isGrounded)
+        {
+            updateStam(Time.deltaTime * 40);
+            playerSpeed = baseSpeed * 2.5f;
+        }
         if (stamina <= 0)
         {
             StartCoroutine(sprintExhaust());
@@ -144,16 +142,20 @@ public class playerController : MonoBehaviour, IDamage
 
     public void stamRestore()
     {
-        playerSpeed = baseSpeed;
         if (stamina < 100 && isGrounded)
         {
-            stamina += Time.deltaTime * 30;
-            if (GameManager.instance.stamYelFillAmt <= GameManager.instance.stamBlueFillAmt)
-                GameManager.instance.stamYelFillAmt = GameManager.instance.stamBlueFillAmt;
-
-            GameManager.instance.stamBlueFillAmt = stamina / maxStam;
-            GameManager.instance.stamBlue.fillAmount = GameManager.instance.stamBlueFillAmt;
+            playerSpeed = baseSpeed;
+            updateStam(-(Time.deltaTime * 30));
         }
+    }
+
+    public void updateStam(float amount)
+    {
+        GameManager.instance.stamYelFillAmt = stamina / maxStam;
+        stamina -= amount;
+
+        GameManager.instance.stamBlueFillAmt = stamina / maxStam;
+        GameManager.instance.stamBlue.fillAmount = GameManager.instance.stamBlueFillAmt;
     }
 
     IEnumerator sprintExhaust()
