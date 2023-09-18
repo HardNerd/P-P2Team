@@ -2,25 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rocket : MonoBehaviour
+public class Rocket : grenade
 {
-    [SerializeField] Rigidbody rb;
-    [SerializeField] int speed;
-    [SerializeField] int destroySpeed;
-    [SerializeField] GameObject explosion;
     [SerializeField] int damage;
 
-    void Start()
-    {
-        rb.velocity = (GameManager.instance.player.transform.position - transform.position).normalized * speed;
-        StartCoroutine(explode());
-    }
-
-    IEnumerator explode()
-    {
-        yield return new WaitForSeconds(destroySpeed);
-        
-    }
 
     IEnumerator instantExplode()
     {

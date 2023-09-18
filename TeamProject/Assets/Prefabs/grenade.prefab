@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2019756841889420279}
-  - component: {fileID: 1355422741115490613}
+  - component: {fileID: 3443530798789133760}
   - component: {fileID: 7586878678390112726}
   - component: {fileID: 4251198154921677134}
   - component: {fileID: 1405053497844773992}
   - component: {fileID: 6642707447151650035}
   - component: {fileID: 9050823196402497488}
   m_Layer: 8
-  m_Name: Rocket
+  m_Name: grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1355422741115490613
+--- !u!114 &3443530798789133760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,14 +46,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2849231682678411526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb045b5129c0fac4795c8a5424b5f6fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 56575cd333a64f94eb2128c235333f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6642707447151650035}
   speed: 25
   destroySpeed: 3
   explosion: {fileID: 8611426485800260246, guid: 3ee51387c6cf0b64c99f9a478d9b5f7d, type: 3}
-  damage: 1
 --- !u!33 &7586878678390112726
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -119,7 +118,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -133,8 +132,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2849231682678411526}
   serializedVersion: 4
-  m_Mass: 0.0000001
-  m_Drag: 0
+  m_Mass: 1
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -147,11 +146,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!96 &9050823196402497488
 TrailRenderer:
   serializedVersion: 3
