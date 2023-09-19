@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] ParticleSystem jumpparticles;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] int HP = 10;
@@ -90,6 +91,11 @@ public class playerController : MonoBehaviour, IDamage
         // Add jump velocity to player's Y value
         if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps && stamina > 20)
         {
+            if(jumpedTimes >= 1)
+            {
+                Vector3 jumpoffset = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+                Instantiate(jumpparticles, jumpoffset, jumpparticles.transform.rotation);
+            }
             updateStam(20);
             jumpedTimes++;
 
@@ -188,7 +194,7 @@ public class playerController : MonoBehaviour, IDamage
         if (Physics.Raycast(ray, out hitInfo, shootDistance))
         {
             IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
-
+            Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
             if (damageable != null)
                 damageable.TakeDamage(shootDamage);
         }
