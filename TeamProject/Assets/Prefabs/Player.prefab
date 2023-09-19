@@ -137,7 +137,7 @@ Transform:
   m_GameObject: {fileID: 3930455409317522917}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000014901161, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4940567, y: -0.742, z: 0.73335266}
+  m_LocalPosition: {x: 0.66, y: -0.74, z: 0.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4115263917725466358}
+  jumpparticles: {fileID: 1346181113581063859, guid: ecceacf733c350e49b63c88935ba892e, type: 3}
   HP: 10
   stamina: 100
   playerSpeed: 7
