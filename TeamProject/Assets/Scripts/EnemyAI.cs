@@ -62,6 +62,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             agent.enabled = false;
             animator.SetBool("Dead", true);
             isDead = true;
+
+            StopAllCoroutines();
         }
         else
         {
