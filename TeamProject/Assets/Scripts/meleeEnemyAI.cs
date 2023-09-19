@@ -15,7 +15,6 @@ public class meleeEnemyAI : EnemyAI
     void Start()
     {
         startingPos = transform.position;
-        stoppingDistanceOrig = agent.stoppingDistance;
         speedOrig = agent.speed;
         GameManager.instance.updatGameGoal(1);
     }

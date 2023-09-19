@@ -472,7 +472,6 @@ GameObject:
   - component: {fileID: 5008073409898965926}
   - component: {fileID: 339337067479188839}
   - component: {fileID: 8586228678737290120}
-  - component: {fileID: 3948436075374801839}
   - component: {fileID: 1679797271454837436}
   m_Layer: 7
   m_Name: Rocket Heavy
@@ -514,14 +513,13 @@ MonoBehaviour:
   agent: {fileID: 8586228678737290120}
   animator: {fileID: 339337067479188839}
   headPos: {fileID: 6864038096511118216}
-  hitBox: {fileID: 3948436075374801839}
+  hitBox: {fileID: 0}
   HP: 10
   targetFaceSpeed: 3
   viewAngle: 90
   canRoam: 1
   roamDistance: 3
   roamPauseTime: 4
-  hasGuardAnim: 1
   animChangeSpeed: 7
   stopAtDamageTime: 1
   shootPos: {fileID: 1537023817432383668}
@@ -571,27 +569,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 3
   m_ObstacleAvoidanceType: 4
---- !u!135 &3948436075374801839
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4725184692278229224}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 35
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1679797271454837436
 CapsuleCollider:
   m_ObjectHideFlags: 0

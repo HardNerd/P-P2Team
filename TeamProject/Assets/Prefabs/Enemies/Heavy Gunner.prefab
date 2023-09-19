@@ -1146,7 +1146,6 @@ GameObject:
   - component: {fileID: 5302972929883417248}
   - component: {fileID: 8908804537482302643}
   - component: {fileID: 7703184740273950693}
-  - component: {fileID: 5159326956570413693}
   - component: {fileID: 19008174110363586}
   m_Layer: 7
   m_Name: Heavy Gunner
@@ -1196,7 +1195,6 @@ MonoBehaviour:
   canRoam: 1
   roamDistance: 3
   roamPauseTime: 4
-  hasGuardAnim: 1
   animChangeSpeed: 1.8
   stopAtDamageTime: 0
   shootPos: {fileID: 5404951524289012365}
@@ -1246,27 +1244,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 3
   m_ObstacleAvoidanceType: 4
---- !u!135 &5159326956570413693
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3927311685150841062}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 35
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &19008174110363586
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -400,7 +400,6 @@ GameObject:
   - component: {fileID: 1213937051980197725}
   - component: {fileID: 4332857669709151654}
   - component: {fileID: 5180948304343207166}
-  - component: {fileID: 6010135876315892636}
   - component: {fileID: 2298368788376227881}
   m_Layer: 7
   m_Name: Baby Zombie
@@ -449,7 +448,6 @@ MonoBehaviour:
   canRoam: 1
   roamDistance: 5
   roamPauseTime: 2
-  hasGuardAnim: 0
   animChangeSpeed: 7
   stopAtDamageTime: 0
   attackRate: 0.8
@@ -498,27 +496,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &6010135876315892636
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613792153148569952}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 25
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &2298368788376227881
 CapsuleCollider:
   m_ObjectHideFlags: 0

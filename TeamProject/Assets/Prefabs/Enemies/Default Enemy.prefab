@@ -629,7 +629,6 @@ GameObject:
   - component: {fileID: 3933406302416022433}
   - component: {fileID: 855012223017834407}
   - component: {fileID: 7967818032742903494}
-  - component: {fileID: 7224517097007860543}
   - component: {fileID: 1862561253965075587}
   m_Layer: 7
   m_Name: Default Enemy
@@ -678,7 +677,6 @@ MonoBehaviour:
   canRoam: 1
   roamDistance: 10
   roamPauseTime: 3
-  hasGuardAnim: 1
   animChangeSpeed: 7
   stopAtDamageTime: 1
   shootPos: {fileID: 8501069793479404713}
@@ -728,27 +726,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &7224517097007860543
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3874992235311811758}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1862561253965075587
 CapsuleCollider:
   m_ObjectHideFlags: 0
