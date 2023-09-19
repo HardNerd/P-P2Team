@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
+    [SerializeField] GameObject checkpointMenu;
 
     [Header("----- Play State -----")]
     [SerializeField] GameObject endPoint;
@@ -164,5 +165,12 @@ public class GameManager : MonoBehaviour
     public void isExiting(bool state)
     {
         isInsideExit = state;
+    }
+
+    public IEnumerator checkpointPopup()
+    {
+        checkpointMenu.SetActive(true);
+        yield return new WaitForSeconds(2);
+        checkpointMenu.SetActive(false);
     }
 }
