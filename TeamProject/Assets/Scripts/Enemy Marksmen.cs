@@ -10,7 +10,7 @@ public class EnemyMarksmen : MonoBehaviour, IDamage , IPhysics
     [SerializeField] Transform shootPos;
 
 
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int targetFaceSpeed;
 
     [SerializeField] float shootRate;
@@ -71,7 +71,7 @@ public class EnemyMarksmen : MonoBehaviour, IDamage , IPhysics
         isShooting = false;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         HP -= amount;
 

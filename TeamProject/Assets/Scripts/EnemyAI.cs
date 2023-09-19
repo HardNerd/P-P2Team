@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected Collider hitBox;
 
     [Header("----- Enemy Stats -----")]
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int targetFaceSpeed;
     [SerializeField] float viewAngle;
     [SerializeField] bool canRoam;
@@ -91,7 +91,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         return false;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         HP -= amount;
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,9 @@ using UnityEngine;
 
 public class GunStats : ScriptableObject
 {
-    public float shootRate = 2;
-    public int shootDamage = 1;
-    public int shootDistance = 15;
+    public float shootRate;
+    public float shootDamage;
+    public int shootDistance;
     public int currentAmmo;
     public int maxAmmo;
 
@@ -16,5 +17,6 @@ public class GunStats : ScriptableObject
     public ParticleSystem hitEffect;
     public AudioClip gunSound;
 
+    
 
 }
