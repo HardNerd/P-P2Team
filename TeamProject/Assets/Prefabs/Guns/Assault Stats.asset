@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assault Stats
   m_EditorClassIdentifier: 
   shootRate: 0.3
-  shootDamage: 3
+  shootDamage: 0.75
   shootDistance: 100
   currentAmmo: 0
   maxAmmo: 45

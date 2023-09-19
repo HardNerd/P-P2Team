@@ -11,7 +11,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] ParticleSystem jumpparticles;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 10)][SerializeField] int HP = 10;
+    [Range(1, 10)][SerializeField] float HP = 10;
     [Range(0, 100)][SerializeField] float stamina = 100;
     [Range(3, 10)][SerializeField] float playerSpeed = 7;
     [Range(1, 10)][SerializeField] float jumpHeight = 2.7f;
@@ -21,7 +21,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] List<GunStats> GunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
     [SerializeField] float shootRate;
-    [SerializeField] int shootDamage;
+    [SerializeField] float shootDamage;
     [SerializeField] int shootDistance;
 
     private Vector3 move;
@@ -30,7 +30,7 @@ public class playerController : MonoBehaviour, IDamage
     private int jumpedTimes;
     private bool isShooting;
     int maxJumps = 2;
-    int maxHP;
+    float maxHP;
     float baseSpeed;
     float maxStam;
     int selectedGun;
@@ -109,7 +109,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         updateHealth(damageAmount);
 
@@ -119,7 +119,7 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
-    public void updateHealth(int amount)
+    public void updateHealth(float amount)
     {
         GameManager.instance.healthYelFillAmt = (float)HP / 10;
         

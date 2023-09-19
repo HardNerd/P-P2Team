@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SMG Stats
   m_EditorClassIdentifier: 
   shootRate: 0.1
-  shootDamage: 2
+  shootDamage: 0.5
   shootDistance: 60
   currentAmmo: 0
   maxAmmo: 50
