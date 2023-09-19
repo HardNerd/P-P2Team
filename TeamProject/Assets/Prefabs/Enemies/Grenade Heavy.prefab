@@ -288,15 +288,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 4052387601735618703}
   agent: {fileID: 4040613956488290301}
-  animator: {fileID: 0}
+  animator: {fileID: 8026107829089063750}
   headPos: {fileID: 3860464870506869106}
+  hitBox: {fileID: 1962015001539559877}
   HP: 10
   targetFaceSpeed: 3
   viewAngle: 90
   canRoam: 1
   roamDistance: 3
   roamPauseTime: 4
-  animChangeSpeed: 0
+  hasGuardAnim: 1
+  animChangeSpeed: 7
+  stopAtDamageTime: 1
   shootPos: {fileID: 1370573728440558018}
   shootRate: 0.2
   shootAngle: 10
@@ -311,10 +314,10 @@ Animator:
   m_GameObject: {fileID: 1403826364618641791}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f4209d51d1ad0434299f2d498ee076ba, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8af7ac9a747a01b449c615c889095f68, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

@@ -442,13 +442,16 @@ MonoBehaviour:
   agent: {fileID: 5180948304343207166}
   animator: {fileID: 4332857669709151654}
   headPos: {fileID: 6753828901519926426}
+  hitBox: {fileID: 2298368788376227881}
   HP: 2
   targetFaceSpeed: 5
-  viewAngle: 90
+  viewAngle: 120
   canRoam: 1
   roamDistance: 5
   roamPauseTime: 2
+  hasGuardAnim: 0
   animChangeSpeed: 7
+  stopAtDamageTime: 0
   attackRate: 0.8
   attackDamage: 1
   attackAngle: 10
@@ -465,7 +468,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: ddd6326b4708d164c8da07049bd25c87, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -484,7 +487,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 6.9
-  m_Acceleration: 8
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 2

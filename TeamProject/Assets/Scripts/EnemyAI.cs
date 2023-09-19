@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform headPos;
+    [SerializeField] protected Collider hitBox;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
@@ -18,14 +19,18 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] bool canRoam;
     [SerializeField] int roamDistance;
     [SerializeField] int roamPauseTime;
+    [SerializeField] bool hasGuardAnim;
     [SerializeField] protected float animChangeSpeed;
+    [SerializeField] float stopAtDamageTime;
 
     protected Vector3 playerDirection;
     protected bool playerInRange;
     protected float angleToPlayer;
     protected Vector3 startingPos;
     protected float stoppingDistanceOrig = 0; // you have to set it in the child classes
+    protected float speedOrig = 0; // you have to set it in the child classes
     protected bool playerInSight;
+    protected bool isDead = false;
     bool destinationChosen;
 
     protected void MoveEnemy()
@@ -77,6 +82,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
                 else
                     playerInSight = false;
 
+                if (hasGuardAnim)
+                    animator.SetBool("PlayerInSight", playerInSight);
+
                 return true;
             }
         }
@@ -87,13 +95,22 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         HP -= amount;
 
-        StartCoroutine(FlashDamage());
-        agent.SetDestination(GameManager.instance.player.transform.position);
-
         if (HP <= 0)
         {
             GameManager.instance.updatGameGoal(-1);
-            Destroy(gameObject);
+            hitBox.enabled = false;
+            agent.enabled = false;
+            animator.SetBool("Dead", true);
+            isDead = true;
+        }
+        else
+        {
+            animator.SetTrigger("Damage");
+            agent.SetDestination(GameManager.instance.player.transform.position);
+
+            StartCoroutine(FlashDamage());
+            StartCoroutine(StopMoving());
+
         }
 
     }
@@ -104,6 +121,13 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = origColor;
+    }
+
+    IEnumerator StopMoving()
+    {
+        agent.speed = 0;
+        yield return new WaitForSeconds(stopAtDamageTime);
+        agent.speed = speedOrig;
     }
 
     void FaceTarget()

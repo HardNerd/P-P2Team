@@ -627,7 +627,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6668246461011399682}
   - component: {fileID: 3933406302416022433}
-  - component: {fileID: 4559780695462498978}
   - component: {fileID: 855012223017834407}
   - component: {fileID: 7967818032742903494}
   - component: {fileID: 7224517097007860543}
@@ -638,7 +637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6668246461011399682
 Transform:
   m_ObjectHideFlags: 0
@@ -672,40 +671,20 @@ MonoBehaviour:
   agent: {fileID: 7967818032742903494}
   animator: {fileID: 855012223017834407}
   headPos: {fileID: 1231558013492962870}
+  hitBox: {fileID: 1862561253965075587}
   HP: 3
   targetFaceSpeed: 25
   viewAngle: 10
   canRoam: 1
   roamDistance: 10
   roamPauseTime: 3
+  hasGuardAnim: 1
   animChangeSpeed: 7
+  stopAtDamageTime: 1
   shootPos: {fileID: 8501069793479404713}
   shootRate: 0.5
   shootAngle: 10
   bullet: {fileID: 4698408825715902458, guid: a45fa88ac0985a941b0a2772a94430e9, type: 3}
---- !u!114 &4559780695462498978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3874992235311811758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b67ce65f5b6b245478fe1d80a456d3dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 13700000, guid: f4209d51d1ad0434299f2d498ee076ba, type: 3}
-  agent: {fileID: 7967818032742903494}
-  animator: {fileID: 0}
-  headPos: {fileID: 0}
-  HP: 3
-  targetFaceSpeed: 25
-  viewAngle: 0
-  canRoam: 0
-  roamDistance: 0
-  roamPauseTime: 0
-  animChangeSpeed: 0
 --- !u!95 &855012223017834407
 Animator:
   serializedVersion: 5

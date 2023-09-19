@@ -18,23 +18,28 @@ public class defaultEnemy : EnemyAI
     {
         startingPos = transform.position;
         stoppingDistanceOrig = agent.stoppingDistance;
+        speedOrig = agent.speed;
         GameManager.instance.updatGameGoal(1);
     }
 
     void Update()
     {
-        float agentVelocity = agent.velocity.normalized.magnitude;
-        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
+        if (!isDead)
+        {
+            float agentVelocity = agent.velocity.normalized.magnitude;
+            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
 
-        MoveEnemy();
+            MoveEnemy();
 
-        if (playerInSight && !isShooting && angleToPlayer <= shootAngle)
-            StartCoroutine(shoot());
+            if (playerInSight && !isShooting && angleToPlayer <= shootAngle)
+                StartCoroutine(shoot());
+        }
     }
 
     IEnumerator shoot()
     {
         isShooting = true;
+        animator.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;

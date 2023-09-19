@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 1547517144529623053}
   serializedVersion: 2
   m_LocalRotation: {x: -0.04886543, y: -0.04720241, z: 0.99585015, w: -0.060552426}
-  m_LocalPosition: {x: 2.05, y: 1.22, z: -0.04}
+  m_LocalPosition: {x: -1.503, y: -0.163, z: 0.165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -512,16 +512,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 3098394419670612757}
   agent: {fileID: 8586228678737290120}
-  animator: {fileID: 0}
+  animator: {fileID: 339337067479188839}
   headPos: {fileID: 6864038096511118216}
+  hitBox: {fileID: 3948436075374801839}
   HP: 10
   targetFaceSpeed: 3
   viewAngle: 90
   canRoam: 1
   roamDistance: 3
   roamPauseTime: 4
-  animChangeSpeed: 0
-  shootPos: {fileID: 7401695040203204204}
+  hasGuardAnim: 1
+  animChangeSpeed: 7
+  stopAtDamageTime: 1
+  shootPos: {fileID: 1537023817432383668}
   shootRate: 0.2
   shootAngle: 10
   bullet: {fileID: 2849231682678411526, guid: 4a36ba291ba9bd94fa8830932f3f550a, type: 3}
@@ -535,10 +538,10 @@ Animator:
   m_GameObject: {fileID: 4725184692278229224}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f4209d51d1ad0434299f2d498ee076ba, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8af7ac9a747a01b449c615c889095f68, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
