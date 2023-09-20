@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(youWin());
         }
     }
-    IEnumerator youWin()
+    public IEnumerator youWin()
     {
         timer.SetActive(false);
         yield return new WaitForSeconds(1);
