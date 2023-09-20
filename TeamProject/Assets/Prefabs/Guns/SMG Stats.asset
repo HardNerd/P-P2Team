@@ -17,6 +17,7 @@ MonoBehaviour:
   shootDistance: 60
   currentAmmo: 0
   maxAmmo: 50
+  reloadTime: 2.4
   model: {fileID: 2358229232279047346, guid: 0fe3f6acb54a62f409d883dd87e51de0, type: 3}
   hitEffect: {fileID: 3625215294947267868, guid: f0d790e84f8e72b46ba4fe7fc8312f93, type: 3}
   gunSound: {fileID: 8300000, guid: 34b439bf70b80a6409eadecc6be92d68, type: 3}

@@ -12,6 +12,7 @@ public class GunStats : ScriptableObject
     public int shootDistance;
     public int currentAmmo;
     public int maxAmmo;
+    public float reloadTime;
 
     public GameObject model;
     public ParticleSystem hitEffect;
