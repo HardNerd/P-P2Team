@@ -18,12 +18,12 @@ public class playerController : MonoBehaviour, IDamage
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
 
     [Header("----- Gun Stats -----")]
-    [SerializeField] List<GunStats> GunList = new List<GunStats>();
+    [SerializeField] public List<GunStats> GunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
     [SerializeField] float shootRate;
     [SerializeField] float shootDamage;
     [SerializeField] int shootDistance;
-    [SerializeField] int reloadTime;
+    [SerializeField] float reloadTime;
     [SerializeField] AudioClip shootSound;
 
     private Vector3 move;
@@ -31,12 +31,12 @@ public class playerController : MonoBehaviour, IDamage
     private bool isGrounded;
     private int jumpedTimes;
     private bool isShooting;
-    private bool isReloading;
+    public bool isReloading;
     int maxJumps = 2;
     float maxHP;
     float baseSpeed;
     float maxStam;
-    int selectedGun;
+    public int selectedGun;
     public bool sprintCooldown;
     //bool isPlayingSoundEffect;
 
@@ -79,7 +79,7 @@ public class playerController : MonoBehaviour, IDamage
             return;
         }
 
-        if (Input.GetButton("Fire1") && !isShooting && !GameManager.instance.isPause)
+        if (Input.GetButton("Fire1") && !isShooting && !GameManager.instance.isPause && !isReloading)
             StartCoroutine(shoot());
 
        
@@ -245,6 +245,7 @@ public class playerController : MonoBehaviour, IDamage
         shootDistance = gun.shootDistance;
         shootRate = gun.shootRate;
         shootSound = gun.gunSound;
+        reloadTime = gun.reloadTime;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent <MeshFilter>().sharedMesh;
         gunModel.GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
@@ -272,6 +273,7 @@ public class playerController : MonoBehaviour, IDamage
         shootDistance = GunList[selectedGun].shootDistance;
         shootRate = GunList[selectedGun].shootRate;
         shootSound = GunList[selectedGun].gunSound;
+        reloadTime = GunList[selectedGun].reloadTime;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = GunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<Renderer>().sharedMaterial = GunList[selectedGun].model.GetComponent<Renderer>().sharedMaterial;
