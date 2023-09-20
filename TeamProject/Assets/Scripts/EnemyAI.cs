@@ -27,28 +27,16 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     protected float angleToPlayer;
     protected Vector3 startingPos;
     protected float speedOrig = 0; // you have to set it in the child classes
-    protected bool playerInSight;
     protected bool isDead = false;
     
     protected void MoveEnemy()
     {
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
-
-        RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDirection, out hit))
-        {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
-            {
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    FaceTarget();
-                    playerInSight = true;
-                }
-                else
-                    playerInSight = false;
-            }
-        }
+        
+        if (agent.remainingDistance <= agent.stoppingDistance)
+            FaceTarget();
+        
         agent.SetDestination(GameManager.instance.player.transform.position);
     }
 

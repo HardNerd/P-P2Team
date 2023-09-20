@@ -128,7 +128,7 @@ MonoBehaviour:
   headPos: {fileID: 5945298860526944712}
   hitBox: {fileID: 7418645682812077739}
   meleeCollider: {fileID: 0}
-  HP: 10
+  HP: 6
   targetFaceSpeed: 4
   viewAngle: 90
   canRoam: 1
