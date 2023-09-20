@@ -23,6 +23,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] float shootDamage;
     [SerializeField] int shootDistance;
+    [SerializeField] AudioClip shootSound;
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -35,6 +36,7 @@ public class playerController : MonoBehaviour, IDamage
     float maxStam;
     int selectedGun;
     public bool sprintCooldown;
+    //bool isPlayingSoundEffect;
 
     void Start()
     {
@@ -186,21 +188,25 @@ public class playerController : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
-        isShooting = true;
-
-        RaycastHit hitInfo;
-        Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
-
-        if (Physics.Raycast(ray, out hitInfo, shootDistance))
+        if (GunList.Count > 0)
         {
-            IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
-            Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
-            if (damageable != null)
-                damageable.TakeDamage(shootDamage);
-        }
+            isShooting = true;
+            AudioSource.PlayClipAtPoint(shootSound, transform.position);
+            
+            RaycastHit hitInfo;
+            Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
 
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+            if (Physics.Raycast(ray, out hitInfo, shootDistance))
+            {
+                IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
+                Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
+                if (damageable != null)
+                    damageable.TakeDamage(shootDamage);
+            }
+
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
     }
 
     public void GunPickup(GunStats gun)
@@ -209,6 +215,7 @@ public class playerController : MonoBehaviour, IDamage
         shootDamage = gun.shootDamage;
         shootDistance = gun.shootDistance;
         shootRate = gun.shootRate;
+        shootSound = gun.gunSound;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent <MeshFilter>().sharedMesh;
         gunModel.GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
@@ -235,6 +242,7 @@ public class playerController : MonoBehaviour, IDamage
         shootDamage = GunList[selectedGun].shootDamage;
         shootDistance = GunList[selectedGun].shootDistance;
         shootRate = GunList[selectedGun].shootRate;
+        shootSound = GunList[selectedGun].gunSound;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = GunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<Renderer>().sharedMaterial = GunList[selectedGun].model.GetComponent<Renderer>().sharedMaterial;
