@@ -56,6 +56,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         HP -= amount;
 
+        if (meleeCollider != null)
+            meleeColliderOff();
+
         if (HP <= 0)
         {
             GameManager.instance.updatGameGoal(-1);
@@ -102,5 +105,15 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     public void physics(Vector3 direction)
     {
         agent.velocity += (direction / 2);
+    }
+
+    public void meleeColliderOn()
+    {
+        meleeCollider.enabled = true;
+    }
+
+    public void meleeColliderOff()
+    {
+        meleeCollider.enabled = false;
     }
 }

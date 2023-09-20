@@ -37,29 +37,18 @@ public class meleeEnemyAI : EnemyAI
     IEnumerator attack()
     {
         isAttacking = true;
-        animator.SetTrigger("Attack");
-        
-        //RaycastHit hitInfo;
 
-        //if (Physics.Raycast(headPos.position, playerDirection, out hitInfo, agent.stoppingDistance))
-        //{
-        //    IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
+        RaycastHit hitInfo;
 
-        //    if (damageable != null)
-        //        damageable.TakeDamage(attackDamage);
-        //}
+        if (Physics.Raycast(headPos.position, playerDirection, out hitInfo, agent.stoppingDistance))
+        {
+            IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
+
+            if (damageable != null)
+                animator.SetTrigger("Attack");
+        }
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
-    }
-
-    public void meleeColliderOn()
-    {
-        meleeCollider.enabled = true;
-    }
-
-    public void meleeColliderOff()
-    {
-        meleeCollider.enabled = false;
     }
 }
