@@ -26,6 +26,10 @@ public class spawner : MonoBehaviour
         {
             StartCoroutine(spawn());
         }
+        else if(maxEnemies == 0)
+        {
+            StopCoroutine(spawn());
+        }
     }
 
     public IEnumerator spawn()
