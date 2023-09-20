@@ -175,13 +175,13 @@ public class GameManager : MonoBehaviour
         checkpointMenu.SetActive(false);
     }
 
-    public void ammoUpdate(int amount, bool reload = false)
+    public void ammoUpdate(int amount, int maxAmount, bool reload = false)
     {
         if(reload)
         {
             ammoCount.text = "Reloading!";
             return;
         }
-        ammoCount.text = amount.ToString();
+        ammoCount.text = amount.ToString() + " / " + maxAmount.ToString();
     }
 }

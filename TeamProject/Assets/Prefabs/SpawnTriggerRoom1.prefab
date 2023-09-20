@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3348bb5fd532c104ab8430205cec854d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyToSpawn: {fileID: 1613792153148569952, guid: c0d8177cb036aa44eb9501d659f4e5d5, type: 3}
+  enemiesToSpawn: []
   maxEnemies: 10
   spawnPos:
   - {fileID: 8815832539737836712}
@@ -114,7 +114,6 @@ MonoBehaviour:
   - {fileID: 1021096615465994812}
   - {fileID: 8822834617509068507}
   timeOffset: 1
-  spawnList: []
 --- !u!135 &9138378081534350606
 SphereCollider:
   m_ObjectHideFlags: 0

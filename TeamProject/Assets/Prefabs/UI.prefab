@@ -883,7 +883,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lo
+  m_text: No Gun!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1198,7 +1198,7 @@ MonoBehaviour:
   playUI: {fileID: 33377427016447864}
   timer: {fileID: 1430601608147722380}
   objectiveText: {fileID: 585155812365905587}
-  ammoCount: {fileID: 0}
+  ammoCount: {fileID: 6177254619478040731}
   levelTime: {fileID: 1151885487968048792}
   healthRed: {fileID: 3205163458443804577}
   healthYel: {fileID: 7274787616720262765}

@@ -201,7 +201,7 @@ public class playerController : MonoBehaviour, IDamage
 
                 isShooting = true;
                 GunList[selectedGun].currentAmmo--;
-                GameManager.instance.ammoUpdate(GunList[selectedGun].currentAmmo);
+                GameManager.instance.ammoUpdate(GunList[selectedGun].currentAmmo, GunList[selectedGun].maxAmmo);
                 AudioSource.PlayClipAtPoint(shootSound, transform.position);
 
                 RaycastHit hitInfo;
@@ -230,12 +230,12 @@ public class playerController : MonoBehaviour, IDamage
         shootRate = gun.shootRate;
         shootSound = gun.gunSound;
         reloadTime = gun.reloadTime;
-        GameManager.instance.ammoUpdate(GunList[selectedGun].currentAmmo);
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent <MeshFilter>().sharedMesh;
         gunModel.GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
 
         selectedGun = GunList.Count - 1;
+        GameManager.instance.ammoUpdate(GunList[selectedGun].currentAmmo, GunList[selectedGun].maxAmmo);
     }
 
     void  GunSelector()
@@ -259,7 +259,7 @@ public class playerController : MonoBehaviour, IDamage
         shootRate = GunList[selectedGun].shootRate;
         shootSound = GunList[selectedGun].gunSound;
         reloadTime = GunList[selectedGun].reloadTime;
-        GameManager.instance.ammoUpdate(GunList[selectedGun].currentAmmo);
+        GameManager.instance.ammoUpdate(GunList[selectedGun].currentAmmo, GunList[selectedGun].maxAmmo);
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = GunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<Renderer>().sharedMaterial = GunList[selectedGun].model.GetComponent<Renderer>().sharedMaterial;
