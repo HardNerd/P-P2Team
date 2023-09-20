@@ -23,6 +23,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] float shootDamage;
     [SerializeField] int shootDistance;
+    [SerializeField] int reloadTime;
     [SerializeField] AudioClip shootSound;
 
     private Vector3 move;
@@ -30,6 +31,7 @@ public class playerController : MonoBehaviour, IDamage
     private bool isGrounded;
     private int jumpedTimes;
     private bool isShooting;
+    private bool isReloading;
     int maxJumps = 2;
     float maxHP;
     float baseSpeed;
@@ -70,8 +72,17 @@ public class playerController : MonoBehaviour, IDamage
         GameManager.instance.moveHPBar();
         GameManager.instance.moveStamBar();
 
+        
+        if (Input.GetButton("Reload") && !isReloading && !GameManager.instance.isPause)
+        {
+            StartCoroutine(reload());
+            return;
+        }
+
         if (Input.GetButton("Fire1") && !isShooting && !GameManager.instance.isPause)
             StartCoroutine(shoot());
+
+       
     }
 
     void Movement()
@@ -190,24 +201,42 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (GunList.Count > 0)
         {
-            isShooting = true;
-            AudioSource.PlayClipAtPoint(shootSound, transform.position);
-            
-            RaycastHit hitInfo;
-            Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
-
-            if (Physics.Raycast(ray, out hitInfo, shootDistance))
+            if (GunList[selectedGun].currentAmmo > 0)
             {
-                IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
-                Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
-                if (damageable != null)
-                    damageable.TakeDamage(shootDamage);
-            }
 
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
+
+                isShooting = true;
+                GunList[selectedGun].currentAmmo--;
+                AudioSource.PlayClipAtPoint(shootSound, transform.position);
+
+                RaycastHit hitInfo;
+                Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+
+                if (Physics.Raycast(ray, out hitInfo, shootDistance))
+                {
+                    IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
+                    Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
+                    if (damageable != null)
+                        damageable.TakeDamage(shootDamage);
+                }
+
+                yield return new WaitForSeconds(shootRate);
+                isShooting = false;
+            }
         }
     }
+
+    IEnumerator reload()
+    {
+        if (GunList[selectedGun].currentAmmo < GunList[selectedGun].maxAmmo)
+        {
+            isReloading = true;
+            yield return new WaitForSeconds(reloadTime);
+            GunList[selectedGun].currentAmmo = GunList[selectedGun].maxAmmo;
+            isReloading = false;
+        }
+    }
+   
 
     public void GunPickup(GunStats gun)
     {
