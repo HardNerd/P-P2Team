@@ -119,8 +119,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3772367048194752438}
+  - component: {fileID: 1465825776004737986}
   - component: {fileID: 443766268185090868}
   - component: {fileID: 4600672449267884981}
+  - component: {fileID: 5623940644552251892}
   m_Layer: 0
   m_Name: PlayerGun
   m_TagString: Untagged
@@ -143,6 +145,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 967887306407933565}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1465825776004737986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3930455409317522917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230d1b1085bb6af4a9edf06677f28ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5623940644552251892}
 --- !u!33 &443766268185090868
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -193,6 +208,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &5623940644552251892
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3930455409317522917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ab40d0b5a3e167a4bb9e887907c4509c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6276233285746502742
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +292,8 @@ MonoBehaviour:
   shootDistance: 0
   reloadTime: 0
   shootSound: {fileID: 0}
+  isReloading: 0
+  selectedGun: 0
   sprintCooldown: 0
 --- !u!143 &4115263917725466358
 CharacterController:
