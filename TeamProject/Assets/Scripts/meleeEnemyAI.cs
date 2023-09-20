@@ -12,6 +12,8 @@ public class meleeEnemyAI : EnemyAI
 
     bool isAttacking;
 
+    public int AttackDamage { get => attackDamage; }
+
     void Start()
     {
         startingPos = transform.position;
@@ -27,8 +29,8 @@ public class meleeEnemyAI : EnemyAI
             animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
 
             MoveEnemy();
-
-            if (playerInSight && !isAttacking && angleToPlayer <= attackAngle)
+            
+            if (!isAttacking && angleToPlayer <= attackAngle)
                 StartCoroutine(attack());
         }
     }
@@ -38,17 +40,27 @@ public class meleeEnemyAI : EnemyAI
         isAttacking = true;
         animator.SetTrigger("Attack");
         
-        RaycastHit hitInfo;
+        //RaycastHit hitInfo;
 
-        if (Physics.Raycast(headPos.position, playerDirection, out hitInfo, agent.stoppingDistance))
-        {
-            IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
+        //if (Physics.Raycast(headPos.position, playerDirection, out hitInfo, agent.stoppingDistance))
+        //{
+        //    IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
 
-            if (damageable != null)
-                damageable.TakeDamage(attackDamage);
-        }
+        //    if (damageable != null)
+        //        damageable.TakeDamage(attackDamage);
+        //}
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
+    }
+
+    public void meleeColliderOn()
+    {
+        meleeCollider.enabled = true;
+    }
+
+    public void meleeColliderOff()
+    {
+        meleeCollider.enabled = false;
     }
 }

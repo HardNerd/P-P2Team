@@ -671,6 +671,7 @@ MonoBehaviour:
   animator: {fileID: 855012223017834407}
   headPos: {fileID: 1231558013492962870}
   hitBox: {fileID: 1862561253965075587}
+  meleeCollider: {fileID: 0}
   HP: 3
   targetFaceSpeed: 25
   viewAngle: 10

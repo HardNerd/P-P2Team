@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform headPos;
     [SerializeField] protected Collider hitBox;
+    [SerializeField] protected Collider meleeCollider;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] float HP;

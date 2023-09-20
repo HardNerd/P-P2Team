@@ -30,7 +30,7 @@ public class defaultEnemy : EnemyAI
 
             MoveEnemy();
 
-            if (playerInSight && !isShooting && angleToPlayer <= shootAngle)
+            if (!isShooting && angleToPlayer <= shootAngle)
                 StartCoroutine(shoot());
         }
     }
