@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Reload") && !GameManager.instance.playerController.isReloading && !GameManager.instance.isPause)
+        if (Input.GetButton("Reload") && !GameManager.instance.playerController.isReloading && !GameManager.instance.isPause && GameManager.instance.playerController.GunList.Count > 0)
         {
             StartCoroutine(reload());
             return;
