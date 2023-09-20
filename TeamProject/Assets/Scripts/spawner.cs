@@ -33,6 +33,7 @@ public class spawner : MonoBehaviour
         if (!isSpawning)
         {
             isSpawning = true;
+            GameManager.instance.updatGameGoal(1);
             int arraySpawnPos = Random.Range(0, spawnPos.Length);
             int indexer = Random.Range(0, enemiesToSpawn.Length);
             GameObject enemySpawned = Instantiate(enemiesToSpawn[indexer], spawnPos[arraySpawnPos].position, spawnPos[arraySpawnPos].rotation);
@@ -46,6 +47,7 @@ public class spawner : MonoBehaviour
 
     public void enemyDeath()
     {
+        GameManager.instance.updatGameGoal(-1);
         maxEnemies--;
     }
 

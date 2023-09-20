@@ -18,7 +18,6 @@ public class defaultEnemy : EnemyAI
     {
         startingPos = transform.position;
         speedOrig = agent.speed;
-        GameManager.instance.updatGameGoal(1);
     }
 
     void Update()
