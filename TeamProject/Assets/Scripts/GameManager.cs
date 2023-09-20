@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playUI;
     [SerializeField] GameObject timer;
     [SerializeField] TMP_Text objectiveText;
+    [SerializeField] TMP_Text ammoCount;
     public levelTimer levelTime;
     public Image healthRed;
     public Image healthYel;
@@ -172,5 +173,15 @@ public class GameManager : MonoBehaviour
         checkpointMenu.SetActive(true);
         yield return new WaitForSeconds(2);
         checkpointMenu.SetActive(false);
+    }
+
+    public void ammoUpdate(int amount, bool reload = false)
+    {
+        if(reload)
+        {
+            ammoCount.text = "Reloading!";
+            return;
+        }
+        ammoCount.text = amount.ToString();
     }
 }

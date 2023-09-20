@@ -26,6 +26,7 @@ public class Gun : MonoBehaviour
         if (currentGun.currentAmmo < currentGun.maxAmmo)
         {
             GameManager.instance.playerController.isReloading = true;
+            GameManager.instance.ammoUpdate(0, true);
             animator.SetBool("Reloading", true);
 
             yield return new WaitForSeconds(currentGun.reloadTime);
@@ -33,6 +34,7 @@ public class Gun : MonoBehaviour
 
             animator.SetBool("Reloading", false);
             GameManager.instance.playerController.isReloading = false;
+            GameManager.instance.ammoUpdate(currentGun.currentAmmo);
         }
     }
 }
