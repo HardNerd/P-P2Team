@@ -739,6 +739,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnTriggerRoom1
       objectReference: {fileID: 0}
+    - target: {fileID: 4353736744676329609, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: enemiesToSpawn.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353736744676329609, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[0]
+      value: 
+      objectReference: {fileID: 4725184692278229224, guid: a53aa00f1c1ff1c44bf6be5f63f68097, type: 3}
+    - target: {fileID: 4353736744676329609, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 3927311685150841062, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+    - target: {fileID: 4353736744676329609, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[2]
+      value: 
+      objectReference: {fileID: 1403826364618641791, guid: ec139966dc62d704fa38236481c8e867, type: 3}
+    - target: {fileID: 4353736744676329609, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[3]
+      value: 
+      objectReference: {fileID: 3874992235311811758, guid: 39096af01d61dd0449435cbd70eff7f2, type: 3}
+    - target: {fileID: 4353736744676329609, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[4]
+      value: 
+      objectReference: {fileID: 1613792153148569952, guid: c0d8177cb036aa44eb9501d659f4e5d5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

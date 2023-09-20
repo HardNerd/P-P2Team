@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class spawner : MonoBehaviour
 {
-    [SerializeField] GameObject enemyToSpawn;
+    [SerializeField] GameObject[] enemiesToSpawn;
     [SerializeField] int maxEnemies;
     [SerializeField] Transform[] spawnPos;
     [SerializeField] int timeOffset;
-    [SerializeField] List<GameObject> spawnList = new List<GameObject>();
 
     bool isSpawning;
     bool startSpawning;
@@ -31,13 +30,13 @@ public class spawner : MonoBehaviour
 
     public IEnumerator spawn()
     {
-        if(!isSpawning)
+        if (!isSpawning)
         {
             isSpawning = true;
             int arraySpawnPos = Random.Range(0, spawnPos.Length);
-            GameObject enemySpawned = Instantiate(enemyToSpawn, spawnPos[arraySpawnPos].position, spawnPos[arraySpawnPos].rotation);
+            int indexer = Random.Range(0, enemiesToSpawn.Length);
+            GameObject enemySpawned = Instantiate(enemiesToSpawn[indexer], spawnPos[arraySpawnPos].position, spawnPos[arraySpawnPos].rotation);
 
-            spawnList.Add(enemySpawned);
             spawnCount++;
 
             yield return new WaitForSeconds(timeOffset);
