@@ -438,13 +438,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8267fa61fa8504ebe01a0c8ce4e49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 6715482247272774404}
+  models:
+  - {fileID: 6715482247272774404}
   agent: {fileID: 5180948304343207166}
   animator: {fileID: 4332857669709151654}
   headPos: {fileID: 6753828901519926426}
   hitBox: {fileID: 2298368788376227881}
   meleeCollider: {fileID: 3967122993342015656}
-  HP: 2
+  HP: 0.75
   targetFaceSpeed: 5
   viewAngle: 120
   canRoam: 1

@@ -117,7 +117,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09589d2362e360b4dbd0bfbb3f4c6c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 5794256699033788107}
+  models:
+  - {fileID: 1736129525977369971}
+  - {fileID: 6550589264935003893}
+  - {fileID: 5794256699033788107}
+  - {fileID: 2286022153021100427}
+  - {fileID: 6390567365426707103}
   agent: {fileID: 3614827361368551408}
   animator: {fileID: 2970284891924313599}
   headPos: {fileID: 5945298860526944712}

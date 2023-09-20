@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
-    [SerializeField] Renderer model;
+    [SerializeField] Renderer[] models;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform headPos;
@@ -82,11 +82,13 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     }
     IEnumerator FlashDamage()
     {
-        Color origColor = model.material.color;
+        Color origColor = models[0].material.color;
+        for (int i = 0; i < models.Length; i++)
+            models[i].material.color = Color.red;
 
-        model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        model.material.color = origColor;
+        for (int i = 0; i < models.Length; i++)
+            models[i].material.color = origColor;
     }
 
     IEnumerator StopMoving()

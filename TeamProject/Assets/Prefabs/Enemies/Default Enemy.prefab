@@ -666,7 +666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09589d2362e360b4dbd0bfbb3f4c6c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1145405396139959087}
+  models:
+  - {fileID: 1145405396139959087}
   agent: {fileID: 7967818032742903494}
   animator: {fileID: 855012223017834407}
   headPos: {fileID: 1231558013492962870}
