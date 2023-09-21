@@ -10,6 +10,11 @@ public class ButtonManager : MonoBehaviour
         GameManager.instance.stateUnpause();
     }
 
+    public void begin()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
+
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
