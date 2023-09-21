@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 938469549296374922}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.9749999, y: 0.0625, z: -0.8012178}
+  m_LocalPosition: {x: 3.475, y: -0.025, z: 1.4121463}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.04006089}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,7 +47,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -104,8 +104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3348bb5fd532c104ab8430205cec854d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesToSpawn: []
-  maxEnemies: 10
+  enemiesToSpawn:
+  - {fileID: 1613792153148569952, guid: c0d8177cb036aa44eb9501d659f4e5d5, type: 3}
+  - {fileID: 3874992235311811758, guid: 39096af01d61dd0449435cbd70eff7f2, type: 3}
+  - {fileID: 386317693903183646, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
+  - {fileID: 4391890526673740044, guid: a53aa00f1c1ff1c44bf6be5f63f68097, type: 3}
+  maxEnemies: 20
   spawnPos:
   - {fileID: 8815832539737836712}
   - {fileID: 1107953168502623977}
@@ -161,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 1777378586051935893}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.37499997, y: 0.4125, z: -1.3921158}
+  m_LocalPosition: {x: 3.025, y: -0.050000004, z: 0.23035009}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.04006089}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -182,7 +186,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -214,7 +218,7 @@ Transform:
   m_GameObject: {fileID: 3064920426516925572}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0.0625, z: -1.7326335}
+  m_LocalPosition: {x: 0.31249997, y: -0.025, z: -0.24036527}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.04006089}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -235,7 +239,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -267,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 5264219233432737226}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4125, y: 0.0625, z: -2.0030446}
+  m_LocalPosition: {x: 1.4375001, y: -0.0125, z: -0.060091317}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.04006089}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -288,7 +292,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -320,7 +324,7 @@ Transform:
   m_GameObject: {fileID: 5307395595223650105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.38750002, y: 0.0625, z: -0.75114167}
+  m_LocalPosition: {x: -1.5125002, y: 0.012500001, z: 0.17025876}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.04006089}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -341,7 +345,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -373,7 +377,7 @@ Transform:
   m_GameObject: {fileID: 6634622182292140341}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.61249995, y: 0.0625, z: -0.7711721}
+  m_LocalPosition: {x: 0.5125, y: -0.024999999, z: 1.2418876}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.04006089}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -394,7 +398,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
