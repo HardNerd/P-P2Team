@@ -22,4 +22,5 @@ public class grenade : MonoBehaviour
         Destroy(gameObject);
 
     }
+    //test
 }
