@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 5623940644552251892}
   m_Layer: 0
   m_Name: PlayerGun
-  m_TagString: Untagged
+  m_TagString: Player Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,6 +158,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5623940644552251892}
+  GunList: []
+  gunModel: {fileID: 0}
+  shootRate: 0
+  shootDamage: 0
+  shootDistance: 0
+  reloadTime: 0
+  shootSound: {fileID: 0}
+  isReloading: 0
+  selectedGun: 0
 --- !u!33 &443766268185090868
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -285,15 +294,6 @@ MonoBehaviour:
   playerSpeed: 7
   jumpHeight: 2.7
   gravityValue: -25
-  GunList: []
-  gunModel: {fileID: 3930455409317522917}
-  shootRate: 0
-  shootDamage: 0
-  shootDistance: 0
-  reloadTime: 0
-  shootSound: {fileID: 0}
-  isReloading: 0
-  selectedGun: 0
   sprintCooldown: 0
 --- !u!143 &4115263917725466358
 CharacterController:

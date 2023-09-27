@@ -17,28 +17,15 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] float jumpHeight = 2.7f;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
 
-    [Header("----- Gun Stats -----")]
-    [SerializeField] public List<GunStats> GunList = new List<GunStats>();
-    [SerializeField] GameObject gunModel;
-    [SerializeField] float shootRate;
-    [SerializeField] float shootDamage;
-    [SerializeField] int shootDistance;
-    [SerializeField] float reloadTime;
-    [SerializeField] AudioClip shootSound;
-
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool isGrounded;
     private int jumpedTimes;
-    private bool isShooting;
-    public bool isReloading;
     int maxJumps = 2;
     float maxHP;
     float baseSpeed;
     float maxStam;
-    public int selectedGun;
     public bool sprintCooldown;
-    //bool isPlayingSoundEffect;
 
     void Start()
     {
@@ -55,7 +42,6 @@ public class playerController : MonoBehaviour, IDamage
 
     void Update()
     {
-        GunSelector();
         Movement();
         if (Input.GetKey(KeyCode.LeftShift) && sprintCooldown == false)
         {
@@ -71,12 +57,6 @@ public class playerController : MonoBehaviour, IDamage
         }
         GameManager.instance.moveHPBar();
         GameManager.instance.moveStamBar();
-
-
-        if (Input.GetButton("Fire1") && !isShooting && !GameManager.instance.isPause && !isReloading)
-            StartCoroutine(shoot());
-
-       
     }
 
     void Movement()
@@ -189,79 +169,5 @@ public class playerController : MonoBehaviour, IDamage
         controller.enabled = false;
         transform.position = GameManager.instance.playerSpawnPOS.transform.position;
         controller.enabled = true;
-    }
-
-    IEnumerator shoot()
-    {
-        if (GunList.Count > 0)
-        {
-            if (GunList[selectedGun].loadedAmmo > 0)
-            {
-
-
-                isShooting = true;
-                GunList[selectedGun].loadedAmmo--;
-                GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
-                AudioSource.PlayClipAtPoint(shootSound, transform.position);
-
-                RaycastHit hitInfo;
-                Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
-
-                if (Physics.Raycast(ray, out hitInfo, shootDistance))
-                {
-                    IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
-                    Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
-                    if (damageable != null)
-                        damageable.TakeDamage(shootDamage);
-                }
-
-                yield return new WaitForSeconds(shootRate);
-                isShooting = false;
-            }
-        }
-    }
-   
-
-    public void GunPickup(GunStats gun)
-    {
-        GunList.Add(gun);
-        shootDamage = gun.shootDamage;
-        shootDistance = gun.shootDistance;
-        shootRate = gun.shootRate;
-        shootSound = gun.gunSound;
-        reloadTime = gun.reloadTime;
-
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent <MeshFilter>().sharedMesh;
-        gunModel.GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
-
-        selectedGun = GunList.Count - 1;
-        GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
-    }
-
-    void  GunSelector()
-    {
-        if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < GunList.Count - 1)
-        {
-            selectedGun++;
-            GunChange();
-        }
-       else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
-        {
-            selectedGun--;
-            GunChange();
-        }
-    }
-
-    void GunChange()
-    {
-        shootDamage = GunList[selectedGun].shootDamage;
-        shootDistance = GunList[selectedGun].shootDistance;
-        shootRate = GunList[selectedGun].shootRate;
-        shootSound = GunList[selectedGun].gunSound;
-        reloadTime = GunList[selectedGun].reloadTime;
-        GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
-
-        gunModel.GetComponent<MeshFilter>().sharedMesh = GunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<Renderer>().sharedMaterial = GunList[selectedGun].model.GetComponent<Renderer>().sharedMaterial;
     }
 }

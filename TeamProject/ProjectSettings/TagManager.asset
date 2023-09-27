@@ -8,6 +8,7 @@ TagManager:
   - YellowHealth
   - RedHealth
   - Enemy Marksmen Run Location
+  - Player Gun
   layers:
   - Default
   - TransparentFX
