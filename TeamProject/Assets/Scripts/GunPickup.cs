@@ -8,7 +8,7 @@ public class GunPickup : MonoBehaviour
 
     void Start()
     {
-        stats.loadedAmmo = stats.maxAmmoCarried;
+        stats.loadedAmmo = stats.ammoCarried;
     }
 
     private void OnTriggerEnter(Collider other)

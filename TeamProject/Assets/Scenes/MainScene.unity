@@ -1803,6 +1803,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1021096615465994812, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.915
+      objectReference: {fileID: 0}
     - target: {fileID: 1071504705034187651, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1810,6 +1814,14 @@ PrefabInstance:
     - target: {fileID: 1085491618554685521, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
       propertyPath: m_Name
       value: SpawnTriggerRoom1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623559510405328129, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.655
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623559510405328129, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.506
       objectReference: {fileID: 0}
     - target: {fileID: 3324721690926014525, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
       propertyPath: m_IsTrigger
@@ -1850,6 +1862,14 @@ PrefabInstance:
     - target: {fileID: 6483882530842026264, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8822834617509068507, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8822834617509068507, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8861171487494302270, guid: 873e265aa9f68d243a013fca796a3333, type: 3}
       propertyPath: m_IsTrigger

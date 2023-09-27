@@ -6,7 +6,10 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField] Animator animator;
-    
+
+   
+
+
 
 
 
@@ -28,22 +31,25 @@ public class Gun : MonoBehaviour
     IEnumerator reload()
     {
         GunStats currentGun = GameManager.instance.playerController.GunList[GameManager.instance.playerController.selectedGun];
-        if (currentGun.loadedAmmo < currentGun.ammoCarried)
+        if (currentGun.loadedAmmo < currentGun.ammoCarried && currentGun.ammoCarried > 0)
         {
             GameManager.instance.playerController.isReloading = true;
             GameManager.instance.ammoUpdate(0, 0, true);
             animator.SetBool("Reloading", true);
 
             yield return new WaitForSeconds(currentGun.reloadTime);
-            currentGun.loadedAmmo = currentGun.magSize;
+
+            currentGun.loadedAmmo = currentGun.ammoCarried;
+
             
 
             animator.SetBool("Reloading", false);
             GameManager.instance.playerController.isReloading = false;
             GameManager.instance.ammoUpdate(currentGun.loadedAmmo, currentGun.ammoCarried);
+            
         }
     }
 
-
+   
 
 }
