@@ -15,9 +15,10 @@ MonoBehaviour:
   shootRate: 0.3
   shootDamage: 0.75
   shootDistance: 100
-  loadedAmmo: 0
-  magSize: 0
-  ammoCarried: 0
+  loadedAmmo: 8
+  maxAmmoCarried: 180
+  magSize: 20
+  ammoCarried: 163
   reloadTime: 3
   model: {fileID: 1394078907152411999, guid: 52b7057dbd86c2644817ea3301e6be96, type: 3}
   ammoType: {fileID: 0}
