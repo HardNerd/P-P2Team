@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public playerController playerController;
     public GameObject playerSpawnPOS;
+    public GameObject playerGun;
+    public Gun playerGunScript;
 
     [Header("----- Menus -----")]
     [SerializeField] GameObject activeMenu;
@@ -61,6 +63,9 @@ public class GameManager : MonoBehaviour
         levelTime = timer.GetComponent<levelTimer>();
         if (levelTime != null)
             timer.SetActive(levelTime.timerNeeded);
+
+        playerGun = GameObject.FindGameObjectWithTag("Player Gun");
+        playerGunScript = playerGun.GetComponent<Gun>();
     }
     void Update()
     {

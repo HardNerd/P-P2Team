@@ -6,16 +6,17 @@ public class GunPickup : MonoBehaviour
 {
     [SerializeField] GunStats stats;
 
+
     void Start()
     {
-        stats.currentAmmo = stats.maxAmmo;
+        stats.loadedAmmo = stats.magSize;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            GameManager.instance.playerController.GunPickup(stats);
+            GameManager.instance.playerGunScript.GunPickup(stats);
 
             Destroy(gameObject);
 
