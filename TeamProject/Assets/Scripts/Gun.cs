@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
+using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -72,7 +73,7 @@ public class Gun : MonoBehaviour
     IEnumerator reload()
     {
         GunStats currentGun = GunList[selectedGun];
-        if (currentGun.loadedAmmo < currentGun.ammoCarried && currentGun.ammoCarried > 0)
+        if (currentGun.loadedAmmo < currentGun.magSize && currentGun.ammoCarried > 0)
         {
             isReloading = true;
             GameManager.instance.ammoUpdate(0, 0, true);
@@ -80,10 +81,9 @@ public class Gun : MonoBehaviour
 
             yield return new WaitForSeconds(currentGun.reloadTime);
 
-            currentGun.loadedAmmo = currentGun.ammoCarried;
-
+            currentGun.ammoCarried -= currentGun.magSize - currentGun.loadedAmmo;
+            currentGun.loadedAmmo = currentGun.magSize;
             
-
             animator.SetBool("Reloading", false);
             isReloading = false;
             GameManager.instance.ammoUpdate(currentGun.loadedAmmo, currentGun.ammoCarried);

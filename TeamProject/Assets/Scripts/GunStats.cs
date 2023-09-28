@@ -12,7 +12,6 @@ public class GunStats : ScriptableObject
     public int shootDistance;
     public int loadedAmmo; // ammo currently loading
     //public int maxAmmoCarried; // max ammo that can be carried by player depending on gun type.
-
     public int magSize; // size of mag
     public int ammoCarried; // total ammo carried by player
 

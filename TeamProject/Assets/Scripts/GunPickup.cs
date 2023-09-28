@@ -6,9 +6,10 @@ public class GunPickup : MonoBehaviour
 {
     [SerializeField] GunStats stats;
 
+
     void Start()
     {
-        stats.loadedAmmo = stats.ammoCarried;
+        stats.loadedAmmo = stats.magSize;
     }
 
     private void OnTriggerEnter(Collider other)
