@@ -15,7 +15,7 @@ MonoBehaviour:
   shootRate: 0.5
   shootDamage: 0.5
   shootDistance: 50
-  loadedAmmo: 11
+  loadedAmmo: 0
   magSize: 12
   ammoCarried: 0
   reloadTime: 1.5

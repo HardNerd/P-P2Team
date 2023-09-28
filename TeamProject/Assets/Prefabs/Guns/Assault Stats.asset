@@ -15,9 +15,12 @@ MonoBehaviour:
   shootRate: 0.3
   shootDamage: 0.75
   shootDistance: 100
-  currentAmmo: 0
-  maxAmmo: 45
+  loadedAmmo: 0
+  magSize: 0
+  ammoCarried: 0
   reloadTime: 3
   model: {fileID: 1394078907152411999, guid: 52b7057dbd86c2644817ea3301e6be96, type: 3}
+  ammoType: {fileID: 0}
   hitEffect: {fileID: 1557539098751323222, guid: 68e9927810500934f859701897e5d7a7, type: 3}
   gunSound: {fileID: 8300000, guid: 0f1d5f1dd7168204b97798111311fa26, type: 3}
+  toughnessDmg: 0
