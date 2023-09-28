@@ -80,13 +80,6 @@ public class Gun : MonoBehaviour
             animator.SetBool("Reloading", true);
 
             yield return new WaitForSeconds(currentGun.reloadTime);
-<<<<<<< HEAD
-
-            currentGun.loadedAmmo = currentGun.magSize;
-            if(currentGun.loadedAmmo > currentGun.magSize)
-            {
-                currentGun.ammoCarried--;
-=======
             if((currentGun.magSize - currentGun.loadedAmmo) <= currentGun.ammoCarried)
             {
                 currentGun.ammoCarried -= currentGun.magSize - currentGun.loadedAmmo;
@@ -96,7 +89,6 @@ public class Gun : MonoBehaviour
             {
                 currentGun.loadedAmmo += currentGun.ammoCarried;
                 currentGun.ammoCarried = 0;
->>>>>>> 4ebce4aad5d864b19be0b349531d6474c348200d
             }
 
             

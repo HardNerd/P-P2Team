@@ -9,10 +9,6 @@ public class GunPickup : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD
-        stats.ammoCarried = stats.magSize * stats.mag;
-=======
->>>>>>> 4ebce4aad5d864b19be0b349531d6474c348200d
         stats.loadedAmmo = stats.magSize;
     }
 
