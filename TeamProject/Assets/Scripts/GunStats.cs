@@ -18,6 +18,7 @@ public class GunStats : ScriptableObject
     public float reloadTime;
 
     public GameObject model;
+    public GameObject ammoType;
     public ParticleSystem hitEffect;
     public AudioClip gunSound;
 
