@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneTemplate;
 using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GunStats stats;
+    
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(other.CompareTag("Player"))
+        {
+            if(stats.ammoCarried < stats.maxAmmoCarried)
+            {
+                stats.ammoCarried += Random.Range(1, stats.magSize);
+                if(stats.ammoCarried + Random.Range(1, stats.magSize) > stats.maxAmmoCarried)
+                {
+                    stats.ammoCarried = stats.maxAmmoCarried;
+                }
+            }
+            Destroy(gameObject);
+        }
     }
 }
