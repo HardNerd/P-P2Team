@@ -1457,7 +1457,7 @@ MonoBehaviour:
   playerGun: {fileID: 0}
   playerGunScript: {fileID: 0}
   activeMenu: {fileID: 0}
-  mainMusic: {fileID: 0}
+  mainMusic: {fileID: 5344131977456916421}
   pauseMenu: {fileID: 7621659907755777945}
   winMenu: {fileID: 193016545679007312}
   loseMenu: {fileID: 3427976066634345549}
