@@ -6,7 +6,10 @@ using UnityEngine;
 public class AmmoPickup : MonoBehaviour
 {
     [SerializeField] GunStats stats;
-    
+    public AudioClip ammoPickupSound;
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
@@ -19,6 +22,7 @@ public class AmmoPickup : MonoBehaviour
                     stats.ammoCarried = stats.maxAmmoCarried;
                 }
             }
+            GameManager.instance.ammoUpdate(stats.loadedAmmo, stats.ammoCarried);
             Destroy(gameObject);
         }
     }
