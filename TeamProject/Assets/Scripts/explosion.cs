@@ -7,11 +7,12 @@ public class explosion : MonoBehaviour
     [SerializeField] int explosionSize;
     [SerializeField] GameObject explosionparticle;
     [SerializeField] int damage;
+    [SerializeField] float explosionTime;
 
     private void Start()
     {
         Instantiate(explosionparticle, transform.position, explosionparticle.transform.rotation);
-        Destroy(gameObject, 0.1f );
+        Destroy(gameObject, explosionTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,15 +22,12 @@ public class explosion : MonoBehaviour
             return;
         }
 
-        IPhysics isphysicpossible = other.GetComponent<IPhysics>();
-
-        if (isphysicpossible != null)
+        if (other.TryGetComponent<IPhysics>(out var isphysicpossible))
         {
             isphysicpossible.physics((other.transform.position - transform.position).normalized * explosionSize);
         }
 
-        IDamage damageable = other.GetComponent<IDamage>();
-        if (damageable != null)
+        if (other.TryGetComponent<IDamage>(out var damageable))
         {
             damageable.TakeDamage(damage);
         }
