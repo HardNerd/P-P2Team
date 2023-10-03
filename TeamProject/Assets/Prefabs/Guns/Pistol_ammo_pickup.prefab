@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5154150559357727225}
   m_Layer: 0
   m_Name: Pistol_ammo_pickup
-  m_TagString: Untagged
+  m_TagString: Pistol Ammo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725adf8dab6881a489c4e701b5b03865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: af38c7da70669c141884f9ab66d7ebf6, type: 2}
+  gunStats: {fileID: 11400000, guid: af38c7da70669c141884f9ab66d7ebf6, type: 2}
   ammoPickupSound: {fileID: 8300000, guid: c9ed8ab46ba7a0f4caebd62cd8beef36, type: 3}
 --- !u!33 &7174861677501737759
 MeshFilter:

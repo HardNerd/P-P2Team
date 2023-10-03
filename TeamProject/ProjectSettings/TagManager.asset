@@ -9,6 +9,12 @@ TagManager:
   - RedHealth
   - Enemy Marksmen Run Location
   - Player Gun
+  - Assault Rifle
+  - Pistol
+  - Uzi
+  - Pistol Ammo
+  - Uzi Ammo
+  - Assault Rifle Ammo
   layers:
   - Default
   - TransparentFX
