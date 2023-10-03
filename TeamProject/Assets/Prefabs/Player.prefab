@@ -433,7 +433,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4532041383779942662}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &6276233285746502742
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +490,7 @@ MonoBehaviour:
   HP: 10
   stamina: 100
   playerSpeed: 7
+  coyoteTime: 0.15
   jumpHeight: 2.7
   gravityValue: -25
   sprintCooldown: 0
