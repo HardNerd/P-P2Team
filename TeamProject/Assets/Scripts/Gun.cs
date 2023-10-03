@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class Gun : MonoBehaviour
     [SerializeField] float shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float reloadTime;
+    
     [SerializeField] AudioClip shootSound;
 
     private bool isShooting;
@@ -80,9 +82,17 @@ public class Gun : MonoBehaviour
             animator.SetBool("Reloading", true);
 
             yield return new WaitForSeconds(currentGun.reloadTime);
+            if((currentGun.magSize - currentGun.loadedAmmo) <= currentGun.ammoCarried)
+            {
+                currentGun.ammoCarried -= currentGun.magSize - currentGun.loadedAmmo;
+                currentGun.loadedAmmo = currentGun.magSize;
+            }
+            else
+            {
+                currentGun.loadedAmmo += currentGun.ammoCarried;
+                currentGun.ammoCarried = 0;
+            }
 
-            currentGun.ammoCarried -= currentGun.magSize - currentGun.loadedAmmo;
-            currentGun.loadedAmmo = currentGun.magSize;
             
             animator.SetBool("Reloading", false);
             isReloading = false;
@@ -133,5 +143,4 @@ public class Gun : MonoBehaviour
         GetComponent<MeshFilter>().sharedMesh = GunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         GetComponent<Renderer>().sharedMaterial = GunList[selectedGun].model.GetComponent<Renderer>().sharedMaterial;
     }
-
 }

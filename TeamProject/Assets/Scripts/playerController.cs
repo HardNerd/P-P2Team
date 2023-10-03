@@ -14,18 +14,25 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] float HP = 10;
     [Range(0, 100)][SerializeField] float stamina = 100;
     [Range(3, 10)][SerializeField] float playerSpeed = 7;
+    [SerializeField] float coyoteTime; // small delay allowing plaeyr to jump after being grounded
     [Range(1, 10)][SerializeField] float jumpHeight = 2.7f;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
 
+    // Player movement
     private Vector3 move;
     private Vector3 playerVelocity;
-    private bool isGrounded;
-    private int jumpedTimes;
-    int maxJumps = 2;
-    float maxHP;
     float baseSpeed;
     float maxStam;
     public bool sprintCooldown;
+
+    // Player Jump
+    private bool isGrounded;
+    private int jumpedTimes;
+    private float coyoteTimeCounter;
+    int initMaxJumps = 2;
+    int maxJumps;
+
+    float maxHP;
 
     void Start()
     {
@@ -65,8 +72,10 @@ public class playerController : MonoBehaviour, IDamage
         isGrounded = controller.isGrounded;
         if (isGrounded && playerVelocity.y < 0)
         {
+            maxJumps = initMaxJumps;
             jumpedTimes = 0;
             playerVelocity.y = 0f;
+            coyoteTimeCounter = coyoteTime;
         }
 
         // Player WASD movement
@@ -75,9 +84,21 @@ public class playerController : MonoBehaviour, IDamage
 
         controller.Move(move * playerSpeed * Time.deltaTime);
 
+        // If player walks off a platform
+        if (!isGrounded && playerVelocity.y < -1 && jumpedTimes == 0)
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+
+            // set maxJumps to 1 if you haven't jumped, you start falling and coyoteTime is up
+            if (coyoteTimeCounter <= 0f)
+                maxJumps = 1;
+        }
+
+        //Debug.Log(coyoteTimeCounter);
         // Add jump velocity to player's Y value
         if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps && stamina > 20)
         {
+            // Set player particles
             if(jumpedTimes >= 1)
             {
                 Vector3 jumpoffset = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);

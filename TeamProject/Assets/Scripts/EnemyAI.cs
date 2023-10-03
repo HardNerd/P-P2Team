@@ -17,9 +17,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float HP;
     [SerializeField] int targetFaceSpeed;
     [SerializeField] float viewAngle;
-    [SerializeField] bool canRoam;
-    [SerializeField] int roamDistance;
-    [SerializeField] int roamPauseTime;
     [SerializeField] protected float animChangeSpeed;
     [SerializeField] float stopAtDamageTime;
 
