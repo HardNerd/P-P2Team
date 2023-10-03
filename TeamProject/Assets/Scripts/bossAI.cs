@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class bossAI : EnemyAI, IDamage
+public class bossAI : EnemyAI
 {
     [SerializeField] Transform[] coverPositions;
     [SerializeField] Transform shootPos;
     [SerializeField] Ray laser;
+    [SerializeField] GameObject laserSight;
     [SerializeField] float shootRate;
     [SerializeField] int timeInCover;
 
@@ -47,6 +48,7 @@ public class bossAI : EnemyAI, IDamage
         yield return new WaitForSeconds(shootRate);
         laser.origin = shootPos.transform.position;
         laser.direction = GameManager.instance.player.transform.position;
+        Instantiate(laserSight, shootPos.transform.position, GameManager.instance.player.transform.rotation);
         Instantiate(bullet, shootPos.position, transform.rotation);
     }
 }
