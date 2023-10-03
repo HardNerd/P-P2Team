@@ -1,29 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.SceneTemplate;
 using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour
 {
-    [SerializeField] GunStats stats;
+   
+    [SerializeField]  GunStats gunStats;
     public AudioClip ammoPickupSound;
+    Gun gunScript;
 
-
+    private void Start()
+    {
+        //Gun gunScript = GameManager.instance.playerGunScript;
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+
         if(other.CompareTag("Player"))
         {
-            if(stats.ammoCarried < stats.maxAmmoCarried)
+            Gun gunScript = GameManager.instance.playerGunScript;
+
+            for (int i = 0; i < gunScript.GunList.Count; i++)
             {
-                stats.ammoCarried += Random.Range(1, stats.magSize);
-                if(stats.ammoCarried + Random.Range(1, stats.magSize) > stats.maxAmmoCarried)
+                if (gunStats.gunID == gunScript.GunList[i].gunID && gunStats.ammoCarried < gunStats.maxAmmoCarried)
                 {
-                    stats.ammoCarried = stats.maxAmmoCarried;
+                    Destroy(gameObject);
+                    GameManager.instance.playerGunScript.AmmoPickup(gunStats);
                 }
             }
-            GameManager.instance.ammoUpdate(stats.loadedAmmo, stats.ammoCarried);
-            Destroy(gameObject);
+           
         }
+
     }
 }
