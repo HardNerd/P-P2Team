@@ -6,13 +6,6 @@ public class Rocket : grenade
 {
     [SerializeField] int damage;
 
-
-    IEnumerator instantExplode()
-    {
-        yield return new WaitForSeconds(0);
-        Instantiate(explosion, transform.position, explosion.transform.rotation);
-        Destroy(gameObject);
-    }
     private void OnTriggerEnter(Collider other)
     {
         IDamage damageable = other.GetComponent<IDamage>();
@@ -21,5 +14,11 @@ public class Rocket : grenade
             damageable.TakeDamage(damage);
         }
         StartCoroutine(instantExplode());
+    }
+    IEnumerator instantExplode()
+    {
+        yield return new WaitForSeconds(0);
+        Instantiate(explosion, transform.position, explosion.transform.rotation);
+        Destroy(gameObject);
     }
 }

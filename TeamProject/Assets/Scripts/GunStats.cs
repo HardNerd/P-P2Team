@@ -18,13 +18,14 @@ public class GunStats : ScriptableObject
     public int ammoCarried; // total ammo carried by player
 
     public float reloadTime;
+    public int gunID;
     public GameObject model;
     public GameObject ammoType;
     public ParticleSystem hitEffect;
     public AudioClip gunSound;
 
     public int toughnessDmg;
-   
+    
 
 
 }

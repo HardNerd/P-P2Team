@@ -14,10 +14,9 @@ public class playerGrenade : MonoBehaviour
     public float throwCooldown;
 
     [Header("Throwing")]
-    public KeyCode throwkey = KeyCode.Mouse0;
     public float throwForce;
     public float throwUpwwardForce;
-
+    
     bool readyToThrow;
 
     private void Start()
@@ -26,30 +25,25 @@ public class playerGrenade : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(throwkey) && readyToThrow && totalThrows > 0)
+        if(Input.GetButtonDown("throwable") && readyToThrow && totalThrows > 0)
         {
-            Throw();
+            StartCoroutine(Throw());
         }
     }
-
-    private void Throw()
+    IEnumerator Throw()
     {
         readyToThrow = false;
         GameObject projectile = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
-
+        
         Rigidbody projectilerb = projectile.GetComponent<Rigidbody>();
-
+        
         Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwwardForce;
-
+        
         projectilerb.AddForce(forceToAdd, ForceMode.Impulse);
-
+        
         totalThrows--;
-
-        Invoke(nameof(ResetThrow), throwCooldown);
-    }
-
-    private void ResetThrow()
-    {
+        
+        yield return new WaitForSeconds(throwCooldown);
         readyToThrow = true;
     }
 }
