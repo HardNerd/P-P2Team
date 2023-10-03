@@ -18,8 +18,9 @@ MonoBehaviour:
   loadedAmmo: 50
   maxAmmoCarried: 240
   magSize: 50
-  ammoCarried: 90
+  ammoCarried: 220
   reloadTime: 2.4
+  gunID: 3
   model: {fileID: 2358229232279047346, guid: 0fe3f6acb54a62f409d883dd87e51de0, type: 3}
   ammoType: {fileID: 2503442867164783020, guid: 6a2f55ecdfe52e247ba78365f8aa0b58, type: 3}
   hitEffect: {fileID: 3625215294947267868, guid: f0d790e84f8e72b46ba4fe7fc8312f93, type: 3}

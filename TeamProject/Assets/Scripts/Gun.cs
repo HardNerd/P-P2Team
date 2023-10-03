@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
     private bool isShooting;
     public bool isReloading;
     public int selectedGun;
+   
 
     void Start()
     {
@@ -143,4 +144,19 @@ public class Gun : MonoBehaviour
         GetComponent<MeshFilter>().sharedMesh = GunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         GetComponent<Renderer>().sharedMaterial = GunList[selectedGun].model.GetComponent<Renderer>().sharedMaterial;
     }
+
+    public void AmmoPickup(GunStats gunStats)
+    {
+        if (gunStats.ammoCarried < gunStats.maxAmmoCarried)
+        {
+            gunStats.ammoCarried += Random.Range(1, gunStats.magSize);
+            if (gunStats.ammoCarried + Random.Range(1, gunStats.magSize) > gunStats.maxAmmoCarried)
+            {
+                gunStats.ammoCarried = gunStats.maxAmmoCarried;
+            }
+        }
+      
+        GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
+    }
+
 }
