@@ -216,14 +216,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grenade Heavy
       objectReference: {fileID: 0}
-    - target: {fileID: 1403826364618641791, guid: ec139966dc62d704fa38236481c8e867, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5161807876445361360, guid: ec139966dc62d704fa38236481c8e867, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 8791856711566834792, guid: ec139966dc62d704fa38236481c8e867, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.746868
@@ -377,14 +369,6 @@ PrefabInstance:
     - target: {fileID: 4391890526673740044, guid: a53aa00f1c1ff1c44bf6be5f63f68097, type: 3}
       propertyPath: m_Name
       value: Rocket Heavy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4391890526673740044, guid: a53aa00f1c1ff1c44bf6be5f63f68097, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8986891171592774440, guid: a53aa00f1c1ff1c44bf6be5f63f68097, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -782,10 +766,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heavy Gunner
       objectReference: {fileID: 0}
-    - target: {fileID: 386317693903183646, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1407597213359824459, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.18
@@ -825,10 +805,6 @@ PrefabInstance:
     - target: {fileID: 1407597213359824459, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4935514438373479177, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -900,10 +876,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 33377427016447864, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 424264328660440417, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -982,10 +954,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 424264328660440417, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2064986508417147039, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2391542190461409023, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
@@ -1119,17 +1087,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4655385039281168431, guid: 09bc9d311a80cb14cb2a73d7d159a36f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 5867386806272178293, guid: 09bc9d311a80cb14cb2a73d7d159a36f, type: 3}
       propertyPath: m_Name
       value: Enemy Marksmen
-      objectReference: {fileID: 0}
-    - target: {fileID: 5867386806272178293, guid: 09bc9d311a80cb14cb2a73d7d159a36f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6070794699173631771, guid: 09bc9d311a80cb14cb2a73d7d159a36f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1245,10 +1205,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Default Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3874992235311811758, guid: 39096af01d61dd0449435cbd70eff7f2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6668246461011399682, guid: 39096af01d61dd0449435cbd70eff7f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.95819
@@ -1288,10 +1244,6 @@ PrefabInstance:
     - target: {fileID: 6668246461011399682, guid: 39096af01d61dd0449435cbd70eff7f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7381917394389613985, guid: 39096af01d61dd0449435cbd70eff7f2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1589,14 +1541,6 @@ PrefabInstance:
     - target: {fileID: 1613792153148569952, guid: c0d8177cb036aa44eb9501d659f4e5d5, type: 3}
       propertyPath: m_Name
       value: Baby Zombie
-      objectReference: {fileID: 0}
-    - target: {fileID: 1613792153148569952, guid: c0d8177cb036aa44eb9501d659f4e5d5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3995295918005677411, guid: c0d8177cb036aa44eb9501d659f4e5d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8193569385383417840, guid: c0d8177cb036aa44eb9501d659f4e5d5, type: 3}
       propertyPath: m_LocalPosition.x

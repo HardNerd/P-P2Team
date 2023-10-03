@@ -19,7 +19,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - player throwable
   - Water
   - UI
   - Player
@@ -29,6 +29,7 @@ TagManager:
   - weapon
   - Wall
   - MiniMap Dots
+  - Player Explosion
   - 
   - 
   - 

@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 2970284891924313599}
   - component: {fileID: 3614827361368551408}
   - component: {fileID: 7418645682812077739}
+  - component: {fileID: -6932387548450937787}
   m_Layer: 7
   m_Name: Heavy Gunner
   m_TagString: Untagged
@@ -132,11 +133,9 @@ MonoBehaviour:
   HP: 6
   targetFaceSpeed: 4
   viewAngle: 90
-  canRoam: 1
-  roamDistance: 3
-  roamPauseTime: 4
   animChangeSpeed: 1.8
   stopAtDamageTime: 0
+  pushBackResolve: 0
   shootPos: {fileID: 6099520616649123259}
   shootRate: 0.2
   shootAngle: 10
@@ -207,6 +206,33 @@ CapsuleCollider:
   m_Height: 2.17
   m_Direction: 1
   m_Center: {x: 0, y: 0.99, z: 0}
+--- !u!54 &-6932387548450937787
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386317693903183646}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &435406536950697995
 GameObject:
   m_ObjectHideFlags: 0
