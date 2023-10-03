@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float coyoteTime; // small delay allowing plaeyr to jump after being grounded
     [Range(1, 10)][SerializeField] float jumpHeight = 2.7f;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
+    [Range(1, 10)][SerializeField] int pushBackResolve;
 
     // Player movement
     private Vector3 move;
@@ -24,6 +25,8 @@ public class playerController : MonoBehaviour, IDamage
     float baseSpeed;
     float maxStam;
     public bool sprintCooldown;
+    
+    private Vector3 pushBack;
 
     // Player Jump
     private bool isGrounded;
@@ -68,6 +71,16 @@ public class playerController : MonoBehaviour, IDamage
 
     void Movement()
     {
+        Debug.Log(playerVelocity.y);
+
+        if (pushBack.magnitude > 0.01f)
+        {
+            //pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
+            pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackResolve);
+            pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackResolve * 3);
+            pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackResolve);
+        }
+
         // Set player's Y velocity to 0 when grounded and reset jumpedTimes num
         isGrounded = controller.isGrounded;
         if (isGrounded && playerVelocity.y < 0)
@@ -114,7 +127,7 @@ public class playerController : MonoBehaviour, IDamage
 
         // Add gravity to player's Y velocity and make him move
         playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move((playerVelocity + pushBack) * Time.deltaTime);
     }
 
     public void TakeDamage(float damageAmount)
@@ -190,5 +203,9 @@ public class playerController : MonoBehaviour, IDamage
         controller.enabled = false;
         transform.position = GameManager.instance.playerSpawnPOS.transform.position;
         controller.enabled = true;
+    }
+    public void physics(Vector3 direction)
+    {
+        pushBack += direction;
     }
 }

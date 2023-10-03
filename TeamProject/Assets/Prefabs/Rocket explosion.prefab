@@ -50,6 +50,7 @@ MonoBehaviour:
   explosionSize: 25
   explosionparticle: {fileID: 7335198343666546817, guid: 5c3ebb71837303f428f7d9783bbc06aa, type: 3}
   damage: 2
+  explosionTime: 0.1
 --- !u!33 &6840189318410968071
 MeshFilter:
   m_ObjectHideFlags: 0

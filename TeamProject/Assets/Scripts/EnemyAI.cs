@@ -19,13 +19,16 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float viewAngle;
     [SerializeField] protected float animChangeSpeed;
     [SerializeField] float stopAtDamageTime;
+    [SerializeField] int pushBackResolve;
 
     protected Vector3 playerDirection;
     protected float angleToPlayer;
     protected Vector3 startingPos;
     protected float speedOrig = 0; // you have to set it in the child classes
     protected bool isDead = false;
-    
+    private Vector3 pushBack;
+    private Rigidbody enemyBody;
+
     protected void MoveEnemy()
     {
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
@@ -41,6 +44,12 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         HP -= amount;
 
+        if (pushBack.magnitude > 0.01f)
+        {
+            Vector3 direction = (transform.position - pushBack).normalized;
+            enemyBody.AddForce(direction * pushBackResolve);
+        }
+        
         if (meleeCollider != null)
             meleeColliderOff();
 
