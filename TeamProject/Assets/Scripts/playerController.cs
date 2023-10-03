@@ -21,7 +21,8 @@ public class playerController : MonoBehaviour, IDamage
     private Vector3 playerVelocity;
     private bool isGrounded;
     private int jumpedTimes;
-    int maxJumps = 2;
+    int initMaxJumps = 2;
+    int maxJumps;
     float maxHP;
     float baseSpeed;
     float maxStam;
@@ -61,10 +62,12 @@ public class playerController : MonoBehaviour, IDamage
 
     void Movement()
     {
+        Debug.Log(playerVelocity.y);
         // Set player's Y velocity to 0 when grounded and reset jumpedTimes num
         isGrounded = controller.isGrounded;
         if (isGrounded && playerVelocity.y < 0)
         {
+            maxJumps = initMaxJumps;
             jumpedTimes = 0;
             playerVelocity.y = 0f;
         }
@@ -75,9 +78,14 @@ public class playerController : MonoBehaviour, IDamage
 
         controller.Move(move * playerSpeed * Time.deltaTime);
 
+        // set maxJumps to 1 if you haven't jumped and you start falling
+        if (!isGrounded && playerVelocity.y < -1 && jumpedTimes == 0)
+            maxJumps = 1;
+
         // Add jump velocity to player's Y value
         if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps && stamina > 20)
         {
+            // Set player particles
             if(jumpedTimes >= 1)
             {
                 Vector3 jumpoffset = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
