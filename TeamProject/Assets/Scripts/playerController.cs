@@ -25,6 +25,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     float baseSpeed;
     float maxStam;
     public bool sprintCooldown;
+    
+    private Vector3 pushBack;
 
     // Player Jump
     private bool isGrounded;
@@ -34,10 +36,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     int maxJumps;
 
     float maxHP;
-    float baseSpeed;
-    float maxStam;
-    public bool sprintCooldown;
-    private Vector3 pushBack;
 
     void Start()
     {
