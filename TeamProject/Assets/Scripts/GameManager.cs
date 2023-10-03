@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [Header("----- Menus -----")]
     [SerializeField] GameObject activeMenu;
+    [SerializeField] AudioSource mainMusic;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
@@ -109,7 +110,8 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         isPause = !isPause;
-       playUI.SetActive(!isPause);
+        mainMusic.volume = .4f;
+        playUI.SetActive(!isPause);
     }
 
     public void stateUnpause()
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isPause = !isPause;
+        mainMusic.volume = 1;
         playUI.SetActive(!isPause);
         activeMenu.SetActive(isPause);
         activeMenu = null;
