@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4147067334162849465}
   - component: {fileID: 4216318480255172917}
   - component: {fileID: 7347982116602227501}
+  - component: {fileID: -1136244401820737181}
   m_Layer: 0
-  m_Name: Heath Pickup
+  m_Name: Heath Pack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,3 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-1136244401820737181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421837072503694803}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011909288, y: 0.020000005, z: 0.025328625}
+  m_Center: {x: 0.0040453593, y: -9.313224e-10, z: 0.0025721705}

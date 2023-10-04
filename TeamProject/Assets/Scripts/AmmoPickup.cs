@@ -10,13 +10,7 @@ public class AmmoPickup : MonoBehaviour
    
     [SerializeField]  GunStats gunStats;
     public AudioClip ammoPickupSound;
-    Gun gunScript;
-
-    private void Start()
-    {
-        //Gun gunScript = GameManager.instance.playerGunScript;
-        
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {

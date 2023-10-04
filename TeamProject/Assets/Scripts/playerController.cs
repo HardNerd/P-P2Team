@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour, IDamage, IPhysics
 {
+    
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] ParticleSystem jumpparticles;
@@ -53,6 +54,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     void Update()
     {
         Movement();
+        
         if (Input.GetKey(KeyCode.LeftShift) && sprintCooldown == false)
         {
             sprint();
@@ -67,6 +69,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         }
         GameManager.instance.moveHPBar();
         GameManager.instance.moveStamBar();
+       
     }
 
     void Movement()
@@ -152,6 +155,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         GameManager.instance.healthRedFillAmt = (float)HP / 10;
 
         GameManager.instance.healthRed.fillAmount = GameManager.instance.healthRedFillAmt;
+        
     }
 
     public void sprint()
@@ -208,4 +212,5 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         pushBack += direction;
     }
+
 }
