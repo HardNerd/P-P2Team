@@ -15,6 +15,7 @@ TagManager:
   - Pistol Ammo
   - Uzi Ammo
   - Assault Rifle Ammo
+  - Grenade PickUp
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,6 @@ TagManager:
   - Wall
   - MiniMap Dots
   - Player Explosion
-  - 
   - 
   - 
   - 
