@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 2058831164559731592}
   m_Layer: 3
   m_Name: throwable
-  m_TagString: Untagged
+  m_TagString: Grenade PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -381,7 +381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3056266059005094805
 Transform:
   m_ObjectHideFlags: 0
@@ -622,6 +622,7 @@ MonoBehaviour:
   gravityValue: -25
   pushBackResolve: 2
   sprintCooldown: 0
+  healthPcakValue: 10
 --- !u!143 &4115263917725466358
 CharacterController:
   m_ObjectHideFlags: 0
@@ -664,7 +665,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6276233285746502742}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
