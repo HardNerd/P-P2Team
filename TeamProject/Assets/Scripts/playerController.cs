@@ -235,7 +235,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         {
             if (HealthPickup.hasPickedUpHealthPack)
             {
-
                 HP = HP + healthPcakValue;
                 HealthPickup.hasPickedUpHealthPack = false;
                 GameManager.instance.healthRedFillAmt = (float)HP / 10;
@@ -243,14 +242,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
                 GameManager.instance.healthRed.fillAmount = GameManager.instance.healthRedFillAmt;
                 if (HP + healthPcakValue > maxHP)
                 {
-
                     HP = maxHP;
-
                 }
-
-
             }
         }
-        
     }
 }
