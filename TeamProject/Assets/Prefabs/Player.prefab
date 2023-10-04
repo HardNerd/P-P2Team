@@ -612,12 +612,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4115263917725466358}
-  jumpparticles: {fileID: 1346181113581063859, guid: ecceacf733c350e49b63c88935ba892e, type: 3}
+  jumpParticles: {fileID: 1346181113581063859, guid: ecceacf733c350e49b63c88935ba892e, type: 3}
   HP: 10
   stamina: 100
   playerSpeed: 7
   coyoteTime: 0.15
-  jumpHeight: 2.7
+  minJumpHeight: 2
+  jumpStartTime: 0.25
   gravityValue: -25
   pushBackResolve: 2
   sprintCooldown: 0
