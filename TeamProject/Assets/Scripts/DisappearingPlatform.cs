@@ -9,22 +9,25 @@ public class DisappearingPlatform : MonoBehaviour
 {
     float disapearInterval = 5.0f;
     public GameObject platform;
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnTriggerEnter(Collider other)
     {
         StartCoroutine(Disapear());
     }
 
+ 
+   
+    
+
     IEnumerator Disapear()
     {
        
-        while (true)
-        {
-            platform.SetActive(true);
+       
+            platform.SetActive(!platform.activeSelf);
             yield return new WaitForSeconds(disapearInterval / 2f);
-            platform.SetActive(false);
+            platform.SetActive(platform.activeSelf);
             yield return new WaitForSeconds(disapearInterval / 2f);
-        }
+        
 
        
 
