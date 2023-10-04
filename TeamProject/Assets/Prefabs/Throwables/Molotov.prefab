@@ -49,9 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7342003442657873732}
-  speed: 20
-  upwardForce: 7
   fireArea: {fileID: 7563312411366541054, guid: 06d4768c35a240b49a3f9526af0deffc, type: 3}
+  angle: 50
 --- !u!33 &3197033347039867595
 MeshFilter:
   m_ObjectHideFlags: 0

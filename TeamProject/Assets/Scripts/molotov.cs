@@ -6,11 +6,11 @@ public class molotov : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject fireArea;
+    [SerializeField] float angle;
 
     void Start()
     {
-        rb.velocity = CalculateParabolicVel(transform.position, GameManager.instance.player.transform.position, 60);
-        //rb.AddForce(transform.up * upwardForce, ForceMode.Impulse);
+        rb.velocity = CalculateParabolicVel(transform.position, GameManager.instance.player.transform.position, angle);
     }
 
     private void OnTriggerEnter(Collider other)

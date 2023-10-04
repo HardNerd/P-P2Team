@@ -9,6 +9,8 @@ public class explosion : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] float explosionTime;
 
+    bool isDamaging = false;
+
     private void Start()
     {
         Instantiate(explosionparticle, transform.position, explosionparticle.transform.rotation);
@@ -30,6 +32,23 @@ public class explosion : MonoBehaviour
         if (other.TryGetComponent<IDamage>(out var damageable))
         {
             damageable.TakeDamage(damage);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent<IDamage>(out var damageable))
+            StartCoroutine(fireDamage(damageable));
+    }
+
+    IEnumerator fireDamage(IDamage damageable)
+    {
+        if (!isDamaging)
+        {
+            isDamaging = true;
+            yield return new WaitForSeconds(1);
+            damageable.TakeDamage(damage);
+            isDamaging = false;
         }
     }
 }
