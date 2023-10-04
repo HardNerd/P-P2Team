@@ -9,14 +9,15 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] ParticleSystem jumpparticles;
+    [SerializeField] ParticleSystem jumpParticles;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] float HP = 10;
     [Range(0, 100)][SerializeField] float stamina = 100;
     [Range(3, 10)][SerializeField] float playerSpeed = 7;
-    [SerializeField] float coyoteTime; // small delay allowing plaeyr to jump after being grounded
-    [Range(1, 10)][SerializeField] float jumpHeight = 2.7f;
+    [SerializeField] float coyoteTime; // small delay allowing player to jump after being grounded
+    [Range(1, 10)][SerializeField] float minJumpHeight;
+    [SerializeField] float jumpStartTime;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
     [Range(1, 10)][SerializeField] int pushBackResolve;
 
@@ -33,6 +34,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private bool isGrounded;
     private int jumpedTimes;
     private float coyoteTimeCounter;
+    private float jumpTime;
+    private bool isJumping;
     int initMaxJumps = 2;
     int maxJumps;
 
@@ -74,8 +77,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
     void Movement()
     {
-        Debug.Log(playerVelocity.y);
-
         if (pushBack.magnitude > 0.01f)
         {
             //pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
@@ -110,23 +111,37 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
                 maxJumps = 1;
         }
 
-        //Debug.Log(coyoteTimeCounter);
         // Add jump velocity to player's Y value
         if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps && stamina > 20)
         {
+            isJumping = true;
+            jumpTime = jumpStartTime;
+
             // Set player particles
             if(jumpedTimes >= 1)
             {
                 Vector3 jumpoffset = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-                Instantiate(jumpparticles, jumpoffset, jumpparticles.transform.rotation);
+                Instantiate(jumpParticles, jumpoffset, jumpParticles.transform.rotation);
             }
             updateStam(20);
             jumpedTimes++;
 
             // physics equation to get the exact velocity based on desired height and gravity
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
+            playerVelocity.y = Mathf.Sqrt(minJumpHeight * -2f * gravityValue);
+        }
+        if (Input.GetButton("Jump") && isJumping)
+        {
+            if (jumpTime > 0)
+            {
+                playerVelocity.y = Mathf.Sqrt(minJumpHeight * -2f * gravityValue);
+                jumpTime -= Time.deltaTime;
+            }
+            else
+                isJumping = false;
         }
 
+        if (Input.GetButtonUp("Jump"))
+            isJumping = false;
 
         // Add gravity to player's Y velocity and make him move
         playerVelocity.y += gravityValue * Time.deltaTime;
