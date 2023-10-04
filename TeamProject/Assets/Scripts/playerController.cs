@@ -40,6 +40,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     int maxJumps;
 
     float maxHP;
+    public float healthPcakValue = 10;
 
     void Start()
     {
@@ -228,4 +229,22 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         pushBack += direction;
     }
 
+    public void healthPickup()
+    {
+        if(Input.GetButton("Interact"))
+        {
+            if (HealthPickup.hasPickedUpHealthPack)
+            {
+                HP = HP + healthPcakValue;
+                HealthPickup.hasPickedUpHealthPack = false;
+                GameManager.instance.healthRedFillAmt = (float)HP / 10;
+
+                GameManager.instance.healthRed.fillAmount = GameManager.instance.healthRedFillAmt;
+                if (HP + healthPcakValue > maxHP)
+                {
+                    HP = maxHP;
+                }
+            }
+        }
+    }
 }
