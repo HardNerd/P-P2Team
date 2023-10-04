@@ -7,7 +7,6 @@ public class bossAI : EnemyAI
 {
     [SerializeField] Transform[] coverPositions;
     [SerializeField] Transform shootPos;
-    [SerializeField] Ray laser;
     [SerializeField] GameObject laserSight;
     [SerializeField] float shootRate;
     [SerializeField] int timeInCover;
@@ -45,9 +44,15 @@ public class bossAI : EnemyAI
     IEnumerator shoot()
     {
         //animator.SetTrigger("Shoot");
+        playerDirection = GameManager.instance.transform.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, playerDirection.y, playerDirection.z), playerDirection);
+        RaycastHit hit;
+        Physics.Raycast(shootPos.transform.position, playerDirection, out hit);
+        Debug.Log(angleToPlayer);
+        laserSight.SetActive(true);
+        
         yield return new WaitForSeconds(shootRate);
-        laser.origin = shootPos.transform.position;
-        laser.direction = GameManager.instance.player.transform.position;
+        laserSight.SetActive(false);
         Instantiate(laserSight, shootPos.transform.position, GameManager.instance.player.transform.rotation);
         Instantiate(bullet, shootPos.position, transform.rotation);
     }
