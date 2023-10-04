@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6840189318410968071}
   - component: {fileID: 7382628661279506900}
   - component: {fileID: 9031358345847018758}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: Player Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 647eac112533f884c8c7b19bc4ad5dff, type: 2}
+  - {fileID: 2100000, guid: 7f56b3ce89ae3b54982ce1a45f918684, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
