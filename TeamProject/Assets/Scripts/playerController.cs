@@ -10,6 +10,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] ParticleSystem jumpParticles;
+    [SerializeField] InventoryObjects Inventory;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] float HP = 10;
@@ -20,6 +21,10 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float jumpStartTime;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
     [Range(1, 10)][SerializeField] int pushBackResolve;
+
+
+
+    
 
     // Player movement
     private Vector3 move;
@@ -246,5 +251,20 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
                 }
             }
         }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        var items = other.GetComponent<Item>();
+        if(items)
+        {
+            Inventory.AddItem(items.item, 1);
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Inventory.Container.Clear();
     }
 }
