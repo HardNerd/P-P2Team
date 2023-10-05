@@ -22,20 +22,47 @@ public class molotov : MonoBehaviour
         Destroy(gameObject);
     }
 
-    Vector3 CalculateParabolicVel(Vector3 source, Vector3 target, float angle)
+    public Vector3 CalculateParabolicVel(Vector3 source, Vector3 target, float angle)
     {
-        Vector3 dir = target - source;
+        Vector3 gravity = Physics.gravity;
 
-        // Physics equations to calculate angle in radians and distance
-        float y = dir.y;
-        dir.y = 0;
-        float distance = dir.magnitude;
+        if (angle >= 90f || angle <= -90f)
+            return Vector3.zero;
+
+        Vector3 direction = target - source;
+        Vector3 horizontal = GetHorizontalVector(direction, gravity);
+        float horizontalDistance = horizontal.magnitude;
+        Vector3 vertical = GetVerticalVector(direction, gravity);
+        float verticalDistance = vertical.magnitude * Mathf.Sign(Vector3.Dot(vertical, -gravity));
+
         float radAngle = angle * Mathf.Deg2Rad;
-        dir.y = distance * Mathf.Tan(radAngle);
-        distance += y / Mathf.Tan(radAngle);
+        float angleX = Mathf.Cos(radAngle);
+        float angleY = Mathf.Sin(radAngle);
 
-        // Velocity calculation
-        float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude / Mathf.Sin(2 * radAngle));
-        return velocity * dir.normalized;
+        float gravityMag = gravity.magnitude;
+
+        if (verticalDistance / horizontalDistance > angleY / angleX)
+            return Vector3.zero;
+
+        float destSpeed = (1 / Mathf.Cos(radAngle)) * Mathf.Sqrt((0.5f * gravityMag * horizontalDistance * horizontalDistance) / ((horizontalDistance * Mathf.Tan(radAngle)) - verticalDistance));
+
+        Vector3 launch = ((horizontal.normalized * angleX) - (gravity.normalized * angleY)) * destSpeed;
+        return launch;
+    }
+
+    public Vector3 GetHorizontalVector(Vector3 direction, Vector3 gravity)
+    {
+        Vector3 output;
+        Vector3 perpendicular = Vector3.Cross(direction, gravity);
+        perpendicular = Vector3.Cross(gravity, perpendicular);
+        output = Vector3.Project(direction, perpendicular);
+        return output;
+    }
+
+    public Vector3 GetVerticalVector(Vector3 direction, Vector3 gravity)
+    {
+        Vector3 output;
+        output = Vector3.Project(direction, gravity);
+        return output;
     }
 }

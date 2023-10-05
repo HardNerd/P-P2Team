@@ -11,7 +11,8 @@ public class grenadierAI : EnemyAI
         GoToCover,
         InCover,
         ChasePlayer,
-        Attack
+        Attack,
+        DetermineAttackPos
     }
 
     [Header("----- Grenade Stats -----")]
@@ -19,15 +20,15 @@ public class grenadierAI : EnemyAI
     [SerializeField] Transform throwPos;
     [SerializeField] GameObject molotov;
     [SerializeField] protected int attackDistance;
-    [SerializeField] int maxThrows;
+    [SerializeField] protected int maxThrows;
     [SerializeField] float timeBetweenThrows;
 
-    [SerializeField] GrenadierState _currentState = GrenadierState.ChasePlayer;
+    [SerializeField] protected GrenadierState _currentState = GrenadierState.ChasePlayer;
 
     protected bool isThrowing;
     protected bool inCover;
-    float agentStoppingDistOrig;
-    int molotovsThrown = 0;
+    protected float agentStoppingDistOrig;
+    protected int molotovsThrown = 0;
 
     void Start()
     {
@@ -60,12 +61,12 @@ public class grenadierAI : EnemyAI
         }
     }
 
-    void SwitchToNextState(GrenadierState nextState)
+    protected void SwitchToNextState(GrenadierState nextState)
     {
         _currentState = nextState;
     }
 
-    void GoToCover()
+    protected void GoToCover()
     {
         agent.stoppingDistance = 0;
         agent.SetDestination(coverPosition.transform.position);
@@ -74,7 +75,7 @@ public class grenadierAI : EnemyAI
             SwitchToNextState(GrenadierState.InCover);
     }
 
-    IEnumerator TakeCover()
+    virtual protected IEnumerator TakeCover()
     {
         if (!inCover)
         {
@@ -95,7 +96,7 @@ public class grenadierAI : EnemyAI
             SwitchToNextState(GrenadierState.Attack);
     }
 
-    void Attack()
+    virtual protected void Attack()
     {
         if (molotovsThrown >= maxThrows)
         {
@@ -114,7 +115,7 @@ public class grenadierAI : EnemyAI
             StartCoroutine(ThrowMolotov());
     }
 
-    IEnumerator ThrowMolotov()
+    protected IEnumerator ThrowMolotov()
     {
         isThrowing = true;
         molotovsThrown++;
