@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ea1d0c0fc2dc164392c363abcb6aed1, type: 3}
-  m_Name: Player Inventory
+  m_Script: {fileID: 11500000, guid: 2e7de42a1df8cee4a98d9ed18f1ba4fa, type: 3}
+  m_Name: New Sprint Power-UP Object
   m_EditorClassIdentifier: 
-  Container:
-  - Item: {fileID: 0}
-    amount: 0
-  - Item: {fileID: 0}
-    amount: 0
+  item: {fileID: 0}
+  type: 0
+  description: 
