@@ -12,24 +12,22 @@ public class DisappearingPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         StartCoroutine(Disapear());
     }
 
- 
-   
-    
+
 
     IEnumerator Disapear()
     {
-       
-       
-            platform.SetActive(!platform.activeSelf);
+        platform.SetActive(false);
+        yield return new WaitForSeconds(disapearInterval / 2f);
+        if(!platform)
+        {
+            platform.SetActive(true);
             yield return new WaitForSeconds(disapearInterval / 2f);
-            platform.SetActive(platform.activeSelf);
-            yield return new WaitForSeconds(disapearInterval / 2f);
+        }
+
         
-
-       
-
     }
 }
