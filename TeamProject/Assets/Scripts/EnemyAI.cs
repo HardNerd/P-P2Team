@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     private Vector3 pushBack;
     private Rigidbody enemyBody;
 
-    protected void MoveEnemy()
+    protected virtual void MoveEnemy()
     {
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);

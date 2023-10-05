@@ -756,7 +756,6 @@ GameObject:
   - component: {fileID: 2735116342918408696}
   - component: {fileID: 6590485272634175378}
   - component: {fileID: 6389570792944889812}
-  - component: {fileID: 1655161191970861516}
   m_Layer: 7
   m_Name: Grenadier
   m_TagString: Enemy
@@ -810,6 +809,9 @@ MonoBehaviour:
   throwPos: {fileID: 831411113837520423}
   molotov: {fileID: 3935494366030412222, guid: 8489aabfaf1dbaf46ad8321460f1b087, type: 3}
   attackDistance: 20
+  maxThrows: 1
+  timeBetweenThrows: 1.5
+  _currentState: 2
 --- !u!95 &3219233452799933702
 Animator:
   serializedVersion: 5
@@ -903,27 +905,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &1655161191970861516
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6121085054999242922}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 7
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6395642743049626772
 GameObject:
   m_ObjectHideFlags: 0
