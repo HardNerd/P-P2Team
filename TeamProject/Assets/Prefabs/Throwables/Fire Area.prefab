@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4355028654677483998}
   - component: {fileID: 1019071685933971753}
   - component: {fileID: 4453583545363654218}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

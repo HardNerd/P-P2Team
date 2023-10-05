@@ -16,7 +16,6 @@ public class defaultEnemy : EnemyAI
 
     void Start()
     {
-        startingPos = transform.position;
         speedOrig = agent.speed;
     }
 

@@ -132,10 +132,9 @@ MonoBehaviour:
   meleeCollider: {fileID: 0}
   HP: 6
   targetFaceSpeed: 4
-  viewAngle: 90
   animChangeSpeed: 1.8
   stopAtDamageTime: 0
-  pushBackResolve: 0
+  pushBackResolve: 2
   shootPos: {fileID: 6099520616649123259}
   shootRate: 0.2
   shootAngle: 10

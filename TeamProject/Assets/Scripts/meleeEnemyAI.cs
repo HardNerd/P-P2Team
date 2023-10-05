@@ -16,7 +16,6 @@ public class meleeEnemyAI : EnemyAI
 
     void Start()
     {
-        startingPos = transform.position;
         speedOrig = agent.speed;
     }
 
