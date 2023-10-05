@@ -6,15 +6,15 @@ using UnityEngine.AI;
 
 public class grenadierAI : EnemyAI
 {
-    [SerializeField] GameObject coverPosition;
 
     [Header("----- Grenade Stats -----")]
+    [SerializeField] GameObject coverPosition;
     [SerializeField] Transform throwPos;
     [SerializeField] GameObject molotov;
-    [SerializeField] int attackDistance;
+    [SerializeField] protected int attackDistance;
 
-    bool isThrowing;
-    bool isTakingCover;
+    protected bool isThrowing;
+    protected bool inCover;
     float agentStoppingDistOrig;
     bool playerInRange = false;
 
@@ -30,19 +30,18 @@ public class grenadierAI : EnemyAI
         if (!isDead)
         {
             GetComponent<SphereCollider>().radius = agent.stoppingDistance;
-            if (!isTakingCover)
+            if (!inCover)
             {
-                MoveEnemy();
-
-                if (agent.remainingDistance <= agent.stoppingDistance && !isTakingCover && !isThrowing && playerInRange)
-                {
-                    StartCoroutine(ThrowMolotov());
-                    isTakingCover = true;
-                }
+                StartCoroutine(TakeCover());
             }
             else
             {
-                StartCoroutine(TakeCover());
+                MoveEnemy(); // move towards player
+
+                if (agent.remainingDistance <= agent.stoppingDistance && !isThrowing && playerInRange)
+                {
+                    StartCoroutine(ThrowMolotov());
+                }
             }
             float agentVelocity = agent.velocity.normalized.magnitude;
             animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
@@ -58,7 +57,7 @@ public class grenadierAI : EnemyAI
         {
             yield return new WaitForSeconds(3);
             agent.stoppingDistance = agentStoppingDistOrig;
-            isTakingCover = false;
+            inCover = true;
         }
     }
 
@@ -66,7 +65,8 @@ public class grenadierAI : EnemyAI
     {
         isThrowing = true;
         Instantiate(molotov, throwPos.position, transform.rotation);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.5f); // wait in front of player without attacking before going to cover
+        inCover = false;
         isThrowing = false;
     }
 

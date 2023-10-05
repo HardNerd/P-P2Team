@@ -806,7 +806,7 @@ MonoBehaviour:
   animChangeSpeed: 7
   stopAtDamageTime: 1
   pushBackResolve: 2
-  coverPosition: {fileID: 6530042046724133578, guid: d99e759cc7dec034380eca080281355c, type: 3}
+  coverPosition: {fileID: 0}
   throwPos: {fileID: 831411113837520423}
   molotov: {fileID: 3935494366030412222, guid: 8489aabfaf1dbaf46ad8321460f1b087, type: 3}
   attackDistance: 20
