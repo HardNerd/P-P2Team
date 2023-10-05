@@ -7,27 +7,37 @@ using UnityEngine;
 
 public class DisappearingPlatform : MonoBehaviour
 {
-    float disapearInterval = 5.0f;
+    float disappearInterval = 5.0f;
+    float reappearInterval = 5.0f;
     public GameObject platform;
+
+
 
     private void OnTriggerEnter(Collider other)
     {
 
         StartCoroutine(Disapear());
+        
     }
 
-
+    void OnTriggerExit(Collider other)
+    {
+        StartCoroutine(Reappear());
+    }
 
     IEnumerator Disapear()
     {
+        yield return new WaitForSeconds(disappearInterval);
         platform.SetActive(false);
-        yield return new WaitForSeconds(disapearInterval / 2f);
-        if(!platform)
-        {
-            platform.SetActive(true);
-            yield return new WaitForSeconds(disapearInterval / 2f);
-        }
-
-        
     }
+
+    IEnumerator Reappear()
+    {
+        yield return new WaitForSeconds(reappearInterval);
+        platform.SetActive(true);
+    }
+
+    
+
+
 }
