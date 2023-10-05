@@ -613,6 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 4115263917725466358}
   jumpParticles: {fileID: 1346181113581063859, guid: ecceacf733c350e49b63c88935ba892e, type: 3}
+  Inventory: {fileID: 11400000, guid: b590416525a491a4f8b4726b63606b26, type: 2}
   HP: 10
   stamina: 100
   playerSpeed: 7
