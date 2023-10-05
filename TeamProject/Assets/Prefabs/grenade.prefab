@@ -49,10 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56575cd333a64f94eb2128c235333f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6642707447151650035}
-  speed: 25
   destroySpeed: 3
   explosion: {fileID: 8611426485800260246, guid: 3ee51387c6cf0b64c99f9a478d9b5f7d, type: 3}
+  rb: {fileID: 6642707447151650035}
+  speed: 25
 --- !u!33 &7586878678390112726
 MeshFilter:
   m_ObjectHideFlags: 0
