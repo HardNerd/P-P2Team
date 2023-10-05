@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerGrenade : MonoBehaviour
+public class PlayerGrenade : MonoBehaviour
 {
     [Header("References")]
     public Transform cam;
@@ -16,9 +16,8 @@ public class playerGrenade : MonoBehaviour
     [Header("Throwing")]
     public float throwForce;
     public float throwUpwwardForce;
-    
-    bool readyToThrow;
 
+    bool readyToThrow;
     private void Start()
     {
         readyToThrow = true; 
@@ -45,5 +44,9 @@ public class playerGrenade : MonoBehaviour
         
         yield return new WaitForSeconds(throwCooldown);
         readyToThrow = true;
+    }
+    public void addThrowsMax(int addThrows)
+    {
+        totalThrows += addThrows;
     }
 }

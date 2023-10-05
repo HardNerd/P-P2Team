@@ -15,7 +15,7 @@ TagManager:
   - Pistol Ammo
   - Uzi Ammo
   - Assault Rifle Ammo
-  - Enemy
+  - Grenade PickUp
   layers:
   - Default
   - TransparentFX
