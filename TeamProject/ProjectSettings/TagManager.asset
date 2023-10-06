@@ -17,6 +17,7 @@ TagManager:
   - Assault Rifle Ammo
   - Grenade PickUp
   - Enemy
+  - Rocket Platform
   layers:
   - Default
   - TransparentFX
