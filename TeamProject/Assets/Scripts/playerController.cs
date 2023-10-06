@@ -6,36 +6,44 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour, IDamage, IPhysics
 {
+    
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] ParticleSystem jumpparticles;
+    [SerializeField] ParticleSystem jumpParticles;
+    [SerializeField] InventoryObjects Inventory;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] float HP = 10;
     [Range(0, 100)][SerializeField] float stamina = 100;
     [Range(3, 10)][SerializeField] float playerSpeed = 7;
-    [SerializeField] float coyoteTime; // small delay allowing plaeyr to jump after being grounded
-    [Range(1, 10)][SerializeField] float jumpHeight = 2.7f;
+    [SerializeField] float coyoteTime; // small delay allowing player to jump after being grounded
+    [Range(1, 10)][SerializeField] float minJumpHeight;
+    [SerializeField] float jumpStartTime;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
     [Range(1, 10)][SerializeField] int pushBackResolve;
 
     // Player movement
     private Vector3 move;
     private Vector3 playerVelocity;
+    public Vector2 player2DVelocity;
+    Vector2 previousFramePos = Vector2.zero;
     float baseSpeed;
     float maxStam;
     public bool sprintCooldown;
     
     private Vector3 pushBack;
-
+   
     // Player Jump
     private bool isGrounded;
     private int jumpedTimes;
     private float coyoteTimeCounter;
+    private float jumpTime;
+    private bool isJumping;
     int initMaxJumps = 2;
     int maxJumps;
 
     float maxHP;
+    public float healthPcakValue = 10;
 
     void Start()
     {
@@ -53,6 +61,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     void Update()
     {
         Movement();
+        
         if (Input.GetKey(KeyCode.LeftShift) && sprintCooldown == false)
         {
             sprint();
@@ -67,12 +76,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         }
         GameManager.instance.moveHPBar();
         GameManager.instance.moveStamBar();
+       
     }
 
     void Movement()
     {
-        Debug.Log(playerVelocity.y);
-
         if (pushBack.magnitude > 0.01f)
         {
             //pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
@@ -107,27 +115,45 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
                 maxJumps = 1;
         }
 
-        //Debug.Log(coyoteTimeCounter);
         // Add jump velocity to player's Y value
         if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps && stamina > 20)
         {
+            isJumping = true;
+            jumpTime = jumpStartTime;
+
             // Set player particles
             if(jumpedTimes >= 1)
             {
                 Vector3 jumpoffset = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-                Instantiate(jumpparticles, jumpoffset, jumpparticles.transform.rotation);
+                Instantiate(jumpParticles, jumpoffset, jumpParticles.transform.rotation);
             }
             updateStam(20);
             jumpedTimes++;
 
             // physics equation to get the exact velocity based on desired height and gravity
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
+            playerVelocity.y = Mathf.Sqrt(minJumpHeight * -2f * gravityValue);
+        }
+        if (Input.GetButton("Jump") && isJumping)
+        {
+            if (jumpTime > 0)
+            {
+                playerVelocity.y = Mathf.Sqrt(minJumpHeight * -2f * gravityValue);
+                jumpTime -= Time.deltaTime;
+            }
+            else
+                isJumping = false;
         }
 
+        if (Input.GetButtonUp("Jump"))
+            isJumping = false;
 
         // Add gravity to player's Y velocity and make him move
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
+
+        // Calculate player2DVelocity for bullet prediction
+        player2DVelocity = (new Vector2(transform.position.x, transform.position.z) - previousFramePos) / Time.deltaTime;
+        previousFramePos = new Vector2(transform.position.x, transform.position.z);
     }
 
     public void TakeDamage(float damageAmount)
@@ -152,6 +178,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         GameManager.instance.healthRedFillAmt = (float)HP / 10;
 
         GameManager.instance.healthRed.fillAmount = GameManager.instance.healthRedFillAmt;
+        
     }
 
     public void sprint()
@@ -207,5 +234,39 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public void physics(Vector3 direction)
     {
         pushBack += direction;
+    }
+
+    public void healthPickup()
+    {
+        if(Input.GetButton("Interact"))
+        {
+            if (HealthPickup.hasPickedUpHealthPack)
+            {
+                HP = HP + healthPcakValue;
+                HealthPickup.hasPickedUpHealthPack = false;
+                GameManager.instance.healthRedFillAmt = (float)HP / 10;
+
+                GameManager.instance.healthRed.fillAmount = GameManager.instance.healthRedFillAmt;
+                if (HP + healthPcakValue > maxHP)
+                {
+                    HP = maxHP;
+                }
+            }
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        var items = other.GetComponent<Item>();
+        if(items)
+        {
+            Inventory.AddItem(items.item, 1);
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Inventory.Container.Clear();
     }
 }

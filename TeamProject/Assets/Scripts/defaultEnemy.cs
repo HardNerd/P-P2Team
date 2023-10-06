@@ -12,11 +12,10 @@ public class defaultEnemy : EnemyAI
     [SerializeField] int shootAngle;
     [SerializeField] GameObject bullet;
 
-    bool isShooting;
+    protected bool isShooting;
 
     void Start()
     {
-        startingPos = transform.position;
         speedOrig = agent.speed;
     }
 
@@ -34,7 +33,7 @@ public class defaultEnemy : EnemyAI
         }
     }
 
-    IEnumerator shoot()
+    protected IEnumerator shoot()
     {
         isShooting = true;
         animator.SetTrigger("Shoot");

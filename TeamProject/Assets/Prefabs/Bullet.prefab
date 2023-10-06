@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7072502590519464653}
   dmg: 1
-  velocity: 25
+  speed: 25
   destroyBulletTime: 5
 --- !u!33 &931745258288574689
 MeshFilter:

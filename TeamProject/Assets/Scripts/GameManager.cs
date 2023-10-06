@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerSpawnPOS;
     public GameObject playerGun;
     public Gun playerGunScript;
+    public GameObject playerGrenadePickup;
+    public PlayerGrenade playerGrenadeGM;
 
     [Header("----- Menus -----")]
     [SerializeField] GameObject activeMenu;
@@ -67,6 +69,9 @@ public class GameManager : MonoBehaviour
 
         playerGun = GameObject.FindGameObjectWithTag("Player Gun");
         playerGunScript = playerGun.GetComponent<Gun>();
+
+        playerGrenadePickup = GameObject.FindGameObjectWithTag("Grenade PickUp");
+        playerGrenadeGM = playerGrenadePickup.GetComponent<PlayerGrenade>();
     }
     void Update()
     {
