@@ -22,13 +22,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
     [Range(1, 10)][SerializeField] int pushBackResolve;
 
-
-
-    
-
     // Player movement
     private Vector3 move;
     private Vector3 playerVelocity;
+    public Vector2 player2DVelocity;
+    Vector2 previousFramePos = Vector2.zero;
     float baseSpeed;
     float maxStam;
     public bool sprintCooldown;
@@ -152,6 +150,10 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         // Add gravity to player's Y velocity and make him move
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
+
+        // Calculate player2DVelocity for bullet prediction
+        player2DVelocity = (new Vector2(transform.position.x, transform.position.z) - previousFramePos) / Time.deltaTime;
+        previousFramePos = new Vector2(transform.position.x, transform.position.z);
     }
 
     public void TakeDamage(float damageAmount)

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    [SerializeField] Rigidbody rb;
+    [SerializeField] protected Rigidbody rb;
     [SerializeField] int dmg;
-    [SerializeField] int velocity;
-    [SerializeField] int destroyBulletTime;
+    [SerializeField] protected float speed;
+    [SerializeField] protected int destroyBulletTime;
 
     void Start()
     {
-        rb.velocity = (GameManager.instance.player.transform.position - transform.position).normalized * velocity;
+        rb.velocity = (GameManager.instance.player.transform.position - transform.position).normalized * speed;
         Destroy(gameObject, destroyBulletTime);
     }
 
