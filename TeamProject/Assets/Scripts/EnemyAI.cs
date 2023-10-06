@@ -21,6 +21,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float stopAtDamageTime;
     [SerializeField] int pushBackResolve;
 
+
+   
+     
+
     protected Vector3 playerDirection;
     protected float angleToPlayer;
     //protected Vector3 startingPos;
@@ -112,4 +116,5 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         meleeCollider.enabled = false;
     }
+
 }
