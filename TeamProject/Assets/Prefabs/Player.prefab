@@ -381,7 +381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3056266059005094805
 Transform:
   m_ObjectHideFlags: 0
@@ -528,9 +528,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0.2
+    x: 0.02
+    y: 0.78
+    width: 0.15
     height: 0.2
   near clip plane: 0.3
   far clip plane: 1000
@@ -613,6 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 4115263917725466358}
   jumpParticles: {fileID: 1346181113581063859, guid: ecceacf733c350e49b63c88935ba892e, type: 3}
+  Inventory: {fileID: 11400000, guid: b590416525a491a4f8b4726b63606b26, type: 2}
   HP: 10
   stamina: 100
   playerSpeed: 7

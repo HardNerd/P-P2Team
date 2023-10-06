@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
-    [SerializeField] Renderer[] models;
+    [SerializeField] protected Renderer[] models;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform headPos;
@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected Collider meleeCollider;
 
     [Header("----- Enemy Stats -----")]
-    [SerializeField] float HP;
+    [SerializeField] protected float HP;
     [SerializeField] int targetFaceSpeed;
     //[SerializeField] float viewAngle;
     [SerializeField] protected float animChangeSpeed;
@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     private Vector3 pushBack;
     private Rigidbody enemyBody;
 
-    protected void MoveEnemy()
+    protected virtual void MoveEnemy()
     {
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         agent.SetDestination(GameManager.instance.player.transform.position);
     }
 
-    public void TakeDamage(float amount)
+    virtual public void TakeDamage(float amount)
     {
         HP -= amount;
 
@@ -72,17 +72,17 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             animator.SetTrigger("Damage");
             agent.SetDestination(GameManager.instance.player.transform.position);
 
-            StartCoroutine(FlashDamage());
+            StartCoroutine(FlashDamage(Color.red));
             StartCoroutine(StopMoving());
 
         }
 
     }
-    IEnumerator FlashDamage()
+    protected IEnumerator FlashDamage(Color flashColor)
     {
         Color origColor = models[0].material.color;
         for (int i = 0; i < models.Length; i++)
-            models[i].material.color = Color.red;
+            models[i].material.color = flashColor;
 
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < models.Length; i++)
@@ -96,13 +96,13 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         agent.speed = speedOrig;
     }
 
-    void FaceTarget()
+    protected void FaceTarget()
     {
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * targetFaceSpeed);
     }
 
-    public void physics(Vector3 direction)
+    virtual public void physics(Vector3 direction)
     {
         agent.velocity += (direction / 2);
     }

@@ -6,17 +6,29 @@ using UnityEngine.AI;
 
 public class grenadierAI : EnemyAI
 {
+    public enum GrenadierState
+    {
+        GoToCover,
+        InCover,
+        ChasePlayer,
+        Attack,
+        DetermineAttackPos
+    }
 
     [Header("----- Grenade Stats -----")]
     [SerializeField] GameObject coverPosition;
     [SerializeField] Transform throwPos;
     [SerializeField] GameObject molotov;
     [SerializeField] protected int attackDistance;
+    [SerializeField] protected int maxThrows;
+    [SerializeField] float timeBetweenThrows;
+
+    [SerializeField] protected GrenadierState _currentState = GrenadierState.ChasePlayer;
 
     protected bool isThrowing;
     protected bool inCover;
-    float agentStoppingDistOrig;
-    bool playerInRange = false;
+    protected float agentStoppingDistOrig;
+    protected int molotovsThrown = 0;
 
     void Start()
     {
@@ -29,56 +41,86 @@ public class grenadierAI : EnemyAI
     {
         if (!isDead)
         {
-            GetComponent<SphereCollider>().radius = agent.stoppingDistance;
-            if (!inCover)
+            switch (_currentState)
             {
-                StartCoroutine(TakeCover());
+                case GrenadierState.GoToCover:
+                    GoToCover();
+                    break;
+                case GrenadierState.InCover:
+                    StartCoroutine(TakeCover());
+                    break;
+                case GrenadierState.ChasePlayer:
+                    MoveEnemy();
+                    break;
+                case GrenadierState.Attack:
+                    Attack();
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                MoveEnemy(); // move towards player
-
-                if (agent.remainingDistance <= agent.stoppingDistance && !isThrowing && playerInRange)
-                {
-                    StartCoroutine(ThrowMolotov());
-                }
-            }
-            float agentVelocity = agent.velocity.normalized.magnitude;
-            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
         }
     }
 
-    IEnumerator TakeCover()
+    protected void SwitchToNextState(GrenadierState nextState)
+    {
+        _currentState = nextState;
+    }
+
+    protected void GoToCover()
     {
         agent.stoppingDistance = 0;
         agent.SetDestination(coverPosition.transform.position);
 
         if (agent.remainingDistance <= agent.stoppingDistance)
+            SwitchToNextState(GrenadierState.InCover);
+    }
+
+    virtual protected IEnumerator TakeCover()
+    {
+        if (!inCover)
         {
+            inCover = true;
+            molotovsThrown = 0;
             yield return new WaitForSeconds(3);
             agent.stoppingDistance = agentStoppingDistOrig;
-            inCover = true;
+            inCover = false;
+            SwitchToNextState(GrenadierState.ChasePlayer);
         }
     }
 
-    IEnumerator ThrowMolotov()
+    protected override void MoveEnemy()
+    {
+        base.MoveEnemy();
+
+        if (agent.remainingDistance <= agent.stoppingDistance)
+            SwitchToNextState(GrenadierState.Attack);
+    }
+
+    virtual protected void Attack()
+    {
+        if (molotovsThrown >= maxThrows)
+        {
+            SwitchToNextState(GrenadierState.GoToCover);
+            return;
+        }
+
+        // if player moves away
+        if (agent.remainingDistance > agent.stoppingDistance)
+        {
+            SwitchToNextState(GrenadierState.ChasePlayer);
+            return;
+        }
+
+        if (!isThrowing)
+            StartCoroutine(ThrowMolotov());
+    }
+
+    protected IEnumerator ThrowMolotov()
     {
         isThrowing = true;
+        molotovsThrown++;
         Instantiate(molotov, throwPos.position, transform.rotation);
-        yield return new WaitForSeconds(0.5f); // wait in front of player without attacking before going to cover
-        inCover = false;
+        yield return new WaitForSeconds(timeBetweenThrows); // wait in front of player without attacking before going to cover
         isThrowing = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            playerInRange = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            playerInRange = false;
     }
 }

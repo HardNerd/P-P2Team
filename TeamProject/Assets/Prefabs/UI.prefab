@@ -1456,6 +1456,8 @@ MonoBehaviour:
   playerSpawnPOS: {fileID: 0}
   playerGun: {fileID: 0}
   playerGunScript: {fileID: 0}
+  playerGrenadePickup: {fileID: 0}
+  playerGrenadeGM: {fileID: 0}
   activeMenu: {fileID: 0}
   mainMusic: {fileID: 5344131977456916421}
   pauseMenu: {fileID: 7621659907755777945}
@@ -2939,7 +2941,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 318.9, y: 998.8}
+  m_AnchoredPosition: {x: 318.9, y: 91.94997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8995423067810220647
@@ -3300,7 +3302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 244.3, y: 947.4}
+  m_AnchoredPosition: {x: 244.3, y: 40.549988}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5997309251573667138
