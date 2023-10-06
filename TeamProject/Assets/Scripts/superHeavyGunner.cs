@@ -48,7 +48,7 @@ public class superHeavyGunner : defaultEnemy
     {
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
 
-        FaceTarget();
+        FaceTarget(playerDirection);
 
         if (!isShooting)
             StartCoroutine(shoot());

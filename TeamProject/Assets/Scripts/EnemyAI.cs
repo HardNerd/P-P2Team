@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
 
 
-    [SerializeField] GameObject ammoDrop;
+    [SerializeField] protected GameObject ammoDrop;
 
     protected Vector3 playerDirection;
     protected float angleToPlayer;
@@ -31,7 +31,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     protected float speedOrig = 0; // you have to set it in the child classes
     protected bool isDead = false;
     private Vector3 pushBack;
-    private Rigidbody enemyBody;
+    protected Rigidbody enemyBody;
 
     protected virtual void MoveEnemy()
     {
@@ -39,7 +39,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
         
         if (agent.remainingDistance <= agent.stoppingDistance)
-            FaceTarget();
+            FaceTarget(playerDirection);
         
         agent.SetDestination(GameManager.instance.player.transform.position);
     }
@@ -97,9 +97,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         agent.speed = speedOrig;
     }
 
-    protected void FaceTarget()
+    protected void FaceTarget(Vector3 direction)
     {
-        Quaternion rotation = Quaternion.LookRotation(playerDirection);
+        Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * targetFaceSpeed);
     }
 
