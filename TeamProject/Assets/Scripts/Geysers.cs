@@ -6,7 +6,7 @@ using UnityEngine;
 public class Gysers : MonoBehaviour
 {
     public float Damage = 2f;
-    public ParticleSystem ParticleSystem;
+    //public ParticleSystem ParticleSystem;
 
     private bool IsGeyser = false;
 
@@ -19,7 +19,7 @@ public class Gysers : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Instantiate(ParticleSystem, transform.position, transform.rotation);
+            //Instantiate(ParticleSystem, transform.position, transform.rotation);
             if (!IsGeyser)
             {
                 StartCoroutine(Geyser());
@@ -42,7 +42,7 @@ public class Gysers : MonoBehaviour
     IEnumerator Geyser()
     {
         IsGeyser = true;
-        Instantiate(ParticleSystem, transform.position, transform.rotation);
+       // Instantiate(ParticleSystem, transform.position, transform.rotation);
         GameManager.instance.playerController.TakeDamage(Damage);
         //ParticleSystem.Play(true);
         yield return new WaitForSeconds(5f);
