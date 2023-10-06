@@ -114,6 +114,11 @@ public class GameManager : MonoBehaviour
         playUI.SetActive(!isPause);
     }
 
+    public void setMenu(GameObject menu)
+    {
+        activeMenu = menu;
+    }
+
     public void stateUnpause()
     {
         Time.timeScale = currtime;
@@ -143,7 +148,7 @@ public class GameManager : MonoBehaviour
         timer.SetActive(false);
         yield return new WaitForSeconds(1);
         statePause();
-        activeMenu = winMenu;
+        setMenu(winMenu);
         activeMenu.SetActive(isPause);
     }
 
@@ -165,7 +170,7 @@ public class GameManager : MonoBehaviour
         if(activeMenu != loseMenu)
         {
             statePause();
-            activeMenu = loseMenu;
+            setMenu(loseMenu);
             activeMenu.SetActive(isPause);
         }
 
