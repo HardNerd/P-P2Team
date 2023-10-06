@@ -399,7 +399,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8193569385383417840}
   - component: {fileID: 1213937051980197725}
-  - component: {fileID: -1424048709617148885}
   - component: {fileID: 4332857669709151654}
   - component: {fileID: 5180948304343207166}
   - component: {fileID: 2298368788376227881}
@@ -456,20 +455,6 @@ MonoBehaviour:
   attackRate: 0.8
   attackDamage: 1
   attackAngle: 10
---- !u!114 &-1424048709617148885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613792153148569952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d932d3938c25d47a446512c5905929, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 4212784033727627204, guid: 8742ad615d31ff84eb5bd4b01dccc287, type: 3}
-  dropChance: 0.5
 --- !u!95 &4332857669709151654
 Animator:
   serializedVersion: 5

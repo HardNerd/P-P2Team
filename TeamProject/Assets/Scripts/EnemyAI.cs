@@ -21,6 +21,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float stopAtDamageTime;
     [SerializeField] int pushBackResolve;
 
+
+
+    [SerializeField] GameObject ammoDrop;
+
     protected Vector3 playerDirection;
     protected float angleToPlayer;
     //protected Vector3 startingPos;
@@ -62,6 +66,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             isDead = true;
 
             StopAllCoroutines();
+            Instantiate(ammoDrop);
         }
         else
         {
@@ -112,4 +117,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         meleeCollider.enabled = false;
     }
+
+   
+  
 }
