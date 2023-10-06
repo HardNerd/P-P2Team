@@ -10,7 +10,7 @@ public class DisplayInventory : MonoBehaviour
     public int xStart;
     public int yStart;
     public int X_Space_Betwwen_Items;
-    public int Number_Of_Columns;
+    public int Number_Of_Rows;
     public int Y_Space_Betwwen_Items;
     Dictionary<InventorySlot,GameObject> itemsDisplay = new Dictionary<InventorySlot,GameObject>();
 
@@ -57,6 +57,6 @@ public class DisplayInventory : MonoBehaviour
 
     public Vector3 GetPosition(int i)
     {
-        return new Vector3(xStart + (X_Space_Betwwen_Items * (i % Number_Of_Columns)), yStart + (-Y_Space_Betwwen_Items * (i / Number_Of_Columns)), 0f);
+        return new Vector3(xStart + (X_Space_Betwwen_Items * (i % Number_Of_Rows)), yStart + (-Y_Space_Betwwen_Items * (i / Number_Of_Rows)), 0f);
     }
 }

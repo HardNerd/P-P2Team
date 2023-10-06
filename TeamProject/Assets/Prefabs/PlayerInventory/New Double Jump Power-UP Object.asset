@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ea1d0c0fc2dc164392c363abcb6aed1, type: 3}
-  m_Name: Player Inventory
+  m_Script: {fileID: 11500000, guid: 73c11e02c0bac8a42bbe6627bc07c952, type: 3}
+  m_Name: New Double Jump Power-UP Object
   m_EditorClassIdentifier: 
-  Container: []
+  item: {fileID: 2645809380981657278, guid: bfee0116c44cd544e981037928d3279d, type: 3}
+  type: 0
+  description: 

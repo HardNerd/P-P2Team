@@ -452,7 +452,6 @@ MonoBehaviour:
   animChangeSpeed: 7
   stopAtDamageTime: 0
   pushBackResolve: 0
-  ammoDrop: {fileID: 4212784033727627204, guid: 8742ad615d31ff84eb5bd4b01dccc287, type: 3}
   attackRate: 0.8
   attackDamage: 1
   attackAngle: 10
