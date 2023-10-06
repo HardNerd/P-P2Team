@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected Transform headPos;
     [SerializeField] protected Collider hitBox;
     [SerializeField] protected Collider meleeCollider;
+    [SerializeField] GameObject ammoDrop;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] protected float HP;
@@ -23,7 +24,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
 
 
-    [SerializeField] GameObject ammoDrop;
+   
 
     protected Vector3 playerDirection;
     protected float angleToPlayer;
@@ -60,13 +61,14 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             GameManager.instance.updatGameGoal(-1);
+            Instantiate(ammoDrop, headPos.position, Quaternion.identity);
             hitBox.enabled = false;
             agent.enabled = false;
             animator.SetBool("Dead", true);
             isDead = true;
 
             StopAllCoroutines();
-            Instantiate(ammoDrop);
+           
         }
         else
         {
