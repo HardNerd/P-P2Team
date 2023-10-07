@@ -16293,6 +16293,10 @@ PrefabInstance:
       value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 771637729780057453, guid: d76a208404824a042854f49bc98d19c6, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 771637729780057453, guid: d76a208404824a042854f49bc98d19c6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -16556,6 +16560,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f1bd8a760fb7d6479a92a4d3f6a67ac, type: 3}
+--- !u!1001 &8688283451040858373
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 38.165726
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 99.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8898006809890096021, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
+      propertyPath: m_Name
+      value: SpeedBoost Platform
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -16789,3 +16850,4 @@ SceneRoots:
   - {fileID: 5361293390541556124}
   - {fileID: 54441120}
   - {fileID: 1056187673}
+  - {fileID: 8688283451040858373}

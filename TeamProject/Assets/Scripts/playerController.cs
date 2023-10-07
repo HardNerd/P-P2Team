@@ -269,4 +269,16 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         Inventory.Container.Clear();
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        switch(hit.gameObject.tag) // may have to change to CompareTag
+        {
+            case "SpeedBoost":
+                playerSpeed = 25;
+                break;
+        }
+    }
+
+
 }

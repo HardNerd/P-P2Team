@@ -18,6 +18,8 @@ TagManager:
   - Grenade PickUp
   - Enemy
   - Rocket Platform
+  - SpeedBoost
+  - Ground
   layers:
   - Default
   - TransparentFX
