@@ -56,6 +56,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         GameManager.instance.healthYelFillAmt = HP / maxHP;
         GameManager.instance.stamBlueFillAmt = stamina / maxStam;
         GameManager.instance.stamYelFillAmt = stamina / maxStam;
+        //might cause issues when trying to load in player after going through save data
+        //since it is trying to spawn player before new player spawn location is set
         spawnPlayer();
     }
 

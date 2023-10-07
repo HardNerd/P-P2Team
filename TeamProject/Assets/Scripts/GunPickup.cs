@@ -10,7 +10,7 @@ public class GunPickup : MonoBehaviour, IDataPersistence
     [SerializeField] GunStats stats;
 
 
-    
+
 
     void Start()
     {
@@ -20,10 +20,10 @@ public class GunPickup : MonoBehaviour, IDataPersistence
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") && !stats.collected)
+        if (other.CompareTag("Player") && !stats.collected)
         {
             GameManager.instance.playerGunScript.GunPickup(stats);
-            
+
             stats.collected = true;
 
             Destroy(gameObject);
@@ -37,11 +37,10 @@ public class GunPickup : MonoBehaviour, IDataPersistence
         {
             gameObject.SetActive(false);
         }
-        
     }
 
     void IDataPersistence.SaveData(GameData data)
     {
-        
+
     }
 }

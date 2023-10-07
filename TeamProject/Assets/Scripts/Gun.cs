@@ -157,18 +157,11 @@ public class Gun : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        if (data.gunList.idGun != 0)
-        {
-            this.GunList.Add(data.gunList.GunList[data.gunList.idGun]);
-        }
+        
     }
 
     public void SaveData(GameData data)
     {
-        for (int i = 0; i < this.GunList.Count; i++)
-        {
-            data.gunList.GunList.Add(this.GunList[idGun]);
-            i++;
-        }
+        
     }
 }

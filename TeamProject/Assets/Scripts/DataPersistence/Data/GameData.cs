@@ -10,16 +10,13 @@ public class GameData
 
     public Vector3 playerPos;
 
-    public Gun gunList;
-    //public GunStats gunStatsData;
+    public Gun gun;
     //the values defined in this contructor will be the default values, no touch
     // the game starts with when there's no data to load
     public GameData()
     {
         this.deathCount = 0;
         playerPos = Vector3.zero;
-        //gunStatsData = new GunStats();
-        this.gunList.idGun = 0;
-        
+        gun = null;
     }
 }
