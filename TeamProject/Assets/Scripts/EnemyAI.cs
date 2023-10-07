@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected Transform headPos;
     [SerializeField] protected Collider hitBox;
     [SerializeField] protected Collider meleeCollider;
+    [SerializeField] protected GameObject ammoDrop;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] protected float HP;
@@ -20,10 +21,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected float animChangeSpeed;
     [SerializeField] float stopAtDamageTime;
     [SerializeField] int pushBackResolve;
-
-
-
-    [SerializeField] protected GameObject ammoDrop;
 
     protected Vector3 playerDirection;
     protected float angleToPlayer;
