@@ -12,7 +12,7 @@ public class finalBoss : superHeavyGunner
         Rocketman,
         AddGrenadier,
         AddZombies,
-        PlatformDrop,
+        DropDown,
         HeavyOnly
     }
     //public enum BossState
@@ -26,10 +26,18 @@ public class finalBoss : superHeavyGunner
         ChangePos
     }
 
+    public enum FTPState
+    {
+        DetermineNewPos,
+        MoveToPlatformXY,
+        DropToPlatform
+    }
+
     [Header("----- BOSS States -----")]
     [SerializeField] Stage _stage;
     //[SerializeField] BossState _bossState;
     [SerializeField] SuperRMState _flyingState;
+    [SerializeField] FTPState _ftpState;
 
     [Header("----- BOSS Attack Stats -----")]
     [SerializeField] GameObject rocketPrefab;
@@ -43,6 +51,7 @@ public class finalBoss : superHeavyGunner
 
     [Header("----- Flying stats -----")]
     [SerializeField] GameObject[] attackPositions;
+    [SerializeField] Transform centerPlatform;
     [SerializeField] float flySpeed;
 
     bool firstShot = true;
@@ -51,6 +60,7 @@ public class finalBoss : superHeavyGunner
     bool isWaiting;
     bool isInvinsible;
     bool madeFinalDrop;
+    bool usesShield;
 
     float stage2HP;
     float stage3HP;
@@ -61,6 +71,8 @@ public class finalBoss : superHeavyGunner
     void Start()
     {
         maxHP = HP;
+        shieldHPMax = shieldHP;
+        usesShield = false;
 
         stage2HP = maxHP * (5.0f / 6.0f);
         stage3HP = maxHP * (3.0f / 4.0f);
@@ -71,6 +83,7 @@ public class finalBoss : superHeavyGunner
         bullet = rocketPrefab;
         shootRate = rocketShootRate;
         shots = 0;
+        enemyBody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -83,22 +96,23 @@ public class finalBoss : superHeavyGunner
                     SuperRMStates();
                     break;
                 case Stage.FallToPlatform: // has 5/6 HP
+                    FTPStates();
                     break;
                 case Stage.Rocketman: // has 3/4 HP
+                    enemyBody.isKinematic = true;
+                    Attack();
                     break;
                 case Stage.AddGrenadier: // has 2/3 HP
                     break;
                 case Stage.AddZombies: // has 1/2 HP
                     break;
-                case Stage.PlatformDrop: // has 1/3 HP
+                case Stage.DropDown: // has 1/3 HP
                     break;
                 case Stage.HeavyOnly: // has 1/3 HP
                     break;
                 default:
                     break;
             }
-            // HP switch stage logic
-
         }
     }
 
@@ -120,11 +134,57 @@ public class finalBoss : superHeavyGunner
         }
     }
 
+    void FTPStates()
+    {
+        switch (_ftpState)
+        {
+            case FTPState.DetermineNewPos:
+                isInvinsible = true;
+                flySpeed = 10;
+                selectedPos = new Vector3(centerPlatform.position.x, transform.position.y, centerPlatform.position.z);
+                SwitchFTPState(FTPState.MoveToPlatformXY);
+                break;
+            case FTPState.MoveToPlatformXY:
+                MoveToSelectedPos();
+                break;
+            case FTPState.DropToPlatform:
+                DropToPlatform();
+                break;
+            default:
+                break;
+        }
+    }
+
+     void ShieldAttackStates()
+    {
+        switch (_currentState)
+        {
+            case State.Attack:
+                Attack();
+                break;
+            case State.Staggered:
+                StartCoroutine(Staggered());
+                break;
+            default:
+                break;
+        }
+    }
+
     void SwitchStage(Stage newStage)
     {
         _stage = newStage;
     }
+    
+    void SwitchFlyState(SuperRMState nextState)
+    {
+        _flyingState = nextState;
+    }
 
+    void SwitchFTPState(FTPState nextState)
+    {
+        _ftpState = nextState;
+    }
+    
     IEnumerator Wait()
     {
         if (!isWaiting)
@@ -162,7 +222,7 @@ public class finalBoss : superHeavyGunner
     {
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
         FaceTarget(playerDirection);
-        
+
         // Wait for enemy to face target
         if (firstShot)
         {
@@ -182,11 +242,6 @@ public class finalBoss : superHeavyGunner
         Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
-    }
-
-    void SwitchFlyState(SuperRMState nextState)
-    {
-        _flyingState = nextState;
     }
 
     Vector3 ChooseRandomPos()
@@ -210,35 +265,70 @@ public class finalBoss : superHeavyGunner
         if (Vector3.Distance(transform.position, selectedPos) <= 0)
             SwitchFlyState(SuperRMState.Attack);
     }
+    void MoveToSelectedPos()
+    {
+        Vector3 targetDir = selectedPos - transform.position;
+        FaceTarget(targetDir);
+
+        transform.position = Vector3.MoveTowards(transform.position, selectedPos, flySpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, selectedPos) <= 0)
+            SwitchFTPState(FTPState.DropToPlatform);
+    }
+
+    void DropToPlatform()
+    {
+        enemyBody.isKinematic = false;
+
+        if ((int)Vector3.Distance(transform.position, centerPlatform.position) <= 0)
+        {
+            isInvinsible = false;
+            HP = stage3HP;
+            StartCoroutine(FlashDamage(Color.red));
+            SwitchStage(Stage.Rocketman);
+        }
+    }
 
     public override void TakeDamage(float amount)
     {
         if (isInvinsible)
             return;
 
-        HP -= amount;
-
-        if (HP <= 0)
+        if (!isStaggered && usesShield)
         {
-            GameManager.instance.updatGameGoal(-1);
-            animator.SetBool("Dead", true);
-            isDead = true;
+            shieldHP -= amount;
 
-            StopAllCoroutines();
-            //Instantiate(ammoDrop);
-            return;
+            if (shieldHP <= 0)
+                SwitchToNextState(State.Staggered);
+            else
+                FlashDamage(Color.blue);
         }
         else
         {
-            animator.SetTrigger("Damage");
-            StartCoroutine(FlashDamage(Color.red));
+            HP -= amount;
+
+            if (HP <= 0)
+            {
+                GameManager.instance.updatGameGoal(-1);
+                animator.SetBool("Dead", true);
+                isDead = true;
+
+                StopAllCoroutines();
+                //Instantiate(ammoDrop);
+                return;
+            }
+            else
+            {
+                animator.SetTrigger("Damage");
+                StartCoroutine(FlashDamage(Color.red));
+            }
         }
 
         // Change Stage
         if (HP <= stage6HP)
         {
             if (!madeFinalDrop)
-                SwitchStage(Stage.PlatformDrop);
+                SwitchStage(Stage.DropDown);
             else 
                 SwitchStage(Stage.HeavyOnly);
         }
@@ -248,11 +338,3 @@ public class finalBoss : superHeavyGunner
         else if (HP <= stage2HP) SwitchStage(Stage.FallToPlatform);
     }
 }
-
-//Flying,
-//        FallToPlatform,
-//        Rocketman,
-//        AddGrenadier,
-//        AddZombies,
-//        PlatformDrop,
-//        HeavyOnly

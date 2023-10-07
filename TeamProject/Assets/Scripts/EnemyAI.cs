@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] protected float HP;
-    [SerializeField] int targetFaceSpeed;
+    [SerializeField] protected int targetFaceSpeed;
     //[SerializeField] float viewAngle;
     [SerializeField] protected float animChangeSpeed;
     [SerializeField] float stopAtDamageTime;

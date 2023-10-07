@@ -12,13 +12,13 @@ public class superHeavyGunner : defaultEnemy
     }
 
     [Header("----- Shield Stats -----")]
-    [SerializeField] float shieldHP;
+    [SerializeField] protected float shieldHP;
     [SerializeField] int staggerTime;
 
     [SerializeField] protected State _currentState;
 
-    float shieldHPMax;
-    bool isStaggered;
+    protected float shieldHPMax;
+    protected bool isStaggered;
 
     void Start()
     {
@@ -54,7 +54,7 @@ public class superHeavyGunner : defaultEnemy
             StartCoroutine(shoot());
     }
 
-    IEnumerator Staggered()
+    protected IEnumerator Staggered()
     {
         if (!isStaggered)
         {
