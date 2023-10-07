@@ -12438,6 +12438,18 @@ PrefabInstance:
       propertyPath: Inventory
       value: 
       objectReference: {fileID: 11400000, guid: b590416525a491a4f8b4726b63606b26, type: 2}
+    - target: {fileID: 3074705210889822578, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
+      propertyPath: boosetedSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074705210889822578, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
+      propertyPath: speedCoolDown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074705210889822578, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
+      propertyPath: sprintCooldown
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6276233285746502742, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
       propertyPath: m_Name
       value: Player
@@ -16578,7 +16590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 99.12
+      value: 99.14
       objectReference: {fileID: 0}
     - target: {fileID: 1036779908847620901, guid: caf2df19467998a4a8e78a6fe64f8c8f, type: 3}
       propertyPath: m_LocalRotation.w

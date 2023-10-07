@@ -21,6 +21,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float jumpStartTime;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
     [Range(1, 10)][SerializeField] int pushBackResolve;
+    [SerializeField] float boosetedSpeed;
+    [SerializeField] float speedCoolDown;
 
     // Player movement
     private Vector3 move;
@@ -28,6 +30,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public Vector2 player2DVelocity;
     Vector2 previousFramePos = Vector2.zero;
     float baseSpeed;
+    
     float maxStam;
     public bool sprintCooldown;
     
@@ -263,6 +266,19 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
             Inventory.AddItem(items.item, 1);
             Destroy(other.gameObject);
         }
+        if(other.CompareTag("SpeedBoost"))
+        {
+            playerSpeed = boosetedSpeed;
+            StartCoroutine(SpeedBoostDuration());
+        }
+
+
+    }
+
+    IEnumerator SpeedBoostDuration()
+    {
+        yield return new WaitForSeconds(speedCoolDown);
+        playerSpeed = baseSpeed;
     }
 
     private void OnApplicationQuit()
@@ -270,15 +286,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         Inventory.Container.Clear();
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        switch(hit.gameObject.tag) // may have to change to CompareTag
-        {
-            case "SpeedBoost":
-                playerSpeed = 25;
-                break;
-        }
-    }
+    
 
 
 }
