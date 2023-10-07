@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4212784033727627204
+--- !u!1 &3532241683174057686
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,62 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5949302081903688260}
-  - component: {fileID: 3139861196725433175}
-  - component: {fileID: 7174861677501737759}
-  - component: {fileID: 2995476055912359962}
-  - component: {fileID: 5154150559357727225}
+  - component: {fileID: 6693359654237313183}
+  - component: {fileID: 6584983609989801506}
+  - component: {fileID: 2938872673614927376}
+  - component: {fileID: 3893919840575351955}
   m_Layer: 0
-  m_Name: Pistol_ammo_pickup
-  m_TagString: Pistol Ammo
+  m_Name: SpeedBoost Platform transparent
+  m_TagString: SpeedBoost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5949302081903688260
+--- !u!4 &6693359654237313183
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212784033727627204}
+  m_GameObject: {fileID: 3532241683174057686}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.2519, y: 0.2106, z: -0}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 38.147724, y: 4.03, z: 105.19}
+  m_LocalScale: {x: 3, y: 0.5000001, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3139861196725433175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212784033727627204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 725adf8dab6881a489c4e701b5b03865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunStats: {fileID: 11400000, guid: af38c7da70669c141884f9ab66d7ebf6, type: 2}
-  ammoPickupSound: {fileID: 8300000, guid: c9ed8ab46ba7a0f4caebd62cd8beef36, type: 3}
---- !u!33 &7174861677501737759
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &6584983609989801506
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212784033727627204}
-  m_Mesh: {fileID: 7691567228697404027, guid: 479c5caa57d9f4b41bc12e3df96d8185, type: 3}
---- !u!23 &2995476055912359962
+  m_GameObject: {fileID: 3532241683174057686}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2938872673614927376
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212784033727627204}
+  m_GameObject: {fileID: 3532241683174057686}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -77,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f2932d6d61309b4eb11dc568d115351, type: 2}
+  - {fileID: 2100000, guid: dc98400291ad6c447bc2351f87eb996f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,13 +84,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5154150559357727225
-SphereCollider:
+--- !u!65 &3893919840575351955
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212784033727627204}
+  m_GameObject: {fileID: 3532241683174057686}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -118,5 +103,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.002
-  m_Center: {x: -0.00011815119, y: -0.00013775946, z: 0.00027615184}
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
