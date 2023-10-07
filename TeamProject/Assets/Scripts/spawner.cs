@@ -10,7 +10,7 @@ public class spawner : MonoBehaviour
     [SerializeField] int timeOffset;
 
     bool isSpawning;
-    bool startSpawning;
+    public bool startSpawning;
     int spawnCount;
 
     // Start is called before the first frame update

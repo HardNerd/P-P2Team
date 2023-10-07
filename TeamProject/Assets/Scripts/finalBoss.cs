@@ -40,6 +40,7 @@ public class finalBoss : superHeavyGunner
     [SerializeField] FTPState _ftpState;
 
     [Header("----- BOSS Attack Stats -----")]
+    [SerializeField] GameObject hordeSpawner;
     [SerializeField] GameObject rocketPrefab;
     [SerializeField] float rocketShootRate;
     [SerializeField] GameObject bulletPrefab;
@@ -73,6 +74,7 @@ public class finalBoss : superHeavyGunner
         maxHP = HP;
         shieldHPMax = shieldHP;
         usesShield = false;
+        agent.enabled = false;
 
         stage2HP = maxHP * (5.0f / 6.0f);
         stage3HP = maxHP * (3.0f / 4.0f);
@@ -103,8 +105,13 @@ public class finalBoss : superHeavyGunner
                     Attack();
                     break;
                 case Stage.AddGrenadier: // has 2/3 HP
+                    SwitchBetweenWeapons();
+                    Attack();
                     break;
                 case Stage.AddZombies: // has 1/2 HP
+                    SwitchBetweenWeapons();
+                    Attack();
+                    hordeSpawner.GetComponent<spawner>().startSpawning = true;
                     break;
                 case Stage.DropDown: // has 1/3 HP
                     break;
@@ -287,6 +294,17 @@ public class finalBoss : superHeavyGunner
             StartCoroutine(FlashDamage(Color.red));
             SwitchStage(Stage.Rocketman);
         }
+    }
+
+    void SwitchBetweenWeapons()
+    {
+        GameObject[] weapons = { rocketPrefab, molotovPrefab };
+        bullet = weapons[Random.Range(0, 2)];
+
+        if (bullet == rocketPrefab)
+            shootRate = rocketShootRate;
+        else
+            shootRate = molotovShootRate;
     }
 
     public override void TakeDamage(float amount)
