@@ -10,6 +10,7 @@ public class AmmoPickup : MonoBehaviour
    
     [SerializeField]  GunStats gunStats;
     public AudioClip ammoPickupSound;
+   
     
 
     private void OnTriggerEnter(Collider other)
@@ -25,6 +26,7 @@ public class AmmoPickup : MonoBehaviour
                 {
                     Destroy(gameObject);
                     GameManager.instance.playerGunScript.AmmoPickup(gunStats);
+                   
                 }
             }
            

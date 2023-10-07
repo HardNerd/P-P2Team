@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform headPos;
+    [SerializeField] protected Transform B_footR;
     [SerializeField] protected Collider hitBox;
     [SerializeField] protected Collider meleeCollider;
     [SerializeField] protected GameObject ammoDrop;
@@ -60,7 +61,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             GameManager.instance.updatGameGoal(-1);
-            Instantiate(ammoDrop, headPos.position, Quaternion.identity);
+            Instantiate(ammoDrop, B_footR.position, Quaternion.identity);
             hitBox.enabled = false;
             agent.enabled = false;
             animator.SetBool("Dead", true);
