@@ -30,6 +30,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     private Vector3 pushBack;
     protected Rigidbody enemyBody;
 
+    protected float maxHP;
+
     protected virtual void MoveEnemy()
     {
         playerDirection = GameManager.instance.player.transform.position - headPos.position;

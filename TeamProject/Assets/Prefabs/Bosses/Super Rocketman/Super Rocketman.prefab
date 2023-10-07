@@ -2128,7 +2128,7 @@ MonoBehaviour:
   shootPos: {fileID: 8822668089381578446}
   shootRate: 0
   projectile: {fileID: 3029819796579446769, guid: d2e131347c2f29a4ba37f121b8750a33, type: 3}
-  projectileSpeed: 20
+  projectileSpeed: 15
   attackPositions:
   - {fileID: 0}
   - {fileID: 0}
@@ -2156,6 +2156,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  landingZone: {fileID: 8261059535851152103, guid: 8c5efe9c981b0544389037ae39a9fc6a, type: 3}
   _currentState: 0
 --- !u!95 &7183797529650366699
 Animator:

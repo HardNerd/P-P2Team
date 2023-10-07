@@ -7,10 +7,10 @@ using UnityEngine.AI;
 public class defaultEnemy : EnemyAI
 {
     [Header("----- Gun Stats -----")]
-    [SerializeField] Transform shootPos;
-    [SerializeField] float shootRate;
+    [SerializeField] protected Transform shootPos;
+    [SerializeField] protected float shootRate;
     [SerializeField] int shootAngle;
-    [SerializeField] GameObject bullet;
+    [SerializeField] protected GameObject bullet;
 
     protected bool isShooting;
 
@@ -33,7 +33,7 @@ public class defaultEnemy : EnemyAI
         }
     }
 
-    protected IEnumerator shoot()
+    virtual protected IEnumerator shoot()
     {
         isShooting = true;
         animator.SetTrigger("Shoot");
