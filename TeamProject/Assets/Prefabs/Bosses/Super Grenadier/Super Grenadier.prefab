@@ -434,17 +434,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20037e0e0e19de8468f97da7aea2409f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  models: []
+  models:
+  - {fileID: 2361998651278936828}
   agent: {fileID: 2286345373383945224}
   animator: {fileID: 1377060602595069945}
   headPos: {fileID: 1979026679510811151}
+  B_footR: {fileID: 7748595429116995333}
   hitBox: {fileID: 1895669825196500810}
   meleeCollider: {fileID: 0}
+  ammoDrop: {fileID: 379705209901190606, guid: c5dafeb6a361d2f43a5e0723e9748856, type: 3}
   HP: 8
   targetFaceSpeed: 25
   animChangeSpeed: 7
   stopAtDamageTime: 1
   pushBackResolve: 0
+  agentSpeed: 0
   coverPosition: {fileID: 0}
   throwPos: {fileID: 1766867691723136368}
   molotov: {fileID: 5372538081484655502, guid: 5c5852480d7eec24395f92bee4c9f428, type: 3}
@@ -452,7 +456,15 @@ MonoBehaviour:
   maxThrows: 3
   timeBetweenThrows: 1.5
   _currentState: 0
-  attackPositions: []
+  attackPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!95 &1377060602595069945
 Animator:
   serializedVersion: 5

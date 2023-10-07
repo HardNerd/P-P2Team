@@ -1058,7 +1058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2969556473079784862}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -224, y: 26, z: 172.85802}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
@@ -1094,6 +1094,7 @@ MonoBehaviour:
   agent: {fileID: 8759444302772056792}
   animator: {fileID: 2719730034233734077}
   headPos: {fileID: 7594786698944599732}
+  B_footR: {fileID: 1367714771441777525}
   hitBox: {fileID: 208102687400871896}
   meleeCollider: {fileID: 0}
   ammoDrop: {fileID: 0}

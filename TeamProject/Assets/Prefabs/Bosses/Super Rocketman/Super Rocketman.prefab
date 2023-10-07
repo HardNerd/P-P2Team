@@ -2115,6 +2115,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   animator: {fileID: 7183797529650366699}
   headPos: {fileID: 5260896855422442859}
+  B_footR: {fileID: 7967150847223085918}
   hitBox: {fileID: 5133462007913893116}
   meleeCollider: {fileID: 0}
   ammoDrop: {fileID: 0}
@@ -2123,6 +2124,7 @@ MonoBehaviour:
   animChangeSpeed: 7
   stopAtDamageTime: 0
   pushBackResolve: 0
+  agentSpeed: 0
   flySpeed: 15
   waitTime: 2
   shootPos: {fileID: 8822668089381578446}
