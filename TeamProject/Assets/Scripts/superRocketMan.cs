@@ -83,15 +83,22 @@ public class superRocketMan : EnemyAI
 
         //int row = 0, col = 0;
 
+        //platformMatrix = new List<List<GameObject>>();
         //for (int i = 0; i < 5; i++)
+        //{
+        //    platformMatrix.Add(new List<GameObject>());
         //    for (int j = 0; j < 5; j++)
-        //        if (platformMatrix[i][j] != null)
-        //            if (platformMatrix[i][j].GetComponent<rocketPlatform>().playerInside)
-        //            {
-        //                playerPlatform = platformMatrix[i][j];
-        //                row = i; col = j; 
-        //                break;
-        //            }
+        //    {
+        //        if ((i, j) == (0, 0) || (i, j) == (0, 2) || (i, j) == (0, 4) || (i, j) == (2, 2) || (i, j) == (4, 0) || (i, j) == (4, 2) || (i, j) == (4, 4))
+        //            platformMatrix[i].Add(null);
+        //        else
+        //        {
+        //            platformMatrix[i].Add(platforms[j]);
+        //            if (platforms[j].GetComponent<rocketPlatform>().playerInside)
+        //                playerPlatform = platforms[j];
+        //        }
+        //    }
+        //}
 
         if (playerPlatform != null)
         {
@@ -224,6 +231,7 @@ public class superRocketMan : EnemyAI
 
     void PopulatePlatformMatrix()
     {
+        int platformsIndx = 0;
         platformMatrix = new List<List<GameObject>>();
 
         for (int i = 0; i < 5; i++)
@@ -234,7 +242,10 @@ public class superRocketMan : EnemyAI
                 if ((i, j) == (0, 0) || (i, j) == (0, 2) || (i, j) == (0, 4) || (i, j) == (2, 2) || (i, j) == (4, 0) || (i, j) == (4, 2) || (i, j) == (4, 4))
                     platformMatrix[i].Add(null);
                 else
-                    platformMatrix[i].Add(platforms[j]);
+                {
+                    platformMatrix[i].Add(platforms[platformsIndx]);
+                    platformsIndx++;
+                }
             }
         }
     }
