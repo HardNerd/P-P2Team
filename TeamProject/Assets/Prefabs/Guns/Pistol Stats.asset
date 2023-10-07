@@ -26,3 +26,5 @@ MonoBehaviour:
   hitEffect: {fileID: 3419905006596131026, guid: c51780ac324fdd24fa1ad78810bf5e02, type: 3}
   gunSound: {fileID: 8300000, guid: 6739c01659ad96d47987f4ddee226b36, type: 3}
   toughnessDmg: 0
+  collected: 1
+  id: 402740a7-54fe-4fb3-93db-b132e9c645e4

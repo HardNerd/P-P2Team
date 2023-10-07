@@ -4,13 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerController : MonoBehaviour, IDamage, IPhysics
+public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersistence
 {
     
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] ParticleSystem jumpParticles;
     [SerializeField] InventoryObjects Inventory;
+    private int deathCount = 0;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] float HP = 10;
@@ -162,6 +163,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         if (HP <= 0)
         {
+            deathCount++;
             GameManager.instance.loseScreen();
         }
     }
@@ -268,5 +270,14 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private void OnApplicationQuit()
     {
         Inventory.Container.Clear();
+    }
+    void IDataPersistence.LoadData(GameData data)
+    {
+        this.deathCount = data.deathCount;
+    }
+
+    void IDataPersistence.SaveData(GameData data)
+    {
+        data.deathCount = this.deathCount;
     }
 }

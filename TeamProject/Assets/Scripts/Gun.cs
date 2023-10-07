@@ -5,7 +5,7 @@ using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : MonoBehaviour, IDataPersistence
 {
     [SerializeField] Animator animator;
 
@@ -15,17 +15,18 @@ public class Gun : MonoBehaviour
     [SerializeField] float shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float reloadTime;
-    
+
     [SerializeField] AudioClip shootSound;
 
     private bool isShooting;
     public bool isReloading;
     public int selectedGun;
-   
+    public int idGun;
+
 
     void Start()
     {
-       
+
 
     }
 
@@ -45,31 +46,25 @@ public class Gun : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (GunList.Count > 0)
+        if (GunList.Count > 0 && GunList[selectedGun].loadedAmmo > 0)
         {
-            if (GunList[selectedGun].loadedAmmo > 0)
+            isShooting = true;
+            GunList[selectedGun].loadedAmmo--;
+            GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
+            AudioSource.PlayClipAtPoint(shootSound, transform.position);
+
+            RaycastHit hitInfo;
+            Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+
+            if (Physics.Raycast(ray, out hitInfo, shootDistance))
             {
-
-
-                isShooting = true;
-                GunList[selectedGun].loadedAmmo--;
-                GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
-                AudioSource.PlayClipAtPoint(shootSound, transform.position);
-
-                RaycastHit hitInfo;
-                Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
-
-                if (Physics.Raycast(ray, out hitInfo, shootDistance))
-                {
-                    IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
-                    Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
-                    if (damageable != null)
-                        damageable.TakeDamage(shootDamage);
-                }
-
-                yield return new WaitForSeconds(shootRate);
-                isShooting = false;
+                IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
+                Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
+                damageable?.TakeDamage(shootDamage);
             }
+
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
         }
     }
 
@@ -83,7 +78,7 @@ public class Gun : MonoBehaviour
             animator.SetBool("Reloading", true);
 
             yield return new WaitForSeconds(currentGun.reloadTime);
-            if((currentGun.magSize - currentGun.loadedAmmo) <= currentGun.ammoCarried)
+            if ((currentGun.magSize - currentGun.loadedAmmo) <= currentGun.ammoCarried)
             {
                 currentGun.ammoCarried -= currentGun.magSize - currentGun.loadedAmmo;
                 currentGun.loadedAmmo = currentGun.magSize;
@@ -94,11 +89,11 @@ public class Gun : MonoBehaviour
                 currentGun.ammoCarried = 0;
             }
 
-            
+
             animator.SetBool("Reloading", false);
             isReloading = false;
             GameManager.instance.ammoUpdate(currentGun.loadedAmmo, currentGun.ammoCarried);
-            
+
         }
     }
 
@@ -110,6 +105,7 @@ public class Gun : MonoBehaviour
         shootRate = gun.shootRate;
         shootSound = gun.gunSound;
         reloadTime = gun.reloadTime;
+
 
         GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
@@ -155,8 +151,24 @@ public class Gun : MonoBehaviour
                 gunStats.ammoCarried = gunStats.maxAmmoCarried;
             }
         }
-      
+
         GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
     }
 
+    public void LoadData(GameData data)
+    {
+        if (data.gunList.idGun != 0)
+        {
+            this.GunList.Add(data.gunList.GunList[data.gunList.idGun]);
+        }
+    }
+
+    public void SaveData(GameData data)
+    {
+        for (int i = 0; i < this.GunList.Count; i++)
+        {
+            data.gunList.GunList.Add(this.GunList[idGun]);
+            i++;
+        }
+    }
 }
