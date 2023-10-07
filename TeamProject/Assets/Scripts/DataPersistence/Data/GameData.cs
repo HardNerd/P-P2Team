@@ -10,13 +10,13 @@ public class GameData
 
     public Vector3 playerPos;
 
-    public Gun gun;
+    public SerializableDictionary<string, bool> gunsCollected;
     //the values defined in this contructor will be the default values, no touch
     // the game starts with when there's no data to load
     public GameData()
     {
         this.deathCount = 0;
         playerPos = Vector3.zero;
-        gun = null;
+        gunsCollected = new SerializableDictionary<string, bool>();
     }
 }
