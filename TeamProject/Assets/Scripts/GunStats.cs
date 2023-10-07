@@ -26,5 +26,4 @@ public class GunStats : ScriptableObject
 
     public int toughnessDmg;
     public bool collected = false;
-
 }

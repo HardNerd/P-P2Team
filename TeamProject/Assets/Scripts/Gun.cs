@@ -26,8 +26,7 @@ public class Gun : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-
-
+        
     }
 
     void Update()
@@ -39,7 +38,7 @@ public class Gun : MonoBehaviour, IDataPersistence
 
         if (Input.GetButton("Reload") && !isReloading && !GameManager.instance.isPause && GunList.Count > 0)
         {
-            StartCoroutine(reload());
+            StartCoroutine(Reload());
             return;
         }
     }
@@ -68,7 +67,7 @@ public class Gun : MonoBehaviour, IDataPersistence
         }
     }
 
-    IEnumerator reload()
+    IEnumerator Reload()
     {
         GunStats currentGun = GunList[selectedGun];
         if (currentGun.loadedAmmo < currentGun.magSize && currentGun.ammoCarried > 0)

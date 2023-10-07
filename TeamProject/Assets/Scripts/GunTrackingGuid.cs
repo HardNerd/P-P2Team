@@ -40,6 +40,10 @@ public class GunTrackingGuid : MonoBehaviour, IDataPersistence
         if (stats.collected == true)
         {
             gameObject.SetActive(false);
+            if (data.gunsCollected.ContainsKey(guid))
+            {
+                
+            }
         }
     }
 
