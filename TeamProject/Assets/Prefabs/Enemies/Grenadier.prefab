@@ -800,6 +800,7 @@ MonoBehaviour:
   headPos: {fileID: 7083104648870962809}
   hitBox: {fileID: 6590485272634175378}
   meleeCollider: {fileID: 0}
+  ammoDrop: {fileID: 2729044157020049073, guid: 9594677df97268541a86922bf1831e55, type: 3}
   HP: 2
   targetFaceSpeed: 25
   animChangeSpeed: 7

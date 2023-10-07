@@ -60,13 +60,14 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             GameManager.instance.updatGameGoal(-1);
+            Instantiate(ammoDrop, headPos.position, Quaternion.identity);
             hitBox.enabled = false;
             agent.enabled = false;
             animator.SetBool("Dead", true);
             isDead = true;
 
             StopAllCoroutines();
-            Instantiate(ammoDrop);
+           
         }
         else
         {
