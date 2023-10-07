@@ -7,7 +7,7 @@ public class superRocketMan : EnemyAI
 {
     public enum SuperRMState
     {
-        Idle,
+        //Idle,
         ChooseTargets,
         Attack,
         Wait,
@@ -22,16 +22,23 @@ public class superRocketMan : EnemyAI
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
     [SerializeField] GameObject projectile;
+    [SerializeField] int projectileSpeed;
 
     [SerializeField] GameObject[] attackPositions;
+    [SerializeField] GameObject[] platforms;
 
     [SerializeField] SuperRMState _currentState;
 
+    bool isShooting;
     Vector3 selectedPos;
     bool isWaiting;
+    List<List<GameObject>> platformMatrix;
+    List<GameObject> targets;
+    int currentTarget;
 
     void Start()
     {
+        PopulatePlatformMatrix();
         enemyBody = GetComponent<Rigidbody>();
         selectedPos = attackPositions[0].transform.position;
     }
@@ -42,8 +49,8 @@ public class superRocketMan : EnemyAI
         {
             switch (_currentState)
             {
-                case SuperRMState.Idle:
-                    break; 
+                //case SuperRMState.Idle:
+                //    break; 
                 case SuperRMState.ChooseTargets:
                     SelectTargets();
                     break;
@@ -69,12 +76,93 @@ public class superRocketMan : EnemyAI
 
     void SelectTargets()
     {
-        SwitchToNextState(SuperRMState.Attack);
+        GameObject playerPlatform = null;
+        for (int i = 0; i < platforms.Length; i++)
+            if (platforms[i].GetComponent<rocketPlatform>().playerInside)
+                playerPlatform = platforms[i];
+
+        //int row = 0, col = 0;
+
+        //for (int i = 0; i < 5; i++)
+        //    for (int j = 0; j < 5; j++)
+        //        if (platformMatrix[i][j] != null)
+        //            if (platformMatrix[i][j].GetComponent<rocketPlatform>().playerInside)
+        //            {
+        //                playerPlatform = platformMatrix[i][j];
+        //                row = i; col = j; 
+        //                break;
+        //            }
+
+        if (playerPlatform != null)
+        {
+            FindPositionInMatrix(playerPlatform, out int row, out int col);
+            targets = FindNeighborCount(row, col);
+
+            // Select random index in list to remove from target list
+            int index = Random.Range(0, targets.Count - 1);
+            targets.RemoveAt(index);
+            // Add Player platform as a target
+            targets.Add(playerPlatform);
+
+            currentTarget = targets.Count - 1;
+
+            SwitchToNextState(SuperRMState.Attack);
+        }
+    }
+
+    void FindPositionInMatrix(GameObject platform, out int row, out int col)
+    {
+        for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 5; j++)
+                if (platform == platformMatrix[i][j])
+                {
+                    row = i;
+                    col = j;
+                    return;
+                }
+        row = 0; col = 0;
+    }
+
+    List<GameObject> FindNeighborCount(int row, int column)
+    {
+        List<GameObject> neighbors = new List<GameObject>();
+
+        for (int i = Mathf.Max(0, row - 1); i <= Mathf.Min(platformMatrix.Count - 1, row + 1); i++)
+            for (int j = Mathf.Max(0, column - 1); j <= Mathf.Min(platformMatrix.Count - 1, column + 1); j++)
+                if ((i, j) != (row, column))
+                    if (platformMatrix[i][j] != null)
+                        neighbors.Add(platformMatrix[i][j]);
+        return neighbors;
     }
 
     void Attack()
     {
-        SwitchToNextState(SuperRMState.Wait);
+        if (targets.Count == 0)
+            SwitchToNextState(SuperRMState.Wait);
+
+        playerDirection = GameManager.instance.player.transform.position - headPos.position;
+        FaceTarget(playerDirection);
+
+        StartCoroutine(ShootTargets());
+    }
+
+    IEnumerator ShootTargets()
+    {
+        if (!isShooting)
+        {
+            isShooting = true;
+            animator.SetTrigger("Shoot");
+            
+            GameObject rocket = Instantiate(projectile, shootPos.position, transform.rotation);
+            Rigidbody rocket_rb = rocket.GetComponent<Rigidbody>();
+            Vector3 targetPos = targets[currentTarget].GetComponent<rocketPlatform>().target.position;
+            rocket_rb.velocity = (targetPos - rocket.transform.position).normalized * projectileSpeed;
+
+            targets.RemoveAt(currentTarget);
+            currentTarget--;
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
     }
 
     IEnumerator WaitAfterAttack()
@@ -107,7 +195,7 @@ public class superRocketMan : EnemyAI
         transform.position = Vector3.MoveTowards(transform.position, selectedPos, flySpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, selectedPos) <= 0)
-            SwitchToNextState(SuperRMState.Attack);
+            SwitchToNextState(SuperRMState.ChooseTargets);
     }
     protected void SwitchToNextState(SuperRMState nextState)
     {
@@ -131,6 +219,23 @@ public class superRocketMan : EnemyAI
         {
             animator.SetTrigger("Damage");
             StartCoroutine(FlashDamage(Color.red));
+        }
+    }
+
+    void PopulatePlatformMatrix()
+    {
+        platformMatrix = new List<List<GameObject>>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            platformMatrix.Add(new List<GameObject>());
+            for (int j = 0; j < 5; j++)
+            {
+                if ((i, j) == (0, 0) || (i, j) == (0, 2) || (i, j) == (0, 4) || (i, j) == (2, 2) || (i, j) == (4, 0) || (i, j) == (4, 2) || (i, j) == (4, 4))
+                    platformMatrix[i].Add(null);
+                else
+                    platformMatrix[i].Add(platforms[j]);
+            }
         }
     }
 }
