@@ -2117,18 +2117,18 @@ MonoBehaviour:
   headPos: {fileID: 5260896855422442859}
   hitBox: {fileID: 5133462007913893116}
   meleeCollider: {fileID: 0}
+  ammoDrop: {fileID: 0}
   HP: 8
   targetFaceSpeed: 5
   animChangeSpeed: 7
   stopAtDamageTime: 0
   pushBackResolve: 0
-  ammoDrop: {fileID: 0}
   flySpeed: 15
   waitTime: 2
   shootPos: {fileID: 8822668089381578446}
-  shootRate: 0.5
+  shootRate: 0
   projectile: {fileID: 3029819796579446769, guid: d2e131347c2f29a4ba37f121b8750a33, type: 3}
-  projectileSpeed: 25
+  projectileSpeed: 20
   attackPositions:
   - {fileID: 0}
   - {fileID: 0}

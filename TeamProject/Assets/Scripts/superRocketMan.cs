@@ -7,7 +7,6 @@ public class superRocketMan : EnemyAI
 {
     public enum SuperRMState
     {
-        //Idle,
         ChooseTargets,
         Attack,
         Wait,
@@ -26,6 +25,7 @@ public class superRocketMan : EnemyAI
 
     [SerializeField] GameObject[] attackPositions;
     [SerializeField] GameObject[] platforms;
+    [SerializeField] GameObject landingZone;
 
     [SerializeField] SuperRMState _currentState;
 
@@ -49,8 +49,6 @@ public class superRocketMan : EnemyAI
         {
             switch (_currentState)
             {
-                //case SuperRMState.Idle:
-                //    break; 
                 case SuperRMState.ChooseTargets:
                     SelectTargets();
                     break;
@@ -80,25 +78,6 @@ public class superRocketMan : EnemyAI
         for (int i = 0; i < platforms.Length; i++)
             if (platforms[i].GetComponent<rocketPlatform>().playerInside)
                 playerPlatform = platforms[i];
-
-        //int row = 0, col = 0;
-
-        //platformMatrix = new List<List<GameObject>>();
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    platformMatrix.Add(new List<GameObject>());
-        //    for (int j = 0; j < 5; j++)
-        //    {
-        //        if ((i, j) == (0, 0) || (i, j) == (0, 2) || (i, j) == (0, 4) || (i, j) == (2, 2) || (i, j) == (4, 0) || (i, j) == (4, 2) || (i, j) == (4, 4))
-        //            platformMatrix[i].Add(null);
-        //        else
-        //        {
-        //            platformMatrix[i].Add(platforms[j]);
-        //            if (platforms[j].GetComponent<rocketPlatform>().playerInside)
-        //                playerPlatform = platforms[j];
-        //        }
-        //    }
-        //}
 
         if (playerPlatform != null)
         {
@@ -160,9 +139,12 @@ public class superRocketMan : EnemyAI
             isShooting = true;
             animator.SetTrigger("Shoot");
             
+            // Show projectile landing zone
+            Vector3 targetPos = targets[currentTarget].GetComponent<rocketPlatform>().target.position;
+            Instantiate(landingZone, targetPos, landingZone.transform.rotation);
+
             GameObject rocket = Instantiate(projectile, shootPos.position, transform.rotation);
             Rigidbody rocket_rb = rocket.GetComponent<Rigidbody>();
-            Vector3 targetPos = targets[currentTarget].GetComponent<rocketPlatform>().target.position;
             rocket_rb.velocity = (targetPos - rocket.transform.position).normalized * projectileSpeed;
 
             targets.RemoveAt(currentTarget);
