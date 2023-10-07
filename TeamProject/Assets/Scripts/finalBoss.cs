@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static superRocketMan;
 
 public class finalBoss : superHeavyGunner
@@ -40,6 +41,7 @@ public class finalBoss : superHeavyGunner
     [SerializeField] FTPState _ftpState;
 
     [Header("----- BOSS Attack Stats -----")]
+    [SerializeField] GameObject bossTower;
     [SerializeField] GameObject hordeSpawner;
     [SerializeField] GameObject rocketPrefab;
     [SerializeField] float rocketShootRate;
@@ -62,6 +64,7 @@ public class finalBoss : superHeavyGunner
     bool isInvinsible;
     bool madeFinalDrop;
     bool usesShield;
+    bool towerDestroyed;
 
     float stage2HP;
     float stage3HP;
@@ -114,8 +117,10 @@ public class finalBoss : superHeavyGunner
                     hordeSpawner.GetComponent<spawner>().startSpawning = true;
                     break;
                 case Stage.DropDown: // has 1/3 HP
+                    DropDown();
                     break;
                 case Stage.HeavyOnly: // has 1/3 HP
+                    ShieldAttackStates();
                     break;
                 default:
                     break;
@@ -167,7 +172,7 @@ public class finalBoss : superHeavyGunner
         switch (_currentState)
         {
             case State.Attack:
-                Attack();
+                MovingAttack();
                 break;
             case State.Staggered:
                 StartCoroutine(Staggered());
@@ -307,6 +312,29 @@ public class finalBoss : superHeavyGunner
             shootRate = molotovShootRate;
     }
 
+    void DropDown()
+    {
+        isInvinsible = true;
+        agent.enabled = true;
+
+        if (!towerDestroyed)
+        {
+            towerDestroyed = true;
+            Destroy(bossTower);
+        }
+
+        if ((int)transform.position.y <= 0)
+        {
+            isInvinsible = false;
+            madeFinalDrop = true;
+            usesShield = true;
+            SwitchStage(Stage.HeavyOnly);
+            bullet = bulletPrefab;
+            shootRate = bulletShootRate;
+            agent.speed = agentSpeed;
+        }
+    }
+
     public override void TakeDamage(float amount)
     {
         if (isInvinsible)
@@ -330,7 +358,8 @@ public class finalBoss : superHeavyGunner
                 GameManager.instance.updatGameGoal(-1);
                 animator.SetBool("Dead", true);
                 isDead = true;
-
+                hitBox.enabled = false;
+                agent.enabled = false;
                 StopAllCoroutines();
                 //Instantiate(ammoDrop);
                 return;

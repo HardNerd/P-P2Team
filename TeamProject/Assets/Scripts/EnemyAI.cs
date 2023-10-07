@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected float animChangeSpeed;
     [SerializeField] float stopAtDamageTime;
     [SerializeField] int pushBackResolve;
+    [SerializeField] protected float agentSpeed;
 
     protected Vector3 playerDirection;
     protected float angleToPlayer;
