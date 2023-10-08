@@ -113,23 +113,6 @@ public class Gun : MonoBehaviour, IDataPersistence
         GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
     }
 
-    public void GunAddToList(GunStats gun, string guid)
-    {
-        GunList.Add(gun);
-        shootDamage = gun.shootDamage;
-        shootDistance = gun.shootDistance;
-        shootRate = gun.shootRate;
-        shootSound = gun.gunSound;
-        reloadTime = gun.reloadTime;
-
-
-        GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
-        GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
-
-        selectedGun = GunList.Count - 1;
-        GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
-    }
-
     void GunSelector()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < GunList.Count - 1)

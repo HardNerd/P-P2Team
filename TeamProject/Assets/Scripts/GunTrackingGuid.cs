@@ -50,10 +50,9 @@ public class GunTrackingGuid : MonoBehaviour, IDataPersistence
 
             if (data.gunsCollected.ContainsValue(stats.collected == true))
             {
-                for (int i = 0; i < amountPickedUp; i++)
-                {
-                    GameManager.instance.playerGunScript.GunAddToList(stats, guid);
-                }
+
+                GameManager.instance.playerGunScript.GunPickup(stats);
+
             }
         }
     }
@@ -68,7 +67,7 @@ public class GunTrackingGuid : MonoBehaviour, IDataPersistence
         data.gunPickedUpAmount = amountPickedUp;
     }
 
-    
 
-    
+
+
 }
