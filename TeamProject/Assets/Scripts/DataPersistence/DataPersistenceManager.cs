@@ -24,7 +24,8 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.LogError("Found more than one Data Persistance Manager in the scene");
         }
 
-        Instance = this; 
+        Instance = this;
+        
     }
 
     private void Start()

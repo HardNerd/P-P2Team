@@ -278,6 +278,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     }
     void IDataPersistence.LoadData(GameData data)
     {
+        
         this.deathCount = data.deathCount;
     }
 
