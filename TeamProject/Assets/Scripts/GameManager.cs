@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistence
 {
     public static GameManager instance;
 
@@ -201,5 +201,14 @@ public class GameManager : MonoBehaviour
             return;
         }
         ammoCount.text = amount.ToString() + " / " + maxAmount.ToString();
+    }
+    public void LoadData(GameData data)
+    {
+        instance.playerSpawnPOS.transform.position = data.playerPos;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.playerPos = instance.playerSpawnPOS.transform.position;
     }
 }
