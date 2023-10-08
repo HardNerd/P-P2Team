@@ -32,11 +32,11 @@ public class spawner : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     void Update()
     {
-        if(startSpawning && spawnCount < maxEnemies)
+        if (startSpawning && spawnCount < maxEnemies)
         {
             StartCoroutine(spawn());
         }
-        else if(maxEnemies == 0 || spawnCount == maxEnemies)
+        else if (spawnCount == maxEnemies)
         {
             hasBeenSpawned = true;
             StopCoroutine(spawn());
@@ -58,12 +58,6 @@ public class spawner : MonoBehaviour, IDataPersistence
             yield return new WaitForSeconds(timeOffset);
             isSpawning=false;
         }
-    }
-
-    public void enemyDeath()
-    {
-        GameManager.instance.updatGameGoal(-1);
-        maxEnemies--;
     }
 
     private void OnTriggerEnter(Collider other)
