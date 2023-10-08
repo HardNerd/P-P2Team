@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Gun playerGunScript;
     public GameObject playerGrenadePickup;
     public PlayerGrenade playerGrenadeGM;
+    public DisplayInventory displayInventory;
 
     [Header("----- Menus -----")]
     [SerializeField] GameObject activeMenu;
@@ -72,6 +73,8 @@ public class GameManager : MonoBehaviour
 
         playerGrenadePickup = GameObject.FindGameObjectWithTag("Grenade PickUp");
         playerGrenadeGM = playerGrenadePickup.GetComponent<PlayerGrenade>();
+
+        displayInventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<DisplayInventory>();
     }
     void Update()
     {

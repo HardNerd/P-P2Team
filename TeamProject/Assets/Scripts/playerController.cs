@@ -42,11 +42,16 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private float coyoteTimeCounter;
     private float jumpTime;
     private bool isJumping;
-    int initMaxJumps = 2;
+    int initMaxJumps = 1;
     int maxJumps;
 
     float maxHP;
     public float healthPcakValue = 10;
+
+    // Player mutators
+    bool canSprint = true;
+    bool canJump = true; // double jump is handled with initMaxJumps
+    bool canDash;
 
     void Start()
     {
@@ -65,7 +70,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         Movement();
         
-        if (Input.GetKey(KeyCode.LeftShift) && sprintCooldown == false)
+        if (Input.GetKey(KeyCode.LeftShift) && sprintCooldown == false && canSprint)
         {
             sprint();
         }
@@ -115,11 +120,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
             // set maxJumps to 1 if you haven't jumped, you start falling and coyoteTime is up
             if (coyoteTimeCounter <= 0f)
-                maxJumps = 1;
+                maxJumps = initMaxJumps - 1;
         }
 
         // Add jump velocity to player's Y value
-        if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps && stamina > 20)
+        if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps && stamina > 20 && canJump)
         {
             isJumping = true;
             jumpTime = jumpStartTime;
@@ -260,10 +265,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
     public void OnTriggerEnter(Collider other)
     {
-        var items = other.GetComponent<Item>();
-        if(items)
+        Item items = other.GetComponent<Item>();
+        if(items != null)
         {
-            Inventory.AddItem(items.item, 1);
+            Inventory.AddItem(items.item);
+            GameManager.instance.displayInventory.DisplayItem();
             Destroy(other.gameObject);
         }
         if(other.CompareTag("SpeedBoost"))
@@ -281,10 +287,10 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         playerSpeed = baseSpeed;
     }
 
-    private void OnApplicationQuit()
-    {
-        Inventory.Container.Clear();
-    }
+    //private void OnApplicationQuit()
+    //{
+    //    Inventory.Container.Clear();
+    //}
 
     
 
