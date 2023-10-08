@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameData
 {
     public int deathCount;
+    public int gunPickedUpAmount;
 
     public Vector3 playerPos;
 
@@ -16,6 +17,7 @@ public class GameData
     public GameData()
     {
         this.deathCount = 0;
+        this.gunPickedUpAmount = 0;
         playerPos = Vector3.zero;
         gunsCollected = new SerializableDictionary<string, bool>();
     }

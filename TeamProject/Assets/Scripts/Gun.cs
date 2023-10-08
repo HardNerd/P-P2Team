@@ -21,7 +21,7 @@ public class Gun : MonoBehaviour, IDataPersistence
     private bool isShooting;
     public bool isReloading;
     public int selectedGun;
-    public int idGun;
+    public GunStats gunStatsGun;
 
 
     void Start()
@@ -97,6 +97,23 @@ public class Gun : MonoBehaviour, IDataPersistence
     }
 
     public void GunPickup(GunStats gun)
+    {
+        GunList.Add(gun);
+        shootDamage = gun.shootDamage;
+        shootDistance = gun.shootDistance;
+        shootRate = gun.shootRate;
+        shootSound = gun.gunSound;
+        reloadTime = gun.reloadTime;
+
+
+        GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
+        GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
+
+        selectedGun = GunList.Count - 1;
+        GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
+    }
+
+    public void GunAddToList(GunStats gun, string guid)
     {
         GunList.Add(gun);
         shootDamage = gun.shootDamage;
