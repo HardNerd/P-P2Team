@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersistence
 {
@@ -22,7 +23,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     [SerializeField] float jumpStartTime;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
     [Range(1, 10)][SerializeField] int pushBackResolve;
-    [SerializeField] float boosetedSpeed;
+    [SerializeField] float boostedSpeed;
     [SerializeField] float speedCoolDown;
 
     // Player movement
@@ -47,11 +48,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     int maxJumps;
 
     float maxHP;
-    public float healthPcakValue = 10;
+    public float healthPackValue = 10;
 
     // Player mutators
-    bool canSprint = true;
-    bool canJump = true; // double jump is handled with initMaxJumps
+    bool canSprint;
+    bool canJump; // double jump is handled with initMaxJumps
     bool canDash;
 
     void Start()
@@ -67,6 +68,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         //might cause issues when trying to load in player after going through save data
         //since it is trying to spawn player before new player spawn location is set
         spawnPlayer();
+        UpdateMutatorFlags();
     }
 
     void Update()
@@ -257,12 +259,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         {
             if (HealthPickup.hasPickedUpHealthPack)
             {
-                HP = HP + healthPcakValue;
+                HP = HP + healthPackValue;
                 HealthPickup.hasPickedUpHealthPack = false;
                 GameManager.instance.healthRedFillAmt = (float)HP / 10;
 
                 GameManager.instance.healthRed.fillAmount = GameManager.instance.healthRedFillAmt;
-                if (HP + healthPcakValue > maxHP)
+                if (HP + healthPackValue > maxHP)
                 {
                     HP = maxHP;
                 }
@@ -277,11 +279,17 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         {
             Inventory.AddItem(items.item);
             GameManager.instance.displayInventory.DisplayItem();
+
+            if (items.item.description == "Sprint") canSprint = true;
+            else if (items.item.description == "Jump") canJump = true;
+            else if (items.item.description == "Double Jump") initMaxJumps = 2;
+            else if (items.item.description == "Dash") canDash = true;
+
             Destroy(other.gameObject);
         }
         if(other.CompareTag("SpeedBoost"))
         {
-            playerSpeed = boosetedSpeed;
+            playerSpeed = boostedSpeed;
             StartCoroutine(SpeedBoostDuration());
         }
 
@@ -294,10 +302,22 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         playerSpeed = baseSpeed;
     }
 
-    //private void OnApplicationQuit()
-    //{
-    //    Inventory.Container.Clear();
-    //}
+    void UpdateMutatorFlags()
+    {
+        int itemCount = 0;
+
+        for (int i = 0; i < Inventory.Container.Count; i++)
+            if (Inventory.Container[i].Item != null)
+            {
+                itemCount++;
+                GameManager.instance.displayInventory.DisplayItem();
+            }
+
+        if (itemCount >= 1) canSprint = true;
+        if (itemCount >= 2) canJump = true;
+        if (itemCount >= 3) initMaxJumps = 2;
+        if (itemCount >= 4) canDash = true;
+    }
 
     void IDataPersistence.LoadData(GameData data)
     {

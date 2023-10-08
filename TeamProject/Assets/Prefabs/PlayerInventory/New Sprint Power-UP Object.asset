@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 925242021581940807, guid: 73ea753fb7de91540b0081c72188c1c1, type: 3}
   type: 0
-  description: 
+  description: Sprint

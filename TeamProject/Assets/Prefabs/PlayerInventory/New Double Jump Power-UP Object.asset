@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2645809380981657278, guid: bfee0116c44cd544e981037928d3279d, type: 3}
   type: 0
-  description: 
+  description: Double Jump
