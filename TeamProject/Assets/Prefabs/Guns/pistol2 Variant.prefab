@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 383438272294817501}
-  - component: {fileID: -6356463010098252679}
+  - component: {fileID: -6714352977726433342}
   - component: {fileID: 3674344139398513016}
   - component: {fileID: 1520268129286223282}
   - component: {fileID: 1605298283298167274}
@@ -35,7 +35,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6356463010098252679
+--- !u!114 &-6714352977726433342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,9 +44,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1016106795235300455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3e0499161fc784ea1538d87b8a8614, type: 3}
+  m_Script: {fileID: 11500000, guid: 9419a2ace60a79e4b99bf593bb4767cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guid: 90e15946-1658-4b7e-a0ad-1ffe7cd6c486
   stats: {fileID: 11400000, guid: af38c7da70669c141884f9ab66d7ebf6, type: 2}
 --- !u!33 &3674344139398513016
 MeshFilter:

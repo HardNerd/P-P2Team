@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu]
 
@@ -25,7 +26,5 @@ public class GunStats : ScriptableObject
     public AudioClip gunSound;
 
     public int toughnessDmg;
-    
-
-
+    public bool collected = false;
 }

@@ -4,8 +4,9 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistence
 {
     public static GameManager instance;
 
@@ -21,11 +22,13 @@ public class GameManager : MonoBehaviour
 
     [Header("----- Menus -----")]
     [SerializeField] GameObject activeMenu;
+    [SerializeField] GameObject lastMenu;
     [SerializeField] AudioSource mainMusic;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject checkpointMenu;
+    [SerializeField] GameObject optionsMenu;
 
     [Header("----- Play State -----")]
     [SerializeField] GameObject endPoint;
@@ -75,6 +78,12 @@ public class GameManager : MonoBehaviour
         playerGrenadeGM = playerGrenadePickup.GetComponent<PlayerGrenade>();
 
         displayInventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<DisplayInventory>();
+
+    }
+
+    void Start()
+    {
+        optionsMenu.SetActive(false);
     }
     void Update()
     {
@@ -125,6 +134,22 @@ public class GameManager : MonoBehaviour
     public void setMenu(GameObject menu)
     {
         activeMenu = menu;
+    }
+
+
+    public void options()
+    {
+        lastMenu = activeMenu;
+        setMenu(optionsMenu);
+        lastMenu.SetActive(false);
+        activeMenu.SetActive(true);
+    }
+    public void back()
+    {
+        activeMenu.SetActive(false);
+        setMenu(lastMenu);
+        lastMenu = null;
+        activeMenu.SetActive(true);
     }
 
     public void stateUnpause()
@@ -204,5 +229,14 @@ public class GameManager : MonoBehaviour
             return;
         }
         ammoCount.text = amount.ToString() + " / " + maxAmount.ToString();
+    }
+    public void LoadData(GameData data)
+    {
+        instance.playerSpawnPOS.transform.position = data.playerPos;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.playerPos = instance.playerSpawnPOS.transform.position;
     }
 }
