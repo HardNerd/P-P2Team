@@ -14,6 +14,9 @@ public class bossAI : EnemyAI
 
     [SerializeField] GameObject bullet;
 
+    [Header("----- BOSS Power Up -----")]
+    [SerializeField] Transform dropLocation;
+
     public static bool inCover = false;
     private bool isAiming = false;
     private float aimTimer = 0f;
@@ -21,6 +24,7 @@ public class bossAI : EnemyAI
 
     void Start()
     {
+        B_footR = dropLocation;
         agent.SetDestination(coverPositions[0].transform.position);
         laserSight.enabled = false;
     }

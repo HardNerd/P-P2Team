@@ -29,6 +29,9 @@ public class superRocketMan : EnemyAI
 
     [SerializeField] SuperRMState _currentState;
 
+    [Header("----- BOSS Power Up -----")]
+    [SerializeField] Transform dropLocation;
+
     bool isShooting;
     Vector3 selectedPos;
     bool isWaiting;
@@ -38,6 +41,7 @@ public class superRocketMan : EnemyAI
 
     void Start()
     {
+        B_footR = dropLocation;
         PopulatePlatformMatrix();
         enemyBody = GetComponent<Rigidbody>();
         selectedPos = attackPositions[0].transform.position;
@@ -202,7 +206,7 @@ public class superRocketMan : EnemyAI
             isDead = true;
 
             StopAllCoroutines();
-            //Instantiate(ammoDrop);
+            Instantiate(ammoDrop, B_footR.position, Quaternion.identity);
         }
         else
         {

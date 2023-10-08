@@ -17,11 +17,15 @@ public class superHeavyGunner : defaultEnemy
 
     [SerializeField] protected State _currentState;
 
+    [Header("----- BOSS Power Up -----")]
+    [SerializeField] Transform dropLocation;
+
     protected float shieldHPMax;
     protected bool isStaggered;
 
     void Start()
     {
+        B_footR = dropLocation;
         shieldHPMax = shieldHP;
         _currentState = State.Attack;
     }

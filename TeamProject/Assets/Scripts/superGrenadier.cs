@@ -6,12 +6,16 @@ public class superGrenadier : grenadierAI
 {
     [SerializeField] GameObject[] attackPositions;
 
+    [Header("----- BOSS Power Up -----")]
+    [SerializeField] Transform dropLocation;
+
     Vector3 closestAttackPos;
     int randomMaxThrows;
     bool hasSetRandomThrows;
 
     void Start()
     {
+        B_footR = dropLocation;
         _currentState = GrenadierState.GoToCover;
         agent.stoppingDistance = attackDistance;
         agentStoppingDistOrig = agent.stoppingDistance;
