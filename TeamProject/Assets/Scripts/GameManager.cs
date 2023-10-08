@@ -4,6 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
@@ -17,14 +18,17 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public Gun playerGunScript;
     public GameObject playerGrenadePickup;
     public PlayerGrenade playerGrenadeGM;
+    public DisplayInventory displayInventory;
 
     [Header("----- Menus -----")]
     [SerializeField] GameObject activeMenu;
+    [SerializeField] GameObject lastMenu;
     [SerializeField] AudioSource mainMusic;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject checkpointMenu;
+    [SerializeField] GameObject optionsMenu;
 
     [Header("----- Play State -----")]
     [SerializeField] GameObject endPoint;
@@ -72,6 +76,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
         playerGrenadePickup = GameObject.FindGameObjectWithTag("Grenade PickUp");
         playerGrenadeGM = playerGrenadePickup.GetComponent<PlayerGrenade>();
+
+        displayInventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<DisplayInventory>();
+
+    }
+
+    void Start()
+    {
+        optionsMenu.SetActive(false);
     }
     void Update()
     {
@@ -122,6 +134,22 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void setMenu(GameObject menu)
     {
         activeMenu = menu;
+    }
+
+
+    public void options()
+    {
+        lastMenu = activeMenu;
+        setMenu(optionsMenu);
+        lastMenu.SetActive(false);
+        activeMenu.SetActive(true);
+    }
+    public void back()
+    {
+        activeMenu.SetActive(false);
+        setMenu(lastMenu);
+        lastMenu = null;
+        activeMenu.SetActive(true);
     }
 
     public void stateUnpause()

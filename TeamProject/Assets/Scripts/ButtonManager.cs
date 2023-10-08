@@ -54,4 +54,16 @@ public class ButtonManager : MonoBehaviour
         clickNoise.Play();
         Application.Quit();
     }
+
+    public void options()
+    {
+        clickNoise.Play();
+        GameManager.instance.options();
+    }
+
+    public void back()
+    {
+        clickNoise.Play();
+        GameManager.instance.back();
+    }
 }

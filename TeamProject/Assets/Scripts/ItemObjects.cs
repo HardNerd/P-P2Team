@@ -9,7 +9,7 @@ public enum ItemType
 
 public abstract class ItemObjects : ScriptableObject
 {
-    public GameObject item;
+    public GameObject image;
     public ItemType type;
     [TextArea(15,20)]
     public string description;

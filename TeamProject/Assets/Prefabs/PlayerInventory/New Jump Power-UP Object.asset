@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e96c8a3cd64bd243810ceeee067c7d9, type: 3}
   m_Name: New Jump Power-UP Object
   m_EditorClassIdentifier: 
-  item: {fileID: 6195282322106736239, guid: 3906d00cadb3f6842a2646d8298b68e0, type: 3}
+  image: {fileID: 6195282322106736239, guid: 3906d00cadb3f6842a2646d8298b68e0, type: 3}
   type: 0
   description: 

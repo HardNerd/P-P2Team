@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978f1c548bb61094b9ed5a24c92cc151, type: 3}
   m_Name: New Dash Power-UP Object
   m_EditorClassIdentifier: 
-  item: {fileID: 217246157441274977, guid: 001912ebddfed3444a36785d656ed83f, type: 3}
+  image: {fileID: 217246157441274977, guid: 001912ebddfed3444a36785d656ed83f, type: 3}
   type: 0
   description: 
