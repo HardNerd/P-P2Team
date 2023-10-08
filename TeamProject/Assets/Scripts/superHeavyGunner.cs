@@ -5,25 +5,25 @@ using static grenadierAI;
 
 public class superHeavyGunner : defaultEnemy
 {
-    public enum SuperHGState
+    public enum State
     {
         Attack,
         Staggered
     }
 
     [Header("----- Shield Stats -----")]
-    [SerializeField] float shieldHP;
+    [SerializeField] protected float shieldHP;
     [SerializeField] int staggerTime;
 
-    [SerializeField] SuperHGState _currentState;
+    [SerializeField] protected State _currentState;
 
-    float shieldHPMax;
-    bool isStaggered;
+    protected float shieldHPMax;
+    protected bool isStaggered;
 
     void Start()
     {
         shieldHPMax = shieldHP;
-        _currentState = SuperHGState.Attack;
+        _currentState = State.Attack;
     }
 
     void Update()
@@ -32,10 +32,10 @@ public class superHeavyGunner : defaultEnemy
         {
             switch (_currentState)
             {
-                case SuperHGState.Attack:
+                case State.Attack:
                     Attack();
                     break;
-                case SuperHGState.Staggered:
+                case State.Staggered:
                     StartCoroutine(Staggered());
                     break;
                 default:
@@ -44,17 +44,17 @@ public class superHeavyGunner : defaultEnemy
         }
     }
 
-    void Attack()
+    virtual protected void Attack()
     {
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
 
-        FaceTarget();
+        FaceTarget(playerDirection);
 
         if (!isShooting)
             StartCoroutine(shoot());
     }
 
-    IEnumerator Staggered()
+    protected IEnumerator Staggered()
     {
         if (!isStaggered)
         {
@@ -71,12 +71,12 @@ public class superHeavyGunner : defaultEnemy
                 models[i].material.color = origColor;
 
             shieldHP = shieldHPMax;
-            SwitchToNextState(SuperHGState.Attack);
+            SwitchToNextState(State.Attack);
             isStaggered = false;
         }
     }
 
-    protected void SwitchToNextState(SuperHGState nextState)
+    protected void SwitchToNextState(State nextState)
     {
         _currentState = nextState;
     }
@@ -91,7 +91,7 @@ public class superHeavyGunner : defaultEnemy
             //FlashDamage(Color.red);
 
             if (shieldHP <= 0)
-                SwitchToNextState(SuperHGState.Staggered);
+                SwitchToNextState(State.Staggered);
             else
                 FlashDamage(Color.blue);
         }

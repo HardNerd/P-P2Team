@@ -22,6 +22,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     [SerializeField] float jumpStartTime;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
     [Range(1, 10)][SerializeField] int pushBackResolve;
+    [SerializeField] float boosetedSpeed;
+    [SerializeField] float speedCoolDown;
 
     // Player movement
     private Vector3 move;
@@ -29,6 +31,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     public Vector2 player2DVelocity;
     Vector2 previousFramePos = Vector2.zero;
     float baseSpeed;
+    
     float maxStam;
     public bool sprintCooldown;
     
@@ -270,12 +273,26 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             Inventory.AddItem(items.item, 1);
             Destroy(other.gameObject);
         }
+        if(other.CompareTag("SpeedBoost"))
+        {
+            playerSpeed = boosetedSpeed;
+            StartCoroutine(SpeedBoostDuration());
+        }
+
+
+    }
+
+    IEnumerator SpeedBoostDuration()
+    {
+        yield return new WaitForSeconds(speedCoolDown);
+        playerSpeed = baseSpeed;
     }
 
     private void OnApplicationQuit()
     {
         Inventory.Container.Clear();
     }
+
     void IDataPersistence.LoadData(GameData data)
     {
         
@@ -287,3 +304,4 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         data.deathCount = this.deathCount;
     }
 }
+

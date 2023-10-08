@@ -17,6 +17,9 @@ TagManager:
   - Assault Rifle Ammo
   - Grenade PickUp
   - Enemy
+  - Rocket Platform
+  - SpeedBoost
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -32,7 +35,7 @@ TagManager:
   - Wall
   - MiniMap Dots
   - Player Explosion
-  - 
+  - Floor
   - 
   - 
   - 

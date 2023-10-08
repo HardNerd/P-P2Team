@@ -10,21 +10,19 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform headPos;
+    [SerializeField] protected Transform B_footR;
     [SerializeField] protected Collider hitBox;
     [SerializeField] protected Collider meleeCollider;
-    [SerializeField] GameObject ammoDrop;
+    [SerializeField] protected GameObject ammoDrop;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] protected float HP;
-    [SerializeField] int targetFaceSpeed;
+    [SerializeField] protected int targetFaceSpeed;
     //[SerializeField] float viewAngle;
     [SerializeField] protected float animChangeSpeed;
     [SerializeField] float stopAtDamageTime;
     [SerializeField] int pushBackResolve;
-
-
-
-   
+    [SerializeField] protected float agentSpeed;
 
     protected Vector3 playerDirection;
     protected float angleToPlayer;
@@ -32,7 +30,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     protected float speedOrig = 0; // you have to set it in the child classes
     protected bool isDead = false;
     private Vector3 pushBack;
-    private Rigidbody enemyBody;
+    protected Rigidbody enemyBody;
+
+    protected float maxHP;
 
     protected virtual void MoveEnemy()
     {
@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
         
         if (agent.remainingDistance <= agent.stoppingDistance)
-            FaceTarget();
+            FaceTarget(playerDirection);
         
         agent.SetDestination(GameManager.instance.player.transform.position);
     }
@@ -61,7 +61,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             GameManager.instance.updatGameGoal(-1);
-            Instantiate(ammoDrop, headPos.position, Quaternion.identity);
+            Instantiate(ammoDrop, B_footR.position, Quaternion.identity);
             hitBox.enabled = false;
             agent.enabled = false;
             animator.SetBool("Dead", true);
@@ -99,9 +99,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         agent.speed = speedOrig;
     }
 
-    protected void FaceTarget()
+    protected void FaceTarget(Vector3 direction)
     {
-        Quaternion rotation = Quaternion.LookRotation(playerDirection);
+        Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * targetFaceSpeed);
     }
 
