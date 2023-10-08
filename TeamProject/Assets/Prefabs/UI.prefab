@@ -1339,7 +1339,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379228807018815576}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -178675144931404672, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
   m_audioClip: {fileID: 8300000, guid: 787ebbe472ef0ba4a8b82eb9749ad999, type: 3}
@@ -1533,6 +1533,7 @@ MonoBehaviour:
   playerGunScript: {fileID: 0}
   playerGrenadePickup: {fileID: 0}
   playerGrenadeGM: {fileID: 0}
+  displayInventory: {fileID: 0}
   activeMenu: {fileID: 0}
   lastMenu: {fileID: 0}
   mainMusic: {fileID: 5344131977456916421}
@@ -1546,13 +1547,12 @@ MonoBehaviour:
   timer: {fileID: 1430601608147722380}
   objectiveText: {fileID: 585155812365905587}
   ammoCount: {fileID: 6177254619478040731}
-  gunSounds:
-  - {fileID: 0}
   levelTime: {fileID: 1151885487968048792}
   healthRed: {fileID: 3205163458443804577}
   healthYel: {fileID: 7274787616720262765}
   stamBlue: {fileID: 6952802339020104942}
   stamYel: {fileID: 1404503922494020853}
+  enemiesalive: 0
   isPause: 0
   healthRedFillAmt: 0
   healthYelFillAmt: 0
@@ -1893,6 +1893,7 @@ RectTransform:
   - {fileID: 7413228415391986479}
   - {fileID: 8002200385767888472}
   - {fileID: 426861284720282499}
+  - {fileID: 2772853642574037695}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4098,6 +4099,51 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &4401126022252473609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2772853642574037695}
+  - component: {fileID: 8750789412296464601}
+  m_Layer: 5
+  m_Name: DataPersistenceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2772853642574037695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4401126022252473609}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 424264328660440417}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8750789412296464601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4401126022252473609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8223b182f417c5f46a2cea762ede81b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: dataProjectLab.game
 --- !u!1 &4430256019978727772
 GameObject:
   m_ObjectHideFlags: 0
