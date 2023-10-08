@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public Image stamBlue;
     public Image stamYel;
 
-    int enemiesalive;
+    public int enemiesalive;
     int pickupsLeft;
 
     //I expect the player person to set this up I'm just putting it here for later

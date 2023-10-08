@@ -167,6 +167,7 @@ MonoBehaviour:
   shootSound: {fileID: 0}
   isReloading: 0
   selectedGun: 0
+  gunStatsGun: {fileID: 0}
 --- !u!33 &443766268185090868
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ MonoBehaviour:
   cam: {fileID: 967887306407933565}
   attackPoint: {fileID: 7033320352204623751}
   objectToThrow: {fileID: 846016281896337078, guid: 8912a31991d299a49bb1c2204f79e5a0, type: 3}
-  totalThrows: 100
+  totalThrows: 0
   throwCooldown: 0
   throwForce: 10
   throwUpwwardForce: 7
@@ -622,6 +623,9 @@ MonoBehaviour:
   jumpStartTime: 0.25
   gravityValue: -25
   pushBackResolve: 2
+  boosetedSpeed: 0
+  speedCoolDown: 0
+  player2DVelocity: {x: 0, y: 0}
   sprintCooldown: 0
   healthPcakValue: 10
 --- !u!143 &4115263917725466358
