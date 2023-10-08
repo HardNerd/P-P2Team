@@ -9,6 +9,10 @@ public class spawner : MonoBehaviour, IDataPersistence
     [SerializeField] int maxEnemies;
     [SerializeField] Transform[] spawnPos;
     [SerializeField] int timeOffset;
+    [SerializeField] GameObject door1;
+    [SerializeField] GameObject door2;
+    [SerializeField] GameObject door3;
+    [SerializeField] GameObject door4;
 
     bool isSpawning;
     bool hasBeenSpawned;
@@ -26,18 +30,27 @@ public class spawner : MonoBehaviour, IDataPersistence
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(startSpawning && spawnCount < maxEnemies)
+        if (startSpawning && spawnCount < maxEnemies)
         {
+            door1.SetActive(true);
+            door2.SetActive(true);
+            door3.SetActive(true);
+            door4.SetActive(true);
             StartCoroutine(spawn());
         }
-        else if(maxEnemies == 0 || spawnCount == maxEnemies)
+        else if (spawnCount == maxEnemies && GameManager.instance.enemiesalive == 0)
         {
+            door1.SetActive(false); 
+            door2.SetActive(false);
+            door3.SetActive(false); 
+            door4.SetActive(false);
+
             hasBeenSpawned = true;
             StopCoroutine(spawn());
         }
@@ -56,14 +69,8 @@ public class spawner : MonoBehaviour, IDataPersistence
             spawnCount++;
 
             yield return new WaitForSeconds(timeOffset);
-            isSpawning=false;
+            isSpawning = false;
         }
-    }
-
-    public void enemyDeath()
-    {
-        GameManager.instance.updatGameGoal(-1);
-        maxEnemies--;
     }
 
     private void OnTriggerEnter(Collider other)

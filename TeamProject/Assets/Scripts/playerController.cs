@@ -35,6 +35,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     
     float maxStam;
     public bool sprintCooldown;
+    public bool dashCooldown;
     
     private Vector3 pushBack;
    
@@ -74,8 +75,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     void Update()
     {
         Movement();
-        
-        if (Input.GetKey(KeyCode.LeftShift) && sprintCooldown == false && canSprint)
+
+        if (Input.GetButton("Dash") && dashCooldown == false && stamina > 15)
+        {
+            dash();
+        }
+        if (Input.GetButton("Sprint") && sprintCooldown == false)
         {
             sprint();
         }
@@ -206,6 +211,30 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         {
             StartCoroutine(sprintExhaust());
         }
+    }
+
+    public void dash()
+    {
+        physics(new Vector3(player2DVelocity.x, 0, player2DVelocity.y).normalized*20);
+        updateStam(15);
+        StartCoroutine(dashSuspend());
+        StartCoroutine(dashCoolDown());
+    }
+
+    public IEnumerator dashCoolDown()
+    {
+        dashCooldown = true;
+        yield return new WaitForSeconds(2);
+        dashCooldown = false;
+    }
+
+    public IEnumerator dashSuspend()
+    {
+        float currGrav = gravityValue;
+        gravityValue = 0;
+        playerVelocity.y = 0;
+        yield return new WaitForSeconds(.25f);
+        gravityValue = currGrav;
     }
 
     public void stamRestore()
