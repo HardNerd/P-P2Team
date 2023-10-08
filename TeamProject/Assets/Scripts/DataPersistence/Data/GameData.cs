@@ -7,9 +7,10 @@ using UnityEngine;
 public class GameData
 {
     public int deathCount;
-    public int gunPickedUpAmount;
 
     public Vector3 playerPos;
+
+    public SerializableDictionary<string, bool> spawnersAliveData;
 
     public SerializableDictionary<string, bool> gunsCollected;
     //the values defined in this contructor will be the default values, no touch
@@ -17,8 +18,8 @@ public class GameData
     public GameData()
     {
         this.deathCount = 0;
-        this.gunPickedUpAmount = 0;
         playerPos = Vector3.zero;
+        spawnersAliveData = new SerializableDictionary<string, bool>();
         gunsCollected = new SerializableDictionary<string, bool>();
     }
 }

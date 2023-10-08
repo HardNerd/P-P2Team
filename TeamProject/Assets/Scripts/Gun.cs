@@ -5,7 +5,7 @@ using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
 
-public class Gun : MonoBehaviour, IDataPersistence
+public class Gun : MonoBehaviour
 {
     [SerializeField] Animator animator;
 
@@ -152,15 +152,5 @@ public class Gun : MonoBehaviour, IDataPersistence
         }
 
         GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
-    }
-
-    public void LoadData(GameData data)
-    {
-        
-    }
-
-    public void SaveData(GameData data)
-    {
-        
     }
 }

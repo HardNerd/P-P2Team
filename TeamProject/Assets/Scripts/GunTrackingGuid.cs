@@ -9,7 +9,6 @@ public class GunTrackingGuid : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private string guid;
     [SerializeField] GunStats stats;
-    [SerializeField] private int amountPickedUp;
 
     void Start()
     {
@@ -24,7 +23,6 @@ public class GunTrackingGuid : MonoBehaviour, IDataPersistence
             GameManager.instance.playerGunScript.GunPickup(stats);
 
             stats.collected = true;
-            amountPickedUp++;
 
             Destroy(gameObject);
 
@@ -40,20 +38,11 @@ public class GunTrackingGuid : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-
-        amountPickedUp = data.gunPickedUpAmount;
-
         data.gunsCollected.TryGetValue(guid, out stats.collected);
         if (stats.collected == true)
         {
             gameObject.SetActive(false);
-
-            if (data.gunsCollected.ContainsValue(stats.collected == true))
-            {
-
-                GameManager.instance.playerGunScript.GunPickup(stats);
-
-            }
+            GameManager.instance.playerGunScript.GunPickup(stats);
         }
     }
 
@@ -64,7 +53,6 @@ public class GunTrackingGuid : MonoBehaviour, IDataPersistence
             data.gunsCollected.Remove(guid);
         }
         data.gunsCollected.Add(guid, stats.collected);
-        data.gunPickedUpAmount = amountPickedUp;
     }
 
 

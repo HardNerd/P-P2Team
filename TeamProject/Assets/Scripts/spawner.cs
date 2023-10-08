@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class spawner : MonoBehaviour
+public class spawner : MonoBehaviour, IDataPersistence
 {
     [SerializeField] GameObject[] enemiesToSpawn;
     [SerializeField] int maxEnemies;
@@ -10,8 +11,17 @@ public class spawner : MonoBehaviour
     [SerializeField] int timeOffset;
 
     bool isSpawning;
+    bool hasBeenSpawned;
     public bool startSpawning;
     int spawnCount;
+
+    [SerializeField] private string guid;
+
+    [ContextMenu("Generate guid for ID")]
+    private void GenerateGuid()
+    {
+        guid = System.Guid.NewGuid().ToString();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +36,9 @@ public class spawner : MonoBehaviour
         {
             StartCoroutine(spawn());
         }
-        else if(maxEnemies == 0)
+        else if(maxEnemies == 0 || spawnCount == maxEnemies)
         {
+            hasBeenSpawned = true;
             StopCoroutine(spawn());
         }
     }
@@ -40,7 +51,7 @@ public class spawner : MonoBehaviour
             GameManager.instance.updatGameGoal(1);
             int arraySpawnPos = Random.Range(0, spawnPos.Length);
             int indexer = Random.Range(0, enemiesToSpawn.Length);
-            GameObject enemySpawned = Instantiate(enemiesToSpawn[indexer], spawnPos[arraySpawnPos].position, spawnPos[arraySpawnPos].rotation);
+            Instantiate(enemiesToSpawn[indexer], spawnPos[arraySpawnPos].position, spawnPos[arraySpawnPos].rotation);
 
             spawnCount++;
 
@@ -61,5 +72,23 @@ public class spawner : MonoBehaviour
         {
             startSpawning = true;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        data.spawnersAliveData.TryGetValue(guid, out hasBeenSpawned);
+        if (hasBeenSpawned == true)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void SaveData(GameData data)
+    {
+        if (data.spawnersAliveData.ContainsKey(guid))
+        {
+            data.spawnersAliveData.Remove(guid);
+        }
+        data.spawnersAliveData.Add(guid, hasBeenSpawned);
     }
 }
