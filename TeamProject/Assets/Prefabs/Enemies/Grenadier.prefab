@@ -798,13 +798,16 @@ MonoBehaviour:
   agent: {fileID: 2735116342918408696}
   animator: {fileID: 3219233452799933702}
   headPos: {fileID: 7083104648870962809}
+  B_footR: {fileID: 6141933332066684001}
   hitBox: {fileID: 6590485272634175378}
   meleeCollider: {fileID: 0}
+  ammoDrop: {fileID: 2729044157020049073, guid: 9594677df97268541a86922bf1831e55, type: 3}
   HP: 2
   targetFaceSpeed: 25
   animChangeSpeed: 7
   stopAtDamageTime: 1
   pushBackResolve: 2
+  agentSpeed: 0
   coverPosition: {fileID: 0}
   throwPos: {fileID: 831411113837520423}
   molotov: {fileID: 3935494366030412222, guid: 8489aabfaf1dbaf46ad8321460f1b087, type: 3}

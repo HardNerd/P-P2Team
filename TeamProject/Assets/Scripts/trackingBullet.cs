@@ -6,8 +6,6 @@ public class trackingBullet : bullet
 {
     void Start()
     {
-        //Rigidbody player_rb = GameManager.instance.player.GetComponent<Rigidbody>();
-
         Vector2 player2dPos = new Vector2(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.z);
         Vector2 bullet2dPos = new Vector2(transform.position.x, transform.position.z);
         Vector2 player2dVel = GameManager.instance.playerController.player2DVelocity;

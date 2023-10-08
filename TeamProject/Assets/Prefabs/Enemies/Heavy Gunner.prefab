@@ -128,13 +128,16 @@ MonoBehaviour:
   agent: {fileID: 3614827361368551408}
   animator: {fileID: 2970284891924313599}
   headPos: {fileID: 5945298860526944712}
+  B_footR: {fileID: 1844072258100112651}
   hitBox: {fileID: 7418645682812077739}
   meleeCollider: {fileID: 0}
+  ammoDrop: {fileID: 379705209901190606, guid: c5dafeb6a361d2f43a5e0723e9748856, type: 3}
   HP: 6
   targetFaceSpeed: 4
   animChangeSpeed: 1.8
   stopAtDamageTime: 0
   pushBackResolve: 2
+  agentSpeed: 0
   shootPos: {fileID: 6099520616649123259}
   shootRate: 0.2
   shootAngle: 10

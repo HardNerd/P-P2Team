@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using Unity.PlasticSCM.Editor.WebApi;
+//using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public class Gun : MonoBehaviour
     [SerializeField] int shootDistance;
     [SerializeField] float reloadTime;
     
-    [SerializeField] AudioClip shootSound;
+    [SerializeField] AudioSource shootSound;
 
     private bool isShooting;
     public bool isReloading;
@@ -54,7 +54,7 @@ public class Gun : MonoBehaviour
                 isShooting = true;
                 GunList[selectedGun].loadedAmmo--;
                 GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
-                AudioSource.PlayClipAtPoint(shootSound, transform.position);
+                shootSound.Play();
 
                 RaycastHit hitInfo;
                 Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
@@ -108,7 +108,7 @@ public class Gun : MonoBehaviour
         shootDamage = gun.shootDamage;
         shootDistance = gun.shootDistance;
         shootRate = gun.shootRate;
-        shootSound = gun.gunSound;
+        shootSound.clip = gun.gunSound;
         reloadTime = gun.reloadTime;
 
         GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
@@ -137,7 +137,7 @@ public class Gun : MonoBehaviour
         shootDamage = GunList[selectedGun].shootDamage;
         shootDistance = GunList[selectedGun].shootDistance;
         shootRate = GunList[selectedGun].shootRate;
-        shootSound = GunList[selectedGun].gunSound;
+        shootSound.clip = GunList[selectedGun].gunSound;
         reloadTime = GunList[selectedGun].reloadTime;
         GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
 

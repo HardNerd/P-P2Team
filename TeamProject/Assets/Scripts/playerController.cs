@@ -4,13 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerController : MonoBehaviour, IDamage, IPhysics
+public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersistence
 {
     
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] ParticleSystem jumpParticles;
     [SerializeField] InventoryObjects Inventory;
+    private int deathCount = 0;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] float HP = 10;
@@ -21,6 +22,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float jumpStartTime;
     [Range(-35, -10)][SerializeField] float gravityValue = -25;
     [Range(1, 10)][SerializeField] int pushBackResolve;
+    [SerializeField] float boosetedSpeed;
+    [SerializeField] float speedCoolDown;
 
     // Player movement
     private Vector3 move;
@@ -28,6 +31,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public Vector2 player2DVelocity;
     Vector2 previousFramePos = Vector2.zero;
     float baseSpeed;
+    
     float maxStam;
     public bool sprintCooldown;
     
@@ -55,6 +59,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         GameManager.instance.healthYelFillAmt = HP / maxHP;
         GameManager.instance.stamBlueFillAmt = stamina / maxStam;
         GameManager.instance.stamYelFillAmt = stamina / maxStam;
+        //might cause issues when trying to load in player after going through save data
+        //since it is trying to spawn player before new player spawn location is set
         spawnPlayer();
     }
 
@@ -162,6 +168,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         if (HP <= 0)
         {
+            deathCount++;
             GameManager.instance.loseScreen();
         }
     }
@@ -228,6 +235,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         GameManager.instance.healthRed.fillAmount = 1;
 
         controller.enabled = false;
+        pushBack.x = 0; 
+        pushBack.y = 0; 
+        pushBack.z = 0;
         transform.position = GameManager.instance.playerSpawnPOS.transform.position;
         controller.enabled = true;
     }
@@ -263,10 +273,35 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
             Inventory.AddItem(items.item, 1);
             Destroy(other.gameObject);
         }
+        if(other.CompareTag("SpeedBoost"))
+        {
+            playerSpeed = boosetedSpeed;
+            StartCoroutine(SpeedBoostDuration());
+        }
+
+
+    }
+
+    IEnumerator SpeedBoostDuration()
+    {
+        yield return new WaitForSeconds(speedCoolDown);
+        playerSpeed = baseSpeed;
     }
 
     private void OnApplicationQuit()
     {
         Inventory.Container.Clear();
     }
+
+    void IDataPersistence.LoadData(GameData data)
+    {
+        
+        this.deathCount = data.deathCount;
+    }
+
+    void IDataPersistence.SaveData(GameData data)
+    {
+        data.deathCount = this.deathCount;
+    }
 }
+

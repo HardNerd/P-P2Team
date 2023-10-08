@@ -26,7 +26,7 @@ public class TimedSpike : MonoBehaviour
         isSpike = true;
         transform.position += new Vector3(0, 2, 0);
         GameManager.instance.playerController.TakeDamage(Damage);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         transform.position -= new Vector3(0, 2, 0);
         isSpike = false;
     }
