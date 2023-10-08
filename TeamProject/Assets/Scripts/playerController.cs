@@ -76,11 +76,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     {
         Movement();
 
-        if (Input.GetButton("Dash") && dashCooldown == false && stamina > 15)
+        if (Input.GetButton("Dash") && dashCooldown == false && stamina > 15 && canDash)
         {
             dash();
         }
-        if (Input.GetButton("Sprint") && sprintCooldown == false)
+        if (Input.GetButton("Sprint") && sprintCooldown == false && canSprint)
         {
             sprint();
         }

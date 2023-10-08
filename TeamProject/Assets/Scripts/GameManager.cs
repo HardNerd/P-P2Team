@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         playerGrenadePickup = GameObject.FindGameObjectWithTag("Grenade PickUp");
         playerGrenadeGM = playerGrenadePickup.GetComponent<PlayerGrenade>();
 
-        //displayInventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<DisplayInventory>();
+        displayInventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<DisplayInventory>();
 
     }
 
