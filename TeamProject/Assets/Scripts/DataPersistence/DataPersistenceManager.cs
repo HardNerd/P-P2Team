@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
-
+using UnityEngine.SceneManagement;
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
@@ -12,10 +12,10 @@ public class DataPersistenceManager : MonoBehaviour
     private GameData gameData;
 
     private List<IDataPersistence> dataPersistenceObjects;
-    
+
     private FileDataHandler dataHandler;
 
-    public static DataPersistenceManager Instance {  get; private set; }
+    public static DataPersistenceManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -25,14 +25,29 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         Instance = this;
-        
-    }
-
-    private void Start()
-    {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded Called");
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
+    }
+
+    public void OnSceneUnloaded(Scene scene)
+    {
+        Debug.Log("OnSceneUnloaded Called");
+        SaveGame();
     }
 
     public void NewGame()
