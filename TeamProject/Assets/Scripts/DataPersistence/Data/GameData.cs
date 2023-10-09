@@ -19,7 +19,7 @@ public class GameData
     {
         this.deathCount = 0;
         playerPos.x = 0;
-        playerPos.y = 0.5f;
+        playerPos.y = 1;
         playerPos.z = 0;
         spawnersAliveData = new SerializableDictionary<string, bool>();
         gunsCollected = new SerializableDictionary<string, bool>();
