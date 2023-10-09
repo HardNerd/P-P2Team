@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour
 {
     [SerializeField] AudioSource clickNoise;
+    [Header("Menu Buttons")]
+    [SerializeField] private Button newGameButton;
+    [SerializeField] private Button continueGameButton;
     public void unpause()
     {
         clickNoise.Play();
@@ -14,6 +17,8 @@ public class ButtonManager : MonoBehaviour
 
     public void begin()
     {
+        DisableMenuButtons();
+        DataPersistenceManager.Instance.NewGame();
         clickNoise.Play();
         StartCoroutine(beginTime());
     }
@@ -21,11 +26,16 @@ public class ButtonManager : MonoBehaviour
     public IEnumerator beginTime()
     {
         yield return new WaitForSecondsRealtime(1);
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadSceneAsync("LevelOne");
         Time.timeScale = 1;
         GameManager.instance.stateUnpause();
     }
-
+    public void OnContinueClicked()
+    {
+        DisableMenuButtons();
+        Debug.Log("Continue Game Clicked");
+        SceneManager.LoadSceneAsync("LevelOne");
+    }
     public void restart()
     {
         clickNoise.Play();
@@ -65,5 +75,11 @@ public class ButtonManager : MonoBehaviour
     {
         clickNoise.Play();
         GameManager.instance.back();
+    }
+
+    private void DisableMenuButtons()
+    {
+        newGameButton.interactable = false;
+        continueGameButton.interactable = false;
     }
 }
