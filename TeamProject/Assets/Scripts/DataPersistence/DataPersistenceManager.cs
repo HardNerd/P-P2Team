@@ -21,10 +21,13 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("Found more than one Data Persistance Manager in the scene");
+            Debug.LogError("Found more than one Data Persistance Manager in the scene. Destroying the newest one.");
+            Destroy(this.gameObject);
+            return;
         }
 
         Instance = this;
+        DontDestroyOnLoad(this.gameObject);
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
     }
     private void OnEnable()

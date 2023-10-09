@@ -8,13 +8,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Adam.unity
     guid: e133b27ab725bf2438beaa231a27b513
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: 296104491b6a5884ca0484723aff8b1f
   - enabled: 1
     path: Assets/Scenes/KevinScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Alexis.unity
     guid: d10b7fb687c572b4c850b491cc78c6ed
+  - enabled: 1
+    path: Assets/Scenes/LevelTwo.unity
+    guid: 199492cd8f863044698f589bcbc7c83b
+  - enabled: 1
+    path: Assets/Scenes/Level One.unity
+    guid: 899aad2aac6b61f4ca0a00bbdf0d7f94
+  - enabled: 1
+    path: Assets/Scenes/LevelThree.unity
+    guid: 7c7963ac3f548614c902faac7f2eb55e
   m_configObjects: {}

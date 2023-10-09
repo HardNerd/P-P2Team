@@ -9,16 +9,10 @@ public class ButtonManager : MonoBehaviour
     [Header("Menu Buttons")]
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
-    public void unpause()
-    {
-        clickNoise.Play();
-        GameManager.instance.stateUnpause();
-    }
-
+    // Start is called before the first frame update
     public void begin()
     {
-        DisableMenuButtons();
-        DataPersistenceManager.Instance.NewGame();
+       // DataPersistenceManager.Instance.NewGame();
         clickNoise.Play();
         StartCoroutine(beginTime());
     }
@@ -26,16 +20,22 @@ public class ButtonManager : MonoBehaviour
     public IEnumerator beginTime()
     {
         yield return new WaitForSecondsRealtime(1);
-        SceneManager.LoadSceneAsync("LevelOne");
+        SceneManager.LoadSceneAsync("Level One");
         Time.timeScale = 1;
         GameManager.instance.stateUnpause();
     }
     public void OnContinueClicked()
     {
-        DisableMenuButtons();
         Debug.Log("Continue Game Clicked");
-        SceneManager.LoadSceneAsync("LevelOne");
+        SceneManager.LoadSceneAsync("Level One");
     }
+    
+    public void unpause()
+    {
+        clickNoise.Play();
+        GameManager.instance.stateUnpause();
+    }
+
     public void restart()
     {
         clickNoise.Play();
@@ -77,9 +77,5 @@ public class ButtonManager : MonoBehaviour
         GameManager.instance.back();
     }
 
-    private void DisableMenuButtons()
-    {
-        newGameButton.interactable = false;
-        continueGameButton.interactable = false;
-    }
+
 }

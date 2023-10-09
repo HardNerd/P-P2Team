@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EndPoint : MonoBehaviour
+public class EndPoint1 : MonoBehaviour
 {
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
@@ -13,7 +13,7 @@ public class EndPoint : MonoBehaviour
         {
             GameManager.instance.isExiting(true);
             GameManager.instance.updatGameGoal(0);
-            SceneManager.LoadScene("LevelTwo");
+            SceneManager.LoadScene("LevelThree");
         }
 
     }
