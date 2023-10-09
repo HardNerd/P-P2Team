@@ -65,6 +65,7 @@ public class bossAI : EnemyAI
     {
         //turn towards player
         playerDirection = GameManager.instance.player.transform.position - transform.position;
+        FaceTarget(playerDirection);
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
         transform.rotation = Quaternion.AngleAxis(angleToPlayer, Vector3.forward);
 
