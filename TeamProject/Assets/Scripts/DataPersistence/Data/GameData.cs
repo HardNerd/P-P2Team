@@ -15,6 +15,8 @@ public class GameData
     public SerializableDictionary<string, bool> spawnersAliveData;
 
     public SerializableDictionary<string, bool> gunsCollected;
+
+    public SerializableDictionary<string, bool> checkPointColorChange;
     //the values defined in this contructor will be the default values, no touch
     // the game starts with when there's no data to load
     public GameData()
@@ -30,5 +32,7 @@ public class GameData
         spawnersAliveData = new SerializableDictionary<string, bool>();
 
         gunsCollected = new SerializableDictionary<string, bool>();
+
+        checkPointColorChange = new SerializableDictionary<string, bool>();
     }
 }
