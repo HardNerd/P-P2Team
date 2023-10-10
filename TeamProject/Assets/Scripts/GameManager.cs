@@ -239,4 +239,15 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         data.playerPos = instance.playerSpawnPOS.transform.position;
     }
+
+    public void AudioChange(AudioSource audio)
+    {
+        float rand = UnityEngine.Random.Range(0, 100);
+        if (rand > 66)
+            audio.pitch *= 1.3f;
+        else if (rand > 33)
+            audio.pitch *= .7f;
+        else
+            return;
+    }
 }
