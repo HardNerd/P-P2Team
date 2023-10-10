@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject checkpointMenu;
     [SerializeField] GameObject optionsMenu;
+    [SerializeField] GameObject creditsMenu;
 
     [Header("----- Play State -----")]
     [SerializeField] GameObject endPoint;
@@ -142,6 +143,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         lastMenu = activeMenu;
         setMenu(optionsMenu);
+        lastMenu.SetActive(false);
+        activeMenu.SetActive(true);
+    }
+
+    public void credits()
+    {
+        lastMenu = activeMenu;
+        setMenu(creditsMenu);
         lastMenu.SetActive(false);
         activeMenu.SetActive(true);
     }

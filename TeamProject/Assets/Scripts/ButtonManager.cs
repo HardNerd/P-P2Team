@@ -82,5 +82,9 @@ public class ButtonManager : MonoBehaviour
         GameManager.instance.back();
     }
 
-
+    public void credits()
+    {
+        clickNoise.Play();
+        GameManager.instance.credits();
+    }
 }
