@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,12 +10,22 @@ public class ButtonManager : MonoBehaviour
     [Header("Menu Buttons")]
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
-    // Start is called before the first frame update
+
+
+
     public void begin()
     {
-       // DataPersistenceManager.Instance.NewGame();
+        //DataPersistenceManager.Instance.NewGame();
         clickNoise.Play();
         StartCoroutine(beginTime());
+    }
+
+    public IEnumerator LoadingScene()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        SceneManager.LoadSceneAsync("Loading");
+        Time.timeScale = 1;
+        GameManager.instance.stateUnpause();
     }
 
     public IEnumerator beginTime()
@@ -23,13 +34,35 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadSceneAsync("Level One");
         Time.timeScale = 1;
         GameManager.instance.stateUnpause();
+        
     }
+    //public IEnumerator ContinueTime2()
+    //{
+    //    yield return new WaitForSecondsRealtime(1);
+    //    SceneManager.LoadSceneAsync("LevelTwo");
+    //    Time.timeScale = 1;
+    //    GameManager.instance.stateUnpause();
+    //}
+    //public IEnumerator ContinueTime3()
+    //{
+    //    yield return new WaitForSecondsRealtime(1);
+    //    SceneManager.LoadSceneAsync("LevelThree");
+    //    Time.timeScale = 1;
+    //    GameManager.instance.stateUnpause();
+    //}
+
     public void OnContinueClicked()
     {
+        //Create temp level that enables load
+        //so that gamemanager can flip levelX to yes and
+        //lets you load that level
+        //or find a way to have load level before then during main menu
+        // Start is called before the first frame update
         Debug.Log("Continue Game Clicked");
-        SceneManager.LoadSceneAsync("Level One");
+
+        StartCoroutine(beginTime());
+
     }
-    
     public void unpause()
     {
         clickNoise.Play();
