@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -23,6 +24,7 @@ public class Gun : MonoBehaviour
     public bool isReloading;
     public int selectedGun;
     public GunStats gunStatsGun;
+    private float origPitch;
 
 
     void Start()
@@ -51,7 +53,9 @@ public class Gun : MonoBehaviour
             isShooting = true;
             GunList[selectedGun].loadedAmmo--;
             GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
+            GameManager.instance.AudioChange(shootSound);
             shootSound.Play();
+            StartCoroutine(clipEnd(shootSound.clip.length, origPitch));
 
             RaycastHit hitInfo;
             Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
@@ -59,7 +63,11 @@ public class Gun : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo, shootDistance))
             {
                 IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
+                AudioSource hitsound = GunList[selectedGun].hitEffect.GetComponent<AudioSource>();
+                float currPitch = hitsound.pitch;
+                GameManager.instance.AudioChange(hitsound);
                 Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
+                hitsound.pitch = currPitch;
                 damageable?.TakeDamage(shootDamage);
             }
 
@@ -97,6 +105,12 @@ public class Gun : MonoBehaviour
         }
     }
 
+    IEnumerator clipEnd(float length, float origPitch)
+    {
+        yield return new WaitForSeconds(length);
+        shootSound.pitch= origPitch;
+    }
+
     public void GunPickup(GunStats gun)
     {
         GunList.Add(gun);
@@ -104,6 +118,7 @@ public class Gun : MonoBehaviour
         shootDistance = gun.shootDistance;
         shootRate = gun.shootRate;
         shootSound.clip = gun.gunSound;
+        origPitch = shootSound.pitch;
         reloadTime = gun.reloadTime;
 
 
@@ -134,6 +149,7 @@ public class Gun : MonoBehaviour
         shootDistance = GunList[selectedGun].shootDistance;
         shootRate = GunList[selectedGun].shootRate;
         shootSound.clip = GunList[selectedGun].gunSound;
+        origPitch = shootSound.pitch;
         reloadTime = GunList[selectedGun].reloadTime;
         GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
 
@@ -145,8 +161,8 @@ public class Gun : MonoBehaviour
     {
         if (gunStats.ammoCarried < gunStats.maxAmmoCarried)
         {
-            gunStats.ammoCarried += Random.Range(1, gunStats.magSize);
-            if (gunStats.ammoCarried + Random.Range(1, gunStats.magSize) > gunStats.maxAmmoCarried)
+            gunStats.ammoCarried += UnityEngine.Random.Range(1, gunStats.magSize);
+            if (gunStats.ammoCarried + UnityEngine.Random.Range(1, gunStats.magSize) > gunStats.maxAmmoCarried)
             {
                 gunStats.ammoCarried = gunStats.maxAmmoCarried;
             }

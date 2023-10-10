@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Linq;
 using System;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
+
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
@@ -42,6 +44,7 @@ public class DataPersistenceManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("OnSceneLoaded Called");
+        //gameData.playerPos = GameManager.instance.playerSpawnPOS.transform.position;
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }

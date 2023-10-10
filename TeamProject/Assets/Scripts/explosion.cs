@@ -13,7 +13,11 @@ public class explosion : MonoBehaviour
 
     private void Start()
     {
+        AudioSource source = explosionparticle.GetComponent<AudioSource>();
+        float currpitch = source.pitch;
+        GameManager.instance.AudioChange(source);
         Instantiate(explosionparticle, transform.position, explosionparticle.transform.rotation);
+        source.pitch = currpitch;
         Destroy(gameObject, explosionTime);
     }
 
