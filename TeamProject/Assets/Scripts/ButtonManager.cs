@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,10 +10,12 @@ public class ButtonManager : MonoBehaviour
     [Header("Menu Buttons")]
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
-    // Start is called before the first frame update
+
+
+
     public void begin()
     {
-       // DataPersistenceManager.Instance.NewGame();
+        //DataPersistenceManager.Instance.NewGame();
         clickNoise.Play();
         StartCoroutine(beginTime());
     }
@@ -24,12 +27,14 @@ public class ButtonManager : MonoBehaviour
         Time.timeScale = 1;
         GameManager.instance.stateUnpause();
     }
+
     public void OnContinueClicked()
     {
         Debug.Log("Continue Game Clicked");
-        SceneManager.LoadSceneAsync("Level One");
+
+        StartCoroutine(beginTime());
+
     }
-    
     public void unpause()
     {
         clickNoise.Play();
