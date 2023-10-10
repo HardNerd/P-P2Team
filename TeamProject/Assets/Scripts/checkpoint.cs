@@ -10,6 +10,7 @@ public class checkpoint : MonoBehaviour
         {
             GameManager.instance.playerSpawnPOS.transform.position = transform.position;
             StartCoroutine(GameManager.instance.checkpointPopup());
+            DataPersistenceManager.Instance.SaveGame();
         }
     }
 }
