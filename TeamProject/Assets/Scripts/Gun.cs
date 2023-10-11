@@ -19,6 +19,7 @@ public class Gun : MonoBehaviour
     [SerializeField] float reloadTime;
 
     [SerializeField] AudioSource shootSound;
+    [SerializeField] AudioSource reloadSound;
 
     private bool isShooting;
     public bool isReloading;
@@ -85,6 +86,7 @@ public class Gun : MonoBehaviour
             GameManager.instance.ammoUpdate(0, 0, true);
             animator.SetBool("Reloading", true);
 
+            GameManager.instance.PlaySound(reloadSound);
             yield return new WaitForSeconds(currentGun.reloadTime);
             if ((currentGun.magSize - currentGun.loadedAmmo) <= currentGun.ammoCarried)
             {
@@ -112,6 +114,7 @@ public class Gun : MonoBehaviour
         shootDistance = gun.shootDistance;
         shootRate = gun.shootRate;
         shootSound.clip = gun.gunSound;
+        reloadSound.clip = gun.reloadSound;
         origPitch = shootSound.pitch;
         reloadTime = gun.reloadTime;
 
@@ -143,6 +146,7 @@ public class Gun : MonoBehaviour
         shootDistance = GunList[selectedGun].shootDistance;
         shootRate = GunList[selectedGun].shootRate;
         shootSound.clip = GunList[selectedGun].gunSound;
+        reloadSound.clip = GunList[selectedGun].reloadSound;
         origPitch = shootSound.pitch;
         reloadTime = GunList[selectedGun].reloadTime;
         GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
