@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
 
 {
     [SerializeField] Animator animator;
+    [SerializeField] ParticleSystem particles;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] public List<GunStats> GunList = new List<GunStats>();
@@ -55,7 +56,7 @@ public class Gun : MonoBehaviour
             GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
             GameManager.instance.AudioChange(shootSound);
             shootSound.Play();
-            StartCoroutine(clipEnd(shootSound.clip.length, origPitch));
+            StartCoroutine(GameManager.instance.clipEnd(shootSound, shootSound.clip.length, origPitch));
 
             RaycastHit hitInfo;
             Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
@@ -103,12 +104,6 @@ public class Gun : MonoBehaviour
             GameManager.instance.ammoUpdate(currentGun.loadedAmmo, currentGun.ammoCarried);
 
         }
-    }
-
-    IEnumerator clipEnd(float length, float origPitch)
-    {
-        yield return new WaitForSeconds(length);
-        shootSound.pitch= origPitch;
     }
 
     public void GunPickup(GunStats gun)
