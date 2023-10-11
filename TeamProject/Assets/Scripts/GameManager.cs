@@ -265,4 +265,10 @@ public class GameManager : MonoBehaviour, IDataPersistence
         else
             return;
     }
+
+    public IEnumerator clipEnd(AudioSource source, float length, float origPitch = 1)
+    {
+        yield return new WaitForSeconds(length);
+        source.pitch = origPitch;
+    }
 }
