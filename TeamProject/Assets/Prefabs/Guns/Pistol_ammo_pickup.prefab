@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5949302081903688260}
-  - component: {fileID: 3139861196725433175}
   - component: {fileID: 7174861677501737759}
   - component: {fileID: 2995476055912359962}
   - component: {fileID: 5154150559357727225}
@@ -35,20 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3139861196725433175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212784033727627204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 725adf8dab6881a489c4e701b5b03865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunStats: {fileID: 11400000, guid: af38c7da70669c141884f9ab66d7ebf6, type: 2}
-  ammoPickupSound: {fileID: 8300000, guid: c9ed8ab46ba7a0f4caebd62cd8beef36, type: 3}
 --- !u!33 &7174861677501737759
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -1459,7 +1459,7 @@ MonoBehaviour:
   B_footR: {fileID: 7221565731360255604}
   hitBox: {fileID: 1077954241085088277}
   meleeCollider: {fileID: 0}
-  ammoDrop: {fileID: 2729044157020049073, guid: 9594677df97268541a86922bf1831e55, type: 3}
+  ammoDrop: {fileID: 4866127238362874183, guid: 3dc140ef4c215e04cb769d75a8862136, type: 3}
   HP: 7.5
   targetFaceSpeed: 3
   animChangeSpeed: 7
