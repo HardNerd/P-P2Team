@@ -21,6 +21,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     //[SerializeField] float viewAngle;
     [SerializeField] protected float animChangeSpeed;
     [SerializeField] float stopAtDamageTime;
+    [SerializeField] bool isPushable;
+    [SerializeField] bool reactsToHit;
     [SerializeField] int pushBackResolve;
     [SerializeField] protected float agentSpeed;
 
@@ -48,12 +50,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     virtual public void TakeDamage(float amount, string source)
     {
         HP -= amount;
-
-        if (pushBack.magnitude > 0.01f)
-        {
-            Vector3 direction = (transform.position - pushBack).normalized;
-            enemyBody.AddForce(direction * pushBackResolve);
-        }
         
         if (meleeCollider != null)
             meleeColliderOff();
@@ -73,10 +69,16 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         else
         {
             animator.SetTrigger("Damage");
-            agent.SetDestination(GameManager.instance.player.transform.position);
-
             StartCoroutine(FlashDamage(Color.red));
-            StartCoroutine(StopMoving());
+            if (reactsToHit)
+                agent.SetDestination(GameManager.instance.player.transform.position);
+
+            if (pushBack.magnitude > 0.01f && isPushable)
+            {
+                StartCoroutine(StopMoving());
+                Vector3 direction = (transform.position - pushBack).normalized;
+                enemyBody.AddForce(direction * pushBackResolve);
+            }
 
         }
 

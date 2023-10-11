@@ -23,9 +23,9 @@ public class GameData
     {
         this.deathCount = 0;
 
-        playerPos.x = 0;
-        playerPos.y = 1;
-        playerPos.z = 0;
+        playerPos.x = -4.25f;
+        playerPos.y = 0.5f;
+        playerPos.z = -6.375f;
 
         levelsCleared = new SerializableDictionary<string, bool>();
 

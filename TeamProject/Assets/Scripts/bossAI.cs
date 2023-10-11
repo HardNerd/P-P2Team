@@ -2,29 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static grenadierAI;
 
+[RequireComponent(typeof(LineRenderer))]
 public class bossAI : EnemyAI
 {
+    public enum SniperState
+    {
+        SelectCover,
+        GoToCover,
+        Aim,
+        Attack,
+    }
+
     [SerializeField] GameObject[] roomDoors;
     [SerializeField] Transform[] coverPositions;
     [SerializeField] Transform shootPos;
-    [SerializeField] LineRenderer laserSight;
-    [SerializeField] float shootRate;
-    [SerializeField] float aimDuration;
-    [SerializeField] int timeInCover;
+    [SerializeField] int attackCountdown;
 
     [SerializeField] GameObject bullet;
+
+    [SerializeField] SniperState _currentState;
 
     [Header("----- BOSS Power Up -----")]
     [SerializeField] Transform dropLocation;
 
-    public static bool inCover = false;
-    private bool isAiming = false;
-    private float aimTimer = 0f;
-    private float shootTimer = 0f;
+    LineRenderer laserSight;
+    public static bool takingCover;
+    private bool isAiming;
+    int selectedCoverPosition;
 
     void Start()
     {
+        laserSight = GetComponent<LineRenderer>();
         B_footR = dropLocation;
         agent.SetDestination(coverPositions[0].transform.position);
         laserSight.enabled = false;
@@ -33,78 +43,82 @@ public class bossAI : EnemyAI
     {
         if (!isDead)
         {
-            StartCoroutine(TakeCover());
-            if (inCover)
+            switch (_currentState)
             {
-                if(!isAiming)
-                {
-                    AimAtPlayer();
-                }
-                else
-                {
-                    aimTimer += Time.deltaTime;
-                    if(aimTimer>=aimDuration)
-                    {
-                        Shoot();
-                    }
-                }
+                case SniperState.SelectCover:
+                    selectedCoverPosition = Random.Range(0, coverPositions.Length);
+                    SwitchToState(SniperState.GoToCover);
+                    break;
+                case SniperState.GoToCover:
+                    TakeCover();
+                    break;
+                case SniperState.Aim:
+                    StartCoroutine(Aim());
+                    break;
+                case SniperState.Attack:
+                    Shoot();
+                    break;
+                default:
+                    break;
             }
         }
     }
 
-    IEnumerator TakeCover()
+    protected void SwitchToState(SniperState nextState)
     {
-        int selectedCoverPosition = Random.Range(0, (coverPositions.Length));
-        if(!inCover && agent.remainingDistance == 0)
+        _currentState = nextState;
+    }
+
+    void TakeCover()
+    {
+        if (!takingCover)
         {
-            inCover = true;
-            yield return new WaitForSeconds(timeInCover);
+            takingCover = true;
             agent.SetDestination(coverPositions[selectedCoverPosition].transform.position);
-            inCover = false;
-            
+            return;
+        }
+
+        if (agent.remainingDistance <= 0)
+        {
+            takingCover = false;
+            SwitchToState(SniperState.Aim);
         }
     }
 
-    private void AimAtPlayer()
+    IEnumerator Aim()
     {
         //turn towards player
         playerDirection = GameManager.instance.player.transform.position - transform.position;
         FaceTarget(playerDirection);
-        angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
-        transform.rotation = Quaternion.AngleAxis(angleToPlayer, Vector3.forward);
 
-        //Turn on laser
+        ActivateLaser();
+
+        if (!isAiming)
+        {
+            isAiming = true;
+            yield return new WaitForSeconds(attackCountdown);
+            SwitchToState(SniperState.Attack);
+            isAiming = false;
+        }
+    }
+
+    void ActivateLaser()
+    {
         laserSight.enabled = true;
-        laserSight.SetPosition(0, shootPos.transform.position-transform.position);
+        laserSight.SetPosition(0, shootPos.transform.position);
+        RaycastHit hit;
+        Debug.DrawRay(headPos.position, playerDirection);
 
-        //Make laser endpoint
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDirection, Mathf.Infinity);
-        if(hit.collider != null)
-        {
+        if (Physics.Raycast(shootPos.transform.position, playerDirection + new Vector3(0, -3f, 0), out hit))
             laserSight.SetPosition(1, hit.point);
-        }
-        else
-        {
-            laserSight.SetPosition(1, GameManager.instance.player.transform.position - transform.position);
-        }
-        isAiming = true;
     }
 
     private void Shoot()
     {
-        shootTimer += Time.deltaTime;
-        if(shootTimer >= shootRate)
-        {
-            GameObject newBullet = Instantiate(bullet, shootPos.transform.position, transform.rotation);
-            //Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
-            //rb.velocity = (GameManager.instance.player.transform.position - transform.position).normalized * 10f;
+        Instantiate(bullet, shootPos.transform.position, transform.rotation);
+        laserSight.enabled = false;
 
-            isAiming = false;
-            aimTimer = 0f;
-            shootTimer = 0f;
-
-            laserSight.enabled = false;
-        }
+        SwitchToState(SniperState.SelectCover);
     }
 
     public override void TakeDamage(float amount, string source)
