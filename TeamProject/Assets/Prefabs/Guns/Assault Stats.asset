@@ -25,5 +25,6 @@ MonoBehaviour:
   ammoType: {fileID: 379705209901190606, guid: c5dafeb6a361d2f43a5e0723e9748856, type: 3}
   hitEffect: {fileID: 1557539098751323222, guid: 68e9927810500934f859701897e5d7a7, type: 3}
   gunSound: {fileID: 8300000, guid: 0f1d5f1dd7168204b97798111311fa26, type: 3}
+  reloadSound: {fileID: 8300000, guid: 2782e552947856b46981dd95101679f5, type: 3}
   toughnessDmg: 0
   collected: 1

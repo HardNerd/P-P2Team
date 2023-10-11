@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
 
 {
     [SerializeField] Animator animator;
+    [SerializeField] ParticleSystem particles;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] public List<GunStats> GunList = new List<GunStats>();
