@@ -2118,7 +2118,7 @@ MonoBehaviour:
   B_footR: {fileID: 7967150847223085918}
   hitBox: {fileID: 5133462007913893116}
   meleeCollider: {fileID: 0}
-  ammoDrop: {fileID: 0}
+  ammoDrop: {fileID: 8118659360469202670, guid: 523ae1eca7bb4354fb8f761f86014e49, type: 3}
   HP: 8
   targetFaceSpeed: 5
   animChangeSpeed: 7
@@ -2160,6 +2160,7 @@ MonoBehaviour:
   - {fileID: 0}
   landingZone: {fileID: 8261059535851152103, guid: 8c5efe9c981b0544389037ae39a9fc6a, type: 3}
   _currentState: 0
+  dropLocation: {fileID: 0}
 --- !u!95 &7183797529650366699
 Animator:
   serializedVersion: 5

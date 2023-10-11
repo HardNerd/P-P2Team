@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject checkpointMenu;
     [SerializeField] GameObject optionsMenu;
+    [SerializeField] GameObject creditsMenu;
 
     [Header("----- Play State -----")]
     [SerializeField] GameObject endPoint;
@@ -145,6 +146,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
         lastMenu.SetActive(false);
         activeMenu.SetActive(true);
     }
+
+    public void credits()
+    {
+        lastMenu = activeMenu;
+        setMenu(creditsMenu);
+        lastMenu.SetActive(false);
+        activeMenu.SetActive(true);
+    }
     public void back()
     {
         activeMenu.SetActive(false);
@@ -239,5 +248,16 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void SaveData(GameData data)
     {
         data.playerPos = instance.playerSpawnPOS.transform.position;
+    }
+
+    public void AudioChange(AudioSource audio)
+    {
+        float rand = UnityEngine.Random.Range(0, 100);
+        if (rand > 66)
+            audio.pitch *= 1.3f;
+        else if (rand > 33)
+            audio.pitch *= .7f;
+        else
+            return;
     }
 }
