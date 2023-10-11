@@ -107,9 +107,9 @@ public class bossAI : EnemyAI
         }
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(float amount, string source)
     {
-        base.TakeDamage(amount);
+        base.TakeDamage(amount, source);
 
         if (HP <= 0)
         {
