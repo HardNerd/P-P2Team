@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class superGrenadier : grenadierAI
 {
+    [SerializeField] GameObject[] roomDoors;
     [SerializeField] GameObject[] attackPositions;
 
     [Header("----- BOSS Power Up -----")]
@@ -100,5 +101,16 @@ public class superGrenadier : grenadierAI
 
         if (!isThrowing)
             StartCoroutine(ThrowMolotov());
+    }
+
+    public override void TakeDamage(float amount)
+    {
+        base.TakeDamage(amount);
+
+        if (HP <= 0)
+        {
+            for (int i = 0; i < roomDoors.Length; i++)
+                roomDoors[i].SetActive(false);
+        }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class bossAI : EnemyAI
 {
+    [SerializeField] GameObject[] roomDoors;
     [SerializeField] Transform[] coverPositions;
     [SerializeField] Transform shootPos;
     [SerializeField] LineRenderer laserSight;
@@ -30,19 +31,22 @@ public class bossAI : EnemyAI
     }
     void Update()
     {
-        StartCoroutine(TakeCover());
-        if (inCover)
+        if (!isDead)
         {
-            if(!isAiming)
+            StartCoroutine(TakeCover());
+            if (inCover)
             {
-                AimAtPlayer();
-            }
-            else
-            {
-                aimTimer += Time.deltaTime;
-                if(aimTimer>=aimDuration)
+                if(!isAiming)
                 {
-                    Shoot();
+                    AimAtPlayer();
+                }
+                else
+                {
+                    aimTimer += Time.deltaTime;
+                    if(aimTimer>=aimDuration)
+                    {
+                        Shoot();
+                    }
                 }
             }
         }
@@ -100,6 +104,17 @@ public class bossAI : EnemyAI
             shootTimer = 0f;
 
             laserSight.enabled = false;
+        }
+    }
+
+    public override void TakeDamage(float amount)
+    {
+        base.TakeDamage(amount);
+
+        if (HP <= 0)
+        {
+            for (int i = 0; i < roomDoors.Length; i++)
+                roomDoors[i].SetActive(false);
         }
     }
 }

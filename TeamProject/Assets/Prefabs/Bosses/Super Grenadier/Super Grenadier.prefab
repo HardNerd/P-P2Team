@@ -456,6 +456,11 @@ MonoBehaviour:
   maxThrows: 3
   timeBetweenThrows: 1.5
   _currentState: 0
+  roomDoors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   attackPositions:
   - {fileID: 0}
   - {fileID: 0}

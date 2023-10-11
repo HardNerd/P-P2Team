@@ -5,10 +5,14 @@ using UnityEngine;
 public class bossTrigger : MonoBehaviour
 {
     [SerializeField] GameObject boss;
+    [SerializeField] GameObject[] doors;
 
     private void Start()
     {
         boss.SetActive(false);
+
+        for (int i = 0; i < doors.Length; i++)
+            doors[i].SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +21,9 @@ public class bossTrigger : MonoBehaviour
         {
             boss.SetActive(true);
             GameManager.instance.playerSpawnPOS.transform.position = transform.position;
+
+            for (int i = 0; i < doors.Length; i++)
+                doors[i].SetActive(true);
         }
     }
 }
