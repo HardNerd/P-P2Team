@@ -7,6 +7,7 @@ public class Gysers : MonoBehaviour
 {
     public float Damage = 2f;
     private bool IsGeyser = false;
+    [SerializeField] private ParticleSystem particls;
 
     private void Update()
     {
@@ -17,7 +18,8 @@ public class Gysers : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            transform.position += new Vector3(0, 3, 0);
+          
+            //transform.position += new Vector3(0, 3, 0);
             if (!IsGeyser)
             {
                 StartCoroutine(Geyser());
@@ -25,20 +27,22 @@ public class Gysers : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            transform.position -= new Vector3(0, 3, 0);
-        }
-    }
-
+   
 
     IEnumerator Geyser()
     {
         IsGeyser = true;
         GameManager.instance.playerController.TakeDamage(Damage);
+        Instantiate(particls);
         yield return new WaitForSeconds(5f);
         IsGeyser = false;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!IsGeyser)
+        {
+            StartCoroutine(Geyser());
+        }
     }
 }

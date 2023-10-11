@@ -19,15 +19,23 @@ public class TimedSpike : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (!isSpike)
+        {
+            StartCoroutine(Spike());
+        }
+    }
 
     IEnumerator Spike()
     {
         isSpike = true;
         transform.position += new Vector3(0, 2, 0);
         GameManager.instance.playerController.TakeDamage(Damage);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         transform.position -= new Vector3(0, 2, 0);
+        yield return new WaitForSeconds(1f);
         isSpike = false;
     }
 
