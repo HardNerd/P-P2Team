@@ -12,6 +12,10 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     [SerializeField] CharacterController controller;
     [SerializeField] ParticleSystem jumpParticles;
     [SerializeField] InventoryObjects Inventory;
+    [SerializeField] AudioSource damageSound;
+    [SerializeField] AudioSource footstepSound;
+    [SerializeField] AudioSource jumpSound;
+    [SerializeField] AudioSource healthSound;
     private int deathCount = 0;
 
     [Header("----- Player Stats -----")]
@@ -143,7 +147,17 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             if(jumpedTimes >= 1)
             {
                 Vector3 jumpoffset = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+                AudioSource source = jumpParticles.GetComponent<AudioSource>();
+                float currpitch = source.pitch;
+                GameManager.instance.AudioChange(source);
                 Instantiate(jumpParticles, jumpoffset, jumpParticles.transform.rotation);
+                source.pitch = currpitch;
+            }
+            else
+            {
+                GameManager.instance.AudioChange(jumpSound);
+                jumpSound.Play();
+                StartCoroutine(GameManager.instance.clipEnd(jumpSound, jumpSound.clip.length));
             }
             updateStam(20);
             jumpedTimes++;
