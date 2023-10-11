@@ -90,7 +90,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            TakeDamage(1);
+            TakeDamage(1, "self harm");
         }
         GameManager.instance.moveHPBar();
         GameManager.instance.moveStamBar();
@@ -174,14 +174,14 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         previousFramePos = new Vector2(transform.position.x, transform.position.z);
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, string source = null)
     {
         updateHealth(damageAmount);
 
         if (HP <= 0)
         {
             deathCount++;
-            GameManager.instance.loseScreen();
+            GameManager.instance.loseScreen(source);
         }
     }
 

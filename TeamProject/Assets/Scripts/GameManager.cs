@@ -208,12 +208,17 @@ public class GameManager : MonoBehaviour, IDataPersistence
             buffer += "\nPickups left: " + pickupsLeft;
         return buffer;
     }
-    public void loseScreen()
+    public void loseScreen(string death)
     {
         if(activeMenu != loseMenu)
         {
             statePause();
             setMenu(loseMenu);
+            if(death != null)
+            {
+                TextMeshProUGUI text = loseMenu.GetComponentInChildren<TextMeshProUGUI>();
+                text.text = "You were " + death + "!";
+            }
             activeMenu.SetActive(isPause);
         }
 

@@ -7,7 +7,7 @@ public class breakableCover : MonoBehaviour, IDamage
     [SerializeField] int breakPoints;
     [SerializeField] Renderer model;
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, string source = null)
     {
         breakPoints--;
         StartCoroutine(FlashDamage());

@@ -14,7 +14,7 @@ public class superRocket : MonoBehaviour
 
         IDamage damageable = other.GetComponent<IDamage>();
         if (damageable != null)
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(damage, "Nuked");
 
         Explode();
     }

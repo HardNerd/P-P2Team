@@ -195,7 +195,7 @@ public class superRocketMan : EnemyAI
         _currentState = nextState;
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(float amount, string source = null)
     {
         HP -= amount;
 

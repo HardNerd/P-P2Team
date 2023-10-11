@@ -71,7 +71,7 @@ public class EnemyMarksmen : MonoBehaviour, IDamage , IPhysics
         isShooting = false;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, string source = null)
     {
         HP -= amount;
 

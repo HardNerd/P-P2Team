@@ -68,7 +68,7 @@ public class Gun : MonoBehaviour
                 GameManager.instance.AudioChange(hitsound);
                 Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
                 hitsound.pitch = currPitch;
-                damageable?.TakeDamage(shootDamage);
+                damageable?.TakeDamage(shootDamage, null);
             }
 
             yield return new WaitForSeconds(shootRate);

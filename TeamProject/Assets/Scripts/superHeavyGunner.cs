@@ -85,10 +85,10 @@ public class superHeavyGunner : defaultEnemy
         _currentState = nextState;
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(float amount, string source = null)
     {
         if (isStaggered)
-            base.TakeDamage(amount);
+            base.TakeDamage(amount, null);
         else
         {
             shieldHP -= amount;

@@ -8,6 +8,6 @@ public class meleeCollider : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            other.GetComponent<IDamage>().TakeDamage(enemy.AttackDamage);
+            other.GetComponent<IDamage>().TakeDamage(enemy.AttackDamage, "Bitten");
     }
 }

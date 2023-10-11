@@ -45,7 +45,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         agent.SetDestination(GameManager.instance.player.transform.position);
     }
 
-    virtual public void TakeDamage(float amount)
+    virtual public void TakeDamage(float amount, string source)
     {
         HP -= amount;
 

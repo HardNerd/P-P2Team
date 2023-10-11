@@ -27,7 +27,7 @@ public class levelTimer : MonoBehaviour
         timeTaken -= Time.deltaTime;
         timeText.text = formatTime();
         if (timeTaken <= 0)
-            GameManager.instance.loseScreen();
+            GameManager.instance.loseScreen("No time!");
     }
 
     public string formatTime()

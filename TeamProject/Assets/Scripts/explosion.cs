@@ -35,7 +35,7 @@ public class explosion : MonoBehaviour
 
         if (other.TryGetComponent<IDamage>(out var damageable))
         {
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(damage, "Blown up");
         }
     }
 
@@ -51,7 +51,7 @@ public class explosion : MonoBehaviour
         {
             isDamaging = true;
             yield return new WaitForSeconds(1);
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(damage, "Burned");
             isDamaging = false;
         }
     }

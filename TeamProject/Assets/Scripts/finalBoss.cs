@@ -335,7 +335,7 @@ public class finalBoss : superHeavyGunner
         }
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(float amount, string source = null)
     {
         if (isInvinsible)
             return;

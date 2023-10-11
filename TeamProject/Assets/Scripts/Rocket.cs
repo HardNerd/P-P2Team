@@ -11,7 +11,7 @@ public class Rocket : grenade
         IDamage damageable = other.GetComponent<IDamage>();
         if (damageable != null)
         {
-            damageable.TakeDamage(damage);
+            damageable.TakeDamage(damage, "Rocketed Away");
         }
         StartCoroutine(instantExplode());
     }
