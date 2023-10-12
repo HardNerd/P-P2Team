@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected int targetFaceSpeed;
     //[SerializeField] float viewAngle;
     [SerializeField] protected float animChangeSpeed;
-    [SerializeField] float stopAtDamageTime;
+    [SerializeField] protected float stopAtDamageTime;
     [SerializeField] bool isPushable;
     [SerializeField] bool reactsToHit;
     [SerializeField] int pushBackResolve;
@@ -71,11 +71,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             animator.SetTrigger("Damage");
             StartCoroutine(FlashDamage(Color.red));
             if (reactsToHit)
-                agent.SetDestination(GameManager.instance.player.transform.position);
+                StartCoroutine(StopMoving());
 
             if (pushBack.magnitude > 0.01f && isPushable)
             {
-                StartCoroutine(StopMoving());
                 Vector3 direction = (transform.position - pushBack).normalized;
                 enemyBody.AddForce(direction * pushBackResolve);
             }
@@ -94,7 +93,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             models[i].material.color = origColor;
     }
 
-    IEnumerator StopMoving()
+    virtual protected IEnumerator StopMoving()
     {
         agent.speed = 0;
         yield return new WaitForSeconds(stopAtDamageTime);
