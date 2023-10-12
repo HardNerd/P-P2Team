@@ -8,6 +8,10 @@ using Unity.VisualScripting;
 
 public class DataPersistenceManager : MonoBehaviour
 {
+    [Header("Debugging")]
+
+    [SerializeField] private bool initializeDataIfNull = false;
+
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
 
@@ -52,6 +56,7 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
+        NewSaveGame();
     }
 
     public void LoadGame()
@@ -59,22 +64,35 @@ public class DataPersistenceManager : MonoBehaviour
         // Load any save data from a file unsing the data handler
         this.gameData = dataHandler.Load();
         // if no data can be loaded, initialize to a new game
+        if (this.gameData == null && initializeDataIfNull)
+        {
+            NewGame();
+        }
+
 
         if (this.gameData == null)
         {
             Debug.Log("No data was found. Initializing data to defaults");
-            NewGame();
+            return;
         }
         //push loaded data to all other scripts that need it
         foreach (IDataPersistence dataPersistence in dataPersistenceObjects)
         {
             dataPersistence.LoadData(gameData);
         }
-
     }
-
+    public void NewSaveGame()
+    {
+        dataHandler.Save(gameData);
+    }
     public void SaveGame()
     {
+        if (this.gameData == null)
+        {
+            Debug.LogWarning("No data was found. A new game needs to be started before data can be saved.");
+            return;
+        }
+
         // pass data to other scripts that can interact with it
         foreach (IDataPersistence dataPersistence in dataPersistenceObjects)
         {
@@ -95,5 +113,8 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
-
+    public bool HasGameData()
+    {
+        return this.gameData != null;
+    }
 }

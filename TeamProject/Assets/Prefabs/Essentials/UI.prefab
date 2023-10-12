@@ -3394,6 +3394,11 @@ MonoBehaviour:
   clickNoise: {fileID: 6874581330609198756}
   newGameButton: {fileID: 4066915876147167266}
   continueGameButton: {fileID: 6887956869460545541}
+  level1Cleared: 0
+  level2Cleared: 0
+  loadScene1: Level One
+  loadScene2: LevelTwo
+  loadScene3: LevelThree
 --- !u!223 &904760796938837642
 Canvas:
   m_ObjectHideFlags: 0

@@ -461,6 +461,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c7beba6dcd00d749bec12ff507f0efc, type: 3}
+--- !u!114 &528719756 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6887956869460545541, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
+  m_PrefabInstance: {fileID: 6254739557981822230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +969,7 @@ PrefabInstance:
     - target: {fileID: 6030614911274569949, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
       propertyPath: continueGameButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 528719756}
     - target: {fileID: 6380883547636153559, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.799998

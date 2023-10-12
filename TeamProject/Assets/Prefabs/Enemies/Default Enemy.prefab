@@ -786,6 +786,8 @@ MonoBehaviour:
   targetFaceSpeed: 25
   animChangeSpeed: 7
   stopAtDamageTime: 1
+  isPushable: 1
+  reactsToHit: 1
   pushBackResolve: 2
   agentSpeed: 0
   shootPos: {fileID: 8501069793479404713}

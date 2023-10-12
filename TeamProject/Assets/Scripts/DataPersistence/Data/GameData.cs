@@ -10,7 +10,7 @@ public class GameData
 
     public Vector3 playerPos;
 
-    public SerializableDictionary<string, bool> levelsCleared;
+    public int levelCount;
 
     public SerializableDictionary<string, bool> spawnersAliveData;
 
@@ -27,7 +27,7 @@ public class GameData
         playerPos.y = 0.5f;
         playerPos.z = -6.375f;
 
-        levelsCleared = new SerializableDictionary<string, bool>();
+        this.levelCount = 0;
 
         spawnersAliveData = new SerializableDictionary<string, bool>();
 

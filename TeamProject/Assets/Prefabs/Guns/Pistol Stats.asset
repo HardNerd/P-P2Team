@@ -15,7 +15,7 @@ MonoBehaviour:
   shootRate: 0.5
   shootDamage: 0.5
   shootDistance: 50
-  loadedAmmo: 12
+  loadedAmmo: 10
   maxAmmoCarried: 80
   magSize: 12
   ammoCarried: 75
