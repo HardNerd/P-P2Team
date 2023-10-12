@@ -40,6 +40,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     float maxStam;
     public bool sprintCooldown;
     public bool dashCooldown;
+    bool stepSoundPlaying;
     
     private Vector3 pushBack;
    
@@ -126,6 +127,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             Input.GetAxis("Vertical") * transform.forward;
 
         controller.Move(move * playerSpeed * Time.deltaTime);
+        if(player2DVelocity.normalized.magnitude > 0 && stepSoundPlaying == false && isGrounded == true)
+        {
+            GameManager.instance.PlaySound(footstepSound);
+            StartCoroutine(footstepPlay(7f/player2DVelocity.magnitude));
+        }
+
 
         // If player walks off a platform
         if (!isGrounded && playerVelocity.y < -1 && jumpedTimes == 0)
@@ -155,9 +162,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             }
             else
             {
-                GameManager.instance.AudioChange(jumpSound);
-                jumpSound.Play();
-                StartCoroutine(GameManager.instance.clipEnd(jumpSound, jumpSound.clip.length));
+                GameManager.instance.PlaySound(jumpSound);
             }
             updateStam(20);
             jumpedTimes++;
@@ -197,6 +202,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             deathCount++;
             GameManager.instance.loseScreen(source);
         }
+
+        if (damageAmount > 0)
+            GameManager.instance.PlaySound(damageSound);
+        else
+            GameManager.instance.PlaySound(healthSound);
     }
 
     public void updateHealth(float amount)
@@ -274,6 +284,16 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         sprintCooldown = true;
         yield return new WaitForSeconds(3);
         sprintCooldown = false;
+    }
+
+    IEnumerator footstepPlay(float length)
+    {
+        if (length > 2)
+            length = 1.5f;
+        stepSoundPlaying = true;
+        yield return new WaitForSeconds(length);
+        stepSoundPlaying = false;
+
     }
 
     public void spawnPlayer()

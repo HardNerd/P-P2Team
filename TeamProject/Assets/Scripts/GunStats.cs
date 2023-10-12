@@ -24,6 +24,7 @@ public class GunStats : ScriptableObject
     public GameObject ammoType;
     public ParticleSystem hitEffect;
     public AudioClip gunSound;
+    public AudioClip reloadSound;
 
     public int toughnessDmg;
     public bool collected = false;

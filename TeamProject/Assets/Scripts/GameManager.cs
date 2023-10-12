@@ -255,13 +255,20 @@ public class GameManager : MonoBehaviour, IDataPersistence
         data.playerPos = instance.playerSpawnPOS.transform.position;
     }
 
-    public void AudioChange(AudioSource audio)
+    public void PlaySound(AudioSource source, float low = .7f, float high = 1.3f)
+    {
+        AudioChange(source, low, high);
+        source.Play();
+        StartCoroutine(clipEnd(source, source.clip.length));
+    }
+
+    public void AudioChange(AudioSource audio, float low = .7f, float high = 1.3f)
     {
         float rand = UnityEngine.Random.Range(0, 100);
         if (rand > 66)
-            audio.pitch *= 1.3f;
+            audio.pitch *= high;
         else if (rand > 33)
-            audio.pitch *= .7f;
+            audio.pitch *= low;
         else
             return;
     }
