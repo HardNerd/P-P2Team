@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] ParticleSystem particles;
+    [SerializeField] ParticleSystem bloodHitEffect;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] public List<GunStats> GunList = new List<GunStats>();
@@ -69,7 +70,7 @@ public class Gun : MonoBehaviour
 
                 if (damageable != null)
                 {
-                    // Instantiate blood effect
+                    Instantiate(bloodHitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
                 }
                 else
                     Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
