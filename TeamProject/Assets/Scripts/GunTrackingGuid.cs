@@ -56,8 +56,4 @@ public class GunTrackingGuid : MonoBehaviour, IDataPersistence
         }
         data.gunsCollected.Add(guid, stats.collected);
     }
-
-
-
-
 }

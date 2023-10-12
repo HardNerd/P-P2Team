@@ -57,8 +57,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public float healthYelFillAmt;
     public float stamBlueFillAmt;
     public float stamYelFillAmt;
-    public bool levelCleared;
-
+    public int levelClearedAmount;
     // Start is called before the first frame update
     void Awake()
     {
@@ -248,6 +247,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         instance.playerSpawnPOS.transform.position = data.playerPos;
+        instance.levelClearedAmount = data.levelCount;
     }
 
     public void SaveData(GameData data)

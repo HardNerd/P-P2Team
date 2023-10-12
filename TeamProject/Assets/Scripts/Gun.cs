@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] ParticleSystem particles;
+    [SerializeField] ParticleSystem bloodHitEffect;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] public List<GunStats> GunList = new List<GunStats>();
@@ -40,6 +41,7 @@ public class Gun : MonoBehaviour
 
         if (Input.GetButton("Fire1") && !isShooting && !GameManager.instance.isPause && !isReloading)
             StartCoroutine(shoot());
+            
 
         if (Input.GetButton("Reload") && !isReloading && !GameManager.instance.isPause && GunList.Count > 0)
         {
@@ -68,7 +70,7 @@ public class Gun : MonoBehaviour
 
                 if (damageable != null)
                 {
-                    // Instantiate blood effect
+                    Instantiate(bloodHitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
                 }
                 else
                     Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
