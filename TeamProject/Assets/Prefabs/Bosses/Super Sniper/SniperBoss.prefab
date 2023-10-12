@@ -191,7 +191,7 @@ MonoBehaviour:
   ammoDrop: {fileID: 3589056283428691399, guid: 662bc7ebbb17b0f459a49bd63fc88d91, type: 3}
   HP: 10
   targetFaceSpeed: 2
-  animChangeSpeed: 0
+  animChangeSpeed: 7
   stopAtDamageTime: 0
   isPushable: 0
   reactsToHit: 0
@@ -226,7 +226,7 @@ Animator:
   m_GameObject: {fileID: 2150972630042970435}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f4209d51d1ad0434299f2d498ee076ba, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8af7ac9a747a01b449c615c889095f68, type: 2}
+  m_Controller: {fileID: 9100000, guid: c1af5a91733ea2b4bbd0251806d458aa, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

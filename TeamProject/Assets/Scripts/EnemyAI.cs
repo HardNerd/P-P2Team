@@ -35,6 +35,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     protected Rigidbody enemyBody;
 
     protected float maxHP;
+    protected bool isInvincible;
 
     protected virtual void MoveEnemy()
     {
@@ -49,6 +50,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     virtual public void TakeDamage(float amount, string source)
     {
+        if (isInvincible)
+            return;
+
         HP -= amount;
         
         if (meleeCollider != null)

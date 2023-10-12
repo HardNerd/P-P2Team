@@ -61,7 +61,6 @@ public class finalBoss : superHeavyGunner
     int shots;
     Vector3 selectedPos;
     bool isWaiting;
-    bool isInvinsible;
     bool madeFinalDrop;
     bool usesShield;
     bool towerDestroyed;
@@ -151,7 +150,7 @@ public class finalBoss : superHeavyGunner
         switch (_ftpState)
         {
             case FTPState.DetermineNewPos:
-                isInvinsible = true;
+                isInvincible = true;
                 flySpeed = 10;
                 selectedPos = new Vector3(centerPlatform.position.x, transform.position.y, centerPlatform.position.z);
                 SwitchFTPState(FTPState.MoveToPlatformXY);
@@ -294,7 +293,7 @@ public class finalBoss : superHeavyGunner
 
         if ((int)Vector3.Distance(transform.position, centerPlatform.position) <= 0)
         {
-            isInvinsible = false;
+            isInvincible = false;
             HP = stage3HP;
             StartCoroutine(FlashDamage(Color.red));
             SwitchStage(Stage.Rocketman);
@@ -314,7 +313,7 @@ public class finalBoss : superHeavyGunner
 
     void DropDown()
     {
-        isInvinsible = true;
+        isInvincible = true;
         agent.enabled = true;
 
         if (!towerDestroyed)
@@ -325,7 +324,7 @@ public class finalBoss : superHeavyGunner
 
         if ((int)transform.position.y <= 0)
         {
-            isInvinsible = false;
+            isInvincible = false;
             madeFinalDrop = true;
             usesShield = true;
             SwitchStage(Stage.HeavyOnly);
@@ -337,7 +336,7 @@ public class finalBoss : superHeavyGunner
 
     public override void TakeDamage(float amount, string source = null)
     {
-        if (isInvinsible)
+        if (isInvincible)
             return;
 
         if (!isStaggered && usesShield)

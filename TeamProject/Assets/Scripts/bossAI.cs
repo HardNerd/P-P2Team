@@ -83,6 +83,7 @@ public class bossAI : EnemyAI
         if (agent.remainingDistance <= 0)
         {
             takingCover = false;
+            isInvincible = true;
             SwitchToState(SniperState.Aim);
         }
     }
@@ -120,6 +121,7 @@ public class bossAI : EnemyAI
         animator.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.transform.position, Quaternion.LookRotation(playerDirection + new Vector3(0, -3f, 0)));
         laserSight.enabled = false;
+        isInvincible = false;
 
         SwitchToState(SniperState.SelectCover);
     }
@@ -132,6 +134,7 @@ public class bossAI : EnemyAI
         {
             for (int i = 0; i < roomDoors.Length; i++)
                 roomDoors[i].SetActive(false);
+            laserSight.enabled = false;
         }
     }
 }
