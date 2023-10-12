@@ -61,6 +61,8 @@ public class bossAI : EnemyAI
                 default:
                     break;
             }
+            float agentVelocity = agent.velocity.normalized.magnitude;
+            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
         }
     }
 
@@ -115,6 +117,7 @@ public class bossAI : EnemyAI
 
     private void Shoot()
     {
+        animator.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.transform.position, Quaternion.LookRotation(playerDirection + new Vector3(0, -3f, 0)));
         laserSight.enabled = false;
 
