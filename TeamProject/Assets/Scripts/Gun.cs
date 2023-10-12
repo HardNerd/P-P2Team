@@ -40,6 +40,7 @@ public class Gun : MonoBehaviour
 
         if (Input.GetButton("Fire1") && !isShooting && !GameManager.instance.isPause && !isReloading)
             StartCoroutine(shoot());
+            
 
         if (Input.GetButton("Reload") && !isReloading && !GameManager.instance.isPause && GunList.Count > 0)
         {
