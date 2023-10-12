@@ -161,6 +161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5623940644552251892}
+  particles: {fileID: 0}
+  bloodHitEffect: {fileID: 5491559676918143686, guid: d4bc86b452237c84faf6c52b96cc467e, type: 3}
   GunList: []
   shootRate: 0
   shootDamage: 0
