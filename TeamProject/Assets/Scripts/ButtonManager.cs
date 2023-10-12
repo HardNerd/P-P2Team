@@ -1,21 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class ButtonManager : MonoBehaviour
+public class ButtonManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] AudioSource clickNoise;
     [Header("Menu Buttons")]
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
+    [SerializeField] public string loadScene1 = "Level One";
+    [SerializeField] public string loadScene2 = "LevelTwo";
+    [SerializeField] public string loadScene3 = "LevelThree";
 
 
+    private void Start()
+    {
+        if (!DataPersistenceManager.Instance.HasGameData())
+        {
+            continueGameButton.interactable = false;
+        }
+    }
 
     public void begin()
     {
-        //DataPersistenceManager.Instance.NewGame();
+        DataPersistenceManager.Instance.NewGame();
         clickNoise.Play();
         StartCoroutine(beginTime());
     }
@@ -23,7 +37,7 @@ public class ButtonManager : MonoBehaviour
     public IEnumerator beginTime()
     {
         yield return new WaitForSecondsRealtime(1);
-        SceneManager.LoadSceneAsync("Level One");
+        SceneManager.LoadSceneAsync(loadScene1);
         Time.timeScale = 1;
         GameManager.instance.stateUnpause();
     }
@@ -31,10 +45,36 @@ public class ButtonManager : MonoBehaviour
     public void OnContinueClicked()
     {
         Debug.Log("Continue Game Clicked");
-
-        StartCoroutine(beginTime());
-
+        DataPersistenceManager.Instance.LoadGame();
+        StartCoroutine(ContinueGameTime());
     }
+
+    public IEnumerator ContinueGameTime()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        if (DataPersistenceManager.Instance != null)
+        {
+            if (GameManager.instance.levelClearedAmount == 2)
+            {
+                SceneManager.LoadSceneAsync(loadScene3);
+                Time.timeScale = 1;
+                GameManager.instance.stateUnpause();
+            }
+            else if (GameManager.instance.levelClearedAmount == 1)
+            {
+                SceneManager.LoadSceneAsync(loadScene2);
+                Time.timeScale = 1;
+                GameManager.instance.stateUnpause();
+            }
+            else
+            {
+                SceneManager.LoadSceneAsync(loadScene1);
+                Time.timeScale = 1;
+                GameManager.instance.stateUnpause();
+            }
+        }
+    }
+
     public void unpause()
     {
         clickNoise.Play();
@@ -59,8 +99,11 @@ public class ButtonManager : MonoBehaviour
     {
         clickNoise.Play();
         GameManager.instance.stateUnpause();
+        
         GameManager.instance.playerController.spawnPlayer();
-        GameManager.instance.levelTime.timeTaken = GameManager.instance.levelTime.timeBuff;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        DataPersistenceManager.Instance.LoadGame();
+        //GameManager.instance.levelTime.timeTaken = GameManager.instance.levelTime.timeBuff;
         //Include respawn here
     }
 
@@ -86,5 +129,15 @@ public class ButtonManager : MonoBehaviour
     {
         clickNoise.Play();
         GameManager.instance.credits();
+    }
+
+    public void LoadData(GameData data)
+    {
+        
+    }
+
+    public void SaveData(GameData data)
+    {
+
     }
 }

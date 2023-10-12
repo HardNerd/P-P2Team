@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] ParticleSystem particles;
+    [SerializeField] ParticleSystem bloodHitEffect;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] public List<GunStats> GunList = new List<GunStats>();
@@ -40,6 +41,7 @@ public class Gun : MonoBehaviour
 
         if (Input.GetButton("Fire1") && !isShooting && !GameManager.instance.isPause && !isReloading)
             StartCoroutine(shoot());
+            
 
         if (Input.GetButton("Reload") && !isReloading && !GameManager.instance.isPause && GunList.Count > 0)
         {
@@ -65,10 +67,17 @@ public class Gun : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo, shootDistance))
             {
                 IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
+
+                if (damageable != null)
+                {
+                    Instantiate(bloodHitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
+                }
+                else
+                    Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
+
                 AudioSource hitsound = GunList[selectedGun].hitEffect.GetComponent<AudioSource>();
                 float currPitch = hitsound.pitch;
                 GameManager.instance.AudioChange(hitsound);
-                Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
                 hitsound.pitch = currPitch;
                 damageable?.TakeDamage(shootDamage, null);
             }

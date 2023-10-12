@@ -115,7 +115,7 @@ public class bossAI : EnemyAI
 
     private void Shoot()
     {
-        Instantiate(bullet, shootPos.transform.position, transform.rotation);
+        Instantiate(bullet, shootPos.transform.position, Quaternion.LookRotation(playerDirection + new Vector3(0, -3f, 0)));
         laserSight.enabled = false;
 
         SwitchToState(SniperState.SelectCover);
