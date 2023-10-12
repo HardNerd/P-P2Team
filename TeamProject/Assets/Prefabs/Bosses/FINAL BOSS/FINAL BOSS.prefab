@@ -1102,15 +1102,18 @@ MonoBehaviour:
   targetFaceSpeed: 15
   animChangeSpeed: 1.8
   stopAtDamageTime: 0
+  isPushable: 0
+  reactsToHit: 0
   pushBackResolve: 0
   agentSpeed: 7
   shootPos: {fileID: 9038620482269429969}
   shootRate: 0
   shootAngle: 10
-  bullet: {fileID: 0}
+  bullet: {fileID: 6662062693878498465, guid: 4a36ba291ba9bd94fa8830932f3f550a, type: 3}
   shieldHP: 5
   staggerTime: 5
   _currentState: 0
+  dropLocation: {fileID: 0}
   _stage: 0
   _flyingState: 0
   _ftpState: 0

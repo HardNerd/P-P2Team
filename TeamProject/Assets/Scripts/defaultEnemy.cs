@@ -13,6 +13,7 @@ public class defaultEnemy : EnemyAI
     [SerializeField] protected GameObject bullet;
 
     protected bool isShooting;
+    bool canShoot = true;
 
     void Start()
     {
@@ -28,7 +29,7 @@ public class defaultEnemy : EnemyAI
 
             MoveEnemy();
 
-            if (!isShooting && angleToPlayer <= shootAngle)
+            if (!isShooting && angleToPlayer <= shootAngle && canShoot)
                 StartCoroutine(shoot());
         }
     }
@@ -37,8 +38,17 @@ public class defaultEnemy : EnemyAI
     {
         isShooting = true;
         animator.SetTrigger("Shoot");
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerDirection));
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    protected override IEnumerator StopMoving()
+    {
+        agent.speed = 0;
+        canShoot = false;
+        yield return new WaitForSeconds(stopAtDamageTime);
+        canShoot = true;
+        agent.speed = speedOrig;
     }
 }
