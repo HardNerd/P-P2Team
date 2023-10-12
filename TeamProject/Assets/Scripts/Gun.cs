@@ -64,10 +64,17 @@ public class Gun : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo, shootDistance))
             {
                 IDamage damageable = hitInfo.collider.GetComponent<IDamage>();
+
+                if (damageable != null)
+                {
+                    // Instantiate blood effect
+                }
+                else
+                    Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
+
                 AudioSource hitsound = GunList[selectedGun].hitEffect.GetComponent<AudioSource>();
                 float currPitch = hitsound.pitch;
                 GameManager.instance.AudioChange(hitsound);
-                Instantiate(GunList[selectedGun].hitEffect, hitInfo.point, GunList[selectedGun].hitEffect.transform.rotation);
                 hitsound.pitch = currPitch;
                 damageable?.TakeDamage(shootDamage, null);
             }
