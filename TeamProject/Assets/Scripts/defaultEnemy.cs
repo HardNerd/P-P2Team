@@ -9,7 +9,7 @@ public class defaultEnemy : EnemyAI
     [Header("----- Gun Stats -----")]
     [SerializeField] protected Transform shootPos;
     [SerializeField] protected float shootRate;
-    [SerializeField] int shootAngle;
+    [SerializeField] protected int shootAngle;
     [SerializeField] protected GameObject bullet;
 
     protected bool isShooting;
