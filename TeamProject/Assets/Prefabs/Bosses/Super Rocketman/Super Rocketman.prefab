@@ -60,8 +60,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 20, z: 0}
-  m_LocalScale: {x: 2, y: 0.000040000003, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5.92, y: 0.00011840001, z: 5.92}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7615315241886246622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,7 +136,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &7312367114578703331
+--- !u!1 &6766585988983838849
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,118 +144,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7615315241886246622}
-  - component: {fileID: 6766531185566320337}
-  - component: {fileID: 2490104533836596255}
-  - component: {fileID: 6446841492061178960}
-  - component: {fileID: 7183797529650366699}
-  - component: {fileID: 5133462007913893116}
-  - component: {fileID: 2295633748885680791}
+  - component: {fileID: 5375713948597784432}
+  - component: {fileID: 2323828840377017042}
+  - component: {fileID: 4396104396580401783}
   m_Layer: 7
-  m_Name: Super Rocketman
+  m_Name: Super Rocketman model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7615315241886246622
+--- !u!4 &5375713948597784432
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312367114578703331}
+  m_GameObject: {fileID: 6766585988983838849}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -146.75, y: 23, z: -54.66526}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 5897767513973879920}
-  - {fileID: 3311930523370746465}
-  - {fileID: 6927023818792638313}
-  m_Father: {fileID: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7615315241886246622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6766531185566320337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312367114578703331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b19e4ee0543751940b2c0c4eab2f2430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  models:
-  - {fileID: 6446841492061178960}
-  agent: {fileID: 0}
-  animator: {fileID: 7183797529650366699}
-  headPos: {fileID: 3311930523370746465}
-  B_footR: {fileID: 0}
-  hitBox: {fileID: 5133462007913893116}
-  meleeCollider: {fileID: 0}
-  ammoDrop: {fileID: 8118659360469202670, guid: 523ae1eca7bb4354fb8f761f86014e49, type: 3}
-  HP: 8
-  targetFaceSpeed: 5
-  animChangeSpeed: 7
-  stopAtDamageTime: 0
-  isPushable: 0
-  reactsToHit: 0
-  pushBackResolve: 0
-  agentSpeed: 0
-  flySpeed: 15
-  waitTime: 2
-  shootPos: {fileID: 6927023818792638313}
-  shootRate: 0
-  projectile: {fileID: 3029819796579446769, guid: d2e131347c2f29a4ba37f121b8750a33, type: 3}
-  projectileSpeed: 15
-  attackPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  platforms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  landingZone: {fileID: 8261059535851152103, guid: 8c5efe9c981b0544389037ae39a9fc6a, type: 3}
-  _currentState: 0
-  dropLocation: {fileID: 0}
---- !u!33 &2490104533836596255
+--- !u!33 &2323828840377017042
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312367114578703331}
+  m_GameObject: {fileID: 6766585988983838849}
   m_Mesh: {fileID: 4300000, guid: 28723f10c2a8e094a9351e892f5271b8, type: 3}
---- !u!23 &6446841492061178960
+--- !u!23 &4396104396580401783
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312367114578703331}
+  m_GameObject: {fileID: 6766585988983838849}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -291,6 +219,109 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7312367114578703331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7615315241886246622}
+  - component: {fileID: 6766531185566320337}
+  - component: {fileID: 7183797529650366699}
+  - component: {fileID: 5133462007913893116}
+  - component: {fileID: 2295633748885680791}
+  m_Layer: 7
+  m_Name: Super Rocketman
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7615315241886246622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7312367114578703331}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -146.75, y: 23, z: -54.66526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 5897767513973879920}
+  - {fileID: 6927023818792638313}
+  - {fileID: 5375713948597784432}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6766531185566320337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7312367114578703331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19e4ee0543751940b2c0c4eab2f2430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  models:
+  - {fileID: 4396104396580401783}
+  agent: {fileID: 0}
+  animator: {fileID: 7183797529650366699}
+  headPos: {fileID: 6927023818792638313}
+  B_footR: {fileID: 0}
+  hitBox: {fileID: 5133462007913893116}
+  meleeCollider: {fileID: 0}
+  ammoDrop: {fileID: 8118659360469202670, guid: 523ae1eca7bb4354fb8f761f86014e49, type: 3}
+  HP: 8
+  targetFaceSpeed: 10
+  animChangeSpeed: 7
+  stopAtDamageTime: 0
+  isPushable: 0
+  reactsToHit: 0
+  pushBackResolve: 0
+  agentSpeed: 0
+  flySpeed: 15
+  waitTime: 2
+  shootPos: {fileID: 6927023818792638313}
+  shootRate: 0
+  projectile: {fileID: 3029819796579446769, guid: d2e131347c2f29a4ba37f121b8750a33, type: 3}
+  projectileSpeed: 25
+  attackPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  platforms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  landingZone: {fileID: 8261059535851152103, guid: 8c5efe9c981b0544389037ae39a9fc6a, type: 3}
+  _currentState: 0
+  dropLocation: {fileID: 0}
 --- !u!95 &7183797529650366699
 Animator:
   serializedVersion: 5
@@ -301,7 +332,7 @@ Animator:
   m_GameObject: {fileID: 7312367114578703331}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 860793eb3324391468f1c120a75ec049, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4d78f4d035875a94cada6f1f06d7896d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4169adcf8c110f342a6f2badf0188187, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -362,34 +393,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &8525429716384469121
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3311930523370746465}
-  m_Layer: 7
-  m_Name: Head Pos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3311930523370746465
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8525429716384469121}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7615315241886246622}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

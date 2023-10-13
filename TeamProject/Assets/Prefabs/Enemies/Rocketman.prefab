@@ -240,7 +240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1429424844199223569
 Transform:
   m_ObjectHideFlags: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
   - {fileID: 3057744551769066759}
   - {fileID: 7989952707033530699}
   agent: {fileID: 6211687563408282720}
-  animator: {fileID: 6196961460066331772}
+  animator: {fileID: 5487203627516591121}
   headPos: {fileID: 6035345583162760190}
   B_footR: {fileID: 2769797795940712791}
   hitBox: {fileID: 9062306597146715946}

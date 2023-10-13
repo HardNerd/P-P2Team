@@ -64,6 +64,7 @@ public class superRocketMan : EnemyAI
                     break;
                 case SuperRMState.DetermineNextPos:
                     selectedPos = ChooseRandomPos();
+                    animator.SetBool("Idle", false);
                     break;
                 case SuperRMState.ChangePos:
                     MoveToPosition();
@@ -160,6 +161,9 @@ public class superRocketMan : EnemyAI
 
     IEnumerator WaitAfterAttack()
     {
+        playerDirection = GameManager.instance.player.transform.position - headPos.position;
+        FaceTarget(playerDirection);
+
         if (!isWaiting)
         {
             isWaiting = true;
@@ -188,7 +192,10 @@ public class superRocketMan : EnemyAI
         transform.position = Vector3.MoveTowards(transform.position, selectedPos, flySpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, selectedPos) <= 0)
+        {
+            animator.SetBool("Idle", true);
             SwitchToNextState(SuperRMState.ChooseTargets);
+        }
     }
     protected void SwitchToNextState(SuperRMState nextState)
     {
