@@ -295,6 +295,7 @@ MonoBehaviour:
   shootAngle: 10
   bullet: {fileID: 6662062693878498465, guid: 4a36ba291ba9bd94fa8830932f3f550a, type: 3}
   shootPos2: {fileID: 7566345333108740292}
+  gunExplosion: {fileID: 1372833112535319629, guid: ff9f264a56f33994394cae6fb6808ebc, type: 3}
 --- !u!95 &5487203627516591121
 Animator:
   serializedVersion: 5

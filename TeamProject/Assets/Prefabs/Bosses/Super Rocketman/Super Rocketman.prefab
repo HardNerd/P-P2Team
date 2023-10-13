@@ -288,6 +288,7 @@ MonoBehaviour:
   agentSpeed: 0
   flySpeed: 15
   waitTime: 2
+  gunExplosion: {fileID: 1372833112535319629, guid: ff9f264a56f33994394cae6fb6808ebc, type: 3}
   shootPos: {fileID: 6927023818792638313}
   shootRate: 0
   projectile: {fileID: 3029819796579446769, guid: d2e131347c2f29a4ba37f121b8750a33, type: 3}

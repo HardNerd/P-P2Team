@@ -28,7 +28,8 @@ Transform:
   m_LocalPosition: {x: 0.27631885, y: 0.06836691, z: -0.02862227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9049367532747138365}
   m_Father: {fileID: 5022318306218647587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &141795838990419052
@@ -220,9 +221,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 9049367532747138365}
-  - {fileID: 680710688286847067}
+  m_Children: []
   m_Father: {fileID: 193764340087747716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &881953304168184426
@@ -639,12 +638,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2912877122940343691}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1736, y: 0.844, z: 1.487}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.7969997, y: 0.089000404, z: 0.006400168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9202166904987953862}
+  m_Father: {fileID: 9049367532747138365}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2921396001184473196
 GameObject:
@@ -849,9 +848,10 @@ MonoBehaviour:
   shootPos: {fileID: 680710688286847067}
   shootRate: 0
   shootAngle: 10
-  bullet: {fileID: 6662062693878498465, guid: 4a36ba291ba9bd94fa8830932f3f550a, type: 3}
+  bullet: {fileID: 0}
   shieldHP: 5
-  staggerTime: 5
+  staggerTime: 3
+  gun: {fileID: 0}
   _currentState: 0
   dropLocation: {fileID: 0}
   _stage: 0
@@ -859,7 +859,7 @@ MonoBehaviour:
   _ftpState: 0
   bossTower: {fileID: 0}
   hordeSpawner: {fileID: 0}
-  rocketPrefab: {fileID: 2849231682678411526, guid: 4a36ba291ba9bd94fa8830932f3f550a, type: 3}
+  rocketPrefab: {fileID: 6662062693878498465, guid: 4a36ba291ba9bd94fa8830932f3f550a, type: 3}
   rocketShootRate: 1
   bulletPrefab: {fileID: 4846985180003235354, guid: 10f1e84efac052a49809476ff402457e, type: 3}
   bulletShootRate: 0.2
@@ -1990,12 +1990,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8594844704505056735}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.1800003, y: 0.7549998, z: 0.68999994}
+  m_LocalRotation: {x: -0.15253931, y: -0.008388496, z: 0.60479486, w: 0.78159106}
+  m_LocalPosition: {x: 0.20377213, y: 0.66236186, z: 0.40364516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 9202166904987953862}
+  m_Children:
+  - {fileID: 680710688286847067}
+  m_Father: {fileID: 2886618202767291756}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &35188409244971854
 MeshFilter:

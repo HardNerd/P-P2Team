@@ -5,6 +5,7 @@ using UnityEngine;
 public class rocketMan : defaultEnemy
 {
     [SerializeField] Transform shootPos2;
+    [SerializeField] ParticleSystem gunExplosion;
 
     bool shootPosToggle;
 
@@ -37,9 +38,15 @@ public class rocketMan : defaultEnemy
         animator.SetTrigger("Shoot");
 
         if (shootPosToggle)
+        {
             Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerDirection));
+            Instantiate(gunExplosion, shootPos.position, Quaternion.LookRotation(playerDirection));
+        }
         else
+        {
             Instantiate(bullet, shootPos2.position, Quaternion.LookRotation(playerDirection));
+            Instantiate(gunExplosion, shootPos2.position, Quaternion.LookRotation(playerDirection));
+        }
 
         yield return new WaitForSeconds(shootRate);
         shootPosToggle = !shootPosToggle;

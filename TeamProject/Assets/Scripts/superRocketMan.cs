@@ -18,6 +18,7 @@ public class superRocketMan : EnemyAI
     [SerializeField] float waitTime;
 
     [Header("----- Shoot Stats -----")]
+    [SerializeField] ParticleSystem gunExplosion;
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
     [SerializeField] GameObject projectile;
@@ -148,7 +149,8 @@ public class superRocketMan : EnemyAI
             Vector3 targetPos = targets[currentTarget].GetComponent<rocketPlatform>().target.position;
             Instantiate(landingZone, targetPos, landingZone.transform.rotation);
 
-            GameObject rocket = Instantiate(projectile, shootPos.position, transform.rotation);
+            Instantiate(gunExplosion, shootPos.position, transform.rotation);
+            GameObject rocket = Instantiate(projectile, shootPos.position, Quaternion.LookRotation(targetPos - transform.position));
             Rigidbody rocket_rb = rocket.GetComponent<Rigidbody>();
             rocket_rb.velocity = (targetPos - rocket.transform.position).normalized * projectileSpeed;
 
