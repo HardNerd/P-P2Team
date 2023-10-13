@@ -59,6 +59,8 @@ public class grenadierAI : EnemyAI
                 default:
                     break;
             }
+            float agentVelocity = agent.velocity.normalized.magnitude;
+            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
         }
     }
 
@@ -101,7 +103,11 @@ public class grenadierAI : EnemyAI
     {
         if (molotovsThrown >= maxThrows)
         {
-            SwitchToNextState(GrenadierState.GoToCover);
+            if (animCount >= maxThrows)
+            {
+                animCount = 0;
+                SwitchToNextState(GrenadierState.GoToCover);
+            }
             return;
         }
 
