@@ -9,6 +9,9 @@ public class meleeEnemyAI : EnemyAI
     [SerializeField] float attackRate;
     [SerializeField] int attackDamage;
     [SerializeField] int attackAngle;
+    [SerializeField] AudioSource HitSource;
+    [SerializeField] AudioSource StepSource;
+    [SerializeField] AudioSource DamageSource;
 
     bool isAttacking;
 
@@ -49,5 +52,20 @@ public class meleeEnemyAI : EnemyAI
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
+    }
+
+    public void AttackSound()
+    {
+        GameManager.instance.PlaySound(HitSource);
+    }
+
+    public void StepSound()
+    {
+        GameManager.instance.PlaySound(StepSource);
+    }
+
+    public void DamageSound()
+    {
+        GameManager.instance.PlaySound(DamageSource);
     }
 }
