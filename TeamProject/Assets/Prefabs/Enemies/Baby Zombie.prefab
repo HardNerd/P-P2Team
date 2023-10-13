@@ -452,6 +452,9 @@ MonoBehaviour:
   hitBox: {fileID: 2298368788376227881}
   meleeCollider: {fileID: 3967122993342015656}
   ammoDrop: {fileID: 7572150913216232364, guid: e98df906a032ecd41b9311ee9be42e0b, type: 3}
+  HitSource: {fileID: -8464406877796245321}
+  StepSource: {fileID: -3224717120342178472}
+  DamageSource: {fileID: -413511112063181098}
   HP: 1.5
   targetFaceSpeed: 5
   animChangeSpeed: 7
@@ -463,9 +466,6 @@ MonoBehaviour:
   attackRate: 0.8
   attackDamage: 1
   attackAngle: 10
-  HitSource: {fileID: -8464406877796245321}
-  StepSource: {fileID: -3224717120342178472}
-  DamageSource: {fileID: -413511112063181098}
 --- !u!95 &4332857669709151654
 Animator:
   serializedVersion: 5
@@ -570,7 +570,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7f4aa26d5b55226409cda231ffaf869b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -666,7 +666,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
   m_audioClip: {fileID: 8300000, guid: a4a9327e98855524c846cc8e2f559e96, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -762,7 +762,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
   m_audioClip: {fileID: 8300000, guid: f9eb44b85c96be5429737d4dcadbfa3b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

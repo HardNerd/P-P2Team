@@ -14,6 +14,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected Collider hitBox;
     [SerializeField] protected Collider meleeCollider;
     [SerializeField] protected GameObject ammoDrop;
+    [SerializeField] AudioSource AttackSource;
+    [SerializeField] AudioSource StepSource;
+    [SerializeField] AudioSource DamageSource;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] protected float HP;
@@ -125,6 +128,18 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         meleeCollider.enabled = false;
     }
 
-   
-  
+    public void AttackSound()
+    {
+        GameManager.instance.PlaySound(AttackSource);
+    }
+
+    public void StepSound()
+    {
+        GameManager.instance.PlaySound(StepSource);
+    }
+
+    public void DamageSound()
+    {
+        GameManager.instance.PlaySound(DamageSource);
+    }
 }
