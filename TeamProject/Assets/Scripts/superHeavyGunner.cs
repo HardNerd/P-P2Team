@@ -14,6 +14,7 @@ public class superHeavyGunner : defaultEnemy
     [Header("----- Shield Stats -----")]
     [SerializeField] protected float shieldHP;
     [SerializeField] int staggerTime;
+    [SerializeField] GameObject gun;
 
     [SerializeField] protected State _currentState;
 
@@ -63,7 +64,8 @@ public class superHeavyGunner : defaultEnemy
         if (!isStaggered)
         {
             isStaggered = true;
-            //animator.SetBool("Staggered", true);
+            animator.SetBool("Staggered", true);
+            gun.SetActive(false);
 
             // Change color to show staggered mode (Player can now attack)
             Color origColor = models[0].material.color;
@@ -76,6 +78,8 @@ public class superHeavyGunner : defaultEnemy
 
             shieldHP = shieldHPMax;
             SwitchToNextState(State.Attack);
+            animator.SetBool("Staggered", false);
+            gun.SetActive(true);
             isStaggered = false;
         }
     }
@@ -92,7 +96,6 @@ public class superHeavyGunner : defaultEnemy
         else
         {
             shieldHP -= amount;
-            //FlashDamage(Color.red);
 
             if (shieldHP <= 0)
                 SwitchToNextState(State.Staggered);
