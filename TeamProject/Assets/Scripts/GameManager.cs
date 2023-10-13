@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject checkpointMenu;
     [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject creditsMenu;
+    [SerializeField] GameObject saveOverlay;
 
     [Header("----- Play State -----")]
     [SerializeField] GameObject endPoint;
@@ -137,6 +138,10 @@ public class GameManager : MonoBehaviour, IDataPersistence
         activeMenu = menu;
     }
 
+    public void SaveOverlay(bool on)
+    {
+        saveOverlay.SetActive(on);
+    }
 
     public void options()
     {

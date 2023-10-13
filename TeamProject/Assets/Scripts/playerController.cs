@@ -43,7 +43,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     float maxStam;
     public bool sprintCooldown;
     public bool dashCooldown;
-    bool stepSoundPlaying;
     
     private Vector3 pushBack;
    
@@ -295,16 +294,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         sprintCooldown = true;
         yield return new WaitForSeconds(3);
         sprintCooldown = false;
-    }
-
-    IEnumerator footstepPlay(float length)
-    {
-        if (length > 2)
-            length = 1.5f;
-        stepSoundPlaying = true;
-        yield return new WaitForSeconds(length);
-        stepSoundPlaying = false;
-
     }
 
     public void spawnPlayer()

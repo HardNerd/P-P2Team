@@ -29,9 +29,30 @@ public class ButtonManager : MonoBehaviour, IDataPersistence
 
     public void begin()
     {
-        DataPersistenceManager.Instance.NewGame();
         clickNoise.Play();
-        StartCoroutine(beginTime());
+        if (DataPersistenceManager.Instance.HasGameData())
+            GameManager.instance.SaveOverlay(true);
+        else
+        {
+            DataPersistenceManager.Instance.NewGame();
+        }
+    }
+
+    public void no()
+    {
+        clickNoise.Play();
+        GameManager.instance.SaveOverlay(false);
+    }
+
+    public void yes()
+    {
+        clickNoise.Play();
+        if (SceneManager.GetActiveScene().name == "KevinScene")
+        {
+            DataPersistenceManager.Instance.NewGame();
+            GameManager.instance.SaveOverlay(false);
+            StartCoroutine(beginTime());
+        }
     }
 
     public IEnumerator beginTime()
@@ -44,6 +65,7 @@ public class ButtonManager : MonoBehaviour, IDataPersistence
 
     public void OnContinueClicked()
     {
+        clickNoise.Play();
         Debug.Log("Continue Game Clicked");
         DataPersistenceManager.Instance.LoadGame();
         StartCoroutine(ContinueGameTime());
@@ -110,7 +132,16 @@ public class ButtonManager : MonoBehaviour, IDataPersistence
     public void quit()
     {
         clickNoise.Play();
-        Application.Quit();
+        if (SceneManager.GetActiveScene().name == "KevinScene")
+            Application.Quit();
+        else
+            StartCoroutine(titleLoad());
+    }
+
+    public IEnumerator titleLoad()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        SceneManager.LoadScene("KevinScene");
     }
 
     public void options()
