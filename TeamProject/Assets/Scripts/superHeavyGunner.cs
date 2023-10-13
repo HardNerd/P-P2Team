@@ -63,9 +63,9 @@ public class superHeavyGunner : defaultEnemy
         if (!isStaggered)
         {
             isStaggered = true;
+            //animator.SetBool("Staggered", true);
 
             // Change color to show staggered mode (Player can now attack)
-            // Color change will change to animation in the future
             Color origColor = models[0].material.color;
             for (int i = 0; i < models.Length; i++)
                 models[i].material.color = Color.grey;

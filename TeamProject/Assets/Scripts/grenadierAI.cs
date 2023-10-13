@@ -29,6 +29,7 @@ public class grenadierAI : EnemyAI
     protected bool inCover;
     protected float agentStoppingDistOrig;
     protected int molotovsThrown = 0;
+    protected int animCount = 0;
 
     void Start()
     {
@@ -119,8 +120,18 @@ public class grenadierAI : EnemyAI
     {
         isThrowing = true;
         molotovsThrown++;
-        Instantiate(molotov, throwPos.position, transform.rotation);
+        animator.SetTrigger("Attack");
         yield return new WaitForSeconds(timeBetweenThrows); // wait in front of player without attacking before going to cover
         isThrowing = false;
+    }
+
+    public void InstantiateMolotov()
+    {
+        Instantiate(molotov, throwPos.position, transform.rotation);
+    }
+
+    public void AnimEnd()
+    {
+        animCount++;
     }
 }
