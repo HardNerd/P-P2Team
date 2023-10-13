@@ -18,7 +18,11 @@ public class molotov : MonoBehaviour
         if (other.isTrigger || other.CompareTag("Enemy"))
             return;
 
+        AudioSource source = fireArea.GetComponent<AudioSource>();
+        float pitch = source.pitch;
+        GameManager.instance.AudioChange(source);
         Instantiate(fireArea, new Vector3(transform.position.x, fireArea.transform.localScale.y, transform.position.z), fireArea.transform.rotation);
+        source.pitch = pitch;
         Destroy(gameObject);
     }
 

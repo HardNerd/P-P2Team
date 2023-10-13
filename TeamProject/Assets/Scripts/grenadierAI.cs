@@ -133,7 +133,11 @@ public class grenadierAI : EnemyAI
 
     public void InstantiateMolotov()
     {
+        AudioSource source = molotov.GetComponent<AudioSource>();
+        float pitch = source.pitch;
+        GameManager.instance.AudioChange(source);
         Instantiate(molotov, throwPos.position, transform.rotation);
+        source.pitch = pitch;
     }
 
     public void AnimEnd()
