@@ -147,10 +147,4 @@ public class bossAI : EnemyAI
             laserSight.enabled = false;
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Spawner"))
-            coverPositions = other.GetComponent<spawner>().coverPositions;
-    }
 }
