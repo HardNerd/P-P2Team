@@ -2235,7 +2235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3166536668033259016, guid: 0fe3f6acb54a62f409d883dd87e51de0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.943739
+      value: 8.022
       objectReference: {fileID: 0}
     - target: {fileID: 3166536668033259016, guid: 0fe3f6acb54a62f409d883dd87e51de0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13788,6 +13788,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1465825776004737986, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
+      propertyPath: muzzleFlash
+      value: 
+      objectReference: {fileID: 4847122842179483484, guid: b8baad415fe57204ca76420ecc9e0285, type: 3}
     - target: {fileID: 1465825776004737986, guid: 6196ff15992065d499dd91670c86e7a3, type: 3}
       propertyPath: bloodHitEffect
       value: 

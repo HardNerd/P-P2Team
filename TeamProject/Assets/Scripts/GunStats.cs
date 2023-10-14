@@ -26,6 +26,7 @@ public class GunStats : ScriptableObject
     public AudioClip gunSound;
     public AudioClip reloadSound;
 
+
     public int toughnessDmg;
     public bool collected = false;
 }

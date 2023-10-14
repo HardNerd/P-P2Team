@@ -12,6 +12,9 @@ public class Gun : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] ParticleSystem particles;
     [SerializeField] ParticleSystem bloodHitEffect;
+    [SerializeField] ParticleSystem muzzleFlash;
+
+    
 
     [Header("----- Gun Stats -----")]
     [SerializeField] public List<GunStats> GunList = new List<GunStats>();
