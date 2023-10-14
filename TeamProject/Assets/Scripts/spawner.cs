@@ -13,6 +13,8 @@ public class spawner : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject door2;
     [SerializeField] GameObject door3;
     [SerializeField] GameObject door4;
+    [SerializeField] AudioSource spawnStart;
+    [SerializeField] AudioSource spawnEnd;
 
     bool isSpawning;
     bool hasBeenSpawned;
@@ -50,7 +52,10 @@ public class spawner : MonoBehaviour, IDataPersistence
             door2.SetActive(false);
             door3.SetActive(false); 
             door4.SetActive(false);
-
+            if(!hasBeenSpawned)
+            {
+                GameManager.instance.PlaySound(spawnEnd);
+            }
             hasBeenSpawned = true;
             StopCoroutine(spawn());
         }
@@ -78,6 +83,10 @@ public class spawner : MonoBehaviour, IDataPersistence
         if (other.CompareTag("Player"))
         {
             startSpawning = true;
+            if(!hasBeenSpawned)
+            {
+                GameManager.instance.PlaySound(spawnStart);
+            }
         }
     }
 
