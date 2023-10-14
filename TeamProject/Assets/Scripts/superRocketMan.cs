@@ -14,6 +14,8 @@ public class superRocketMan : EnemyAI
         ChangePos
     }
 
+    [SerializeField] GameObject[] roomDoors;
+
     [SerializeField] float flySpeed;
     [SerializeField] float waitTime;
 
@@ -227,6 +229,9 @@ public class superRocketMan : EnemyAI
             healthObj.SetActive(false);
             StopAllCoroutines();
             Instantiate(ammoDrop, B_footR.position, Quaternion.identity);
+
+            for (int i = 0; i < roomDoors.Length; i++)
+                roomDoors[i].SetActive(false);
         }
         else
         {

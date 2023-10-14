@@ -22,7 +22,8 @@ public class sniper : bossAI
 
     void Update()
     {
-        StartCoroutine(Aim());
+        if (!isDead)
+            StartCoroutine(Aim());
     }
 
     protected override IEnumerator Aim()

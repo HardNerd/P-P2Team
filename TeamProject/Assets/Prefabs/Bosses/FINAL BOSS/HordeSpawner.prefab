@@ -163,10 +163,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesToSpawn:
-  - {fileID: 3874992235311811758, guid: 39096af01d61dd0449435cbd70eff7f2, type: 3}
-  - {fileID: 386317693903183646, guid: a15103d174cd2294f9ed448bde763c73, type: 3}
   - {fileID: 1613792153148569952, guid: c0d8177cb036aa44eb9501d659f4e5d5, type: 3}
-  maxEnemies: 20
+  - {fileID: 6121085054999242922, guid: 57144d53bae8aac4ca4fc2b3b4e83dde, type: 3}
+  - {fileID: 663661019843638413, guid: bfe2baf4a5fa270488a705147c4faead, type: 3}
+  maxEnemies: 10
   spawnPos:
   - {fileID: 3415490229685584867}
   - {fileID: 231481661243002953}
@@ -176,11 +176,10 @@ MonoBehaviour:
   doors:
   - {fileID: 6856703601674013736}
   - {fileID: 7139021100135521190}
-  - {fileID: 2774505642483528911}
+  - {fileID: 0}
   - {fileID: 7755255303179118348}
   spawnStart: {fileID: 309877668059222304}
   spawnEnd: {fileID: 9008900377295944051}
-  coverPositions: []
   startSpawning: 0
   guid: 9154a5d0-a0eb-4720-9cff-a9c38ee4f764
 --- !u!82 &309877668059222304
@@ -595,11 +594,6 @@ PrefabInstance:
 --- !u!4 &2774505642483299825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 421664, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
-  m_PrefabInstance: {fileID: 2774505642483702481}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2774505642483528911 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 192030, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
   m_PrefabInstance: {fileID: 2774505642483702481}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6856703601673839158
