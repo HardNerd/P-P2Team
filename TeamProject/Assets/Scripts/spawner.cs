@@ -13,8 +13,6 @@ public class spawner : MonoBehaviour, IDataPersistence
     [SerializeField] AudioSource spawnStart;
     [SerializeField] AudioSource spawnEnd;
 
-    [SerializeField] public Transform[] coverPositions;
-
     bool isSpawning;
     bool hasBeenSpawned;
     public bool startSpawning;
