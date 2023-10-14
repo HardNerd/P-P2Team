@@ -452,7 +452,7 @@ MonoBehaviour:
   hitBox: {fileID: 2298368788376227881}
   meleeCollider: {fileID: 3967122993342015656}
   ammoDrop: {fileID: 7572150913216232364, guid: e98df906a032ecd41b9311ee9be42e0b, type: 3}
-  HitSource: {fileID: -8464406877796245321}
+  AttackSource: {fileID: -8464406877796245321}
   StepSource: {fileID: -3224717120342178472}
   DamageSource: {fileID: -413511112063181098}
   HP: 1.5

@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     [SerializeField] AudioSource footstepSound;
     [SerializeField] AudioSource jumpSound;
     [SerializeField] AudioSource healthSound;
+    [SerializeField] AudioSource pickupSound;
     private int deathCount = 0;
 
     [Header("----- Player Stats -----")]
@@ -340,6 +341,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         Item items = other.GetComponent<Item>();
         if(items != null)
         {
+            GameManager.instance.PlaySound(pickupSound);
             Inventory.AddItem(items.item);
             GameManager.instance.displayInventory.DisplayItem();
 
