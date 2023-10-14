@@ -10,7 +10,6 @@ public class finalBossSpawner : MonoBehaviour
     [SerializeField] int timeOffset;
 
     bool isSpawning;
-    bool hasBeenSpawned;
     public bool startSpawning;
     int spawnCount;
 
@@ -22,7 +21,6 @@ public class finalBossSpawner : MonoBehaviour
         }
         else if (spawnCount == maxEnemies && GameManager.instance.enemiesalive == 0)
         {
-            hasBeenSpawned = true;
             StopCoroutine(spawn());
         }
     }

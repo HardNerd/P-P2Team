@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using System.Runtime.ConstrainedExecution;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class DataPersistenceManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        
+
     }
     private void OnEnable()
     {
@@ -56,7 +57,86 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
-        NewSaveGame();
+        OverwriteCurrSaveData();
+    }
+
+    public void RestartLvl1()
+    {
+        this.gameData.playerPos.x = -4.25f;
+        this.gameData.playerPos.y = 0.5f;
+        this.gameData.playerPos.z = -6.375f;
+
+        this.gameData.gunsCollected = null;
+
+        this.gameData.spawnersAliveData = null;
+
+        this.gameData.checkPointColorChange = null;
+
+        this.gameData.grenadeCount = 0;
+
+        this.gameData.grenadePickedUp = null;   
+
+        OverwriteCurrSaveData();
+    }
+
+    public void RestartLvl2()
+    {
+        this.gameData.playerPos.x = -4;
+        this.gameData.playerPos.y = 1;
+        this.gameData.playerPos.z = -0.25f;
+
+        string assultGuid = "3e69fa03-63ea-4ce8-a426-7b60d13c0bfe";
+
+        if (this.gameData.gunsCollected.ContainsKey(assultGuid))
+        {
+            this.gameData.gunsCollected.Remove(assultGuid);
+            this.gameData.gunsCollected.Add(assultGuid, false);
+        }
+
+        string spawner1 = "9bddf22c-1cc5-49b9-92bb-f9fa03606f88";
+        string spawner2 = "9154a5d0-a0eb-4720-9cff-a9c38ee4f764";
+        
+        this.gameData.spawnersAliveData.Remove(spawner1 + spawner2);
+
+        string checkpoint1 = "ec9512e3-a2fb-49a5-9c35-c46e2999daa4";
+        string checkpoint2 = "811593ec-d5d0-4941-9c32-a06b04be230c";
+
+        this.gameData.checkPointColorChange.Remove(checkpoint1 + checkpoint2);
+
+        OverwriteCurrSaveData();
+    }
+    public void RestartLvl3()
+    {
+        this.gameData.playerPos.x = -3;
+        this.gameData.playerPos.y = 1;
+        this.gameData.playerPos.z = 3;
+
+        string uziGuid = "7fa89e7a-65f8-4d3f-b5e6-011bdd3b240f";
+
+        if (this.gameData.gunsCollected.ContainsKey(uziGuid))
+        {
+            this.gameData.gunsCollected.Remove(uziGuid);
+            this.gameData.gunsCollected.Add(uziGuid, false);
+        }
+
+        string spawner1 = "168aa64e-f3bd-468c-a064-e724b953a1c1";
+        string spawner2 = "a332f6b8-28e6-4836-9ed2-cee9c1ad0014";
+        string spawner3 = "eb41d453-548a-4d1c-9e3f-b9b98294be2b";
+        string spawner4 = "62039fc9-33be-4bf8-b08a-95a1c54f3765";
+        string spawner5 = "f9d30ba9-a6ba-4587-a7e3-7a4ec2bd085f";
+        string spawner6 = "a8e58a94-025a-4203-a4a5-d0114c6d341a";
+
+        
+        this.gameData.spawnersAliveData.Remove(spawner1 + spawner2 +spawner3 + spawner4 + spawner5 + spawner6);
+
+
+        string checkpoint1 = "d7bf76e8-0486-418b-9667-30f8f17dfe25";
+        string checkpoint2 = "05ffdebf-dbaf-4bee-9278-165d8df29047";
+        string checkpoint3 = "4a67b431-57b5-4187-b03d-8d34b7f36aae";
+
+        this.gameData.checkPointColorChange.Remove(checkpoint1 + checkpoint2 + checkpoint3);
+
+        OverwriteCurrSaveData();
     }
 
     public void LoadGame()
@@ -81,7 +161,7 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistence.LoadData(gameData);
         }
     }
-    public void NewSaveGame()
+    public void OverwriteCurrSaveData()
     {
         dataHandler.Save(gameData);
     }

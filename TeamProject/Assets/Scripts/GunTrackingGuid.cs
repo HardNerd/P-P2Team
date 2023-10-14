@@ -27,7 +27,6 @@ public class GunTrackingGuid : MonoBehaviour, IDataPersistence
             DataPersistenceManager.Instance.SaveGame();
 
             Destroy(gameObject);
-
         }
     }
 
