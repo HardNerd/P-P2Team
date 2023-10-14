@@ -4985,7 +4985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344cf32ae3aa09d4a9e706f3861cd3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: fe8a99920f9a834419792cb2a0c49fb3, type: 2}
+  item: {fileID: 11400000, guid: 9dcc7f2b16749544686d948ebb8284db, type: 2}
 --- !u!135 &7614707449827309917
 SphereCollider:
   m_ObjectHideFlags: 0
