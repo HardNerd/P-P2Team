@@ -28,7 +28,7 @@ public class Gun : MonoBehaviour
     private bool isShooting;
     public bool isReloading;
     public int selectedGun;
-    public GunStats gunStatsGun;
+    //public GunStats gunStatsGun;
     private float origPitch;
 
 

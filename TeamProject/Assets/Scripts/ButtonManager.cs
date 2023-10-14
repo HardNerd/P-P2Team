@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class ButtonManager : MonoBehaviour, IDataPersistence
+public class ButtonManager : MonoBehaviour
 {
     [SerializeField] AudioSource clickNoise;
     [Header("Menu Buttons")]
@@ -106,7 +106,24 @@ public class ButtonManager : MonoBehaviour, IDataPersistence
     public void restart()
     {
         clickNoise.Play();
+        StartCoroutine(RespawnDelay());
+        if (DataPersistenceManager.Instance != null)
+        {
+            if (GameManager.instance.levelClearedAmount == 2)
+            {
+                DataPersistenceManager.Instance.RestartLvl3();
+            }
+            else if (GameManager.instance.levelClearedAmount == 1)
+            {
+                DataPersistenceManager.Instance.RestartLvl2();
+            }
+            else
+            {
+                DataPersistenceManager.Instance.RestartLvl1();
+            }
+        }
         StartCoroutine(restartTime());
+        DataPersistenceManager.Instance.LoadGame();
     }
 
     public IEnumerator restartTime()
@@ -124,9 +141,14 @@ public class ButtonManager : MonoBehaviour, IDataPersistence
         
         GameManager.instance.playerController.spawnPlayer();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartCoroutine(RespawnDelay());
         DataPersistenceManager.Instance.LoadGame();
         //GameManager.instance.levelTime.timeTaken = GameManager.instance.levelTime.timeBuff;
         //Include respawn here
+    }
+    IEnumerator RespawnDelay()
+    {
+        yield return new WaitForSecondsRealtime(1);
     }
 
     public void quit()
@@ -160,15 +182,5 @@ public class ButtonManager : MonoBehaviour, IDataPersistence
     {
         clickNoise.Play();
         GameManager.instance.credits();
-    }
-
-    public void LoadData(GameData data)
-    {
-        
-    }
-
-    public void SaveData(GameData data)
-    {
-
     }
 }
