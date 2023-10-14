@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGrenade : MonoBehaviour
+public class PlayerGrenade : MonoBehaviour, IDataPersistence
 {
     [Header("References")]
     public Transform cam;
@@ -48,5 +48,15 @@ public class PlayerGrenade : MonoBehaviour
     public void addThrowsMax(int addThrows)
     {
         totalThrows += addThrows;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.totalThrows = data.grenadeCount;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.grenadeCount = this.totalThrows;
     }
 }
