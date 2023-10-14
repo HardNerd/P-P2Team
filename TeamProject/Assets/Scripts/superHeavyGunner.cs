@@ -15,7 +15,9 @@ public class superHeavyGunner : defaultEnemy
     [SerializeField] protected float shieldHP;
     [SerializeField] int staggerTime;
     [SerializeField] GameObject gun;
+    [SerializeField] enemyHealthBar shieldBar;
 
+    [Header("----- STATE -----")]
     [SerializeField] protected State _currentState;
 
     [Header("----- BOSS Power Up -----")]
@@ -29,6 +31,11 @@ public class superHeavyGunner : defaultEnemy
         B_footR = dropLocation;
         shieldHPMax = shieldHP;
         _currentState = State.Attack;
+        shieldHPMax = shieldHP;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        shieldBar.UpdateHealthBar(shieldHP, shieldHPMax);
+        healthObj.SetActive(true);
     }
 
     void Update()
@@ -77,6 +84,7 @@ public class superHeavyGunner : defaultEnemy
                 models[i].material.color = origColor;
 
             shieldHP = shieldHPMax;
+            shieldBar.UpdateHealthBar(shieldHP, shieldHPMax);
             SwitchToNextState(State.Attack);
             animator.SetBool("Staggered", false);
             gun.SetActive(true);
@@ -96,6 +104,7 @@ public class superHeavyGunner : defaultEnemy
         else
         {
             shieldHP -= amount;
+            shieldBar.UpdateHealthBar(shieldHP, shieldHPMax);
 
             if (shieldHP <= 0)
                 SwitchToNextState(State.Staggered);

@@ -72,6 +72,11 @@ public class finalBoss : superHeavyGunner
     float stage5HP;
     float stage6HP;
 
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
+
     void Start()
     {
         maxHP = HP;
@@ -89,6 +94,8 @@ public class finalBoss : superHeavyGunner
         shootRate = rocketShootRate;
         shots = 0;
         enemyBody = GetComponent<Rigidbody>();
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(true);
     }
 
     void Update()
@@ -370,6 +377,8 @@ public class finalBoss : superHeavyGunner
         else
         {
             HP -= amount;
+            healthObj.SetActive(true);
+            healthBar.UpdateHealthBar(HP, maxHP);
 
             if (HP <= 0)
             {
@@ -379,7 +388,7 @@ public class finalBoss : superHeavyGunner
                 hitBox.enabled = false;
                 agent.enabled = false;
                 StopAllCoroutines();
-                //Instantiate(ammoDrop);
+                healthObj.SetActive(false);
                 return;
             }
             else
