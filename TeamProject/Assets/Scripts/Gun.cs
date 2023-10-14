@@ -34,12 +34,6 @@ public class Gun : MonoBehaviour
     //public GunStats gunStatsGun;
     private float origPitch;
 
-
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         GunSelector();
@@ -48,7 +42,7 @@ public class Gun : MonoBehaviour
             StartCoroutine(shoot());
             
 
-        if (Input.GetButton("Reload") && !isReloading && !GameManager.instance.isPause && GunList.Count > 0)
+        if (Input.GetButton("Reload") && !isReloading && !GameManager.instance.isPause && GunList.Count > 0 && GunList[selectedGun].gunID != 1)
         {
             StartCoroutine(Reload());
             return;
@@ -57,7 +51,7 @@ public class Gun : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (GunList.Count > 0 && GunList[selectedGun].loadedAmmo > 0)
+        if (GunList.Count > 0 && GunList[selectedGun].loadedAmmo > 0 || GunList.Count > 0 && GunList[selectedGun].gunID == 1)
         {
             isShooting = true;
             GunList[selectedGun].loadedAmmo--;

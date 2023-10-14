@@ -15,8 +15,8 @@ MonoBehaviour:
   shootRate: 0.5
   shootDamage: 0.5
   shootDistance: 50
-  loadedAmmo: 12
-  maxAmmoCarried: 80
+  loadedAmmo: -12
+  maxAmmoCarried: 1000
   magSize: 12
   ammoCarried: 80
   reloadTime: 1.5
@@ -28,4 +28,4 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: 2782e552947856b46981dd95101679f5, type: 3}
   pickupSound: {fileID: 8300000, guid: a4a9327e98855524c846cc8e2f559e96, type: 3}
   toughnessDmg: 0
-  collected: 0
+  collected: 1
