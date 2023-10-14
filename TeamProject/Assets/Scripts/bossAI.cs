@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static grenadierAI;
 
 [RequireComponent(typeof(LineRenderer))]
 public class bossAI : EnemyAI
@@ -23,6 +22,7 @@ public class bossAI : EnemyAI
     [SerializeField] GameObject bullet;
 
     [SerializeField] SniperState _currentState;
+    [SerializeField] bool isBoss;
 
     [Header("----- BOSS Power Up -----")]
     [SerializeField] Transform dropLocation;
@@ -30,7 +30,8 @@ public class bossAI : EnemyAI
     LineRenderer laserSight;
     public static bool takingCover;
     private bool isAiming;
-    int selectedCoverPosition;
+    int currentCoverPosition = 0;
+    int selectedCoverPosition = 0;
 
     private void Awake()
     {
@@ -54,7 +55,9 @@ public class bossAI : EnemyAI
             switch (_currentState)
             {
                 case SniperState.SelectCover:
-                    selectedCoverPosition = Random.Range(0, coverPositions.Length);
+                    while (currentCoverPosition == selectedCoverPosition)
+                        selectedCoverPosition = Random.Range(0, coverPositions.Length);
+                    currentCoverPosition = selectedCoverPosition;
                     SwitchToState(SniperState.GoToCover);
                     break;
                 case SniperState.GoToCover:
@@ -84,14 +87,14 @@ public class bossAI : EnemyAI
         if (!takingCover)
         {
             takingCover = true;
-            agent.SetDestination(coverPositions[selectedCoverPosition].transform.position);
+            agent.SetDestination(coverPositions[currentCoverPosition].transform.position);
             return;
         }
 
         if (agent.remainingDistance <= 0)
         {
             takingCover = false;
-            isInvincible = true;
+            //isInvincible = true;
             SwitchToState(SniperState.Aim);
         }
     }
@@ -129,7 +132,7 @@ public class bossAI : EnemyAI
         animator.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.transform.position, Quaternion.LookRotation(playerDirection + new Vector3(0, -3f, 0)));
         laserSight.enabled = false;
-        isInvincible = false;
+        //isInvincible = false;
 
         SwitchToState(SniperState.SelectCover);
     }
@@ -140,8 +143,11 @@ public class bossAI : EnemyAI
 
         if (HP <= 0)
         {
-            for (int i = 0; i < roomDoors.Length; i++)
-                roomDoors[i].SetActive(false);
+            if (isBoss)
+            {
+                for (int i = 0; i < roomDoors.Length; i++)
+                    roomDoors[i].SetActive(false);
+            }
             laserSight.enabled = false;
         }
     }

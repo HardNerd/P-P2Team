@@ -299,6 +299,7 @@ MonoBehaviour:
   attackCountdown: 3
   bullet: {fileID: 6960399626281892138, guid: 0de7f47f563337e4c84faeadb7712ace, type: 3}
   _currentState: 0
+  isBoss: 1
   dropLocation: {fileID: 0}
 --- !u!95 &5512914088963172191
 Animator:
