@@ -49,6 +49,7 @@ public class finalBoss : superHeavyGunner
     [SerializeField] float bulletShootRate;
     [SerializeField] GameObject molotovPrefab;
     [SerializeField] float molotovShootRate;
+    [SerializeField] Transform throwPos;
 
     [SerializeField] int maxRocketShots;
     [SerializeField] ParticleSystem gunFire;
@@ -95,7 +96,9 @@ public class finalBoss : superHeavyGunner
         shots = 0;
         enemyBody = GetComponent<Rigidbody>();
         healthBar.UpdateHealthBar(HP, maxHP);
+        shieldBar.UpdateHealthBar(shieldHP, shieldHPMax);
         healthObj.SetActive(true);
+        shieldObj.SetActive(false);
     }
 
     void Update()
@@ -242,6 +245,7 @@ public class finalBoss : superHeavyGunner
     // override to use this class's shoot method
     protected override void Attack() // override unnecessary?
     {
+        animator.SetBool("Attacking", true);
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
         FaceTarget(playerDirection);
 
@@ -260,8 +264,11 @@ public class finalBoss : superHeavyGunner
     {
         isShooting = true;
         shots++;
-        animator.SetTrigger("Shoot");
-        //Instantiate(bullet, shootPos.position, transform.rotation);
+
+        if (bullet == rocketPrefab)
+            animator.SetTrigger("Shoot");
+        else
+            animator.SetTrigger("Grenade");
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -270,6 +277,11 @@ public class finalBoss : superHeavyGunner
     {
         Instantiate(bullet, shootPos.position, transform.rotation);
         Instantiate(gunFire, shootPos.position, transform.rotation);
+    }
+
+    public void ThrowGrenade()
+    {
+        Instantiate(bullet, throwPos.position, transform.rotation);
     }
 
     Vector3 ChooseRandomPos()
@@ -368,6 +380,7 @@ public class finalBoss : superHeavyGunner
         if (!isStaggered && usesShield)
         {
             shieldHP -= amount;
+            shieldBar.UpdateHealthBar(shieldHP, shieldHPMax);
 
             if (shieldHP <= 0)
                 SwitchToNextState(State.Staggered);
@@ -403,8 +416,11 @@ public class finalBoss : superHeavyGunner
         {
             if (!madeFinalDrop)
                 SwitchStage(Stage.DropDown);
-            else 
+            else
+            {
                 SwitchStage(Stage.HeavyOnly);
+                shieldObj.SetActive(true);
+            }
         }
         else if (HP <= stage5HP) SwitchStage(Stage.AddZombies);
         else if (HP <= stage4HP) SwitchStage(Stage.AddGrenadier);
