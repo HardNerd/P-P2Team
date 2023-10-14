@@ -306,9 +306,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         GameManager.instance.healthRed.fillAmount = 1;
 
         controller.enabled = false;
-        //pushBack.x = 0; 
-        //pushBack.y = 0; 
-        //pushBack.z = 0;
         transform.position = GameManager.instance.playerSpawnPOS.transform.position;
         controller.enabled = true;
     }
@@ -357,8 +354,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             playerSpeed = boostedSpeed;
             StartCoroutine(SpeedBoostDuration());
         }
-
-
     }
 
     IEnumerator SpeedBoostDuration()

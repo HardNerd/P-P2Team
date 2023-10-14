@@ -72,6 +72,10 @@ public class DataPersistenceManager : MonoBehaviour
 
         this.gameData.checkPointColorChange = null;
 
+        this.gameData.grenadeCount = 0;
+
+        this.gameData.grenadePickedUp = null;   
+
         OverwriteCurrSaveData();
     }
 
