@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionSize: 10
   explosionparticle: {fileID: 7335198343666546817, guid: ba1912c62f532f14d9187d4297c055f5, type: 3}
-  damage: 1
+  damage: 3
   explosionTime: 0.1
 --- !u!33 &6840189318410968071
 MeshFilter:
