@@ -237,7 +237,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
 
     public void sprint()
     {
-        if(isGrounded)
+        if(isGrounded && player2DVelocity.magnitude > 0)
         {
             updateStam(Time.deltaTime * 40);
             playerSpeed = baseSpeed * 2.5f;
