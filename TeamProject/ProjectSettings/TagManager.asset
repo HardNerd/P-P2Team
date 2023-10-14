@@ -21,6 +21,7 @@ TagManager:
   - SpeedBoost
   - Ground
   - Inventory
+  - Spawner
   layers:
   - Default
   - TransparentFX
