@@ -95,7 +95,9 @@ public class finalBoss : superHeavyGunner
         shots = 0;
         enemyBody = GetComponent<Rigidbody>();
         healthBar.UpdateHealthBar(HP, maxHP);
+        shieldBar.UpdateHealthBar(shieldHP, shieldHPMax);
         healthObj.SetActive(true);
+        shieldObj.SetActive(false);
     }
 
     void Update()
@@ -368,6 +370,7 @@ public class finalBoss : superHeavyGunner
         if (!isStaggered && usesShield)
         {
             shieldHP -= amount;
+            shieldBar.UpdateHealthBar(shieldHP, shieldHPMax);
 
             if (shieldHP <= 0)
                 SwitchToNextState(State.Staggered);
@@ -403,8 +406,11 @@ public class finalBoss : superHeavyGunner
         {
             if (!madeFinalDrop)
                 SwitchStage(Stage.DropDown);
-            else 
+            else
+            {
                 SwitchStage(Stage.HeavyOnly);
+                shieldObj.SetActive(true);
+            }
         }
         else if (HP <= stage5HP) SwitchStage(Stage.AddZombies);
         else if (HP <= stage4HP) SwitchStage(Stage.AddGrenadier);

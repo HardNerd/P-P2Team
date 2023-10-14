@@ -15,7 +15,8 @@ public class superHeavyGunner : defaultEnemy
     [SerializeField] protected float shieldHP;
     [SerializeField] int staggerTime;
     [SerializeField] GameObject gun;
-    [SerializeField] enemyHealthBar shieldBar;
+    [SerializeField] protected enemyHealthBar shieldBar;
+    [SerializeField] protected GameObject shieldObj;
 
     [Header("----- STATE -----")]
     [SerializeField] protected State _currentState;
