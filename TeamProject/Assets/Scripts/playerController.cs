@@ -237,7 +237,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
 
     public void sprint()
     {
-        if(isGrounded)
+        if(isGrounded && player2DVelocity.magnitude > 0)
         {
             updateStam(Time.deltaTime * 40);
             playerSpeed = baseSpeed * 2.5f;
@@ -306,9 +306,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         GameManager.instance.healthRed.fillAmount = 1;
 
         controller.enabled = false;
-        //pushBack.x = 0; 
-        //pushBack.y = 0; 
-        //pushBack.z = 0;
         transform.position = GameManager.instance.playerSpawnPOS.transform.position;
         controller.enabled = true;
     }
@@ -357,8 +354,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             playerSpeed = boostedSpeed;
             StartCoroutine(SpeedBoostDuration());
         }
-
-
     }
 
     IEnumerator SpeedBoostDuration()

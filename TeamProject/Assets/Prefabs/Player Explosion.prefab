@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionSize: 10
-  explosionparticle: {fileID: 7335198343666546817, guid: 5c3ebb71837303f428f7d9783bbc06aa, type: 3}
+  explosionparticle: {fileID: 7335198343666546817, guid: ba1912c62f532f14d9187d4297c055f5, type: 3}
   damage: 1
   explosionTime: 0.1
 --- !u!33 &6840189318410968071
