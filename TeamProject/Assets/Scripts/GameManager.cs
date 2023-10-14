@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public GameObject playerGrenadePickup;
     public PlayerGrenade playerGrenadeGM;
     public DisplayInventory displayInventory;
+    public Camera mainCamera;
 
     [Header("----- Menus -----")]
     [SerializeField] GameObject activeMenu;
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
         displayInventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<DisplayInventory>();
 
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void Start()

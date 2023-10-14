@@ -14,6 +14,11 @@ public class enemyHealthBar : MonoBehaviour
         slider.value = currentValue / maxValue;
     }
 
+    private void Start()
+    {
+        playerCamera = GameManager.instance.mainCamera;
+    }
+
     void Update()
     {
         if (!isBoss)

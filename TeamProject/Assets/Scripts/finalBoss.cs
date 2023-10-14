@@ -49,6 +49,7 @@ public class finalBoss : superHeavyGunner
     [SerializeField] float bulletShootRate;
     [SerializeField] GameObject molotovPrefab;
     [SerializeField] float molotovShootRate;
+    [SerializeField] Transform throwPos;
 
     [SerializeField] int maxRocketShots;
     [SerializeField] ParticleSystem gunFire;
@@ -244,6 +245,7 @@ public class finalBoss : superHeavyGunner
     // override to use this class's shoot method
     protected override void Attack() // override unnecessary?
     {
+        animator.SetBool("Attacking", true);
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
         FaceTarget(playerDirection);
 
@@ -262,8 +264,11 @@ public class finalBoss : superHeavyGunner
     {
         isShooting = true;
         shots++;
-        animator.SetTrigger("Shoot");
-        //Instantiate(bullet, shootPos.position, transform.rotation);
+
+        if (bullet == rocketPrefab)
+            animator.SetTrigger("Shoot");
+        else
+            animator.SetTrigger("Grenade");
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -272,6 +277,11 @@ public class finalBoss : superHeavyGunner
     {
         Instantiate(bullet, shootPos.position, transform.rotation);
         Instantiate(gunFire, shootPos.position, transform.rotation);
+    }
+
+    public void ThrowGrenade()
+    {
+        Instantiate(bullet, throwPos.position, transform.rotation);
     }
 
     Vector3 ChooseRandomPos()
