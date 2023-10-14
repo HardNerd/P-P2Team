@@ -18,6 +18,7 @@ public class superRocketMan : EnemyAI
     [SerializeField] float waitTime;
 
     [Header("----- Shoot Stats -----")]
+    [SerializeField] ParticleSystem gunExplosion;
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
     [SerializeField] GameObject projectile;
@@ -39,12 +40,20 @@ public class superRocketMan : EnemyAI
     List<GameObject> targets;
     int currentTarget;
 
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
+
     void Start()
     {
         B_footR = dropLocation;
         PopulatePlatformMatrix();
         enemyBody = GetComponent<Rigidbody>();
         selectedPos = attackPositions[0].transform.position;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(true);
     }
 
     void Update()
@@ -64,6 +73,7 @@ public class superRocketMan : EnemyAI
                     break;
                 case SuperRMState.DetermineNextPos:
                     selectedPos = ChooseRandomPos();
+                    animator.SetBool("Idle", false);
                     break;
                 case SuperRMState.ChangePos:
                     MoveToPosition();
@@ -147,7 +157,8 @@ public class superRocketMan : EnemyAI
             Vector3 targetPos = targets[currentTarget].GetComponent<rocketPlatform>().target.position;
             Instantiate(landingZone, targetPos, landingZone.transform.rotation);
 
-            GameObject rocket = Instantiate(projectile, shootPos.position, transform.rotation);
+            Instantiate(gunExplosion, shootPos.position, transform.rotation);
+            GameObject rocket = Instantiate(projectile, shootPos.position, Quaternion.LookRotation(targetPos - transform.position));
             Rigidbody rocket_rb = rocket.GetComponent<Rigidbody>();
             rocket_rb.velocity = (targetPos - rocket.transform.position).normalized * projectileSpeed;
 
@@ -160,6 +171,9 @@ public class superRocketMan : EnemyAI
 
     IEnumerator WaitAfterAttack()
     {
+        playerDirection = GameManager.instance.player.transform.position - headPos.position;
+        FaceTarget(playerDirection);
+
         if (!isWaiting)
         {
             isWaiting = true;
@@ -188,7 +202,10 @@ public class superRocketMan : EnemyAI
         transform.position = Vector3.MoveTowards(transform.position, selectedPos, flySpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, selectedPos) <= 0)
+        {
+            animator.SetBool("Idle", true);
             SwitchToNextState(SuperRMState.ChooseTargets);
+        }
     }
     protected void SwitchToNextState(SuperRMState nextState)
     {
@@ -198,6 +215,8 @@ public class superRocketMan : EnemyAI
     public override void TakeDamage(float amount, string source = null)
     {
         HP -= amount;
+        healthObj.SetActive(true);
+        healthBar.UpdateHealthBar(HP, maxHP);
 
         if (HP <= 0)
         {
@@ -205,6 +224,7 @@ public class superRocketMan : EnemyAI
             animator.SetBool("Dead", true);
             isDead = true;
 
+            healthObj.SetActive(false);
             StopAllCoroutines();
             Instantiate(ammoDrop, B_footR.position, Quaternion.identity);
         }

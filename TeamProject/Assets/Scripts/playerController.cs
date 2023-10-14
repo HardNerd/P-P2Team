@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     [SerializeField] AudioSource footstepSound;
     [SerializeField] AudioSource jumpSound;
     [SerializeField] AudioSource healthSound;
+    [SerializeField] AudioSource pickupSound;
     private int deathCount = 0;
 
     [Header("----- Player Stats -----")]
@@ -35,12 +36,14 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     private Vector3 playerVelocity;
     public Vector2 player2DVelocity;
     Vector2 previousFramePos = Vector2.zero;
+    Vector2 lastStep = Vector2.zero;
+    float dist;
+    float framedist;
     float baseSpeed;
     
     float maxStam;
     public bool sprintCooldown;
     public bool dashCooldown;
-    bool stepSoundPlaying;
     
     private Vector3 pushBack;
    
@@ -127,11 +130,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             Input.GetAxis("Vertical") * transform.forward;
 
         controller.Move(move * playerSpeed * Time.deltaTime);
-        if(player2DVelocity.normalized.magnitude > 0 && stepSoundPlaying == false && isGrounded == true)
-        {
-            GameManager.instance.PlaySound(footstepSound);
-            StartCoroutine(footstepPlay(7f/player2DVelocity.magnitude));
-        }
+        
 
 
         // If player walks off a platform
@@ -191,6 +190,18 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         // Calculate player2DVelocity for bullet prediction
         player2DVelocity = (new Vector2(transform.position.x, transform.position.z) - previousFramePos) / Time.deltaTime;
         previousFramePos = new Vector2(transform.position.x, transform.position.z);
+
+        framedist = (lastStep - previousFramePos).magnitude;
+        lastStep = previousFramePos;
+        dist += framedist;
+        if(dist > 5)
+        {
+            dist = 0;
+            if(isGrounded)
+                GameManager.instance.PlaySound(footstepSound);
+        }
+
+        Debug.Log(dist);
     }
 
     public void TakeDamage(float damageAmount, string source = null)
@@ -226,7 +237,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
 
     public void sprint()
     {
-        if(isGrounded)
+        if(isGrounded && player2DVelocity.magnitude > 0)
         {
             updateStam(Time.deltaTime * 40);
             playerSpeed = baseSpeed * 2.5f;
@@ -286,16 +297,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         sprintCooldown = false;
     }
 
-    IEnumerator footstepPlay(float length)
-    {
-        if (length > 2)
-            length = 1.5f;
-        stepSoundPlaying = true;
-        yield return new WaitForSeconds(length);
-        stepSoundPlaying = false;
-
-    }
-
     public void spawnPlayer()
     {
         HP = maxHP;
@@ -305,9 +306,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         GameManager.instance.healthRed.fillAmount = 1;
 
         controller.enabled = false;
-        pushBack.x = 0; 
-        pushBack.y = 0; 
-        pushBack.z = 0;
         transform.position = GameManager.instance.playerSpawnPOS.transform.position;
         controller.enabled = true;
     }
@@ -340,6 +338,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         Item items = other.GetComponent<Item>();
         if(items != null)
         {
+            GameManager.instance.PlaySound(pickupSound);
             Inventory.AddItem(items.item);
             GameManager.instance.displayInventory.DisplayItem();
 
@@ -355,8 +354,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             playerSpeed = boostedSpeed;
             StartCoroutine(SpeedBoostDuration());
         }
-
-
     }
 
     IEnumerator SpeedBoostDuration()

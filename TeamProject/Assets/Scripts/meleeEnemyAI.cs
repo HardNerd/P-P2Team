@@ -9,14 +9,23 @@ public class meleeEnemyAI : EnemyAI
     [SerializeField] float attackRate;
     [SerializeField] int attackDamage;
     [SerializeField] int attackAngle;
+    
 
     bool isAttacking;
 
     public int AttackDamage { get => attackDamage; }
 
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
+
     void Start()
     {
         speedOrig = agent.speed;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(false);
     }
 
     void Update()

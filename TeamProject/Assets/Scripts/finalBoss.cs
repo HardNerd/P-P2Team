@@ -51,6 +51,7 @@ public class finalBoss : superHeavyGunner
     [SerializeField] float molotovShootRate;
 
     [SerializeField] int maxRocketShots;
+    [SerializeField] ParticleSystem gunFire;
 
     [Header("----- Flying stats -----")]
     [SerializeField] GameObject[] attackPositions;
@@ -61,7 +62,6 @@ public class finalBoss : superHeavyGunner
     int shots;
     Vector3 selectedPos;
     bool isWaiting;
-    bool isInvinsible;
     bool madeFinalDrop;
     bool usesShield;
     bool towerDestroyed;
@@ -71,6 +71,11 @@ public class finalBoss : superHeavyGunner
     float stage4HP;
     float stage5HP;
     float stage6HP;
+
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
 
     void Start()
     {
@@ -89,6 +94,8 @@ public class finalBoss : superHeavyGunner
         shootRate = rocketShootRate;
         shots = 0;
         enemyBody = GetComponent<Rigidbody>();
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(true);
     }
 
     void Update()
@@ -114,7 +121,7 @@ public class finalBoss : superHeavyGunner
                 case Stage.AddZombies: // has 1/2 HP
                     SwitchBetweenWeapons();
                     Attack();
-                    hordeSpawner.GetComponent<spawner>().startSpawning = true;
+                    hordeSpawner.GetComponent<finalBossSpawner>().startSpawning = true;
                     break;
                 case Stage.DropDown: // has 1/3 HP
                     DropDown();
@@ -151,7 +158,8 @@ public class finalBoss : superHeavyGunner
         switch (_ftpState)
         {
             case FTPState.DetermineNewPos:
-                isInvinsible = true;
+                animator.SetBool("Idle", false);
+                isInvincible = true;
                 flySpeed = 10;
                 selectedPos = new Vector3(centerPlatform.position.x, transform.position.y, centerPlatform.position.z);
                 SwitchFTPState(FTPState.MoveToPlatformXY);
@@ -218,10 +226,12 @@ public class finalBoss : superHeavyGunner
 
     void LimitedAttack()
     {
+        animator.SetBool("Attacking", true);
         if (shots >= maxRocketShots)
         {
             shots = 0;
             firstShot = true;
+            animator.SetBool("Attacking", false);
             SwitchFlyState(SuperRMState.DetermineNextPos);
             return;
         }
@@ -251,9 +261,15 @@ public class finalBoss : superHeavyGunner
         isShooting = true;
         shots++;
         animator.SetTrigger("Shoot");
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        //Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    public void InstantiateBullet()
+    {
+        Instantiate(bullet, shootPos.position, transform.rotation);
+        Instantiate(gunFire, shootPos.position, transform.rotation);
     }
 
     Vector3 ChooseRandomPos()
@@ -269,13 +285,17 @@ public class finalBoss : superHeavyGunner
 
     void MoveToPosition()
     {
+        animator.SetBool("Idle", false);
         Vector3 targetDir = selectedPos - transform.position;
         FaceTarget(targetDir);
 
         transform.position = Vector3.MoveTowards(transform.position, selectedPos, flySpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, selectedPos) <= 0)
+        {
+            animator.SetBool("Idle", true);
             SwitchFlyState(SuperRMState.Attack);
+        }
     }
     void MoveToSelectedPos()
     {
@@ -285,7 +305,10 @@ public class finalBoss : superHeavyGunner
         transform.position = Vector3.MoveTowards(transform.position, selectedPos, flySpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, selectedPos) <= 0)
+        {
             SwitchFTPState(FTPState.DropToPlatform);
+            animator.SetBool("Falling", true);
+        }
     }
 
     void DropToPlatform()
@@ -294,11 +317,13 @@ public class finalBoss : superHeavyGunner
 
         if ((int)Vector3.Distance(transform.position, centerPlatform.position) <= 0)
         {
-            isInvinsible = false;
+            isInvincible = false;
             HP = stage3HP;
             StartCoroutine(FlashDamage(Color.red));
             SwitchStage(Stage.Rocketman);
         }
+        else if ((int)Vector3.Distance(transform.position, centerPlatform.position) <= 1)
+            animator.SetBool("Falling", false);
     }
 
     void SwitchBetweenWeapons()
@@ -314,7 +339,7 @@ public class finalBoss : superHeavyGunner
 
     void DropDown()
     {
-        isInvinsible = true;
+        isInvincible = true;
         agent.enabled = true;
 
         if (!towerDestroyed)
@@ -325,7 +350,7 @@ public class finalBoss : superHeavyGunner
 
         if ((int)transform.position.y <= 0)
         {
-            isInvinsible = false;
+            isInvincible = false;
             madeFinalDrop = true;
             usesShield = true;
             SwitchStage(Stage.HeavyOnly);
@@ -337,7 +362,7 @@ public class finalBoss : superHeavyGunner
 
     public override void TakeDamage(float amount, string source = null)
     {
-        if (isInvinsible)
+        if (isInvincible)
             return;
 
         if (!isStaggered && usesShield)
@@ -352,6 +377,8 @@ public class finalBoss : superHeavyGunner
         else
         {
             HP -= amount;
+            healthObj.SetActive(true);
+            healthBar.UpdateHealthBar(HP, maxHP);
 
             if (HP <= 0)
             {
@@ -361,7 +388,7 @@ public class finalBoss : superHeavyGunner
                 hitBox.enabled = false;
                 agent.enabled = false;
                 StopAllCoroutines();
-                //Instantiate(ammoDrop);
+                healthObj.SetActive(false);
                 return;
             }
             else

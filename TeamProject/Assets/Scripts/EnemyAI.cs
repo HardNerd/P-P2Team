@@ -14,6 +14,11 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected Collider hitBox;
     [SerializeField] protected Collider meleeCollider;
     [SerializeField] protected GameObject ammoDrop;
+    [SerializeField] AudioSource AttackSource;
+    [SerializeField] AudioSource StepSource;
+    [SerializeField] AudioSource DamageSource;
+    [SerializeField] protected GameObject healthObj;
+    [SerializeField] protected enemyHealthBar healthBar;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] protected float HP;
@@ -35,6 +40,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     protected Rigidbody enemyBody;
 
     protected float maxHP;
+    protected bool isInvincible;
 
     protected virtual void MoveEnemy()
     {
@@ -49,7 +55,12 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     virtual public void TakeDamage(float amount, string source)
     {
+        if (isInvincible)
+            return;
+
         HP -= amount;
+        healthObj.SetActive(true);
+        healthBar.UpdateHealthBar(HP, maxHP);
         
         if (meleeCollider != null)
             meleeColliderOff();
@@ -62,6 +73,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             agent.enabled = false;
             animator.SetBool("Dead", true);
             isDead = true;
+
+            healthObj.SetActive(false);
 
             StopAllCoroutines();
            
@@ -121,6 +134,18 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         meleeCollider.enabled = false;
     }
 
-   
-  
+    public void AttackSound()
+    {
+        GameManager.instance.PlaySound(AttackSource);
+    }
+
+    public void StepSound()
+    {
+        GameManager.instance.PlaySound(StepSource);
+    }
+
+    public void DamageSound()
+    {
+        GameManager.instance.PlaySound(DamageSource);
+    }
 }

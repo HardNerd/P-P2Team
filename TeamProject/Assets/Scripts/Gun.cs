@@ -25,11 +25,13 @@ public class Gun : MonoBehaviour
 
     [SerializeField] AudioSource shootSound;
     [SerializeField] AudioSource reloadSound;
+    [SerializeField] AudioSource gunPickupSound;
+    [SerializeField] AudioSource ammoPickupSound;
 
     private bool isShooting;
     public bool isReloading;
     public int selectedGun;
-    public GunStats gunStatsGun;
+    //public GunStats gunStatsGun;
     private float origPitch;
 
 
@@ -131,6 +133,8 @@ public class Gun : MonoBehaviour
         origPitch = shootSound.pitch;
         reloadTime = gun.reloadTime;
 
+        gunPickupSound.clip = gun.pickupSound;
+        GameManager.instance.PlaySound(gunPickupSound);
 
         GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         GetComponent<Renderer>().sharedMaterial = gun.model.GetComponent<Renderer>().sharedMaterial;
@@ -168,10 +172,12 @@ public class Gun : MonoBehaviour
         GetComponent<Renderer>().sharedMaterial = GunList[selectedGun].model.GetComponent<Renderer>().sharedMaterial;
     }
 
-    public void AmmoPickup(GunStats gunStats)
+    public void AmmoPickup(GunStats gunStats, AudioClip pickupSound)
     {
         if (gunStats.ammoCarried < gunStats.maxAmmoCarried)
         {
+            ammoPickupSound.clip = pickupSound;
+            GameManager.instance.PlaySound(ammoPickupSound);
             gunStats.ammoCarried += UnityEngine.Random.Range(1, gunStats.magSize);
             if (gunStats.ammoCarried + UnityEngine.Random.Range(1, gunStats.magSize) > gunStats.maxAmmoCarried)
             {

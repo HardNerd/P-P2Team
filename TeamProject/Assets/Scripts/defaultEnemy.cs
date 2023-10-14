@@ -9,15 +9,23 @@ public class defaultEnemy : EnemyAI
     [Header("----- Gun Stats -----")]
     [SerializeField] protected Transform shootPos;
     [SerializeField] protected float shootRate;
-    [SerializeField] int shootAngle;
+    [SerializeField] protected int shootAngle;
     [SerializeField] protected GameObject bullet;
 
     protected bool isShooting;
     bool canShoot = true;
 
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
+
     void Start()
     {
         speedOrig = agent.speed;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(false);
     }
 
     void Update()

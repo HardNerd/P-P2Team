@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject checkpointMenu;
     [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject creditsMenu;
+    [SerializeField] GameObject saveOverlay;
 
     [Header("----- Play State -----")]
     [SerializeField] GameObject endPoint;
@@ -57,8 +58,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public float healthYelFillAmt;
     public float stamBlueFillAmt;
     public float stamYelFillAmt;
-    public bool levelCleared;
-
+    public int levelClearedAmount;
     // Start is called before the first frame update
     void Awake()
     {
@@ -138,6 +138,10 @@ public class GameManager : MonoBehaviour, IDataPersistence
         activeMenu = menu;
     }
 
+    public void SaveOverlay(bool on)
+    {
+        saveOverlay.SetActive(on);
+    }
 
     public void options()
     {
@@ -248,6 +252,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         instance.playerSpawnPOS.transform.position = data.playerPos;
+        instance.levelClearedAmount = data.levelCount;
     }
 
     public void SaveData(GameData data)

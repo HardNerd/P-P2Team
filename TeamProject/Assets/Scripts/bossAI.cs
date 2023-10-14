@@ -32,12 +32,20 @@ public class bossAI : EnemyAI
     private bool isAiming;
     int selectedCoverPosition;
 
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
+
     void Start()
     {
         laserSight = GetComponent<LineRenderer>();
         B_footR = dropLocation;
         agent.SetDestination(coverPositions[0].transform.position);
         laserSight.enabled = false;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(true);
     }
     void Update()
     {
@@ -61,6 +69,8 @@ public class bossAI : EnemyAI
                 default:
                     break;
             }
+            float agentVelocity = agent.velocity.normalized.magnitude;
+            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
         }
     }
 
@@ -81,6 +91,7 @@ public class bossAI : EnemyAI
         if (agent.remainingDistance <= 0)
         {
             takingCover = false;
+            isInvincible = true;
             SwitchToState(SniperState.Aim);
         }
     }
@@ -115,8 +126,10 @@ public class bossAI : EnemyAI
 
     private void Shoot()
     {
+        animator.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.transform.position, Quaternion.LookRotation(playerDirection + new Vector3(0, -3f, 0)));
         laserSight.enabled = false;
+        isInvincible = false;
 
         SwitchToState(SniperState.SelectCover);
     }
@@ -129,6 +142,7 @@ public class bossAI : EnemyAI
         {
             for (int i = 0; i < roomDoors.Length; i++)
                 roomDoors[i].SetActive(false);
+            laserSight.enabled = false;
         }
     }
 }

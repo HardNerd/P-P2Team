@@ -13,6 +13,12 @@ public class superGrenadier : grenadierAI
     Vector3 closestAttackPos;
     int randomMaxThrows;
     bool hasSetRandomThrows;
+    bool triggeredAgent;
+
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
 
     void Start()
     {
@@ -21,6 +27,9 @@ public class superGrenadier : grenadierAI
         agent.stoppingDistance = attackDistance;
         agentStoppingDistOrig = agent.stoppingDistance;
         speedOrig = agent.speed;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(true);
     }
 
     void Update()
@@ -47,6 +56,8 @@ public class superGrenadier : grenadierAI
                 default:
                     break;
             }
+            float agentVelocity = agent.velocity.normalized.magnitude;
+            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
         }
     }
 
@@ -77,10 +88,18 @@ public class superGrenadier : grenadierAI
 
     void MoveToClosestPos()
     {
-        agent.SetDestination(closestAttackPos);
+        if (!triggeredAgent)
+        {
+            triggeredAgent = true;
+            agent.SetDestination(closestAttackPos);
+            return;
+        }
 
         if (agent.remainingDistance <= agent.stoppingDistance)
+        {
             SwitchToNextState(GrenadierState.Attack);
+            triggeredAgent = false;
+        }
     }
 
     protected override void Attack()
@@ -88,14 +107,18 @@ public class superGrenadier : grenadierAI
         // Sets throws to vary between the max throws set and -1 that amount
         if (!hasSetRandomThrows)
         {
-            randomMaxThrows = Random.Range(maxThrows, maxThrows - 1);
+            randomMaxThrows = Random.Range(maxThrows - 1, maxThrows + 1);
             hasSetRandomThrows = true;
         }
 
         if (molotovsThrown >= randomMaxThrows)
         {
-            hasSetRandomThrows = false;
-            SwitchToNextState(GrenadierState.GoToCover);
+            if (animCount >= randomMaxThrows)
+            {
+                hasSetRandomThrows = false;
+                animCount = 0;
+                SwitchToNextState(GrenadierState.GoToCover);
+            }
             return;
         }
 

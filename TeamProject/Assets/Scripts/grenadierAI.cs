@@ -29,12 +29,21 @@ public class grenadierAI : EnemyAI
     protected bool inCover;
     protected float agentStoppingDistOrig;
     protected int molotovsThrown = 0;
+    protected int animCount = 0;
+
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
 
     void Start()
     {
         agent.stoppingDistance = attackDistance;
         agentStoppingDistOrig = agent.stoppingDistance;
         speedOrig = agent.speed;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(false);
     }
 
     void Update()
@@ -58,6 +67,8 @@ public class grenadierAI : EnemyAI
                 default:
                     break;
             }
+            float agentVelocity = agent.velocity.normalized.magnitude;
+            animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentVelocity, Time.deltaTime * animChangeSpeed));
         }
     }
 
@@ -100,7 +111,11 @@ public class grenadierAI : EnemyAI
     {
         if (molotovsThrown >= maxThrows)
         {
-            SwitchToNextState(GrenadierState.GoToCover);
+            if (animCount >= maxThrows)
+            {
+                animCount = 0;
+                SwitchToNextState(GrenadierState.GoToCover);
+            }
             return;
         }
 
@@ -119,8 +134,22 @@ public class grenadierAI : EnemyAI
     {
         isThrowing = true;
         molotovsThrown++;
-        Instantiate(molotov, throwPos.position, transform.rotation);
+        animator.SetTrigger("Attack");
         yield return new WaitForSeconds(timeBetweenThrows); // wait in front of player without attacking before going to cover
         isThrowing = false;
+    }
+
+    public void InstantiateMolotov()
+    {
+        AudioSource source = molotov.GetComponent<AudioSource>();
+        float pitch = source.pitch;
+        GameManager.instance.AudioChange(source);
+        Instantiate(molotov, throwPos.position, transform.rotation);
+        source.pitch = pitch;
+    }
+
+    public void AnimEnd()
+    {
+        animCount++;
     }
 }

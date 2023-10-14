@@ -15,10 +15,10 @@ MonoBehaviour:
   shootRate: 0.5
   shootDamage: 0.5
   shootDistance: 50
-  loadedAmmo: 10
+  loadedAmmo: 12
   maxAmmoCarried: 80
   magSize: 12
-  ammoCarried: 75
+  ammoCarried: 80
   reloadTime: 1.5
   gunID: 1
   model: {fileID: 1016106795235300455, guid: 989ad2373e91bc24d971094f1eaa4815, type: 3}
@@ -26,5 +26,6 @@ MonoBehaviour:
   hitEffect: {fileID: 3419905006596131026, guid: c51780ac324fdd24fa1ad78810bf5e02, type: 3}
   gunSound: {fileID: 8300000, guid: 6739c01659ad96d47987f4ddee226b36, type: 3}
   reloadSound: {fileID: 8300000, guid: 2782e552947856b46981dd95101679f5, type: 3}
+  pickupSound: {fileID: 8300000, guid: a4a9327e98855524c846cc8e2f559e96, type: 3}
   toughnessDmg: 0
-  collected: 1
+  collected: 0

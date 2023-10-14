@@ -24,8 +24,8 @@ public class AmmoPickup : MonoBehaviour
             {
                 if (gunStats.gunID == gunScript.GunList[i].gunID && gunStats.ammoCarried < gunStats.maxAmmoCarried)
                 {
+                    GameManager.instance.playerGunScript.AmmoPickup(gunStats, ammoPickupSound);
                     Destroy(gameObject);
-                    GameManager.instance.playerGunScript.AmmoPickup(gunStats);
                    
                 }
             }

@@ -6,6 +6,8 @@ public class TimedSpike : MonoBehaviour
 {
     public float Damage = 2f;
     private bool isSpike = false;
+    [SerializeField] AudioSource outSound;
+    [SerializeField] AudioSource inSound;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,9 +33,11 @@ public class TimedSpike : MonoBehaviour
     IEnumerator Spike()
     {
         isSpike = true;
+        GameManager.instance.PlaySound(outSound);
         transform.position += new Vector3(0, 2, 0);
         GameManager.instance.playerController.TakeDamage(Damage);
         yield return new WaitForSeconds(1f);
+        GameManager.instance.PlaySound(inSound);
         transform.position -= new Vector3(0, 2, 0);
         yield return new WaitForSeconds(1f);
         isSpike = false;
