@@ -9,12 +9,11 @@ public class spawner : MonoBehaviour, IDataPersistence
     [SerializeField] int maxEnemies;
     [SerializeField] Transform[] spawnPos;
     [SerializeField] int timeOffset;
-    [SerializeField] GameObject door1;
-    [SerializeField] GameObject door2;
-    [SerializeField] GameObject door3;
-    [SerializeField] GameObject door4;
+    [SerializeField] GameObject[] doors;
     [SerializeField] AudioSource spawnStart;
     [SerializeField] AudioSource spawnEnd;
+
+    [SerializeField] public Transform[] coverPositions;
 
     bool isSpawning;
     bool hasBeenSpawned;
@@ -40,18 +39,14 @@ public class spawner : MonoBehaviour, IDataPersistence
     {
         if (startSpawning && spawnCount < maxEnemies)
         {
-            door1.SetActive(true);
-            door2.SetActive(true);
-            door3.SetActive(true);
-            door4.SetActive(true);
+            foreach (GameObject door in doors)
+                door.SetActive(true);
             StartCoroutine(spawn());
         }
         else if (spawnCount == maxEnemies && GameManager.instance.enemiesalive == 0)
         {
-            door1.SetActive(false); 
-            door2.SetActive(false);
-            door3.SetActive(false); 
-            door4.SetActive(false);
+            foreach (GameObject door in doors)
+                door.SetActive(false);
             if(!hasBeenSpawned)
             {
                 GameManager.instance.PlaySound(spawnEnd);
