@@ -31,11 +31,19 @@ public class grenadierAI : EnemyAI
     protected int molotovsThrown = 0;
     protected int animCount = 0;
 
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
+
     void Start()
     {
         agent.stoppingDistance = attackDistance;
         agentStoppingDistOrig = agent.stoppingDistance;
         speedOrig = agent.speed;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(false);
     }
 
     void Update()

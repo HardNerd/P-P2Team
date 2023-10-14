@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] AudioSource AttackSource;
     [SerializeField] AudioSource StepSource;
     [SerializeField] AudioSource DamageSource;
+    [SerializeField] protected GameObject healthObj;
+    [SerializeField] protected enemyHealthBar healthBar;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] protected float HP;
@@ -57,6 +59,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             return;
 
         HP -= amount;
+        healthObj.SetActive(true);
+        healthBar.UpdateHealthBar(HP, maxHP);
         
         if (meleeCollider != null)
             meleeColliderOff();
@@ -69,6 +73,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             agent.enabled = false;
             animator.SetBool("Dead", true);
             isDead = true;
+
+            healthObj.SetActive(false);
 
             StopAllCoroutines();
            

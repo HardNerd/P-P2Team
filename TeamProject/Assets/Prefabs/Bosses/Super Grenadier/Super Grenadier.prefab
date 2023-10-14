@@ -443,6 +443,11 @@ MonoBehaviour:
   hitBox: {fileID: 1895669825196500810}
   meleeCollider: {fileID: 0}
   ammoDrop: {fileID: 1768661491756380565, guid: 4611587a9efe4e347950f16cc1e95194, type: 3}
+  AttackSource: {fileID: 0}
+  StepSource: {fileID: 0}
+  DamageSource: {fileID: 0}
+  healthObj: {fileID: 0}
+  healthBar: {fileID: 0}
   HP: 8
   targetFaceSpeed: 25
   animChangeSpeed: 7

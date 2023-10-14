@@ -15,6 +15,11 @@ public class superGrenadier : grenadierAI
     bool hasSetRandomThrows;
     bool triggeredAgent;
 
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
+
     void Start()
     {
         B_footR = dropLocation;
@@ -22,6 +27,9 @@ public class superGrenadier : grenadierAI
         agent.stoppingDistance = attackDistance;
         agentStoppingDistOrig = agent.stoppingDistance;
         speedOrig = agent.speed;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(true);
     }
 
     void Update()

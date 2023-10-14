@@ -40,12 +40,20 @@ public class superRocketMan : EnemyAI
     List<GameObject> targets;
     int currentTarget;
 
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
+
     void Start()
     {
         B_footR = dropLocation;
         PopulatePlatformMatrix();
         enemyBody = GetComponent<Rigidbody>();
         selectedPos = attackPositions[0].transform.position;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(true);
     }
 
     void Update()
@@ -207,6 +215,8 @@ public class superRocketMan : EnemyAI
     public override void TakeDamage(float amount, string source = null)
     {
         HP -= amount;
+        healthObj.SetActive(true);
+        healthBar.UpdateHealthBar(HP, maxHP);
 
         if (HP <= 0)
         {
@@ -214,6 +224,7 @@ public class superRocketMan : EnemyAI
             animator.SetBool("Dead", true);
             isDead = true;
 
+            healthObj.SetActive(false);
             StopAllCoroutines();
             Instantiate(ammoDrop, B_footR.position, Quaternion.identity);
         }

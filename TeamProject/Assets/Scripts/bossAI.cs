@@ -32,12 +32,20 @@ public class bossAI : EnemyAI
     private bool isAiming;
     int selectedCoverPosition;
 
+    private void Awake()
+    {
+        healthBar = GetComponentInChildren<enemyHealthBar>();
+    }
+
     void Start()
     {
         laserSight = GetComponent<LineRenderer>();
         B_footR = dropLocation;
         agent.SetDestination(coverPositions[0].transform.position);
         laserSight.enabled = false;
+        maxHP = HP;
+        healthBar.UpdateHealthBar(HP, maxHP);
+        healthObj.SetActive(true);
     }
     void Update()
     {
