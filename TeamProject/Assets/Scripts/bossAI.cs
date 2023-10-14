@@ -16,20 +16,19 @@ public class bossAI : EnemyAI
 
     [SerializeField] GameObject[] roomDoors;
     [SerializeField] Transform[] coverPositions;
-    [SerializeField] Transform shootPos;
-    [SerializeField] int attackCountdown;
+    [SerializeField] protected Transform shootPos;
+    [SerializeField] protected int attackCountdown;
 
-    [SerializeField] GameObject bullet;
+    [SerializeField] protected GameObject bullet;
 
     [SerializeField] SniperState _currentState;
-    [SerializeField] bool isBoss;
 
     [Header("----- BOSS Power Up -----")]
     [SerializeField] Transform dropLocation;
 
-    LineRenderer laserSight;
+    protected LineRenderer laserSight;
     public static bool takingCover;
-    private bool isAiming;
+    protected bool isAiming;
     int currentCoverPosition = 0;
     int selectedCoverPosition = 0;
 
@@ -94,12 +93,12 @@ public class bossAI : EnemyAI
         if (agent.remainingDistance <= 0)
         {
             takingCover = false;
-            //isInvincible = true;
+            isInvincible = true;
             SwitchToState(SniperState.Aim);
         }
     }
 
-    IEnumerator Aim()
+    virtual protected IEnumerator Aim()
     {
         //turn towards player
         playerDirection = GameManager.instance.player.transform.position - transform.position;
@@ -116,7 +115,7 @@ public class bossAI : EnemyAI
         }
     }
 
-    void ActivateLaser()
+    protected void ActivateLaser()
     {
         laserSight.enabled = true;
         laserSight.SetPosition(0, shootPos.transform.position);
@@ -127,12 +126,12 @@ public class bossAI : EnemyAI
             laserSight.SetPosition(1, hit.point);
     }
 
-    private void Shoot()
+    virtual protected void Shoot()
     {
         animator.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.transform.position, Quaternion.LookRotation(playerDirection + new Vector3(0, -3f, 0)));
         laserSight.enabled = false;
-        //isInvincible = false;
+        isInvincible = false;
 
         SwitchToState(SniperState.SelectCover);
     }
@@ -143,11 +142,8 @@ public class bossAI : EnemyAI
 
         if (HP <= 0)
         {
-            if (isBoss)
-            {
-                for (int i = 0; i < roomDoors.Length; i++)
-                    roomDoors[i].SetActive(false);
-            }
+            for (int i = 0; i < roomDoors.Length; i++)
+                roomDoors[i].SetActive(false);
             laserSight.enabled = false;
         }
     }

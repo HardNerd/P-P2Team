@@ -177,7 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1430185203259504153}
-  - component: {fileID: 93882471382663203}
+  - component: {fileID: 6507047724283862321}
   - component: {fileID: 2566140018457165430}
   - component: {fileID: 8895102423384731992}
   - component: {fileID: 6769837274664444846}
@@ -212,7 +212,7 @@ Transform:
   - {fileID: 4247927339385538968}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &93882471382663203
+--- !u!114 &6507047724283862321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 663661019843638413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ace8f9a62583084d8e653669fe3217d, type: 3}
+  m_Script: {fileID: 11500000, guid: 160dbb2aa15a37d449ae1ce1070ebe2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   models:
@@ -232,7 +232,7 @@ MonoBehaviour:
   B_footR: {fileID: 6239042316284731053}
   hitBox: {fileID: 6769837274664444846}
   meleeCollider: {fileID: 0}
-  ammoDrop: {fileID: 4212784033727627204, guid: 8742ad615d31ff84eb5bd4b01dccc287, type: 3}
+  ammoDrop: {fileID: 379705209901190606, guid: c5dafeb6a361d2f43a5e0723e9748856, type: 3}
   AttackSource: {fileID: 682351144599130140}
   StepSource: {fileID: 6187663924603665870}
   DamageSource: {fileID: 1527214495757337777}
@@ -247,14 +247,11 @@ MonoBehaviour:
   pushBackResolve: 0
   agentSpeed: 2
   roomDoors: []
-  coverPositions:
-  - {fileID: 0}
-  - {fileID: 0}
+  coverPositions: []
   shootPos: {fileID: 4876868063076572849}
   attackCountdown: 3
   bullet: {fileID: 4698408825715902458, guid: a45fa88ac0985a941b0a2772a94430e9, type: 3}
   _currentState: 0
-  isBoss: 0
   dropLocation: {fileID: 6239042316284731053}
 --- !u!95 &2566140018457165430
 Animator:
