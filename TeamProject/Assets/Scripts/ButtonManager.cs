@@ -47,7 +47,7 @@ public class ButtonManager : MonoBehaviour
     public void yes()
     {
         clickNoise.Play();
-        if (SceneManager.GetActiveScene().name == "KevinScene")
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             DataPersistenceManager.Instance.NewGame();
             GameManager.instance.SaveOverlay(false);
@@ -154,7 +154,7 @@ public class ButtonManager : MonoBehaviour
     public void quit()
     {
         clickNoise.Play();
-        if (SceneManager.GetActiveScene().name == "KevinScene")
+        if (SceneManager.GetActiveScene().name == "MainMenu")
             Application.Quit();
         else
             StartCoroutine(titleLoad());
@@ -163,7 +163,7 @@ public class ButtonManager : MonoBehaviour
     public IEnumerator titleLoad()
     {
         yield return new WaitForSecondsRealtime(1);
-        SceneManager.LoadScene("KevinScene");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void options()

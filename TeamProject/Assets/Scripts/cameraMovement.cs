@@ -16,7 +16,7 @@ public class cameraMovement : MonoBehaviour
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().name != "KevinScene")
+        if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
