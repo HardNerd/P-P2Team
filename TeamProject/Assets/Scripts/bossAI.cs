@@ -13,6 +13,7 @@ public class bossAI : EnemyAI
         Aim,
         Attack,
     }
+    [SerializeField] private bool IsBossTypeEnemy;
     [SerializeField] private GameObject bossTriggerToggle;
     [SerializeField] GameObject[] roomDoors;
     [SerializeField] Transform[] coverPositions;
@@ -144,7 +145,10 @@ public class bossAI : EnemyAI
             for (int i = 0; i < roomDoors.Length; i++)
                 roomDoors[i].SetActive(false);
             laserSight.enabled = false;
-            //bossTriggerToggle.SetActive(false);
+            if (IsBossTypeEnemy)
+            {
+                bossTriggerToggle.SetActive(false);
+            }
         }
     }
 }
