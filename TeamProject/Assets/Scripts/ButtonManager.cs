@@ -49,8 +49,9 @@ public class ButtonManager : MonoBehaviour
         clickNoise.Play();
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            DataPersistenceManager.Instance.NewGame();
+
             GameManager.instance.SaveOverlay(false);
+            DataPersistenceManager.Instance.NewGame();
             StartCoroutine(beginTime());
         }
     }

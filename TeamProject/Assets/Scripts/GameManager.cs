@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void stateUnpause()
     {
-        Time.timeScale = currtime;
+        Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isPause = !isPause;
