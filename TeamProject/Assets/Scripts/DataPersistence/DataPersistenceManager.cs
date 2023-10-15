@@ -163,6 +163,12 @@ public class DataPersistenceManager : MonoBehaviour
         //    NewGame();
         //}
         //push loaded data to all other scripts that need it
+
+        if (this.gameData == null)
+        {
+            return;
+        }
+
         foreach (IDataPersistence dataPersistence in dataPersistenceObjects)
         {
             dataPersistence.LoadData(gameData);
