@@ -5100,7 +5100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPickupSound: {fileID: 8300000, guid: 2782e552947856b46981dd95101679f5, type: 3}
-  useText: {fileID: 8091353075191416973, guid: 1a4a68f2594bc21498664ae6832a1fb5, type: 3}
+  useTextPrefab: {fileID: 8091353075191416973, guid: 1a4a68f2594bc21498664ae6832a1fb5, type: 3}
+  useText: {fileID: 0}
 --- !u!135 &536693801842343382
 SphereCollider:
   m_ObjectHideFlags: 0

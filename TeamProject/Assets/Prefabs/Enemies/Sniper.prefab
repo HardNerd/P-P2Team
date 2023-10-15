@@ -238,7 +238,7 @@ MonoBehaviour:
   DamageSource: {fileID: 1527214495757337777}
   healthObj: {fileID: 1106387739731022918}
   healthBar: {fileID: 0}
-  HP: 5
+  HP: 3
   targetFaceSpeed: 2
   animChangeSpeed: 7
   stopAtDamageTime: 0
@@ -246,6 +246,8 @@ MonoBehaviour:
   reactsToHit: 0
   pushBackResolve: 0
   agentSpeed: 2
+  IsBossTypeEnemy: 0
+  bossTriggerToggle: {fileID: 0}
   roomDoors: []
   coverPositions: []
   shootPos: {fileID: 4876868063076572849}
