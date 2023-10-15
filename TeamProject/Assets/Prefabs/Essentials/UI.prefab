@@ -2410,10 +2410,10 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379228807018815576}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -178675144931404672, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 787ebbe472ef0ba4a8b82eb9749ad999, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a55ceb32b80b20c4fb9b0c9e1b10d423, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2739,6 +2739,7 @@ MonoBehaviour:
   playerGrenadePickup: {fileID: 0}
   playerGrenadeGM: {fileID: 0}
   displayInventory: {fileID: 0}
+  mainCamera: {fileID: 0}
   activeMenu: {fileID: 0}
   lastMenu: {fileID: 0}
   mainMusic: {fileID: 5344131977456916421}
