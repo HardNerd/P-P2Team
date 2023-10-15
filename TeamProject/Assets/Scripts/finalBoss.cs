@@ -16,10 +16,6 @@ public class finalBoss : superHeavyGunner
         DropDown,
         HeavyOnly
     }
-    //public enum BossState
-    //{
-    //    Idle
-    //}
     public enum SuperRMState
     {
         Attack,

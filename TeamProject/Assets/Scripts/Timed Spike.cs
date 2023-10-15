@@ -23,7 +23,6 @@ public class TimedSpike : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-
         if (!isSpike)
         {
             StartCoroutine(Spike());

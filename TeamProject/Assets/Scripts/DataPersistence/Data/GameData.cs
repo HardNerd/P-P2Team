@@ -23,8 +23,6 @@ public class GameData
     public SerializableDictionary<string, bool> gunsCollected;
 
     public SerializableDictionary<string, bool> checkPointColorChange;
-    //the values defined in this contructor will be the default values, no touch
-    // the game starts with when there's no data to load
     public GameData()
     {
         this.deathCount = 0;

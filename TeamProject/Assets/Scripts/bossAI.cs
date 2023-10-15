@@ -120,7 +120,6 @@ public class bossAI : EnemyAI
         laserSight.enabled = true;
         laserSight.SetPosition(0, shootPos.transform.position);
         RaycastHit hit;
-        Debug.DrawRay(headPos.position, playerDirection);
 
         if (Physics.Raycast(shootPos.transform.position, playerDirection + new Vector3(0, -3f, 0), out hit))
             laserSight.SetPosition(1, hit.point);

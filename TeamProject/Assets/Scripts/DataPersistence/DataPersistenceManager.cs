@@ -9,9 +9,9 @@ using System.Runtime.ConstrainedExecution;
 
 public class DataPersistenceManager : MonoBehaviour
 {
-    [Header("Debugging")]
+    //[Header("Debugging")]
 
-    [SerializeField] private bool initializeDataIfNull = false;
+    //[SerializeField] private bool initializeDataIfNull = false;
 
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
@@ -28,7 +28,6 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("Found more than one Data Persistance Manager in the scene. Destroying the newest one.");
             Destroy(this.gameObject);
             return;
         }
@@ -48,8 +47,6 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded Called");
-        //gameData.playerPos = GameManager.instance.playerSpawnPOS.transform.position;
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
@@ -161,17 +158,10 @@ public class DataPersistenceManager : MonoBehaviour
         // Load any save data from a file unsing the data handler
         this.gameData = dataHandler.Load();
         // if no data can be loaded, initialize to a new game
-        if (this.gameData == null && initializeDataIfNull)
-        {
-            NewGame();
-        }
-
-
-        if (this.gameData == null)
-        {
-            Debug.Log("No data was found. Initializing data to defaults");
-            return;
-        }
+        //if (this.gameData == null && initializeDataIfNull)
+        //{
+        //    NewGame();
+        //}
         //push loaded data to all other scripts that need it
         foreach (IDataPersistence dataPersistence in dataPersistenceObjects)
         {
@@ -184,11 +174,6 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void SaveGame()
     {
-        if (this.gameData == null)
-        {
-            Debug.LogWarning("No data was found. A new game needs to be started before data can be saved.");
-            return;
-        }
 
         // pass data to other scripts that can interact with it
         foreach (IDataPersistence dataPersistence in dataPersistenceObjects)
