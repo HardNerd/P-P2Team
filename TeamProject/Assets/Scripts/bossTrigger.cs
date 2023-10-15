@@ -6,7 +6,6 @@ public class bossTrigger : MonoBehaviour
 {
     [SerializeField] GameObject boss;
     [SerializeField] GameObject[] doors;
-
     private void Start()
     {
         boss.SetActive(false);

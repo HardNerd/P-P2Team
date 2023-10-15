@@ -13,7 +13,7 @@ public class bossAI : EnemyAI
         Aim,
         Attack,
     }
-
+    [SerializeField] private GameObject bossTriggerToggle;
     [SerializeField] GameObject[] roomDoors;
     [SerializeField] Transform[] coverPositions;
     [SerializeField] protected Transform shootPos;
@@ -31,7 +31,6 @@ public class bossAI : EnemyAI
     protected bool isAiming;
     int currentCoverPosition = 0;
     int selectedCoverPosition = 0;
-
     private void Awake()
     {
         healthBar = GetComponentInChildren<enemyHealthBar>();
@@ -145,6 +144,7 @@ public class bossAI : EnemyAI
             for (int i = 0; i < roomDoors.Length; i++)
                 roomDoors[i].SetActive(false);
             laserSight.enabled = false;
+            //bossTriggerToggle.SetActive(false);
         }
     }
 }

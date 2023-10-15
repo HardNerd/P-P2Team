@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public int enemiesalive;
     int pickupsLeft;
-
+    int amountOfGrenadeToSaveBetweenLevels;
     //I expect the player person to set this up I'm just putting it here for later
 
     public bool isPause;

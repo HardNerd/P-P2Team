@@ -10,6 +10,8 @@ public class GameData
 
     public int grenadeCount;
 
+    public int grenadeToSaveBetweenLevels;
+
     public Vector3 playerPos;
 
     public int levelCount;
@@ -28,6 +30,8 @@ public class GameData
         this.deathCount = 0;
 
         this.grenadeCount = 0;
+        
+        this.grenadeToSaveBetweenLevels = 0;
 
         playerPos.x = -4.25f;
         playerPos.y = 0.5f;
