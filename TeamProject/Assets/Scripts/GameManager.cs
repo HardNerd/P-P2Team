@@ -244,7 +244,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void ammoUpdate(int amount, int maxAmount, bool reload = false)
     {
-        if(reload)
+        if (maxAmount >= 1000)
+        {
+            ammoCount.text = "INFINITE";
+            return;
+        }
+
+        if (reload)
         {
             ammoCount.text = "Reloading!";
             return;

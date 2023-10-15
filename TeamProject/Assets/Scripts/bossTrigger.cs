@@ -20,7 +20,6 @@ public class bossTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             boss.SetActive(true);
-            GameManager.instance.playerSpawnPOS.transform.position = transform.position;
 
             for (int i = 0; i < doors.Length; i++)
                 doors[i].SetActive(true);

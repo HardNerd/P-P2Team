@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static grenadierAI;
 
 [RequireComponent(typeof(LineRenderer))]
 public class bossAI : EnemyAI
@@ -17,20 +16,21 @@ public class bossAI : EnemyAI
 
     [SerializeField] GameObject[] roomDoors;
     [SerializeField] Transform[] coverPositions;
-    [SerializeField] Transform shootPos;
-    [SerializeField] int attackCountdown;
+    [SerializeField] protected Transform shootPos;
+    [SerializeField] protected int attackCountdown;
 
-    [SerializeField] GameObject bullet;
+    [SerializeField] protected GameObject bullet;
 
     [SerializeField] SniperState _currentState;
 
     [Header("----- BOSS Power Up -----")]
     [SerializeField] Transform dropLocation;
 
-    LineRenderer laserSight;
+    protected LineRenderer laserSight;
     public static bool takingCover;
-    private bool isAiming;
-    int selectedCoverPosition;
+    protected bool isAiming;
+    int currentCoverPosition = 0;
+    int selectedCoverPosition = 0;
 
     private void Awake()
     {
@@ -54,7 +54,9 @@ public class bossAI : EnemyAI
             switch (_currentState)
             {
                 case SniperState.SelectCover:
-                    selectedCoverPosition = Random.Range(0, coverPositions.Length);
+                    while (currentCoverPosition == selectedCoverPosition)
+                        selectedCoverPosition = Random.Range(0, coverPositions.Length);
+                    currentCoverPosition = selectedCoverPosition;
                     SwitchToState(SniperState.GoToCover);
                     break;
                 case SniperState.GoToCover:
@@ -84,7 +86,7 @@ public class bossAI : EnemyAI
         if (!takingCover)
         {
             takingCover = true;
-            agent.SetDestination(coverPositions[selectedCoverPosition].transform.position);
+            agent.SetDestination(coverPositions[currentCoverPosition].transform.position);
             return;
         }
 
@@ -96,7 +98,7 @@ public class bossAI : EnemyAI
         }
     }
 
-    IEnumerator Aim()
+    virtual protected IEnumerator Aim()
     {
         //turn towards player
         playerDirection = GameManager.instance.player.transform.position - transform.position;
@@ -113,7 +115,7 @@ public class bossAI : EnemyAI
         }
     }
 
-    void ActivateLaser()
+    protected void ActivateLaser()
     {
         laserSight.enabled = true;
         laserSight.SetPosition(0, shootPos.transform.position);
@@ -124,7 +126,7 @@ public class bossAI : EnemyAI
             laserSight.SetPosition(1, hit.point);
     }
 
-    private void Shoot()
+    virtual protected void Shoot()
     {
         animator.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.transform.position, Quaternion.LookRotation(playerDirection + new Vector3(0, -3f, 0)));

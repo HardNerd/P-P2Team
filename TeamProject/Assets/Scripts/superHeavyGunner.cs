@@ -10,6 +10,7 @@ public class superHeavyGunner : defaultEnemy
         Attack,
         Staggered
     }
+    [SerializeField] GameObject[] roomDoors;
 
     [Header("----- Shield Stats -----")]
     [SerializeField] protected float shieldHP;
@@ -112,6 +113,10 @@ public class superHeavyGunner : defaultEnemy
             else
                 FlashDamage(Color.blue);
         }
+
+        if (HP <= 0)
+            for (int i = 0; i < roomDoors.Length; i++)
+                roomDoors[i].SetActive(false);
     }
 
     public override void physics(Vector3 direction)
