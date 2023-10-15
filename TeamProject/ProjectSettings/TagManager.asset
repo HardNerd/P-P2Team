@@ -23,6 +23,7 @@ TagManager:
   - Inventory
   - Spawner
   - Cover Pos
+  - finalBossSpawner
   layers:
   - Default
   - TransparentFX

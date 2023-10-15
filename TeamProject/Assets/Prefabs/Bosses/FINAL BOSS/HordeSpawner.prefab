@@ -173,11 +173,7 @@ MonoBehaviour:
   - {fileID: 4589524655513853431}
   - {fileID: 5940484348352261479}
   timeOffset: 1
-  doors:
-  - {fileID: 6856703601674013736}
-  - {fileID: 7139021100135521190}
-  - {fileID: 0}
-  - {fileID: 7755255303179118348}
+  doors: []
   spawnStart: {fileID: 309877668059222304}
   spawnEnd: {fileID: 9008900377295944051}
   startSpawning: 0
@@ -697,11 +693,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
---- !u!1 &6856703601674013736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 192030, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
-  m_PrefabInstance: {fileID: 6856703601673839158}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6856703601674243350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 421664, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
@@ -784,11 +775,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
---- !u!1 &7139021100135521190 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 192030, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
-  m_PrefabInstance: {fileID: 7139021100135642552}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7139021100135750296 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 421664, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
@@ -870,10 +856,5 @@ PrefabInstance:
 --- !u!4 &7755255303178823218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 421664, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
-  m_PrefabInstance: {fileID: 7755255303179225362}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7755255303179118348 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 192030, guid: 088b5f04d52a542ec975e88d7d9934f5, type: 3}
   m_PrefabInstance: {fileID: 7755255303179225362}
   m_PrefabAsset: {fileID: 0}

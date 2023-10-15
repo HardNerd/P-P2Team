@@ -336,13 +336,16 @@ public class finalBoss : superHeavyGunner
 
     void SwitchBetweenWeapons()
     {
-        GameObject[] weapons = { rocketPrefab, molotovPrefab };
-        bullet = weapons[Random.Range(0, 2)];
+        if ( HP > 0)
+        {
+            GameObject[] weapons = { rocketPrefab, molotovPrefab };
+            bullet = weapons[Random.Range(0, 2)];
 
-        if (bullet == rocketPrefab)
-            shootRate = rocketShootRate;
-        else
-            shootRate = molotovShootRate;
+            if (bullet == rocketPrefab)
+                shootRate = rocketShootRate;
+            else
+                shootRate = molotovShootRate;
+        }
     }
 
     void DropDown()
@@ -396,6 +399,9 @@ public class finalBoss : superHeavyGunner
                 isDead = true;
                 hitBox.enabled = false;
                 agent.enabled = false;
+                bossTriggerToggle.SetActive(false);
+                for (int i = 0; i < roomDoors.Length; i++)
+                    roomDoors[i].SetActive(false);
                 StopAllCoroutines();
                 healthObj.SetActive(false);
                 return;

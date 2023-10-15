@@ -10,8 +10,8 @@ public class superHeavyGunner : defaultEnemy
         Attack,
         Staggered
     }
-    [SerializeField] GameObject[] roomDoors;
-    [SerializeField] private GameObject bossTriggerToggle;
+    [SerializeField] public GameObject[] roomDoors;
+    [SerializeField] public GameObject bossTriggerToggle;
     [Header("----- Shield Stats -----")]
     [SerializeField] protected float shieldHP;
     [SerializeField] int staggerTime;
