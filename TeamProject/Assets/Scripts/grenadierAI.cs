@@ -16,7 +16,7 @@ public class grenadierAI : EnemyAI
     }
 
     [Header("----- Grenade Stats -----")]
-    [SerializeField] Vector3 coverPosition;
+    [SerializeField] GameObject coverPosition;
     [SerializeField] Transform throwPos;
     [SerializeField] GameObject molotov;
     [SerializeField] protected int attackDistance;
@@ -80,7 +80,7 @@ public class grenadierAI : EnemyAI
     protected void GoToCover()
     {
         agent.stoppingDistance = 0;
-        agent.SetDestination(coverPosition);
+        agent.SetDestination(coverPosition.transform.position);
 
         if (agent.remainingDistance <= agent.stoppingDistance)
             SwitchToNextState(GrenadierState.InCover);
@@ -151,11 +151,5 @@ public class grenadierAI : EnemyAI
     public void AnimEnd()
     {
         animCount++;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Cover Pos"))
-            coverPosition = other.GetComponent<Transform>().position;
     }
 }
