@@ -249,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 8561922346918036725}
   playerCamera: {fileID: 0}
+  isBoss: 0
 --- !u!114 &8561922346918036725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,7 +677,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7f4aa26d5b55226409cda231ffaf869b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c21f839cf8a5ddf46860d8d45d0ee1cf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -772,7 +773,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
-  m_audioClip: {fileID: 8300000, guid: a4a9327e98855524c846cc8e2f559e96, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 490a4a9d5a8667f489ecc68972664cb2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -868,7 +869,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
-  m_audioClip: {fileID: 8300000, guid: f9eb44b85c96be5429737d4dcadbfa3b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 33ef053b5f5367c41b8f082bfa1a9f6b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

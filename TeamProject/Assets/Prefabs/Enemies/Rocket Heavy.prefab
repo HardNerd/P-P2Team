@@ -1466,6 +1466,8 @@ MonoBehaviour:
   AttackSource: {fileID: -3719878261826137617}
   StepSource: {fileID: -6233020109945902612}
   DamageSource: {fileID: -2589137521275286177}
+  healthObj: {fileID: 0}
+  healthBar: {fileID: 0}
   HP: 7.5
   targetFaceSpeed: 3
   animChangeSpeed: 7
@@ -1581,7 +1583,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3d65f045ffc1c0c4690e79835b1674c8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1677,7 +1679,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a33392cbb4dbc48478d1dff7317c8a9c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
