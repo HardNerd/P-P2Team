@@ -11,7 +11,7 @@ public class superHeavyGunner : defaultEnemy
         Staggered
     }
     [SerializeField] GameObject[] roomDoors;
-
+    [SerializeField] private GameObject bossTriggerToggle;
     [Header("----- Shield Stats -----")]
     [SerializeField] protected float shieldHP;
     [SerializeField] int staggerTime;
@@ -115,9 +115,13 @@ public class superHeavyGunner : defaultEnemy
         }
 
         if (HP <= 0)
+        {
             for (int i = 0; i < roomDoors.Length; i++)
                 roomDoors[i].SetActive(false);
+            bossTriggerToggle.SetActive(false);
+        }
     }
+            
 
     public override void physics(Vector3 direction)
     {

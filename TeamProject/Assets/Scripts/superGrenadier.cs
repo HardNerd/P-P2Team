@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class superGrenadier : grenadierAI
 {
+    [SerializeField] private GameObject bossTriggerToggle;
     [SerializeField] GameObject[] roomDoors;
     [SerializeField] GameObject[] attackPositions;
 
@@ -134,6 +135,7 @@ public class superGrenadier : grenadierAI
         {
             for (int i = 0; i < roomDoors.Length; i++)
                 roomDoors[i].SetActive(false);
+            bossTriggerToggle.SetActive(false);
         }
     }
 }

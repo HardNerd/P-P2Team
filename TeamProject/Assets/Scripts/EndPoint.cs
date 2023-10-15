@@ -7,16 +7,16 @@ public class EndPoint : MonoBehaviour, IDataPersistence
 {
     [SerializeField] Vector3 vector3 = new Vector3(0.0f, 0.0f, 0.0f);
     [SerializeField] string nextSceneLoaded;
-
-    [SerializeField] private string levelCleared;
+    public int throwsToSave;
     public void LoadData(GameData data)
     {
-      
+        throwsToSave = data.grenadeToSaveBetweenLevels;
     }
 
     public void SaveData(GameData data)
     {
         data.levelCount = GameManager.instance.levelClearedAmount;
+        data.grenadeToSaveBetweenLevels = throwsToSave;
     }
 
     // Start is called before the first frame update
@@ -30,6 +30,7 @@ public class EndPoint : MonoBehaviour, IDataPersistence
             GameManager.instance.updatGameGoal(0);
             GameManager.instance.playerSpawnPOS.transform.position = vector3;
             GameManager.instance.levelClearedAmount++;
+            throwsToSave = GameManager.instance.playerGrenadeGM.totalThrows;
             DataPersistenceManager.Instance.SaveGame();
             SceneManager.LoadSceneAsync(nextSceneLoaded);
         }

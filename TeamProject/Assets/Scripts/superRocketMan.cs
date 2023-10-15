@@ -13,7 +13,7 @@ public class superRocketMan : EnemyAI
         DetermineNextPos,
         ChangePos
     }
-
+    [SerializeField] private GameObject bossTriggerToggle;
     [SerializeField] GameObject[] roomDoors;
 
     [SerializeField] float flySpeed;
@@ -232,6 +232,7 @@ public class superRocketMan : EnemyAI
 
             for (int i = 0; i < roomDoors.Length; i++)
                 roomDoors[i].SetActive(false);
+            bossTriggerToggle.SetActive(false);
         }
         else
         {

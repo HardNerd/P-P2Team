@@ -18,9 +18,11 @@ public class PlayerGrenade : MonoBehaviour, IDataPersistence
     public float throwUpwwardForce;
 
     bool readyToThrow;
+    public int amountBeingSaved;
     private void Start()
     {
-        readyToThrow = true; 
+        readyToThrow = true;
+        amountBeingSaved = totalThrows;
     }
     private void Update()
     {
@@ -41,7 +43,7 @@ public class PlayerGrenade : MonoBehaviour, IDataPersistence
         projectilerb.AddForce(forceToAdd, ForceMode.Impulse);
         
         totalThrows--;
-        
+
         yield return new WaitForSeconds(throwCooldown);
         readyToThrow = true;
     }
@@ -53,6 +55,7 @@ public class PlayerGrenade : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         this.totalThrows = data.grenadeCount;
+        this.amountBeingSaved = data.grenadeToSaveBetweenLevels;
     }
 
     public void SaveData(GameData data)
