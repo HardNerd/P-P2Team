@@ -1150,9 +1150,9 @@ GameObject:
   - component: {fileID: 6590485272634175378}
   - component: {fileID: 6389570792944889812}
   - component: {fileID: 9015089205152058263}
-  - component: {fileID: 5811283404768626807}
-  - component: {fileID: 820938905706560989}
-  - component: {fileID: 3364104108439719822}
+  - component: {fileID: 2846583360157468798}
+  - component: {fileID: 9029575926831529978}
+  - component: {fileID: 6402891234622237306}
   m_Layer: 7
   m_Name: Grenadier
   m_TagString: Enemy
@@ -1200,9 +1200,9 @@ MonoBehaviour:
   hitBox: {fileID: 6590485272634175378}
   meleeCollider: {fileID: 0}
   ammoDrop: {fileID: 2729044157020049073, guid: 9594677df97268541a86922bf1831e55, type: 3}
-  AttackSource: {fileID: 5811283404768626807}
-  StepSource: {fileID: 820938905706560989}
-  DamageSource: {fileID: 3364104108439719822}
+  AttackSource: {fileID: 2846583360157468798}
+  StepSource: {fileID: 9029575926831529978}
+  DamageSource: {fileID: 6402891234622237306}
   healthObj: {fileID: 105315692425291075}
   healthBar: {fileID: 0}
   HP: 2
@@ -1334,7 +1334,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 7.82
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &5811283404768626807
+--- !u!82 &2846583360157468798
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1344,7 +1344,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6ea23dc69336a3f42bfc9307d3a24944, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 443a24b24bb49354eb281354934b373b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1430,7 +1430,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &820938905706560989
+--- !u!82 &9029575926831529978
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1440,7 +1440,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6ea23dc69336a3f42bfc9307d3a24944, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f456b7aae050f3140a5e6dd8cc7e4af8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1526,7 +1526,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &3364104108439719822
+--- !u!82 &6402891234622237306
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1536,7 +1536,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
-  m_audioClip: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4c912a8ee86f3c14ba61c4d6093f19de, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
