@@ -31,7 +31,6 @@ public class Gun : MonoBehaviour
     private bool isShooting;
     public bool isReloading;
     public int selectedGun;
-    //public GunStats gunStatsGun;
     private float origPitch;
 
     void Update()
@@ -178,7 +177,6 @@ public class Gun : MonoBehaviour
                 gunStats.ammoCarried = gunStats.maxAmmoCarried;
             }
         }
-
         GameManager.instance.ammoUpdate(GunList[selectedGun].loadedAmmo, GunList[selectedGun].ammoCarried);
     }
 }

@@ -23,7 +23,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [Header("----- Enemy Stats -----")]
     [SerializeField] protected float HP;
     [SerializeField] protected int targetFaceSpeed;
-    //[SerializeField] float viewAngle;
     [SerializeField] protected float animChangeSpeed;
     [SerializeField] protected float stopAtDamageTime;
     [SerializeField] bool isPushable;
@@ -33,7 +32,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     protected Vector3 playerDirection;
     protected float angleToPlayer;
-    //protected Vector3 startingPos;
     protected float speedOrig = 0; // you have to set it in the child classes
     protected bool isDead = false;
     private Vector3 pushBack;

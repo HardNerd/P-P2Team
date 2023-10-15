@@ -66,7 +66,6 @@ public class ButtonManager : MonoBehaviour
     public void OnContinueClicked()
     {
         clickNoise.Play();
-        Debug.Log("Continue Game Clicked");
         continueGameButton.interactable = false;
         DataPersistenceManager.Instance.LoadGame();
         StartCoroutine(ContinueGameTime());

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.IO;
 
-public class FileDataHandler 
+public class FileDataHandler
 {
     private string dataDirPath = "";
 
@@ -24,25 +24,20 @@ public class FileDataHandler
         GameData loadedData = null;
         if (File.Exists(fullPath))
         {
-            try
-            {
-                // load the serialized data from the file
-                string dataToLoad = "";
-                using (FileStream stream = new FileStream(fullPath, FileMode.Open))
-                {
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        dataToLoad = reader.ReadToEnd();
-                    }
-                }
 
-                // deserialize the data from Json into the C# object
-                loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
-            } 
-            catch (Exception e) 
+            // load the serialized data from the file
+            string dataToLoad = "";
+            using (FileStream stream = new FileStream(fullPath, FileMode.Open))
             {
-                Debug.LogError("Error occured when trying to load data from file: " + fullPath + "\n" + e);
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    dataToLoad = reader.ReadToEnd();
+                }
             }
+
+            // deserialize the data from Json into the C# object
+            loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
+
         }
         return loadedData;
     }
@@ -52,26 +47,21 @@ public class FileDataHandler
         // using path.combine to account for different os
         string fullPath = Path.Combine(dataDirPath, dataFileName);
 
-        try
+
+        // create directory path
+        Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+
+        //serilise the C# game data object into JSon
+        string dataToStore = JsonUtility.ToJson(data, true);
+
+        // write the serialized data to the file
+        using (FileStream stream = new FileStream(fullPath, FileMode.Create))
         {
-            // create directory path
-            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
-
-            //serilise the C# game data object into JSon
-            string dataToStore = JsonUtility.ToJson(data, true);
-
-            // write the serialized data to the file
-            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+            using (StreamWriter writer = new StreamWriter(stream))
             {
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    writer.Write(dataToStore);
-                }
+                writer.Write(dataToStore);
             }
         }
-        catch (Exception e) 
-        {
-            Debug.LogError("Error occured when trying to save data to file:" + fullPath + "\n" + e);
-        }
+
     }
 }

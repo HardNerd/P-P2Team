@@ -12,18 +12,6 @@ public class InventoryObjects : ScriptableObject
 
     public void AddItem(ItemObjects _item)
     {
-        //bool hasItem = false;
-        //for(int i = 0; i < Container.Count; i++)
-        //{
-        //    if (Container[i].Item == _item)
-        //    {
-        //        //Container[i].AddAmmount(_amount);
-        //        hasItem = true;
-        //        break;
-        //    }
-        //}
-        //Container.Add(new InventorySlot(_item));
-
         for (int i = 0; i < Container.Count; i++)
         {
             if (Container[i].Item == null)

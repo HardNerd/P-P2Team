@@ -200,8 +200,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
             if(isGrounded)
                 GameManager.instance.PlaySound(footstepSound);
         }
-
-        Debug.Log(dist);
     }
 
     public void TakeDamage(float damageAmount, string source = null)
@@ -226,7 +224,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         
         HP -= amount;
 
-        //If we introduce an upgrade system to add more max hp, I'll update this
         Mathf.Clamp(HP, 0, 10);
 
         GameManager.instance.healthRedFillAmt = (float)HP / 10;
