@@ -396,6 +396,9 @@ public class finalBoss : superHeavyGunner
                 isDead = true;
                 hitBox.enabled = false;
                 agent.enabled = false;
+                for (int i = 0; i < roomDoors.Length; i++)
+                    roomDoors[i].SetActive(false);
+                bossTriggerToggle.SetActive(false);
                 StopAllCoroutines();
                 healthObj.SetActive(false);
                 return;
