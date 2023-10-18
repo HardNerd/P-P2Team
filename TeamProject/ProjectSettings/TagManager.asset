@@ -23,6 +23,7 @@ TagManager:
   - Inventory
   - Spawner
   - Cover Pos
+  - Red Dot
   layers:
   - Default
   - TransparentFX

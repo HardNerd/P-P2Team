@@ -140,6 +140,7 @@ MonoBehaviour:
   DamageSource: {fileID: 0}
   healthObj: {fileID: 4492144597185695327}
   healthBar: {fileID: 0}
+  redDot: {fileID: 5851612305664888600}
   HP: 6
   targetFaceSpeed: 4
   animChangeSpeed: 1.8
@@ -1822,7 +1823,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 3222923082844455104}
-  playerCamera: {fileID: 0}
   isBoss: 0
 --- !u!114 &3222923082844455104
 MonoBehaviour:

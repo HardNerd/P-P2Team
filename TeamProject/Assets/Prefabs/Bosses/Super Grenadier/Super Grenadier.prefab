@@ -695,6 +695,7 @@ MonoBehaviour:
   DamageSource: {fileID: 1564138197860076724}
   healthObj: {fileID: 1218260503263919939}
   healthBar: {fileID: 0}
+  redDot: {fileID: 6410854591629893987}
   HP: 8
   targetFaceSpeed: 25
   animChangeSpeed: 7

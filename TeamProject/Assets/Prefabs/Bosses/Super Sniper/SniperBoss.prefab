@@ -273,6 +273,7 @@ MonoBehaviour:
   DamageSource: {fileID: -2954090800516946912}
   healthObj: {fileID: 3674650056946640722}
   healthBar: {fileID: 0}
+  redDot: {fileID: 7242968217743799388}
   HP: 10
   targetFaceSpeed: 2
   animChangeSpeed: 7
@@ -281,6 +282,8 @@ MonoBehaviour:
   reactsToHit: 0
   pushBackResolve: 0
   agentSpeed: 2
+  IsBossTypeEnemy: 0
+  bossTriggerToggle: {fileID: 0}
   roomDoors:
   - {fileID: 0}
   - {fileID: 0}
@@ -299,7 +302,6 @@ MonoBehaviour:
   attackCountdown: 3
   bullet: {fileID: 6960399626281892138, guid: 0de7f47f563337e4c84faeadb7712ace, type: 3}
   _currentState: 0
-  isBoss: 1
   dropLocation: {fileID: 0}
 --- !u!95 &5512914088963172191
 Animator:
@@ -1603,7 +1605,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 4143190633394656104}
-  playerCamera: {fileID: 0}
   isBoss: 1
 --- !u!114 &4143190633394656104
 MonoBehaviour:

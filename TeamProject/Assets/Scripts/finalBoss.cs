@@ -401,6 +401,7 @@ public class finalBoss : superHeavyGunner
                 bossTriggerToggle.SetActive(false);
                 StopAllCoroutines();
                 healthObj.SetActive(false);
+                redDot.SetActive(false);
                 return;
             }
             else
