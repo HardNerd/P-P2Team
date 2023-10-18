@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1520268129286223282}
   - component: {fileID: 1605298283298167274}
   - component: {fileID: 2314680372924609234}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: pistol2 Variant
   m_TagString: Pistol
   m_Icon: {fileID: 0}
@@ -50,7 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: 90e15946-1658-4b7e-a0ad-1ffe7cd6c486
   stats: {fileID: 11400000, guid: af38c7da70669c141884f9ab66d7ebf6, type: 2}
-  pickupSound: {fileID: 2314680372924609234}
 --- !u!33 &3674344139398513016
 MeshFilter:
   m_ObjectHideFlags: 0
