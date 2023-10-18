@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class enemyHealthBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
-    [SerializeField] private Camera playerCamera;
     [SerializeField] bool isBoss;
+    
+    private Camera playerCamera;
 
     public void UpdateHealthBar(float currentValue, float maxValue)
     {

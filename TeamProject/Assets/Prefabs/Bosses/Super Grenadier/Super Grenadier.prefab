@@ -378,7 +378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 5700286537784536973}
-  playerCamera: {fileID: 0}
   isBoss: 1
 --- !u!114 &5700286537784536973
 MonoBehaviour:
@@ -704,13 +703,15 @@ MonoBehaviour:
   reactsToHit: 0
   pushBackResolve: 0
   agentSpeed: 0
-  coverPosition: {fileID: 0}
+  coverPosition: {x: 0, y: 0, z: 0}
   throwPos: {fileID: 8180270348425791160}
   molotov: {fileID: 5372538081484655502, guid: 5c5852480d7eec24395f92bee4c9f428, type: 3}
+  throwAngle: 50
   attackDistance: 0
   maxThrows: 3
   timeBetweenThrows: 1.5
   _currentState: 0
+  bossTriggerToggle: {fileID: 0}
   roomDoors:
   - {fileID: 0}
   - {fileID: 0}

@@ -6,7 +6,7 @@ public class molotov : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject fireArea;
-    [SerializeField] float angle;
+    [SerializeField] public float angle;
 
     void Start()
     {

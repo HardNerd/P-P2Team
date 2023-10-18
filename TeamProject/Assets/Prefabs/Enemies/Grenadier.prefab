@@ -1216,6 +1216,7 @@ MonoBehaviour:
   coverPosition: {x: 0, y: 0, z: 0}
   throwPos: {fileID: 831411113837520423}
   molotov: {fileID: 3935494366030412222, guid: 8489aabfaf1dbaf46ad8321460f1b087, type: 3}
+  throwAngle: 10
   attackDistance: 20
   maxThrows: 1
   timeBetweenThrows: 1.5
