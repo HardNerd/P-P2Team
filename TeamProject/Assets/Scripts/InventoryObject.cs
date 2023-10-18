@@ -17,6 +17,7 @@ public class InventoryObjects : ScriptableObject
             if (Container[i].Item == null)
             {
                 Container[i].Add(_item);
+                GameManager.instance.displayInventory.DisplayItem();
                 return;
             }
         }
@@ -25,7 +26,11 @@ public class InventoryObjects : ScriptableObject
     public void ClearItems()
     {
         for (int i = 0; i < Container.Count; i++)
+        {
+            Container[i].Item.isCollected = false;
             Container[i].Clear();
+        }
+            
     }
 }
 
@@ -33,7 +38,7 @@ public class InventoryObjects : ScriptableObject
 public class InventorySlot
 {
     public ItemObjects Item;
-    //public int amount;
+
     public InventorySlot(ItemObjects _item)
     {
         Item = _item;
@@ -49,9 +54,4 @@ public class InventorySlot
     {
         Item = null;
     }
-
-    //public void AddAmmount(int value)
-    //{
-    //    amount += value;
-    //}
 }
