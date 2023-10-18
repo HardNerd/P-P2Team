@@ -9,6 +9,7 @@ public enum ItemType
 
 public abstract class ItemObjects : ScriptableObject
 {
+    public bool isCollected;
     public GameObject image;
     public ItemType type;
     [TextArea(15,20)]
