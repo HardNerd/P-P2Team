@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject timer;
     [SerializeField] TMP_Text objectiveText;
     [SerializeField] TMP_Text ammoCount;
+    [SerializeField] TMP_Text grenadeCount;
     public levelTimer levelTime;
     public Image healthRed;
     public Image healthYel;
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     }
     void Update()
     {
-        if(Input.GetButtonDown("Cancel") && activeMenu == null)
+        if(Input.GetButton("Cancel") && activeMenu == null)
         {
             statePause();
             activeMenu = pauseMenu;
@@ -145,6 +146,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
         saveOverlay.SetActive(on);
     }
 
+    public void changeThrows(int value)
+    {
+        grenadeCount.text = value.ToString();
+    }
+
     public void options()
     {
         lastMenu = activeMenu;
@@ -178,6 +184,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         playUI.SetActive(!isPause);
         activeMenu.SetActive(isPause);
         activeMenu = null;
+        return;
     }
     public void updatGameGoal(int update, bool isEnemy = true)
     {

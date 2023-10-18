@@ -43,6 +43,7 @@ public class PlayerGrenade : MonoBehaviour, IDataPersistence
         projectilerb.AddForce(forceToAdd, ForceMode.Impulse);
         
         totalThrows--;
+        GameManager.instance.changeThrows(totalThrows);
 
         yield return new WaitForSeconds(throwCooldown);
         readyToThrow = true;
@@ -50,12 +51,14 @@ public class PlayerGrenade : MonoBehaviour, IDataPersistence
     public void addThrowsMax(int addThrows)
     {
         totalThrows += addThrows;
+        GameManager.instance.changeThrows(totalThrows);
     }
 
     public void LoadData(GameData data)
     {
         this.totalThrows = data.grenadeCount;
         this.amountBeingSaved = data.grenadeToSaveBetweenLevels;
+        GameManager.instance.changeThrows(totalThrows);
     }
 
     public void SaveData(GameData data)
