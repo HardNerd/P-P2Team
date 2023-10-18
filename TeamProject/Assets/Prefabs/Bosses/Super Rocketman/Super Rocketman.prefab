@@ -84,7 +84,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1370730006572421169}
-  playerCamera: {fileID: 0}
   isBoss: 1
 --- !u!114 &1370730006572421169
 MonoBehaviour:
@@ -504,6 +503,7 @@ MonoBehaviour:
   DamageSource: {fileID: 1523435116548047022}
   healthObj: {fileID: 7641731712976726465}
   healthBar: {fileID: 0}
+  redDot: {fileID: 6325893802109991772}
   HP: 8
   targetFaceSpeed: 10
   animChangeSpeed: 7
@@ -512,6 +512,7 @@ MonoBehaviour:
   reactsToHit: 0
   pushBackResolve: 0
   agentSpeed: 0
+  bossTriggerToggle: {fileID: 0}
   roomDoors: []
   flySpeed: 15
   waitTime: 2

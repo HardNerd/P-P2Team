@@ -248,7 +248,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 8561922346918036725}
-  playerCamera: {fileID: 0}
   isBoss: 0
 --- !u!114 &8561922346918036725
 MonoBehaviour:
@@ -563,6 +562,7 @@ MonoBehaviour:
   DamageSource: {fileID: -413511112063181098}
   healthObj: {fileID: 663696580688962239}
   healthBar: {fileID: 0}
+  redDot: {fileID: 3103976635447964801}
   HP: 1.5
   targetFaceSpeed: 5
   animChangeSpeed: 7
@@ -1425,7 +1425,7 @@ GameObject:
   - component: {fileID: 3700698803494559188}
   m_Layer: 12
   m_Name: Red Dot
-  m_TagString: Untagged
+  m_TagString: Red Dot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
