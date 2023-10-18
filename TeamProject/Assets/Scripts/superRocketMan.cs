@@ -227,6 +227,7 @@ public class superRocketMan : EnemyAI
             isDead = true;
 
             healthObj.SetActive(false);
+            redDot.SetActive(false);
             StopAllCoroutines();
             Instantiate(ammoDrop, B_footR.position, Quaternion.identity);
 

@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] AudioSource DamageSource;
     [SerializeField] protected GameObject healthObj;
     [SerializeField] protected enemyHealthBar healthBar;
+    [SerializeField] protected GameObject redDot;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] protected float HP;
@@ -73,6 +74,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             isDead = true;
 
             healthObj.SetActive(false);
+            redDot.SetActive(false);
 
             StopAllCoroutines();
            

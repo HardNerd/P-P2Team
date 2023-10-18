@@ -18,7 +18,6 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] public string loadScene2 = "LevelTwo";
     [SerializeField] public string loadScene3 = "LevelThree";
 
-
     private void Start()
     {
         if (!DataPersistenceManager.Instance.HasGameData())
@@ -35,6 +34,7 @@ public class ButtonManager : MonoBehaviour
         else
         {
             DataPersistenceManager.Instance.NewGame();
+            StartCoroutine(beginTime());
         }
     }
 

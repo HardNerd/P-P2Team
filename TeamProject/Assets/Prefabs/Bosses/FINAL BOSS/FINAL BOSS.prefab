@@ -1131,6 +1131,7 @@ MonoBehaviour:
   DamageSource: {fileID: 4590240554363670751}
   healthObj: {fileID: 4404496201176307109}
   healthBar: {fileID: 3445768620189365828}
+  redDot: {fileID: 2711911836634638641}
   HP: 10
   targetFaceSpeed: 15
   animChangeSpeed: 1.8
@@ -1144,9 +1145,10 @@ MonoBehaviour:
   shootAngle: 10
   bullet: {fileID: 0}
   roomDoors: []
+  bossTriggerToggle: {fileID: 0}
   shieldHP: 5
   staggerTime: 3
-  gun: {fileID: 0}
+  gun: {fileID: 8594844704505056735}
   shieldBar: {fileID: 6385606023919014044}
   shieldObj: {fileID: 9080246472117196242}
   _currentState: 0
@@ -1162,7 +1164,7 @@ MonoBehaviour:
   bulletShootRate: 0.2
   molotovPrefab: {fileID: 5372538081484655502, guid: 5c5852480d7eec24395f92bee4c9f428, type: 3}
   molotovShootRate: 1
-  throwPos: {fileID: 0}
+  throwPos: {fileID: 3822919610550942148}
   maxRocketShots: 3
   gunFire: {fileID: 1372833112535319629, guid: ff9f264a56f33994394cae6fb6808ebc, type: 3}
   attackPositions:
@@ -1276,7 +1278,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
   m_audioClip: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1372,7 +1374,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
   m_audioClip: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1468,7 +1470,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5803637540008118066, guid: a3a68cef4c73a58479fe2ab15e3f37f8, type: 2}
   m_audioClip: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1638,7 +1640,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1646787648427880106}
-  playerCamera: {fileID: 0}
   isBoss: 1
 --- !u!114 &1646787648427880106
 MonoBehaviour:
@@ -3233,7 +3234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 3262843489956583854}
-  playerCamera: {fileID: 0}
   isBoss: 1
 --- !u!114 &3262843489956583854
 MonoBehaviour:

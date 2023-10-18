@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7de42a1df8cee4a98d9ed18f1ba4fa, type: 3}
   m_Name: New Sprint Power-UP Object
   m_EditorClassIdentifier: 
+  isCollected: 0
   image: {fileID: 8732639747262538146, guid: 69bf61d3ca76d5a4e9e9acffee78340c, type: 3}
   type: 0
   description: Sprint

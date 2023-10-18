@@ -19,6 +19,7 @@ public class grenadierAI : EnemyAI
     [SerializeField] Vector3 coverPosition;
     [SerializeField] Transform throwPos;
     [SerializeField] GameObject molotov;
+    [SerializeField] float throwAngle;
     [SerializeField] protected int attackDistance;
     [SerializeField] protected int maxThrows;
     [SerializeField] float timeBetweenThrows;
@@ -144,7 +145,8 @@ public class grenadierAI : EnemyAI
         AudioSource source = molotov.GetComponent<AudioSource>();
         float pitch = source.pitch;
         GameManager.instance.AudioChange(source);
-        Instantiate(molotov, throwPos.position, transform.rotation);
+        GameObject mt = Instantiate(molotov, throwPos.position, transform.rotation);
+        mt.GetComponent<molotov>().angle = throwAngle;
         source.pitch = pitch;
     }
 

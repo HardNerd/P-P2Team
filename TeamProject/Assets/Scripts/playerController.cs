@@ -96,10 +96,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
         {
             stamRestore();
         }
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            TakeDamage(1, "self harm");
-        }
         GameManager.instance.moveHPBar();
         GameManager.instance.moveStamBar();
        
@@ -333,16 +329,31 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IDataPersisten
     public void OnTriggerEnter(Collider other)
     {
         Item items = other.GetComponent<Item>();
-        if(items != null)
+        if(items != null && items.item.isCollected != true)
         {
             GameManager.instance.PlaySound(pickupSound);
             Inventory.AddItem(items.item);
-            GameManager.instance.displayInventory.DisplayItem();
 
-            if (items.item.description == "Sprint") canSprint = true;
-            else if (items.item.description == "Jump") canJump = true;
-            else if (items.item.description == "Double Jump") initMaxJumps = 2;
-            else if (items.item.description == "Dash") canDash = true;
+            if (items.item.description == "Sprint")
+            { 
+                canSprint = true;
+                items.item.isCollected = true;
+            }
+            else if (items.item.description == "Jump") 
+            { 
+                canJump = true;
+                items.item.isCollected = true;
+            }
+            else if (items.item.description == "Double Jump") 
+            { 
+                initMaxJumps = 2;
+                items.item.isCollected = true;
+            }
+            else if (items.item.description == "Dash") 
+            { 
+                canDash = true;
+                items.item.isCollected = true;
+            }
 
             Destroy(other.gameObject);
         }
