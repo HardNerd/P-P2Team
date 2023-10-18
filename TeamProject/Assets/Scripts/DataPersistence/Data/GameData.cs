@@ -23,6 +23,8 @@ public class GameData
     public SerializableDictionary<string, bool> gunsCollected;
 
     public SerializableDictionary<string, bool> checkPointColorChange;
+
+    public SerializableDictionary<string, bool> powerUpInv;
     public GameData()
     {
         this.deathCount = 0;
@@ -44,5 +46,7 @@ public class GameData
         gunsCollected = new SerializableDictionary<string, bool>();
 
         checkPointColorChange = new SerializableDictionary<string, bool>();
+
+        powerUpInv = new SerializableDictionary<string, bool>();
     }
 }

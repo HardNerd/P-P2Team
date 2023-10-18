@@ -9,9 +9,9 @@ using System.Runtime.ConstrainedExecution;
 
 public class DataPersistenceManager : MonoBehaviour
 {
-    //[Header("Debugging")]
+    [Header("Debugging")]
 
-    //[SerializeField] private bool initializeDataIfNull = false;
+    [SerializeField] private bool initializeDataIfNull = false;
 
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
@@ -157,11 +157,11 @@ public class DataPersistenceManager : MonoBehaviour
     {
         // Load any save data from a file unsing the data handler
         this.gameData = dataHandler.Load();
-        // if no data can be loaded, initialize to a new game
-        //if (this.gameData == null && initializeDataIfNull)
-        //{
-        //    NewGame();
-        //}
+        //if no data can be loaded, initialize to a new game
+        if (this.gameData == null && initializeDataIfNull)
+        {
+            NewGame();
+        }
         //push loaded data to all other scripts that need it
 
         if (this.gameData == null)
