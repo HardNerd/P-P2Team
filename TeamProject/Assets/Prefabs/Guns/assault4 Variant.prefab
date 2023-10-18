@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 601299894497479818}
   - component: {fileID: 1840279980807511275}
   - component: {fileID: 169025887765365294}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: assault4 Variant
   m_TagString: Assault Rifle
   m_Icon: {fileID: 0}
@@ -50,7 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: 3e69fa03-63ea-4ce8-a426-7b60d13c0bfe
   stats: {fileID: 11400000, guid: 27a683d190ba5da43bb08cf6559a08ba, type: 2}
-  pickupSound: {fileID: 169025887765365294}
 --- !u!33 &3439844498321995840
 MeshFilter:
   m_ObjectHideFlags: 0
