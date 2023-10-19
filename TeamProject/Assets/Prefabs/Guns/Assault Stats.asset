@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootRate: 0.3
   shootDamage: 0.75
-  shootDistance: 100
+  shootDistance: 150
   loadedAmmo: 20
   maxAmmoCarried: 180
   magSize: 20
