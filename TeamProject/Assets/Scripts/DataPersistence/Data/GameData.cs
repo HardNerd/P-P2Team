@@ -12,6 +12,8 @@ public class GameData
 
     public int grenadeToSaveBetweenLevels;
 
+    public int bossesKilled;
+
     public Vector3 playerPos;
 
     public int levelCount;
@@ -23,8 +25,6 @@ public class GameData
     public SerializableDictionary<string, bool> gunsCollected;
 
     public SerializableDictionary<string, bool> checkPointColorChange;
-
-    public SerializableDictionary<string, bool> powerUpInv;
     public GameData()
     {
         this.deathCount = 0;
@@ -32,6 +32,8 @@ public class GameData
         this.grenadeCount = 0;
         
         this.grenadeToSaveBetweenLevels = 0;
+
+        this.bossesKilled = 0;
 
         playerPos.x = -4.25f;
         playerPos.y = 0.5f;
@@ -46,7 +48,5 @@ public class GameData
         gunsCollected = new SerializableDictionary<string, bool>();
 
         checkPointColorChange = new SerializableDictionary<string, bool>();
-
-        powerUpInv = new SerializableDictionary<string, bool>();
     }
 }

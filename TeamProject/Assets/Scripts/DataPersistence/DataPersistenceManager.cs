@@ -101,8 +101,9 @@ public class DataPersistenceManager : MonoBehaviour
         string checkpoint2 = "811593ec-d5d0-4941-9c32-a06b04be230c";
         string checkpoint3 = "4fa8fced-8a37-47e2-8c37-48dbe59dd2b3";
         string checkpoint4 = "fd9c48e6-11c9-40c4-a1e4-b6106a105586";
+        string checkpoint5 = "b046d0ae-a6b1-4fa0-8148-bad03ba9f221";
 
-        this.gameData.checkPointColorChange.Remove(checkpoint1 + checkpoint2 + checkpoint3 + checkpoint4);
+        this.gameData.checkPointColorChange.Remove(checkpoint1 + checkpoint2 + checkpoint3 + checkpoint4 + checkpoint5);
 
         string grenadePickUp1 = "20f3defa-1f8b-4abd-83ff-988b670c98f1";
         string grenadePickUp2 = "3b21e085-b94a-4e9c-99af-083b473a4a42";

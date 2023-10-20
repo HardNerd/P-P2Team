@@ -30,6 +30,7 @@ public class EndPoint : MonoBehaviour, IDataPersistence
             GameManager.instance.updatGameGoal(0);
             GameManager.instance.playerSpawnPOS.transform.position = vector3;
             GameManager.instance.levelClearedAmount++;
+            GameManager.instance.bossesKilledGM++;
             throwsToSave = GameManager.instance.playerGrenadeGM.totalThrows;
             DataPersistenceManager.Instance.SaveGame();
             SceneManager.LoadSceneAsync(nextSceneLoaded);

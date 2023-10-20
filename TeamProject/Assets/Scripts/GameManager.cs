@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public float stamBlueFillAmt;
     public float stamYelFillAmt;
     public int levelClearedAmount;
+    public int bossesKilledGM;
     // Start is called before the first frame update
     void Awake()
     {
