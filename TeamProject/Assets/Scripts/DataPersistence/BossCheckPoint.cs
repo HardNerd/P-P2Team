@@ -18,10 +18,12 @@ public class BossCheckPoint : checkpoint, IDataPersistence
     }
     public override void LoadData(GameData data)
     {
+        base.LoadData(data);
         GameManager.instance.bossesKilledGM = data.bossesKilled;
     }
     public override void SaveData(GameData data)
     {
+        base.SaveData(data);
         data.bossesKilled = GameManager.instance.bossesKilledGM;
     }
 }

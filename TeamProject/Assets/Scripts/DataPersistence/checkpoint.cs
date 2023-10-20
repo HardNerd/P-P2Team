@@ -15,7 +15,7 @@ public class checkpoint : MonoBehaviour, IDataPersistence
     }
     protected bool colorChanged;
 
-     virtual protected void OnTriggerEnter(Collider other)
+    virtual protected void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && GameManager.instance.playerSpawnPOS.transform.position != transform.position)
         {
@@ -27,17 +27,16 @@ public class checkpoint : MonoBehaviour, IDataPersistence
         }
     }
 
-    virtual public void LoadData(GameData data)
+    public virtual void LoadData(GameData data)
     {
         data.checkPointColorChange.TryGetValue(guid, out colorChanged);
         if (colorChanged)
         {
             gameObject.GetComponentInChildren<Renderer>().material.color = color;
-
         }
     }
 
-    virtual public void SaveData(GameData data)
+    public virtual void SaveData(GameData data)
     {
         if (data.checkPointColorChange.ContainsKey(guid))
         {
