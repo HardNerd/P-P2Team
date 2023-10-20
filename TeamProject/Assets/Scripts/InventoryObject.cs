@@ -35,6 +35,17 @@ public class InventoryObjects : ScriptableObject
         }
             
     }
+    public void ClearOnlyLastTwoItems()
+    {
+        for (int i = 0; i < Container.Count; i++)
+        {
+            if (Container[i].Item != null && i >= 2)
+            {
+                Container[i].Item.isCollected = false;
+                Container[i].Clear();
+            }
+        }
+    }
 }
 
 [System.Serializable]

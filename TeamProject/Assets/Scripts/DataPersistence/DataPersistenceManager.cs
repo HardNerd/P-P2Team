@@ -59,6 +59,10 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void RestartLvl1()
     {
+        GameManager.instance.inventoryObjectsGM.ClearItems();
+
+        GameManager.instance.bossesKilledGM = 0;
+
         this.gameData.playerPos.x = -4.25f;
         this.gameData.playerPos.y = 0.5f;
         this.gameData.playerPos.z = -6.375f;
@@ -78,6 +82,10 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void RestartLvl2()
     {
+        GameManager.instance.inventoryObjectsGM.ClearOnlyLastTwoItems();
+
+        GameManager.instance.bossesKilledGM = 2;
+
         this.gameData.playerPos.x = -4;
         this.gameData.playerPos.y = 1;
         this.gameData.playerPos.z = -0.25f;
@@ -115,6 +123,8 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void RestartLvl3()
     {
+        GameManager.instance.bossesKilledGM = 4;
+
         this.gameData.playerPos.x = -3;
         this.gameData.playerPos.y = 1;
         this.gameData.playerPos.z = 3;
