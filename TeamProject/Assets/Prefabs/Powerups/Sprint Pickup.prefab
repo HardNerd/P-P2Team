@@ -9821,6 +9821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: ca608c14b5c8aa04f8f2a4616e2d3931, type: 2}
+  itemName: Sprint PickUp
 --- !u!1 &7454668968961949111
 GameObject:
   m_ObjectHideFlags: 0

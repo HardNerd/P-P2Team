@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: cf40509cfb0cb15469e8c623f5ed906d, type: 2}
+  itemName: 
 --- !u!33 &2122762242153964730
 MeshFilter:
   m_ObjectHideFlags: 0

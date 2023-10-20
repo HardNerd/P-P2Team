@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: fe8a99920f9a834419792cb2a0c49fb3, type: 2}
+  itemName: Jump PickUp
 --- !u!1 &6447909819365265572
 GameObject:
   m_ObjectHideFlags: 0

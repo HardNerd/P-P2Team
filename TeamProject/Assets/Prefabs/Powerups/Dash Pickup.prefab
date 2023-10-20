@@ -4986,6 +4986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 9dcc7f2b16749544686d948ebb8284db, type: 2}
+  itemName: Dash PickUp
 --- !u!135 &7614707449827309917
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: cf40509cfb0cb15469e8c623f5ed906d, type: 2}
+  itemName: Double Jump
 --- !u!135 &7254864280233780638
 SphereCollider:
   m_ObjectHideFlags: 0
