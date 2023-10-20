@@ -729,6 +729,10 @@ PrefabInstance:
       propertyPath: startMenu
       value: 
       objectReference: {fileID: 431345274}
+    - target: {fileID: 378538600634361787, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
+      propertyPath: inventoryObjectsGM
+      value: 
+      objectReference: {fileID: 11400000, guid: b590416525a491a4f8b4726b63606b26, type: 2}
     - target: {fileID: 424264328660440417, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
       propertyPath: m_Pivot.x
       value: 0

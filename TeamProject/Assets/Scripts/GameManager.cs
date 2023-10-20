@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public GameObject playerGrenadePickup;
     public PlayerGrenade playerGrenadeGM;
     public DisplayInventory displayInventory;
+    public InventoryObjects inventoryObjectsGM;
     public Camera mainCamera;
 
     [Header("----- Menus -----")]

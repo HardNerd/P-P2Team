@@ -34,6 +34,7 @@ public class ButtonManager : MonoBehaviour
         else
         {
             DataPersistenceManager.Instance.NewGame();
+            
             StartCoroutine(beginTime());
         }
     }
@@ -52,6 +53,7 @@ public class ButtonManager : MonoBehaviour
 
             GameManager.instance.SaveOverlay(false);
             DataPersistenceManager.Instance.NewGame();
+            GameManager.instance.inventoryObjectsGM.ClearItems();
             StartCoroutine(beginTime());
         }
     }

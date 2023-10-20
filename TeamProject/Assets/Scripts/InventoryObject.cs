@@ -27,8 +27,11 @@ public class InventoryObjects : ScriptableObject
     {
         for (int i = 0; i < Container.Count; i++)
         {
-            Container[i].Item.isCollected = false;
-            Container[i].Clear();
+            if (Container[i].Item != null)
+            {
+                Container[i].Item.isCollected = false;
+                Container[i].Clear();
+            }
         }
             
     }
