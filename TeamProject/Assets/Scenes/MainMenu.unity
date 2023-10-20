@@ -937,6 +937,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0.799998
       objectReference: {fileID: 0}
+    - target: {fileID: 4370483352376804299, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
+      propertyPath: m_text
+      value: Christopher Jenkins Jr.
+      objectReference: {fileID: 0}
     - target: {fileID: 4401126022252473609, guid: 3812c7a7a969a9c4ebf7c3e7fd56eed3, type: 3}
       propertyPath: m_IsActive
       value: 0
