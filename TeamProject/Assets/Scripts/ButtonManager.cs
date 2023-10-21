@@ -114,10 +114,12 @@ public class ButtonManager : MonoBehaviour
         {
             if (GameManager.instance.levelClearedAmount == 2)
             {
+                ResetGunStats();
                 DataPersistenceManager.Instance.RestartLvl3();
             }
             else if (GameManager.instance.levelClearedAmount == 1)
             {
+                ResetGunStats();
                 DataPersistenceManager.Instance.RestartLvl2();
             }
             else
@@ -128,7 +130,14 @@ public class ButtonManager : MonoBehaviour
         StartCoroutine(restartTime());
         DataPersistenceManager.Instance.LoadGame();
     }
-
+    public void ResetGunStats()
+    {
+        foreach (GunStats gunStats in GameManager.instance.playerGunScript.GunList)
+        {
+            gunStats.loadedAmmo = gunStats.savedAmmoNextLvl;
+            gunStats.ammoCarried = gunStats.savedMaxAmmoNextLvl;
+        }
+    }
     public IEnumerator restartTime()
     {
         yield return new WaitForSecondsRealtime(1);
@@ -144,6 +153,11 @@ public class ButtonManager : MonoBehaviour
         
         GameManager.instance.playerController.spawnPlayer();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        foreach (GunStats gunStats in GameManager.instance.playerGunScript.GunList)
+        {
+            gunStats.loadedAmmo = gunStats.savedAmmoCheckPoint;
+            gunStats.ammoCarried = gunStats.savedMaxAmmoCarriedCheckPoint;
+        }
         StartCoroutine(RespawnDelay());
         DataPersistenceManager.Instance.LoadGame();
         //GameManager.instance.levelTime.timeTaken = GameManager.instance.levelTime.timeBuff;

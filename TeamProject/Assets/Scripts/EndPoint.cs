@@ -31,6 +31,11 @@ public class EndPoint : MonoBehaviour, IDataPersistence
             GameManager.instance.playerSpawnPOS.transform.position = vector3;
             GameManager.instance.levelClearedAmount++;
             GameManager.instance.bossesKilledGM++;
+            foreach (GunStats gunStats in GameManager.instance.playerGunScript.GunList)
+            {
+                gunStats.savedAmmoNextLvl = gunStats.loadedAmmo;
+                gunStats.savedMaxAmmoNextLvl = gunStats.ammoCarried;
+            }
             throwsToSave = GameManager.instance.playerGrenadeGM.totalThrows;
             DataPersistenceManager.Instance.SaveGame();
             SceneManager.LoadSceneAsync(nextSceneLoaded);

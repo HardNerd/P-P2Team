@@ -23,6 +23,11 @@ public class checkpoint : MonoBehaviour, IDataPersistence
             StartCoroutine(GameManager.instance.checkpointPopup());
             gameObject.GetComponentInChildren<Renderer>().material.color = color;
             colorChanged = true;
+            foreach (GunStats gunStats in GameManager.instance.playerGunScript.GunList)
+            {
+                gunStats.savedAmmoCheckPoint = gunStats.loadedAmmo;
+                gunStats.savedMaxAmmoCarriedCheckPoint = gunStats.ammoCarried;
+            }
             DataPersistenceManager.Instance.SaveGame();
         }
     }
