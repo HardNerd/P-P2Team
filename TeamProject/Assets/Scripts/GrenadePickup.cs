@@ -24,7 +24,7 @@ public class GrenadePickup : MonoBehaviour, IDataPersistence
 
             hasBeenCollected = true;
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
