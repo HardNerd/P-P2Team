@@ -32,8 +32,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3772367048194752438}
   - {fileID: 7033320352204623751}
+  - {fileID: 5720044062754360909}
   m_Father: {fileID: 7610335593787313480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4755907526708998298
@@ -144,12 +144,11 @@ Transform:
   m_GameObject: {fileID: 3930455409317522917}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000014901161, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.66, y: -0.74, z: 1.439}
+  m_LocalPosition: {x: 0.65999985, y: -0.74, z: 1.4390001}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 5720044062754360909}
-  m_Father: {fileID: 967887306407933565}
+  m_Children: []
+  m_Father: {fileID: 5720044062754360909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1465825776004737986
 MonoBehaviour:
@@ -874,7 +873,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1137475159071042431}
   - component: {fileID: 8929535786149442038}
-  - component: {fileID: 6440219563014553746}
   m_Layer: 0
   m_Name: Minimap
   m_TagString: Untagged
@@ -948,14 +946,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6440219563014553746
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4532041383779942662}
-  m_Enabled: 0
 --- !u!1 &6276233285746502742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,12 +1628,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6909791823219405156}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000014901161, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.94285715, y: 1.0571429, z: -2.0557141}
-  m_LocalScale: {x: 1.4285715, y: 1.4285713, z: 1.4285715}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3772367048194752438}
+  m_Children:
+  - {fileID: 3772367048194752438}
+  m_Father: {fileID: 967887306407933565}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2812852193394243774
 Camera:
