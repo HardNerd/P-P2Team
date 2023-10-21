@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class sniper : bossAI
 {
+    [SerializeField] float initMoveRange;
+
+    bool isMoving;
+    bool hasMoved;
 
     private void Awake()
     {
@@ -18,11 +22,17 @@ public class sniper : bossAI
         maxHP = HP;
         healthBar.UpdateHealthBar(HP, maxHP);
         healthObj.SetActive(true);
+
+        SetInitDest();
     }
 
     void Update()
     {
-        if (!isDead)
+        // Move out of the way of spawner
+        if (!hasMoved)
+            FirstMove();
+
+        if (!isDead && !isMoving)
             StartCoroutine(Aim());
     }
 
@@ -48,5 +58,20 @@ public class sniper : bossAI
         animator.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.transform.position, Quaternion.LookRotation(playerDirection + new Vector3(0, -3f, 0)));
         laserSight.enabled = false;
+    }
+
+    void SetInitDest()
+    {
+        agent.SetDestination(transform.position + new Vector3(Random.Range(-initMoveRange, initMoveRange), 0, Random.Range(-initMoveRange, initMoveRange)));
+    }
+
+    void FirstMove()
+    {
+        isMoving = true;
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            isMoving = false;
+            hasMoved = true;
+        }
     }
 }
