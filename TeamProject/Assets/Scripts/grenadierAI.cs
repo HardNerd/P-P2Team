@@ -17,6 +17,7 @@ public class grenadierAI : EnemyAI
 
     [Header("----- Grenade Stats -----")]
     [SerializeField] Vector3 coverPosition;
+    [SerializeField] float coverStoppingDistance;
     [SerializeField] Transform throwPos;
     [SerializeField] GameObject molotov;
     [SerializeField] float throwAngle;
@@ -80,7 +81,7 @@ public class grenadierAI : EnemyAI
 
     protected void GoToCover()
     {
-        agent.stoppingDistance = 0;
+        agent.stoppingDistance = coverStoppingDistance;
         agent.SetDestination(coverPosition);
 
         if (agent.remainingDistance <= agent.stoppingDistance)
